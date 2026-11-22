@@ -19,7 +19,7 @@ namespace Hollowcrawl.Presentation
         {
             key = string.IsNullOrEmpty(key) ? kind.ToString() : key;
             if (Cache.TryGetValue(key, out var s) && s != null) return s;
-            s = Resources.Load<Sprite>("Sprites/" + key);
+            s = LoadArt(key);
             if (s == null) s = kind == ActorKind.Pickup || kind == ActorKind.Exit ? Diamond : kind == ActorKind.Bomb ? Square : Circle;
             Cache[key] = s;
             return s;
@@ -28,7 +28,7 @@ namespace Hollowcrawl.Presentation
         /// <summary>Tint for placeholder sprites (white when a real sprite was found).</summary>
         public static Color Tint(string key, ActorKind kind)
         {
-            if (Resources.Load<Sprite>("Sprites/" + key) != null) return Color.white;
+            if (LoadArt(key) != null) return Color.white;
             switch (kind)
             {
                 case ActorKind.Player: return new Color(0.95f, 0.9f, 0.75f);
@@ -41,6 +41,33 @@ namespace Hollowcrawl.Presentation
                 case ActorKind.Pickup: return PickupTint(key);
                 default: return FromHash(key);
             }
+        }
+
+        private static readonly Dictionary<string, Sprite> ArtCache = new Dictionary<string, Sprite>();
+
+        /// <summary>
+        /// Loads pre-rendered art (Tools/ArtGen) as a sprite exactly one world unit wide, whatever the import
+        /// settings: imported sprites are re-wrapped at the right pixels-per-unit, plain textures are wrapped too.
+        /// </summary>
+        public static Sprite LoadArt(string key)
+        {
+            if (string.IsNullOrEmpty(key)) return null;
+            if (ArtCache.TryGetValue(key, out var cached)) return cached;
+            Sprite result = null;
+            var sprite = Resources.Load<Sprite>("Sprites/" + key);
+            if (sprite != null)
+            {
+                var r = sprite.rect;
+                result = Mathf.Approximately(sprite.pixelsPerUnit, r.width) ? sprite
+                    : Sprite.Create(sprite.texture, r, new Vector2(0.5f, 0.5f), r.width, 0, SpriteMeshType.FullRect);
+            }
+            else
+            {
+                var tex = Resources.Load<Texture2D>("Sprites/" + key);
+                if (tex != null) result = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f), tex.width, 0, SpriteMeshType.FullRect);
+            }
+            ArtCache[key] = result;
+            return result;
         }
 
         private static Color PickupTint(string key)

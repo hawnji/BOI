@@ -5,8 +5,9 @@ Generated from content by `AssetManifest` (menu Hollowcrawl > Export Asset Manif
 
 Drop files at these paths; anything missing falls back to a generated shape or silence:
 
-- Sprites: `Assets/Resources/Sprites/<key>.png` (pivot centre, 16 pixels per unit).
-- Tiles: `Assets/Resources/Tiles/<theme>/<kind>.png` or `Assets/Resources/Tiles/<kind>.png`, 16x16, Read/Write enabled.
+- Sprites: `Assets/Resources/Sprites/<key>.png` (square, pivot centre; the image width is drawn as one world unit).
+- Tiles: `Assets/Resources/Tiles/<theme>/<kind>.png` or `Assets/Resources/Tiles/<kind>.png`, square (64x64), Read/Write enabled.
+- Most of these are rendered from procedural Blender models by `Tools/ArtGen` (see `docs/ART_PIPELINE.md`).
 - Audio: `Assets/Resources/Audio/<key>.ogg` (music loops; effects one-shot).
 
 ## Tiles (13 kinds x 15 themes)

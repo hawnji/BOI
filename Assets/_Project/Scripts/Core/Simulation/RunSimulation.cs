@@ -150,7 +150,7 @@ namespace Hollowcrawl.Simulation
             if (Setup.NoContainers) { health.SetContainers(0, false); _lastMaxHealthStat = stats[StatId.MaxHealth]; }
             health.Died += OnPlayerDied;
 
-            Player = new PlayerActor(new MovementTuning()) { Id = _ids.Next() };
+            Player = new PlayerActor(new MovementTuning()) { Id = _ids.Next(), ViewKey = "character_" + (Setup.CharacterId ?? "wanderer") };
             _pools = new ItemPools(Content.Items.Values, Setup.IsUnlocked, root.Fork("pools"));
             _generator = new FloorGenerator(Templates);
             InitConsumables(root);

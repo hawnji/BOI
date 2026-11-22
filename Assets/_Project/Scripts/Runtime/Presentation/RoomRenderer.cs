@@ -9,14 +9,16 @@ namespace Hollowcrawl.Presentation
     /// </summary>
     public sealed class RoomRenderer : MonoBehaviour
     {
-        public const int PixelsPerTile = 16;
+        public const int PixelsPerTile = 64;
+        private const int PlaceholderScale = PixelsPerTile / 16;
         private SpriteRenderer _renderer;
         private Texture2D _texture;
         private RoomGrid _grid;
         public string Theme = "crypt";
 
-        // Art hook: a 16x16 readable texture at Resources/Tiles/<theme>/<kind> (or Resources/Tiles/<kind>) replaces the
-        // generated colour for that tile kind. Kinds are TileKind names in lower case (floor, rock, wall, door_open...).
+        // Art hook: a readable texture at Resources/Tiles/<theme>/<kind> (or Resources/Tiles/<kind>) replaces the
+        // generated colour for that tile kind; any square size is resampled to PixelsPerTile (the Blender renders from
+        // Tools/ArtGen are 64x64). Kinds are TileKind names in lower case (floor, rock, wall, door_open...).
         private static readonly System.Collections.Generic.Dictionary<string, Color32[]> TileArt = new System.Collections.Generic.Dictionary<string, Color32[]>();
 
         public static string TileKey(TileKind k)
@@ -43,9 +45,15 @@ namespace Hollowcrawl.Presentation
         {
             var tex = Resources.Load<Texture2D>(path);
             if (tex == null) return null;
-            if (tex.width != PixelsPerTile || tex.height != PixelsPerTile) { Debug.LogWarning($"[Art] {path} must be {PixelsPerTile}x{PixelsPerTile}."); return null; }
-            try { return tex.GetPixels32(); }
+            Color32[] src;
+            try { src = tex.GetPixels32(); }
             catch (UnityException) { Debug.LogWarning($"[Art] {path} needs Read/Write enabled in its import settings."); return null; }
+            if (tex.width == PixelsPerTile && tex.height == PixelsPerTile) return src;
+            var dst = new Color32[PixelsPerTile * PixelsPerTile];
+            for (int y = 0; y < PixelsPerTile; y++)
+                for (int x = 0; x < PixelsPerTile; x++)
+                    dst[y * PixelsPerTile + x] = src[(y * tex.height / PixelsPerTile) * tex.width + x * tex.width / PixelsPerTile];
+            return dst;
         }
 
         public static RoomRenderer Create(Transform parent)
@@ -65,7 +73,7 @@ namespace Hollowcrawl.Presentation
             if (_texture == null || _texture.width != w || _texture.height != h)
             {
                 if (_texture != null) Destroy(_texture);
-                _texture = new Texture2D(w, h, TextureFormat.RGBA32, false) { filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp };
+                _texture = new Texture2D(w, h, TextureFormat.RGBA32, false) { filterMode = FilterMode.Bilinear, wrapMode = TextureWrapMode.Clamp };
             }
             Redraw();
             _renderer.sprite = Sprite.Create(_texture, new Rect(0, 0, w, h), new Vector2(0f, 0f), PixelsPerTile);
@@ -85,11 +93,15 @@ namespace Hollowcrawl.Presentation
                     int ty = _grid.Height - row; // texture rows grow upward; +1 border offset already in (H - row)
                     int tx = x + 1;
                     var art = ArtFor(kind);
+                    // Door art is modelled for the top/bottom walls; turn it a quarter for the side walls.
+                    bool sideDoor = (kind == TileKind.DoorOpen || kind == TileKind.DoorClosed) && (x == -1 || x == _grid.Width);
                     for (int py = 0; py < PixelsPerTile; py++)
                         for (int pxl = 0; pxl < PixelsPerTile; pxl++)
                         {
-                            bool edge = pxl == 0 || py == 0;
-                            var c = art != null ? art[py * PixelsPerTile + pxl] : TileColor(kind, (x + row) & 1, edge, pxl, py);
+                            int sx = pxl / PlaceholderScale, sy = py / PlaceholderScale;
+                            bool edge = sx == 0 || sy == 0;
+                            int ax = sideDoor ? py : pxl, ay = sideDoor ? PixelsPerTile - 1 - pxl : py;
+                            var c = art != null ? art[ay * PixelsPerTile + ax] : TileColor(kind, (x + row) & 1, edge, sx, sy);
                             px[(ty * PixelsPerTile + py) * w * PixelsPerTile + tx * PixelsPerTile + pxl] = c;
                         }
                 }

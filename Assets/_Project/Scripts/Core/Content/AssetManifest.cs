@@ -18,7 +18,7 @@ namespace Hollowcrawl.Content
             "pickup_consumable", "pickup_trinket", "pickup_item",
         };
 
-        /// <summary>Tile art: Resources/Tiles/&lt;theme&gt;/&lt;kind&gt; or Resources/Tiles/&lt;kind&gt; (16x16, Read/Write enabled).</summary>
+        /// <summary>Tile art: Resources/Tiles/&lt;theme&gt;/&lt;kind&gt; or Resources/Tiles/&lt;kind&gt; (any square size, resampled to 64x64; Read/Write enabled).</summary>
         public static readonly string[] TileKinds = { "floor", "rock", "block", "pit", "spikes", "prop", "marked_rock", "fire", "water", "explosive", "wall", "door_open", "door_closed" };
 
         public static readonly string[] BuiltInAudio =
@@ -81,8 +81,9 @@ namespace Hollowcrawl.Content
             sb.AppendLine();
             sb.AppendLine("Drop files at these paths; anything missing falls back to a generated shape or silence:");
             sb.AppendLine();
-            sb.AppendLine("- Sprites: `Assets/Resources/Sprites/<key>.png` (pivot centre, 16 pixels per unit).");
-            sb.AppendLine("- Tiles: `Assets/Resources/Tiles/<theme>/<kind>.png` or `Assets/Resources/Tiles/<kind>.png`, 16x16, Read/Write enabled.");
+            sb.AppendLine("- Sprites: `Assets/Resources/Sprites/<key>.png` (square, pivot centre; the image width is drawn as one world unit).");
+            sb.AppendLine("- Tiles: `Assets/Resources/Tiles/<theme>/<kind>.png` or `Assets/Resources/Tiles/<kind>.png`, square (64x64), Read/Write enabled.");
+            sb.AppendLine("- Most of these are rendered from procedural Blender models by `Tools/ArtGen` (see `docs/ART_PIPELINE.md`).");
             sb.AppendLine("- Audio: `Assets/Resources/Audio/<key>.ogg` (music loops; effects one-shot).");
             sb.AppendLine();
             sb.AppendLine($"## Tiles ({TileKinds.Length} kinds x {m.Themes.Count} themes)");
