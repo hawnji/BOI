@@ -1,0 +1,24 @@
+{
+  "roomModifiers": [
+    { "id": "mod_elite_guard", "name": "Elite Guard", "description": "Every foe here is an elite. A chest waits for the victor.", "iconKey": "mod_elite", "weight": 1.0, "minFloor": 1,
+      "allElite": true, "rewardPickups": 1, "rewardChest": true },
+    { "id": "mod_frenzy", "name": "Frenzy", "description": "Foes move faster but fall easier.", "iconKey": "mod_frenzy", "weight": 1.2,
+      "enemySpeedMultiplier": 1.35, "enemyHealthMultiplier": 0.8 },
+    { "id": "mod_iron_hide", "name": "Iron Hide", "description": "Foes shrug off a third of your damage.", "iconKey": "mod_armor", "weight": 1.0, "minFloor": 2,
+      "enemyDamageTakenMultiplier": 0.67, "rewardPickups": 1 },
+    { "id": "mod_swarming", "name": "Swarming", "description": "Half as many foes again, and they are a little frailer.", "iconKey": "mod_swarm", "weight": 1.0,
+      "extraEnemies": 0.5, "enemyHealthMultiplier": 0.85, "rewardPickups": 1 },
+    { "id": "mod_volatile", "name": "Volatile", "description": "Foes burst when they die. Keep your distance.", "iconKey": "mod_volatile", "weight": 0.9, "minFloor": 1,
+      "explodeOnDeath": true, "deathExplosionRadius": 1.2 },
+    { "id": "mod_mending", "name": "Mending", "description": "Wounded foes slowly knit back together.", "iconKey": "mod_regen", "weight": 0.8, "minFloor": 2,
+      "enemyRegenPerSecond": 0.03 },
+    { "id": "mod_darkness", "name": "Darkness", "description": "The lights are out in here.", "iconKey": "mod_dark", "weight": 0.9,
+      "visionRadius": 4.5, "rewardPickups": 1 },
+    { "id": "mod_giants", "name": "Giants", "description": "Foes are tougher and slower.", "iconKey": "mod_giant", "weight": 1.0,
+      "enemyHealthMultiplier": 1.5, "enemySpeedMultiplier": 0.8 },
+    { "id": "mod_bounty", "name": "Bounty", "description": "A rich reward for clearing this room.", "iconKey": "mod_bounty", "weight": 0.7,
+      "enemyHealthMultiplier": 1.15, "rewardPickups": 3 },
+    { "id": "mod_glass_ranks", "name": "Glass Ranks", "description": "Foes hit like a storm but break like glass.", "iconKey": "mod_glass", "weight": 0.8, "minFloor": 3,
+      "enemySpeedMultiplier": 1.2, "enemyHealthMultiplier": 0.5, "extraEnemies": 0.5 }
+  ]
+}

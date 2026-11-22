@@ -24,6 +24,7 @@ namespace Hollowcrawl.Content
         public List<Progression.AchievementDefinition> Achievements;
         public List<Progression.ChallengeDefinition> Challenges;
         public List<Simulation.CompanionDefinition> Companions;
+        public List<Simulation.RoomModifierDefinition> RoomModifiers;
     }
 
     /// <summary>
@@ -47,6 +48,7 @@ namespace Hollowcrawl.Content
         public readonly Dictionary<string, Progression.AchievementDefinition> Achievements = new Dictionary<string, Progression.AchievementDefinition>(StringComparer.Ordinal);
         public readonly Dictionary<string, Progression.ChallengeDefinition> Challenges = new Dictionary<string, Progression.ChallengeDefinition>(StringComparer.Ordinal);
         public readonly Dictionary<string, Simulation.CompanionDefinition> Companions = new Dictionary<string, Simulation.CompanionDefinition>(StringComparer.Ordinal);
+        public readonly Dictionary<string, Simulation.RoomModifierDefinition> RoomModifiers = new Dictionary<string, Simulation.RoomModifierDefinition>(StringComparer.Ordinal);
         /// <summary>Content order of characters as authored (menus list them in this order).</summary>
         public readonly List<string> CharacterOrder = new List<string>();
         public readonly List<RoomTemplate> RoomTemplates = new List<RoomTemplate>();
@@ -73,6 +75,7 @@ namespace Hollowcrawl.Content
             AddAll(sourceName, file.Achievements, Achievements, x => x.Id);
             AddAll(sourceName, file.Challenges, Challenges, x => x.Id);
             AddAll(sourceName, file.Companions, Companions, x => x.Id);
+            AddAll(sourceName, file.RoomModifiers, RoomModifiers, x => x.Id);
             if (file.Rooms != null) RoomTemplates.AddRange(file.Rooms);
         }
 
@@ -207,7 +210,24 @@ namespace Hollowcrawl.Content
             }
             ValidateProgression(db, effects, conditions, r);
             ValidateCompanions(db, r);
+            ValidateRoomModifiers(db, r);
             return r;
+        }
+
+        private static void ValidateRoomModifiers(ContentDatabase db, ValidationReport r)
+        {
+            foreach (var m in db.RoomModifiers.Values)
+            {
+                string id = "room modifier " + m.Id;
+                if (string.IsNullOrWhiteSpace(m.Name)) r.Error($"{id}: missing name.");
+                if (m.Weight < 0f) r.Error($"{id}: negative weight.");
+                if (m.EnemyHealthMultiplier <= 0f || m.EnemySpeedMultiplier <= 0f || m.EnemyDamageTakenMultiplier <= 0f) r.Error($"{id}: multipliers must be positive.");
+                if (m.EnemySpeedMultiplier > 2f) r.Warn($"{id}: enemies more than twice as fast is unreadable.");
+                if (m.ExtraEnemies < 0f || m.ExtraEnemies > 1f) r.Error($"{id}: extraEnemies must be 0..1.");
+                if (m.EnemyRegenPerSecond < 0f || m.EnemyRegenPerSecond > 0.2f) r.Error($"{id}: enemyRegenPerSecond must be 0..0.2.");
+                if (m.RewardPickups < 0 || m.RewardPickups > 6) r.Error($"{id}: rewardPickups must be 0..6.");
+                if (m.VisionRadius < 0f) r.Error($"{id}: negative visionRadius.");
+            }
         }
 
         private static void ValidateCompanions(ContentDatabase db, ValidationReport r)

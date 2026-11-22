@@ -189,6 +189,14 @@ challenge `rewardUnlock` (validator error otherwise).
 Practice runs record nothing. Custom-seed runs record statistics only. Daily runs use the date's seed, the Wanderer
 and ignore personal unlocks so everyone plays the same run.
 
+## Room modifiers (`Content/Rooms/room_modifiers.json`, key `roomModifiers`)
+
+A combat room may roll one modifier the first time it is entered. Chance = difficulty `RoomModifierChance` + 1% per
+floor (Story 5%, Normal 10%, Hard 20%, Nightmare 35%). Fields: `id`, `name`, `description`, `iconKey`, `weight`,
+`minFloor` (0-based), `enemyHealthMultiplier`, `enemySpeedMultiplier`, `enemyDamageTakenMultiplier`, `allElite`,
+`extraEnemies` (0..1), `explodeOnDeath` + `deathExplosionRadius`, `enemyRegenPerSecond` (0..0.2), `visionRadius`,
+`rewardPickups` (0..6), `rewardChest`. Bosses ignore the health, damage-taken, regen and explode rules.
+
 ## Generated content files
 
 Large batches are written by scripts in `Tools/ContentGen/` (run from the repo root with `python3`). Edit the

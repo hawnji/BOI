@@ -44,6 +44,8 @@ namespace Hollowcrawl.Simulation
         public readonly List<ShrineActor> Shrines = new List<ShrineActor>();
         /// <summary>Owned by the run (companions follow the player between rooms).</summary>
         public List<CompanionActor> Companions = new List<CompanionActor>();
+        /// <summary>Room rule rolled when the room was first populated (null for most rooms).</summary>
+        public RoomModifierDefinition Modifier;
 
         /// <summary>Set when the player steps into an open doorway this frame. The run performs the transition.</summary>
         public RoomDoor ExitRequested { get; private set; }
@@ -108,7 +110,9 @@ namespace Hollowcrawl.Simulation
             var boss = _host.FindBoss(id);
             var def = boss?.Body ?? _host.FindEnemy(id);
             if (def == null) return null;
+            if (Modifier != null && Modifier.AllElite && boss == null && summonedBy == null) elite = true;
             var scaling = EnemyScaling.Compute(def, FloorIndex, Difficulty, elite && boss == null);
+            if (Modifier != null && boss == null) scaling.MaxHealth *= Modifier.EnemyHealthMultiplier;
             var e = new EnemyActor
             {
                 Id = _ids.Next(), Position = position, Radius = def.Radius, Definition = def, Boss = boss, Scaling = scaling,
@@ -398,6 +402,8 @@ namespace Hollowcrawl.Simulation
                 if (e.FlashTimer > 0f) e.FlashTimer -= dt;
                 e.Status.Tick(dt);
                 if (e.Removed) continue;
+                if (Modifier != null && Modifier.EnemyRegenPerSecond > 0f && !e.IsBoss)
+                    e.Health = Math.Min(e.MaxHealth, e.Health + e.MaxHealth * Modifier.EnemyRegenPerSecond * dt);
                 if (e.BossController != null)
                 {
                     e.BossController.Tick(dt);
@@ -411,6 +417,7 @@ namespace Hollowcrawl.Simulation
                 if (intent.AttackFired != null) ExecuteAttack(e, intent.AttackFired, intent.AttackDirection);
                 if (e.Removed) continue;
 
+                if (Modifier != null && Modifier.EnemySpeedMultiplier != 1f) intent.Velocity = intent.Velocity * Modifier.EnemySpeedMultiplier;
                 e.Velocity = intent.Velocity;
                 var delta = (intent.Velocity + e.Knockback) * dt;
                 e.Position = Grid.MoveCircle(e.Position, e.Radius, delta, e.Flying || intent.Invisible, out _);
@@ -555,6 +562,7 @@ namespace Hollowcrawl.Simulation
             var hit = new HitContext { TargetId = e.Id, Position = e.Position, IsCritical = crit, TargetIsBoss = e.IsBoss || e.Definition.IsBoss, Types = types, Projectile = projectile, Generation = generation, FromCompanion = fromCompanion };
             if (!dot) Engine.ModifyOutgoingDamage(ref info, hit);
             if (e.BossController != null && e.BossController.IsInvulnerable) info.Amount = 0f;
+            if (Modifier != null && !e.IsBoss) info.Amount *= Modifier.EnemyDamageTakenMultiplier;
             if (info.Amount <= 0f) return;
             e.Health -= info.Amount;
             e.FlashTimer = 0.08f;
@@ -572,6 +580,8 @@ namespace Hollowcrawl.Simulation
         {
             if (e.Removed) return;
             e.Removed = true;
+            if (Modifier != null && Modifier.ExplodeOnDeath && !e.IsBoss)
+                QueueExplosion(e.Position, Modifier.DeathExplosionRadius, 0f, Team.Enemy, DamageType.Explosive, 1);
             foreach (var d in e.Definition.OnDeath)
             {
                 switch (d.Kind)

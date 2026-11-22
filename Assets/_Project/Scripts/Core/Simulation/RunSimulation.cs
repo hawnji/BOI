@@ -54,6 +54,8 @@ namespace Hollowcrawl.Simulation
         public string ForcedHex;
         /// <summary>&gt; 0: reaching this floor (1-based) wins the run.</summary>
         public int GoalFloor;
+        /// <summary>When 0..1, replaces the difficulty's room modifier chance (tests, challenges).</summary>
+        public float RoomModifierChanceOverride = -1f;
         public List<EffectSpec> ChallengeEffects = new List<EffectSpec>();
     }
 
@@ -275,8 +277,28 @@ namespace Hollowcrawl.Simulation
             var node = runtime.Node;
             var template = Templates.Get(node.TemplateId);
             var grid = sim.Grid;
+            if (node.Type == RoomType.Combat && node.Enemies.Count > 0) sim.Modifier = RollRoomModifier(node);
             foreach (var spawn in node.Enemies)
-                sim.SpawnEnemy(spawn.EnemyId, grid.TileCenter(spawn.TileX, spawn.TileY), spawn.Elite);
+            {
+                var pos = grid.TileCenter(spawn.TileX, spawn.TileY);
+                sim.SpawnEnemy(spawn.EnemyId, pos, spawn.Elite);
+            }
+            if (sim.Modifier != null)
+            {
+                int extra = (int)Math.Round(node.Enemies.Count * sim.Modifier.ExtraEnemies);
+                for (int i = 0; i < extra; i++)
+                {
+                    var spawn = node.Enemies[i % node.Enemies.Count];
+                    var pos = grid.TileCenter(spawn.TileX, spawn.TileY);
+                    for (int k = 0; k < 4; k++)
+                    {
+                        int nx = spawn.TileX + (k == 0 ? 1 : k == 1 ? -1 : 0), nr = spawn.TileY + (k == 2 ? 1 : k == 3 ? -1 : 0);
+                        if (grid.IsWalkable(nx, nr)) { pos = grid.TileCenter(nx, nr); break; }
+                    }
+                    sim.SpawnEnemy(spawn.EnemyId, pos, spawn.Elite);
+                }
+                Events.Add(new SimEvent { Kind = SimEventKind.RoomModifierApplied, Value = node.Index, Key = sim.Modifier.Id });
+            }
             if ((node.Type == RoomType.Boss || node.Type == RoomType.Miniboss) && sim.Enemies.Count == 0 && node.EncounterId != null)
                 sim.SpawnEnemy(node.EncounterId, grid.Center + new Vec2(0f, 1.5f), false);
             foreach (var p in node.Pickups)
@@ -325,6 +347,27 @@ namespace Hollowcrawl.Simulation
             if (item == null) { sim.SpawnPickupActor(PickupKind.Coin, pos); return; }
             var ped = sim.SpawnPickupActor(item.Kind == ItemKind.Trinket ? PickupKind.Trinket : PickupKind.Item, pos, item.Id, price, pedestal: true, scatter: false);
             if (ped != null && ActiveHex != null && ActiveHex.VeilPedestals) ped.Veiled = true;
+        }
+
+        private readonly List<RoomModifierDefinition> _modifierPool = new List<RoomModifierDefinition>();
+
+        /// <summary>Rolls a room modifier for a combat room on first entry (null for most rooms).</summary>
+        private RoomModifierDefinition RollRoomModifier(RoomNode node)
+        {
+            if (Content.RoomModifiers.Count == 0) return null;
+            var rng = _rng.Fork("room_modifier", FloorIndex * 1000 + node.Index);
+            float chance = Setup.Difficulty.RoomModifierChance + 0.01f * FloorIndex;
+            if (Setup.RoomModifierChanceOverride >= 0f) chance = Setup.RoomModifierChanceOverride;
+            if (rng.NextFloat() >= chance) return null;
+            _modifierPool.Clear();
+            float total = 0f;
+            foreach (var m in Content.RoomModifiers.Values)
+                if (m.MinFloor <= FloorIndex && m.Weight > 0f) { _modifierPool.Add(m); total += m.Weight; }
+            if (_modifierPool.Count == 0) return null;
+            _modifierPool.Sort((a, b) => string.CompareOrdinal(a.Id, b.Id));
+            float roll = rng.NextFloat() * total;
+            foreach (var m in _modifierPool) { roll -= m.Weight; if (roll <= 0f) return m; }
+            return _modifierPool[_modifierPool.Count - 1];
         }
 
         private void PopulateShop(RoomSimulation sim, List<(int x, int y)> slots)
@@ -397,6 +440,12 @@ namespace Hollowcrawl.Simulation
                 c.RoomsSinceProvide = 0;
                 sim.SpawnPickupActor(ResolvePickupKind(c.Definition.ProvidesPickup.ToString()), c.Position);
             }
+            if (sim.Modifier != null)
+                for (int i = 0; i < sim.Modifier.RewardPickups; i++)
+                {
+                    var kind = sim.Modifier.RewardChest ? ResolvePickupKind(_drops.RollChest(_dropRng).ToString()) : ResolvePickupKind(_drops.RollRoomClear(_dropRng, Engine)?.ToString() ?? "Coin");
+                    sim.SpawnPickupActor(kind, sim.Grid.Center + new Vec2(i - (sim.Modifier.RewardPickups - 1) * 0.5f, -0.5f));
+                }
             if (node.Type == RoomType.Boss)
             {
                 var boss = node.EncounterId != null ? FindBoss(node.EncounterId) : null;

@@ -26,6 +26,7 @@ namespace Hollowcrawl.Presentation
             else if (e.Kind == SimEventKind.Feedback && e.Key == "door_needs_key") ShowPopup("<size=16>Locked: needs a key</size>");
             else if (e.Kind == SimEventKind.ConsumableUsed && run.Content.Consumables.TryGetValue(e.Key, out var c)) ShowPopup(c.Name + "\n<size=14>" + c.Description + "</size>");
             else if (e.Kind == SimEventKind.ShrineUsed && e.Key != null) ShowPopup("<size=18>" + e.Key + "</size>");
+            else if (e.Kind == SimEventKind.RoomModifierApplied && run.Content.RoomModifiers.TryGetValue(e.Key, out var rm)) ShowPopup("<color=#ffb060>" + rm.Name + "</color>\n<size=14>" + rm.Description + "</size>");
             else if (e.Kind == SimEventKind.HexApplied && run.Content.Hexes.TryGetValue(e.Key, out var hx)) ShowPopup("<color=#c080ff>" + hx.Name + "</color>\n<size=14>" + hx.Description + "</size>");
             else if (e.Kind == SimEventKind.PurchaseFailed) ShowPopup("<size=16>You can't afford that</size>");
         }

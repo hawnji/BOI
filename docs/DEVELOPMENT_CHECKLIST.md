@@ -15,7 +15,7 @@ Last updated: 2026-11-22.
 
 | Phase | Status | Notes |
 |---|---|---|
-| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 162 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
+| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 172 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
 | 2 Core player gameplay | In progress | Full gameplay loop runs headless (ADR-009): movement, shooting, enemies, bombs, pickups, doors, rooms, floors, boss exit; unit-tested incl. determinism and random-play soak. Unity presentation layer written (placeholder art, IMGUI HUD), not yet compiled in Unity. |
 | 3 Combat and interaction foundations | In progress | Pure parts exist and are unit-tested: damage info, status controller, health pool, enemy AI brain, attack patterns, difficulty scaling. Unity enemy components not started. |
 | 4 Item interaction engine | In progress | Engine core done early (spec: "design early"). Remaining: integration with real projectiles/companions/enemies, in-game debug overlay. |
@@ -79,7 +79,8 @@ Last updated: 2026-11-22.
 | Shop inventory generation, pricing, discounts, purchases | Implemented (unit-tested) | `Core/Economy/ShopInventory.cs`; shop room/UI not started |
 | Drop tables (room clear, enemy, prop, chest; luck and item modifiers) | Implemented (unit-tested) | `Core/Economy/DropTables.cs` |
 | Pickups, bombs, consumables (sigils + unidentified draughts with per-run colours, slots, swap) | Implemented (unit-tested in Core; Unity drawing type-checked only) | `Core/Consumables`, `RunSimulation.Consumables.cs` |
-| Floor hexes (curses), shrine events | Implemented (unit-tested) | 5 hexes (map hide, larger floor, veiled pedestals, darkness, stat), 4 shrines with costs/outcomes/ambush; room modifiers not started |
+| Floor hexes (curses), shrine events | Implemented (unit-tested) | 5 hexes (map hide, larger floor, veiled pedestals, darkness, stat), 4 shrines with costs/outcomes/ambush |
+| Room modifiers (elite guard, frenzy, iron hide, swarming, volatile, mending, darkness, giants, bounty, glass ranks) | Implemented (headless-tested, RoomModifierTests) | Rolled per combat room from the difficulty's chance (+1% per floor), deterministic per seed; HUD popup and darkness hook type-checked only |
 | Difficulty system | In progress | Story/Normal/Hard/Nightmare presets drive enemy scaling, attack gating, damage bonus and hex chance; no selection UI yet |
 | Game modes (standard, challenge, daily, practice, custom) | Implemented (unit-tested) | `Progression/RunSetupFactory.cs`; practice records nothing, custom records statistics only, daily keeps best score per date |
 | Unlocks, achievements, completion marks, statistics | Implemented (unit-tested) | `Progression/ProgressionService.cs`; statistics/achievement screens are placeholder IMGUI; endings not started |

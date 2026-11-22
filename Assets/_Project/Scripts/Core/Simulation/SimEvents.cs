@@ -10,6 +10,7 @@ namespace Hollowcrawl.Simulation
         ShotFired, ShotImpact, Explosion, TileChanged, DoorChanged, SecretRevealed,
         PickupCollected, ItemCollected, PurchaseFailed, RoomCleared, RoomEntered, FloorStarted,
         Feedback, ActiveUsed, RunWon, RunLost, ConsumableUsed, ConsumableIdentified, ShrineUsed, HexApplied,
+        RoomModifierApplied,
     }
 
     /// <summary>A presentation cue (sound, particles, screen shake, HUD popups). Gameplay never depends on these.</summary>

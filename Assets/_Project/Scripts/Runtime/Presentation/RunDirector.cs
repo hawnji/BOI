@@ -180,6 +180,8 @@ namespace Hollowcrawl.Presentation
         private void UpdateDarkness()
         {
             float radius = Run.ActiveHex != null ? Run.ActiveHex.VisionRadius : 0f;
+            var roomMod = Run.CurrentRoom != null ? Run.CurrentRoom.Modifier : null;
+            if (roomMod != null && roomMod.VisionRadius > 0f) radius = radius > 0f ? Math.Min(radius, roomMod.VisionRadius) : roomMod.VisionRadius;
             if (radius <= 0f || Run.Player == null) { if (_darkness != null) _darkness.enabled = false; return; }
             if (_darkness == null)
             {
