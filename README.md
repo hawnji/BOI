@@ -57,7 +57,17 @@ so engine-free code that builds here should build in Unity.
 
 ## Building for Windows
 
-Not available yet. Build configuration is Phase 12; instructions will be added here.
+Not yet verified: no build has been produced, because the project has not been opened in Unity yet.
+
+- In the editor: **Hollowcrawl > Build > Windows (x64)** writes `Builds/Windows/Hollowcrawl.exe`.
+- From the command line:
+  `Unity -batchmode -quit -projectPath . -executeMethod Hollowcrawl.EditorTools.BuildScript.BuildWindowsCI -buildOutput Builds/Windows`
+  (add `-development` for a development build). It exits with code 1 if the build fails.
+- On GitHub: run the **unity-windows-build** workflow by hand. It needs `UNITY_LICENSE`, `UNITY_EMAIL` and
+  `UNITY_PASSWORD` repository secrets. It runs the EditMode tests inside Unity, builds, and uploads the build as an artifact.
+
+The game needs no scene content: `GameBootstrap` starts everything, and the build script creates an empty
+`Assets/_Project/Scenes/Main.unity` the first time.
 
 ## Documentation
 

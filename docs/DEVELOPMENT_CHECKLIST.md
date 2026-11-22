@@ -89,7 +89,7 @@ Last updated: 2026-11-22.
 | Art and audio hooks + asset manifest | Implemented | Sprites `Resources/Sprites/<key>`, themed tiles `Resources/Tiles/<theme>/<kind>`, item icons over pedestals, audio `Resources/Audio/<key>`. `docs/ASSET_MANIFEST.md` lists all 785 sprite keys and every audio key (generated). No final art or audio exists |
 | Art, animation, lighting, VFX | Not started | |
 | Object pooling | Implemented (type-checked only) | Actor sprites pooled by id (`ActorViews`); simulation actors are plain objects |
-| Windows build | Not started | |
+| Windows build | Build pipeline written, never run | `Editor/BuildScript.cs` (menu Hollowcrawl > Build, and `-executeMethod Hollowcrawl.EditorTools.BuildScript.BuildWindowsCI`) creates the boot scene if missing and builds `Hollowcrawl.exe`. `.github/workflows/unity-windows-build.yml` runs Unity EditMode tests and the Windows build on demand once Unity licence secrets are added. No build has been produced yet |
 
 ## Content production checklist
 

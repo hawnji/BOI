@@ -1,0 +1,45 @@
+# Compiles the project in Unity, runs the EditMode tests and builds the Windows player.
+# Manual only: it needs a Unity licence stored as repository secrets first
+# (UNITY_LICENSE, UNITY_EMAIL, UNITY_PASSWORD; see https://game.ci/docs/github/activation).
+# Not yet run: the Unity 6000.6.9f1 runner image and the package versions in Packages/manifest.json are unverified.
+name: unity-windows-build
+on:
+  workflow_dispatch:
+    inputs:
+      development:
+        description: Development build
+        type: boolean
+        default: false
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+      UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+      UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Packages/manifest.json', 'ProjectSettings/ProjectVersion.txt') }}
+          restore-keys: Library-
+      - name: EditMode tests in Unity
+        uses: game-ci/unity-test-runner@v4
+        with:
+          testMode: editmode
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build Windows x64
+        uses: game-ci/unity-builder@v4
+        with:
+          targetPlatform: StandaloneWindows64
+          buildName: Hollowcrawl
+          buildMethod: Hollowcrawl.EditorTools.BuildScript.BuildWindowsCI
+          customParameters: -buildOutput build/StandaloneWindows64 ${{ inputs.development && '-development' || '' }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Hollowcrawl-Windows
+          path: build/StandaloneWindows64
