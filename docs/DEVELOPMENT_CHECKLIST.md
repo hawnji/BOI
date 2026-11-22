@@ -111,7 +111,7 @@ count only if they are distinct, functional content.
 | Floor environments | 15 | 1 | In progress (data only, no art/audio) |
 | Transformations | 12 | 2 | In progress |
 | Companions | 30 | 0 | Not started (ids referenced: wisp, bone_sparrow, drone_mite) |
-| Challenges | 30 | 0 | Not started |
+| Challenges | 30 | 8 | In progress |
 | Achievements | 100 | 63 | In progress |
 | Synergies (no minimum set) | - | 4 | In progress |
 | Status effects | - | 8 | In progress |
