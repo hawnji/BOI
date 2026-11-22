@@ -1,0 +1,122 @@
+{
+  "enemies": [
+    { "id": "husk_shambler", "name": "Husk Shambler", "description": "A dried shell of a crypt-keeper that lurches after warmth.",
+      "spriteKey": "enemy_husk_shambler", "health": 12, "contactDamage": 1, "radius": 0.45, "tags": ["melee", "undead"],
+      "movement": { "kind": "Chase", "speed": 1.6 },
+      "attacks": [],
+      "onDeath": [ { "kind": "SpawnEnemies", "enemyId": "husk_crawler", "count": 1 } ] },
+
+    { "id": "husk_crawler", "name": "Husk Crawler", "description": "The half that keeps going.",
+      "spriteKey": "enemy_husk_crawler", "health": 5, "contactDamage": 1, "radius": 0.35, "tags": ["melee", "undead"],
+      "movement": { "kind": "Chase", "speed": 2.2 }, "lootMultiplier": 0.3 },
+
+    { "id": "ash_bat", "name": "Ash Bat", "description": "Erratic flier that swoops in from soot-choked rafters.",
+      "spriteKey": "enemy_ash_bat", "health": 6, "contactDamage": 1, "radius": 0.3, "tags": ["flying"],
+      "movement": { "kind": "Orbit", "speed": 3.2, "preferredDistance": 2.5, "flying": true },
+      "attacks": [
+        { "id": "swoop", "kind": "Dash", "cooldown": 2.6, "telegraph": 0.45, "duration": 0.35, "recovery": 0.4,
+          "maxRange": 4.5, "dashSpeed": 9, "telegraphKey": "tele_flash", "audioKey": "sfx_bat_screech" } ] },
+
+    { "id": "cinder_imp", "name": "Cinder Imp", "description": "Keeps its distance and lobs embers in a fan.",
+      "spriteKey": "enemy_cinder_imp", "health": 10, "contactDamage": 1, "radius": 0.4, "tags": ["ranged", "fire"],
+      "statusImmunities": ["burn", "scorch"], "retreatBelowHealth": 0.35,
+      "movement": { "kind": "KeepDistance", "speed": 2.0, "preferredDistance": 5 },
+      "attacks": [
+        { "id": "ember_fan", "kind": "Projectile", "cooldown": 2.4, "telegraph": 0.5, "recovery": 0.3, "minRange": 1.5, "maxRange": 9,
+          "pattern": "Spread", "count": 3, "spread": 18, "projectileSpeed": 5.5, "damage": 1, "telegraphKey": "tele_glow" },
+        { "id": "ember_ring", "kind": "Projectile", "cooldown": 5, "telegraph": 0.7, "recovery": 0.5, "maxRange": 6,
+          "pattern": "Ring", "count": 8, "projectileSpeed": 4.5, "damage": 1, "minDifficulty": 2, "telegraphKey": "tele_glow" } ] },
+
+    { "id": "bone_thrower", "name": "Bone Thrower", "description": "Stationary skeleton that hurls femurs straight at you.",
+      "spriteKey": "enemy_bone_thrower", "health": 9, "contactDamage": 1, "radius": 0.4, "knockbackResistance": 0.8, "tags": ["ranged", "undead"],
+      "movement": { "kind": "Idle", "speed": 0 },
+      "attacks": [
+        { "id": "femur", "kind": "Projectile", "cooldown": 1.8, "telegraph": 0.4, "recovery": 0.2,
+          "pattern": "Aimed", "count": 1, "projectileSpeed": 7, "damage": 1, "telegraphKey": "tele_windup" },
+        { "id": "femur_volley", "kind": "Projectile", "cooldown": 4.5, "telegraph": 0.6, "duration": 0.6, "recovery": 0.4,
+          "pattern": "Aimed", "count": 1, "waves": 3, "projectileSpeed": 7, "damage": 1, "minDifficulty": 1, "telegraphKey": "tele_windup" } ] },
+
+    { "id": "mote_swarm", "name": "Mote Swarm", "description": "A drifting knot of glowing motes that sheds more of itself.",
+      "spriteKey": "enemy_mote_swarm", "health": 14, "contactDamage": 1, "radius": 0.5, "tags": ["flying", "summoner"],
+      "movement": { "kind": "Wander", "speed": 1.4, "flying": true },
+      "attacks": [
+        { "id": "shed_motes", "kind": "Summon", "cooldown": 3.5, "telegraph": 0.6, "recovery": 0.4, "requiresLineOfSight": false,
+          "summonId": "ember_mote", "summonCount": 2, "maxAlive": 4, "telegraphKey": "tele_pulse" } ],
+      "onDeath": [ { "kind": "ProjectileRing", "count": 6, "projectileSpeed": 4, "damage": 1 } ] },
+
+    { "id": "ember_mote", "name": "Ember Mote", "description": "A single spark with a grudge.",
+      "spriteKey": "enemy_ember_mote", "health": 2, "contactDamage": 1, "radius": 0.2, "tags": ["flying", "fire"],
+      "movement": { "kind": "Chase", "speed": 2.8, "flying": true }, "lootMultiplier": 0 }
+  ],
+
+  "bosses": [
+    { "id": "pyre_warden", "name": "The Pyre Warden", "title": "Keeper of the First Flame", "tier": "Early",
+      "description": "An armoured brazier-bearer who tends the crypt's funeral fires.",
+      "musicKey": "music_boss_early", "introKey": "intro_pyre_warden", "rewardPool": "boss", "unlockOnDefeat": "unlock_pyre_warden",
+      "body": { "id": "pyre_warden_body", "spriteKey": "boss_pyre_warden", "health": 220, "healthPerFloor": 0.2, "contactDamage": 1,
+        "radius": 1.0, "knockbackResistance": 0.95, "isBoss": true, "tags": ["boss", "fire"], "statusImmunities": ["burn", "scorch"],
+        "movement": { "kind": "Chase", "speed": 1.4 } },
+      "phases": [
+        { "healthAtOrBelow": 1.0, "invulnerableOnEnter": 0,
+          "movement": { "kind": "Chase", "speed": 1.4 },
+          "attacks": [
+            { "id": "brand_fan", "kind": "Projectile", "weight": 2, "cooldown": 2.2, "telegraph": 0.6, "recovery": 0.4,
+              "pattern": "Spread", "count": 5, "spread": 15, "projectileSpeed": 5.5, "damage": 1, "telegraphKey": "tele_glow" },
+            { "id": "brazier_charge", "kind": "Dash", "cooldown": 4.5, "telegraph": 0.8, "duration": 0.6, "recovery": 0.8,
+              "minRange": 2, "dashSpeed": 10, "telegraphKey": "tele_stomp" } ] },
+        { "healthAtOrBelow": 0.5, "invulnerableOnEnter": 1.2, "transitionKey": "pyre_warden_flare",
+          "movement": { "kind": "KeepDistance", "speed": 1.8, "preferredDistance": 5 },
+          "onEnter": [ { "id": "flare_hazard", "kind": "Hazard", "cooldown": 1, "telegraph": 0.5, "radius": 2.5, "hazardId": "fire", "requiresLineOfSight": false } ],
+          "attacks": [
+            { "id": "spiral_embers", "kind": "Projectile", "weight": 2, "cooldown": 4, "telegraph": 0.7, "duration": 2.0, "recovery": 0.6,
+              "requiresLineOfSight": false, "pattern": "Spiral", "count": 3, "waves": 10, "spiralStep": 17, "projectileSpeed": 4.5, "damage": 1 },
+            { "id": "brand_fan_wide", "kind": "Projectile", "cooldown": 2.5, "telegraph": 0.55, "recovery": 0.4,
+              "pattern": "Spread", "count": 7, "spread": 14, "projectileSpeed": 6, "damage": 1 },
+            { "id": "ember_slam", "kind": "Slam", "cooldown": 5, "telegraph": 0.9, "recovery": 0.7, "maxRange": 3, "radius": 2.6, "damage": 2, "minDifficulty": 2 } ] }
+      ] },
+
+    { "id": "grave_choir", "name": "The Grave Choir", "title": "Three Voices, One Hunger", "tier": "Early",
+      "description": "A hovering reliquary of fused skulls that sings the dead back up.",
+      "musicKey": "music_boss_early", "introKey": "intro_grave_choir", "rewardPool": "boss", "unlockOnDefeat": "unlock_grave_choir",
+      "body": { "id": "grave_choir_body", "spriteKey": "boss_grave_choir", "health": 200, "healthPerFloor": 0.2, "contactDamage": 1,
+        "radius": 1.1, "knockbackResistance": 1.0, "isBoss": true, "tags": ["boss", "undead", "flying"],
+        "movement": { "kind": "Wander", "speed": 1.2, "flying": true } },
+      "phases": [
+        { "healthAtOrBelow": 1.0, "invulnerableOnEnter": 0,
+          "attacks": [
+            { "id": "dirge_ring", "kind": "Projectile", "weight": 2, "cooldown": 3, "telegraph": 0.7, "recovery": 0.4, "requiresLineOfSight": false,
+              "pattern": "Ring", "count": 10, "projectileSpeed": 4, "damage": 1, "telegraphKey": "tele_choir" },
+            { "id": "raise_husks", "kind": "Summon", "cooldown": 7, "telegraph": 0.9, "recovery": 0.6, "requiresLineOfSight": false,
+              "summonId": "husk_crawler", "summonCount": 2, "maxAlive": 3, "telegraphKey": "tele_choir" } ] },
+        { "healthAtOrBelow": 0.66, "invulnerableOnEnter": 1.0, "transitionKey": "grave_choir_crack",
+          "movement": { "kind": "Orbit", "speed": 2.2, "preferredDistance": 4.5, "flying": true },
+          "attacks": [
+            { "id": "dirge_cross", "kind": "Projectile", "cooldown": 2.4, "telegraph": 0.55, "duration": 0.9, "recovery": 0.4, "requiresLineOfSight": false,
+              "pattern": "Cross", "waves": 3, "projectileSpeed": 5, "damage": 1 },
+            { "id": "dirge_x", "kind": "Projectile", "cooldown": 2.4, "telegraph": 0.55, "duration": 0.9, "recovery": 0.4, "requiresLineOfSight": false,
+              "pattern": "X", "waves": 3, "projectileSpeed": 5, "damage": 1 },
+            { "id": "raise_husks", "kind": "Summon", "cooldown": 8, "telegraph": 0.9, "recovery": 0.6, "requiresLineOfSight": false,
+              "summonId": "husk_crawler", "summonCount": 2, "maxAlive": 3 } ] },
+        { "healthAtOrBelow": 0.33, "invulnerableOnEnter": 1.2, "transitionKey": "grave_choir_shatter",
+          "movement": { "kind": "Chase", "speed": 1.8, "flying": true },
+          "attacks": [
+            { "id": "wailing_burst", "kind": "Projectile", "weight": 2, "cooldown": 2.0, "telegraph": 0.5, "recovery": 0.3,
+              "pattern": "RandomBurst", "count": 6, "spread": 35, "projectileSpeed": 5.5, "damage": 1 },
+            { "id": "dirge_ring_dense", "kind": "Projectile", "cooldown": 3.5, "telegraph": 0.7, "duration": 0.8, "recovery": 0.5, "requiresLineOfSight": false,
+              "pattern": "Ring", "count": 12, "waves": 2, "projectileSpeed": 4.2, "damage": 1 } ] }
+      ] },
+
+    { "id": "ossuary_brute", "name": "Ossuary Brute", "title": "Stacked From Many", "tier": "Miniboss",
+      "description": "Dozens of skeletons packed into one lumbering frame.",
+      "rewardPool": "treasure",
+      "body": { "id": "ossuary_brute_body", "spriteKey": "miniboss_ossuary_brute", "health": 90, "healthPerFloor": 0.2, "contactDamage": 1,
+        "radius": 0.8, "knockbackResistance": 0.85, "isBoss": true, "tags": ["miniboss", "undead"],
+        "movement": { "kind": "Hop", "speed": 2.0, "pauseTime": 0.8, "hopDistance": 2.5 },
+        "attacks": [
+          { "id": "bone_shrapnel", "kind": "Projectile", "cooldown": 3, "telegraph": 0.6, "recovery": 0.5, "requiresLineOfSight": false,
+            "pattern": "Ring", "count": 8, "projectileSpeed": 4.5, "damage": 1 },
+          { "id": "shoulder_charge", "kind": "Dash", "cooldown": 4, "telegraph": 0.75, "duration": 0.5, "recovery": 0.7, "minRange": 2.5, "dashSpeed": 11 } ],
+        "onDeath": [ { "kind": "SpawnEnemies", "enemyId": "husk_crawler", "count": 3 } ] },
+      "phases": [] }
+  ]
+}

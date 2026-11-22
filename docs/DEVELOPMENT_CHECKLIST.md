@@ -15,12 +15,12 @@ Last updated: 2026-11-22.
 
 | Phase | Status | Notes |
 |---|---|---|
-| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 86 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
+| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 99 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
 | 2 Core player gameplay | In progress | Engine-free movement model, fire controller, projectile simulation and room/door state machine implemented and unit-tested. Unity player/projectile/room scene code not started. |
-| 3 Combat and interaction foundations | Not started | Pure parts already exist (damage info, status controller, health pool). |
+| 3 Combat and interaction foundations | In progress | Pure parts exist and are unit-tested: damage info, status controller, health pool, enemy AI brain, attack patterns, difficulty scaling. Unity enemy components not started. |
 | 4 Item interaction engine | In progress | Engine core done early (spec: "design early"). Remaining: integration with real projectiles/companions/enemies, in-game debug overlay. |
 | 5 Procedural generation | In progress | Generator core done early. Remaining: full template library (250), room instantiation in Unity, editor template editor. |
-| 6 Enemies and bosses | Not started | |
+| 6 Enemies and bosses | In progress | Boss phase controller and data format implemented and unit-tested; 2 bosses + 1 miniboss authored. Unity boss arenas, health bar and intros not started. |
 | 7 Content expansion | Not started | |
 | 8 Progression and game modes | Not started | Save models for unlocks/achievements/marks/stats exist. |
 | 9 Art and presentation | Not started | |
@@ -51,7 +51,7 @@ Last updated: 2026-11-22.
 | Room template model + validator + duplicate detection | Implemented (unit-tested) | |
 | Floor graph, room types, secrets, loops, door kinds | Implemented (unit-tested) | 300 seeds x 2 floors validated in tests |
 | Template selection with anti-repetition | Implemented (unit-tested) | |
-| Encounter population (budget, compositions, elites, bosses) | Implemented (unit-tested) | Enemy definitions not started; pools reference ids only |
+| Encounter population (budget, compositions, elites, bosses) | Implemented (unit-tested) | Pool ids are validated against enemy/boss definitions |
 | Floor validator | Implemented (unit-tested) | |
 | Save system (envelope, checksum, backups, recovery, migration, schema guard) | Implemented (unit-tested) | |
 | Desktop file storage (atomic writes) | Implemented | type-checked only |
@@ -70,8 +70,8 @@ Last updated: 2026-11-22.
 | Projectile simulation (homing, accel, wavy, boomerang, lobbed, range, pierce, bounce, spectral, split, chain, explode) | Implemented (unit-tested) | `Core/Combat/ProjectileSimulation.cs` |
 | Floor/room state (combat door locks, keys, secret reveal, challenge/curse doors, map reveal) | Implemented (unit-tested) | `Core/Rooms/RoomState.cs` |
 | Player controller, projectile objects, camera, room instantiation, door transitions (Unity) | Not started | Phase 2 Unity side |
-| Enemy framework and AI | Not started | Phase 3 |
-| Bosses / minibosses | Not started | Phase 6 |
+| Enemy framework and AI (data-driven movement/attacks, telegraphs, cooldowns, waves, dash, summon caps, retreat, aggro, difficulty gating, deterministic) | Implemented (unit-tested) | `Core/Enemies`; Unity enemy component not started |
+| Bosses / minibosses (ordered phase transitions, transition invulnerability, on-enter actions) | Implemented (unit-tested) | `Core/Enemies/BossController.cs` |
 | Item pools (seeded, rarity/quality/luck weighted, unlock-aware, no repeats per run) | Implemented (unit-tested) | `Core/Economy/ItemPools.cs` |
 | Shop inventory generation, pricing, discounts, purchases | Implemented (unit-tested) | `Core/Economy/ShopInventory.cs`; shop room/UI not started |
 | Drop tables (room clear, enemy, prop, chest; luck and item modifiers) | Implemented (unit-tested) | `Core/Economy/DropTables.cs` |
@@ -98,9 +98,9 @@ count only if they are distinct, functional content.
 | Passive items | 180 | 17 | In progress |
 | Active items | 45 | 2 | In progress |
 | Trinkets | 60 | 2 | In progress |
-| Unique enemies | 120 | 0 | Not started (5 ids referenced by the starter floor pool, no definitions) |
-| Major bosses | 30 | 0 | Not started (2 ids referenced) |
-| Minibosses | 15 | 0 | Not started (1 id referenced) |
+| Unique enemies | 120 | 7 | In progress (data only, no sprites) |
+| Major bosses | 30 | 2 | In progress (data only) |
+| Minibosses | 15 | 1 | In progress (data only) |
 | Handcrafted room templates | 250 | 24 | In progress |
 | Floor environments | 15 | 1 | In progress (data only, no art/audio) |
 | Transformations | 12 | 2 | In progress |

@@ -15,6 +15,8 @@ namespace Hollowcrawl.Content
         public List<StatusEffectDefinition> Statuses;
         public List<RoomTemplate> Rooms;
         public List<FloorDefinition> Floors;
+        public List<Enemies.EnemyDefinition> Enemies;
+        public List<Enemies.BossDefinition> Bosses;
     }
 
     /// <summary>
@@ -29,6 +31,8 @@ namespace Hollowcrawl.Content
         public readonly Dictionary<string, TransformationDefinition> Transformations = new Dictionary<string, TransformationDefinition>(StringComparer.Ordinal);
         public readonly Dictionary<string, StatusEffectDefinition> Statuses = new Dictionary<string, StatusEffectDefinition>(StringComparer.Ordinal);
         public readonly Dictionary<string, FloorDefinition> Floors = new Dictionary<string, FloorDefinition>(StringComparer.Ordinal);
+        public readonly Dictionary<string, Enemies.EnemyDefinition> Enemies = new Dictionary<string, Enemies.EnemyDefinition>(StringComparer.Ordinal);
+        public readonly Dictionary<string, Enemies.BossDefinition> Bosses = new Dictionary<string, Enemies.BossDefinition>(StringComparer.Ordinal);
         public readonly List<RoomTemplate> RoomTemplates = new List<RoomTemplate>();
         public readonly List<string> LoadErrors = new List<string>();
 
@@ -43,6 +47,8 @@ namespace Hollowcrawl.Content
             AddAll(sourceName, file.Transformations, Transformations, x => x.Id);
             AddAll(sourceName, file.Statuses, Statuses, x => x.Id);
             AddAll(sourceName, file.Floors, Floors, x => x.Id);
+            AddAll(sourceName, file.Enemies, Enemies, x => x.Id);
+            AddAll(sourceName, file.Bosses, Bosses, x => x.Id);
             if (file.Rooms != null) RoomTemplates.AddRange(file.Rooms);
         }
 
@@ -118,8 +124,47 @@ namespace Hollowcrawl.Content
                 if (f.MinRooms < 5 || f.MaxRooms < f.MinRooms) r.Error($"{id}: invalid room counts.");
                 if (f.Enemies.Count == 0) r.Warn($"{id}: empty enemy pool.");
                 if (f.Bosses.Count == 0) r.Warn($"{id}: empty boss pool.");
+                foreach (var e in f.Enemies) if (!db.Enemies.ContainsKey(e.EnemyId)) r.Error($"{id}: unknown enemy '{e.EnemyId}'.");
+                foreach (var b in f.Bosses) if (!db.Bosses.ContainsKey(b.Id)) r.Error($"{id}: unknown boss '{b.Id}'.");
+                foreach (var b in f.Minibosses) if (!db.Bosses.ContainsKey(b.Id)) r.Error($"{id}: unknown miniboss '{b.Id}'.");
+            }
+            foreach (var e in db.Enemies.Values) CheckEnemy(e, "enemy " + e.Id, db, r);
+            foreach (var b in db.Bosses.Values)
+            {
+                string id = "boss " + b.Id;
+                if (string.IsNullOrWhiteSpace(b.Name)) r.Error($"{id}: missing name.");
+                if (b.Body == null) { r.Error($"{id}: missing body."); continue; }
+                CheckEnemy(b.Body, id, db, r);
+                if (b.Phases.Count == 0 && b.Body.Attacks.Count == 0) r.Error($"{id}: no attacks.");
+                foreach (var p in b.Phases)
+                {
+                    if (p.HealthAtOrBelow <= 0f || p.HealthAtOrBelow > 1f) r.Error($"{id}: phase threshold must be in (0,1].");
+                    foreach (var a in p.Attacks) CheckAttack(a, id, db, r);
+                    foreach (var a in p.OnEnter) CheckAttack(a, id, db, r);
+                }
+                if (b.Tier != Enemies.BossTier.Miniboss && b.Phases.Count < 2) r.Warn($"{id}: major bosses should have phase transitions.");
             }
             return r;
+        }
+
+        private static void CheckEnemy(Enemies.EnemyDefinition e, string id, ContentDatabase db, ValidationReport r)
+        {
+            if (string.IsNullOrWhiteSpace(e.Name) && !e.IsBoss) r.Error($"{id}: missing name.");
+            if (e.Health <= 0f) r.Error($"{id}: health must be positive.");
+            if (e.ThinkInterval < 0.02f) r.Warn($"{id}: think interval below 20ms is wasteful.");
+            if (!e.IsBoss && e.Attacks.Count == 0 && e.ContactDamage <= 0 && e.OnDeath.Count == 0) r.Error($"{id}: harmless enemy (no attacks, contact damage or death effect).");
+            foreach (var a in e.Attacks) CheckAttack(a, id, db, r);
+            foreach (var d in e.OnDeath)
+                if (d.Kind == Enemies.DeathEffectKind.SpawnEnemies || d.Kind == Enemies.DeathEffectKind.Split)
+                    if (d.EnemyId == null || !db.Enemies.ContainsKey(d.EnemyId)) r.Error($"{id}: death spawns unknown enemy '{d.EnemyId}'.");
+        }
+
+        private static void CheckAttack(Enemies.AttackSpec a, string id, ContentDatabase db, ValidationReport r)
+        {
+            if (a.Cooldown <= 0f) r.Error($"{id}: attack '{a.Id}' needs a positive cooldown.");
+            if (a.Telegraph < 0.15f && a.Kind != Enemies.AttackKind.Teleport) r.Warn($"{id}: attack '{a.Id}' telegraph under 0.15s is hard to read.");
+            if (a.Kind == Enemies.AttackKind.Summon && (a.SummonId == null || !db.Enemies.ContainsKey(a.SummonId))) r.Error($"{id}: summons unknown enemy '{a.SummonId}'.");
+            if (a.MinRange > a.MaxRange) r.Error($"{id}: attack '{a.Id}' minRange > maxRange.");
         }
 
         private static void CheckRequirements(List<Requirement> reqs, string id, ContentDatabase db, ValidationReport r, int minTotal)
