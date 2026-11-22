@@ -1,0 +1,100 @@
+# Content authoring
+
+All content lives in `Assets/StreamingAssets/Content/**/*.json`. Files are additive: any file may contain any of the
+top-level arrays `items`, `synergies`, `transformations`, `statuses`, `rooms`, `floors`. Run
+**Hollowcrawl > Validate All Content** (or the headless tests) after editing.
+
+## Items
+
+```json
+{ "id": "ember_sigil", "name": "Ember Sigil", "description": "Shots may set foes alight",
+  "kind": "Passive", "rarity": "Uncommon", "quality": 2, "pools": ["treasure"], "tags": ["fire"],
+  "stacking": "Unique",
+  "effects": [ { "effect": "proj_element", "type": "Fire", "status": "burn", "chance": 0.35, "duration": 3 } ] }
+```
+
+- `kind`: `Passive | Active | Trinket | Special`. Actives add `"active": { "chargeType": "Rooms|Seconds|Kills|OneShot", "maxCharge": 3, "onUse": [ ...effects ] }`.
+- `stacking`: `Unique` (default), `Stack`, `StackCapped` + `maxStacks`.
+- `tags` drive tag synergies and transformations (`fire`, `companion`, `poison`, ...).
+- Each effect: `effect` (handler key), optional `condition`, optional `id` (for targeted suppression); all other keys are parameters.
+- Items must have at least one effect, a name, a description and (normally) a pool.
+
+## Effect reference (built-in)
+
+The authoritative list with parameters is `Assets/_Project/Scripts/Core/Items/Effects/BuiltInEffects.cs`
+(each registration includes its parameter documentation; the Synergy Debugger shows them in action).
+
+| Group | Effects |
+|---|---|
+| Stats | `stat`, `stat_scaling` |
+| Projectile | `proj_pierce`, `proj_homing`, `proj_bounce`, `proj_split`, `proj_explode`, `proj_chain`, `proj_element`, `proj_size`, `proj_volley`, `proj_delivery`, `proj_spectral`, `proj_charge`, `proj_accelerate`, `proj_wavy`, `proj_damage_mult`, `proj_visual`, `proj_convert_status` |
+| Combat triggers | `onhit_explode`, `onhit_status_aoe`, `onhit_burst`, `onkill_drop`, `onkill_heal`, `onkill_explode`, `onkill_spread_status`, `ondamaged_burst`, `ondamaged_ward`, `ondamaged_charge`, `invuln_on_hit`, `outgoing_mult`, `incoming_immunity`, `incoming_block_chance` |
+| Rooms / economy | `roomclear_drop`, `roomclear_heal`, `roomclear_charge`, `roomenter_status`, `floorstart_resource`, `grant_resource`, `grant_health`, `pickup_bonus`, `shop_discount`, `drop_chance`, `trinket_slots` |
+| Bombs | `bomb_mod`, `bomb_explode_shots` |
+| Companions | `companion`, `companion_inherit`, `companion_boost` |
+| Over time | `regen`, `aura_status`, `active_used_status` |
+| Active use | `active_room_damage`, `active_heal`, `active_temp_stat`, `active_projectile_ring`, `active_teleport`, `active_spawn_pickups`, `active_companion_room`, `active_explosions` |
+
+## Conditions
+
+`always`, `health_full`, `health_at_most:N`, `total_health_at_most:N`, `has_temp_health`, `no_containers`,
+`has_item:ID`, `has_tag:TAG[:N]`, `character:ID`, `curse:ID`, `in_combat`, `room_type:TYPE`, `luck_at_least:N`,
+`stat_at_least:STAT:N`, `stat_below:STAT:N`, `coins_at_least:N`, `bombs_at_least:N`, `keys_at_least:N`,
+`stacks_at_least:N`, `floor_at_least:N`, `companions_at_least:N`, `transformed[:ID]`.
+Combine with `&` (and), `|` (or, lower precedence) and `!` (not).
+
+## Synergies and transformations
+
+```json
+{ "id": "sunlance", "name": "Sunlance", "description": "...", "priority": 20, "exclusiveGroup": "delivery_fire", "hidden": false,
+  "requires": [ { "itemId": "ember_sigil" }, { "itemId": "needle_quill" } ],
+  "condition": null,
+  "effects": [ { "effect": "proj_delivery", "delivery": "Beam", "priority": 20 } ],
+  "suppresses": [ "needle_quill/proj_pierce" ] }
+```
+
+Requirements use `itemId` (with optional `count` = stacks) or `tag` + `count`. Synergies use *held* items;
+transformations use items *collected this run* and are permanent once triggered. Suppression patterns:
+`itemId/effectType`, `itemId/effectId`, `*/effectType` (any item), `synergy:<id>` (a lower-priority synergy).
+
+## Status effects
+
+`{ "id": "burn", "damageType": "Fire", "tickInterval": 0.5, "damagePerTick": 1.5, "moveMultiplier": 1, "damageTakenMultiplier": 1, "preventsAttacking": false, "canAffectBosses": true, "stacking": "Refresh|Intensify|Extend", "maxStacks": 1, "maxDuration": 6, "cancels": ["chill"] }`
+
+## Room templates
+
+Each cell of a room is **15 x 9 tiles**. Shapes: `Single` (15x9), `Wide` (30x9), `Tall` (15x18), `Large` (30x18),
+`LNoNE`, `LNoNW`, `LNoSE`, `LNoSW` (30x18 with one quadrant made of spaces).
+
+| Char | Meaning |
+|---|---|
+| `.` | floor |
+| ` ` | void (outside an L shape only) |
+| `#` | rock: blocks movement and shots, destroyed by bombs |
+| `X` | indestructible pillar |
+| `P` | pit: blocks walking, not flying or shots |
+| `S` | spikes (hazard) |
+| `F` | fire hazard |
+| `W` | shallow water (slows) |
+| `B` | destructible prop (barrel/crate/urn) |
+| `K` | explosive prop |
+| `T` | marked rock with a guaranteed reward |
+| `E` | enemy spawn (boss spawn in boss rooms) |
+| `C` | pickup spot |
+| `I` | interaction point (pedestal, shop slot, shrine, chest) |
+
+Doors sit in the middle of each outer wall of each cell: interior tiles `(7,0)` N, `(7,8)` S, `(0,4)` W, `(14,4)` E
+(offset by 15/9 per cell). Door sockets are named `"x,y:N|E|S|W"` by local cell; list walled-off ones in `blockedDoors`.
+Fields: `id`, `shape`, `types` (RoomType names), `themes` (floor theme ids or `*`), `difficulty` 1-10, `weight`, `tags`
+(`flyers` allows enemy spawns unreachable on foot), `blockedDoors`, `layout` (rows north to south).
+
+The validator rejects: wrong sizes, unknown tiles, blocked door entrances, doors that cannot reach each other without
+bombs/flight, unreachable interaction points, combat rooms without spawns, shops with fewer than 2 slots, hazards in
+start rooms, and flags duplicate or mirrored layouts.
+
+## Floors
+
+See `starter_floors.json`: room count range, template difficulty band, enemy budget, large-room and loop chances,
+optional `specialRooms` rules (defaults: treasure + shop always, locked from the second floor; others by chance),
+enemy pool (`enemyId`, `cost`, `weight`, `tags`, `maxPerRoom`), boss and miniboss pools, secret chances, elite chance,
+music/ambience keys and hazards.

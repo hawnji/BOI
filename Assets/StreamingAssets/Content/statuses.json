@@ -1,0 +1,12 @@
+{
+  "statuses": [
+    { "id": "burn", "displayName": "Burning", "damageType": "Fire", "tickInterval": 0.5, "damagePerTick": 1.5, "stacking": "Refresh", "maxDuration": 6, "cancels": ["chill", "freeze"] },
+    { "id": "scorch", "displayName": "Scorched", "damageType": "Fire", "tickInterval": 0.4, "damagePerTick": 2.5, "damageTakenMultiplier": 1.1, "stacking": "Refresh", "maxDuration": 6, "cancels": ["chill", "freeze", "burn"] },
+    { "id": "poison", "displayName": "Poisoned", "damageType": "Poison", "tickInterval": 1.0, "damagePerTick": 1.0, "stacking": "Intensify", "maxStacks": 5, "maxDuration": 8 },
+    { "id": "chill", "displayName": "Chilled", "damageType": "Frost", "moveMultiplier": 0.6, "stacking": "Extend", "maxDuration": 5, "cancels": ["burn"] },
+    { "id": "freeze", "displayName": "Frozen", "damageType": "Frost", "moveMultiplier": 0.0, "preventsAttacking": true, "damageTakenMultiplier": 1.25, "canAffectBosses": false, "stacking": "Refresh", "maxDuration": 2.5, "cancels": ["burn", "scorch"] },
+    { "id": "shock", "displayName": "Shocked", "damageType": "Shock", "moveMultiplier": 0.85, "damageTakenMultiplier": 1.2, "stacking": "Refresh", "maxDuration": 3 },
+    { "id": "blight", "displayName": "Blighted", "damageType": "Blight", "tickInterval": 0.75, "damagePerTick": 1.0, "stacking": "Intensify", "maxStacks": 3, "maxDuration": 6 },
+    { "id": "dread", "displayName": "Dread", "moveMultiplier": 0.8, "preventsAttacking": true, "canAffectBosses": false, "stacking": "Refresh", "maxDuration": 3 }
+  ]
+}

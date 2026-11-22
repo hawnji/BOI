@@ -1,0 +1,33 @@
+{
+  "synergies": [
+    { "id": "sunlance", "name": "Sunlance", "description": "Fire and piercing fuse into a searing beam.",
+      "priority": 20, "exclusiveGroup": "delivery_fire",
+      "requires": [ { "itemId": "ember_sigil" }, { "itemId": "needle_quill" } ],
+      "effects": [ { "effect": "proj_delivery", "delivery": "Beam", "priority": 20 }, { "effect": "proj_damage_mult", "mult": 1.2, "order": 500 }, { "effect": "proj_visual", "key": "synergy:sunlance" } ],
+      "suppresses": [ "needle_quill/proj_pierce" ], "visualKey": "synergy:sunlance", "audioKey": "synergy_unlock" },
+    { "id": "seeking_cinders", "name": "Seeking Cinders", "description": "Homing blasts spread flames where they land.",
+      "priority": 10,
+      "requires": [ { "itemId": "seeker_moth" }, { "itemId": "cinder_flask" } ],
+      "effects": [ { "effect": "onhit_status_aoe", "chance": 0.4, "radius": 1.6, "status": "burn", "duration": 3 }, { "effect": "proj_visual", "key": "synergy:seeking_cinders" } ] },
+    { "id": "plague_bloom", "name": "Plague Bloom", "description": "Poisoned foes burst into toxic shards when they fall.",
+      "priority": 10,
+      "requires": [ { "itemId": "venom_gland" }, { "itemId": "splinter_seed" } ],
+      "effects": [ { "effect": "onkill_spread_status", "status": "poison", "radius": 2.5, "duration": 4, "requireType": "Poison" } ] },
+    { "id": "pyre", "name": "Pyre", "description": "Two sources of flame turn burns into scorches.", "hidden": true,
+      "priority": 5,
+      "requires": [ { "tag": "fire", "count": 2 } ],
+      "effects": [ { "effect": "proj_convert_status", "fromStatus": "burn", "toStatus": "scorch", "potencyMult": 1.5 } ] }
+  ],
+  "transformations": [
+    { "id": "ashen_herald", "name": "Ashen Herald", "description": "Embers circle you; fire no longer harms you.",
+      "requires": [ { "tag": "fire", "count": 3 } ],
+      "effects": [ { "effect": "aura_status", "radius": 1.6, "status": "burn", "interval": 1, "duration": 2 },
+                   { "effect": "stat", "stat": "Damage", "op": "Flat", "value": 0.5 },
+                   { "effect": "incoming_immunity", "types": "Fire" } ],
+      "visualKey": "transform:ashen_herald" },
+    { "id": "hivekin", "name": "Hivekin", "description": "Your companions grow fierce and a mite joins them.",
+      "requires": [ { "tag": "companion", "count": 3 } ],
+      "effects": [ { "effect": "companion_boost", "damageMult": 1.3 }, { "effect": "companion", "companion": "drone_mite" } ],
+      "visualKey": "transform:hivekin" }
+  ]
+}

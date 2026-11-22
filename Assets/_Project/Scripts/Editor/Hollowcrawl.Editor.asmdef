@@ -1,0 +1,14 @@
+{
+    "name": "Hollowcrawl.Editor",
+    "rootNamespace": "Hollowcrawl.EditorTools",
+    "references": [ "Hollowcrawl.Core", "Hollowcrawl.Runtime" ],
+    "includePlatforms": [ "Editor" ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

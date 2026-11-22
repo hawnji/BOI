@@ -1,0 +1,522 @@
+{
+  "items": [
+    {
+      "id": "ember_sigil",
+      "name": "Ember Sigil",
+      "description": "Shots may set foes alight",
+      "kind": "Passive",
+      "rarity": "Uncommon",
+      "quality": 2,
+      "pools": [
+        "treasure"
+      ],
+      "tags": [
+        "fire"
+      ],
+      "effects": [
+        {
+          "effect": "proj_element",
+          "type": "Fire",
+          "status": "burn",
+          "chance": 0.35,
+          "duration": 3,
+          "visual": "fire"
+        }
+      ]
+    },
+    {
+      "id": "needle_quill",
+      "name": "Needle Quill",
+      "description": "Shots pierce and fly faster",
+      "kind": "Passive",
+      "rarity": "Common",
+      "quality": 1,
+      "pools": [
+        "treasure",
+        "shop"
+      ],
+      "tags": [
+        "piercing"
+      ],
+      "effects": [
+        {
+          "effect": "proj_pierce",
+          "count": 1
+        },
+        {
+          "effect": "stat",
+          "stat": "ShotSpeed",
+          "op": "Flat",
+          "value": 0.2
+        }
+      ]
+    },
+    {
+      "id": "seeker_moth",
+      "name": "Seeker Moth",
+      "description": "Shots drift toward prey",
+      "kind": "Passive",
+      "rarity": "Uncommon",
+      "quality": 2,
+      "pools": [
+        "treasure"
+      ],
+      "tags": [
+        "homing",
+        "insect"
+      ],
+      "effects": [
+        {
+          "effect": "proj_homing",
+          "strength": 0.6,
+          "visual": "moth_dust"
+        }
+      ]
+    },
+    {
+      "id": "cinder_flask",
+      "name": "Cinder Flask",
+      "description": "Explosive shots, slower trigger",
+      "kind": "Passive",
+      "rarity": "Rare",
+      "quality": 3,
+      "pools": [
+        "treasure",
+        "secret"
+      ],
+      "tags": [
+        "explosive",
+        "fire"
+      ],
+      "effects": [
+        {
+          "effect": "proj_explode",
+          "radius": 1.0,
+          "damageScale": 0.8
+        },
+        {
+          "effect": "stat",
+          "stat": "FireRate",
+          "op": "Multiply",
+          "value": 0.8
+        }
+      ]
+    },
+    {
+      "id": "splinter_seed",
+      "name": "Splinter Seed",
+      "description": "Shots burst into shards",
+      "kind": "Passive",
+      "rarity": "Uncommon",
+      "quality": 2,
+      "pools": [
+        "treasure"
+      ],
+      "tags": [
+        "splitting",
+        "plant"
+      ],
+      "effects": [
+        {
+          "effect": "proj_split",
+          "count": 2,
+          "damageScale": 0.5
+        }
+      ]
+    },
+    {
+      "id": "brazier_crown",
+      "name": "Brazier Crown",
+      "description": "A ring of embers scorches the near",
+      "kind": "Passive",
+      "rarity": "Rare",
+      "quality": 3,
+      "pools": [
+        "treasure",
+        "boss"
+      ],
+      "tags": [
+        "fire",
+        "aura"
+      ],
+      "effects": [
+        {
+          "effect": "aura_status",
+          "radius": 1.4,
+          "status": "burn",
+          "interval": 0.8,
+          "duration": 2
+        },
+        {
+          "effect": "stat",
+          "stat": "Range",
+          "op": "Flat",
+          "value": -0.5
+        }
+      ]
+    },
+    {
+      "id": "venom_gland",
+      "name": "Venom Gland",
+      "description": "Poison shots",
+      "kind": "Passive",
+      "rarity": "Common",
+      "quality": 1,
+      "pools": [
+        "treasure",
+        "shop"
+      ],
+      "tags": [
+        "poison"
+      ],
+      "effects": [
+        {
+          "effect": "proj_element",
+          "type": "Poison",
+          "status": "poison",
+          "chance": 0.5,
+          "duration": 4,
+          "visual": "poison"
+        }
+      ]
+    },
+    {
+      "id": "iron_heart",
+      "name": "Iron Heart",
+      "description": "Vigor up",
+      "kind": "Passive",
+      "rarity": "Common",
+      "quality": 1,
+      "pools": [
+        "treasure",
+        "boss"
+      ],
+      "tags": [
+        "health"
+      ],
+      "effects": [
+        {
+          "effect": "grant_health",
+          "containers": 1,
+          "heal": 2
+        }
+      ]
+    },
+    {
+      "id": "quickstep_boots",
+      "name": "Quickstep Boots",
+      "description": "Speed and rate of fire up",
+      "kind": "Passive",
+      "rarity": "Common",
+      "quality": 1,
+      "pools": [
+        "treasure",
+        "shop"
+      ],
+      "tags": [
+        "movement"
+      ],
+      "effects": [
+        {
+          "effect": "stat",
+          "stat": "MoveSpeed",
+          "op": "Flat",
+          "value": 0.25
+        },
+        {
+          "effect": "stat",
+          "stat": "FireRate",
+          "op": "PercentAdd",
+          "value": 0.1
+        }
+      ]
+    },
+    {
+      "id": "glass_fang",
+      "name": "Glass Fang",
+      "description": "Unhurt, you bite harder",
+      "kind": "Passive",
+      "rarity": "Rare",
+      "quality": 3,
+      "pools": [
+        "treasure",
+        "curse"
+      ],
+      "tags": [
+        "risk"
+      ],
+      "effects": [
+        {
+          "effect": "proj_damage_mult",
+          "mult": 1.6,
+          "condition": "health_full",
+          "visual": "glass"
+        }
+      ]
+    },
+    {
+      "id": "lantern_wisp",
+      "name": "Lantern Wisp",
+      "description": "A wisp fights at your side",
+      "kind": "Passive",
+      "rarity": "Uncommon",
+      "quality": 2,
+      "pools": [
+        "treasure"
+      ],
+      "tags": [
+        "companion",
+        "light"
+      ],
+      "stacking": "Stack",
+      "effects": [
+        {
+          "effect": "companion",
+          "companion": "wisp"
+        }
+      ]
+    },
+    {
+      "id": "bone_sparrow",
+      "name": "Bone Sparrow",
+      "description": "A skeletal bird dives at foes",
+      "kind": "Passive",
+      "rarity": "Uncommon",
+      "quality": 2,
+      "pools": [
+        "treasure",
+        "secret"
+      ],
+      "tags": [
+        "companion",
+        "bird"
+      ],
+      "effects": [
+        {
+          "effect": "companion",
+          "companion": "bone_sparrow"
+        }
+      ]
+    },
+    {
+      "id": "echo_chamber",
+      "name": "Echo Chamber",
+      "description": "One more shot, a bit weaker",
+      "kind": "Passive",
+      "rarity": "Uncommon",
+      "quality": 2,
+      "pools": [
+        "treasure"
+      ],
+      "tags": [
+        "multishot"
+      ],
+      "effects": [
+        {
+          "effect": "proj_volley",
+          "shots": 1,
+          "spread": 10,
+          "damageScale": 0.85
+        }
+      ]
+    },
+    {
+      "id": "thunder_coil",
+      "name": "Thunder Coil",
+      "description": "Hits arc to nearby foes",
+      "kind": "Passive",
+      "rarity": "Rare",
+      "quality": 3,
+      "pools": [
+        "treasure",
+        "secret"
+      ],
+      "tags": [
+        "shock"
+      ],
+      "effects": [
+        {
+          "effect": "proj_chain",
+          "jumps": 2,
+          "range": 3,
+          "damageScale": 0.6,
+          "visual": "arc"
+        }
+      ]
+    },
+    {
+      "id": "sapper_satchel",
+      "name": "Sapper Satchel",
+      "description": "Bigger blasts, +5 bombs",
+      "kind": "Passive",
+      "rarity": "Uncommon",
+      "quality": 2,
+      "pools": [
+        "treasure",
+        "shop"
+      ],
+      "tags": [
+        "bomb"
+      ],
+      "effects": [
+        {
+          "effect": "bomb_mod",
+          "radiusMult": 1.4,
+          "damageAdd": 15
+        },
+        {
+          "effect": "grant_resource",
+          "resource": "Bombs",
+          "amount": 5
+        }
+      ]
+    },
+    {
+      "id": "thorn_mantle",
+      "name": "Thorn Mantle",
+      "description": "Pain lashes back",
+      "kind": "Passive",
+      "rarity": "Uncommon",
+      "quality": 2,
+      "pools": [
+        "treasure",
+        "boss"
+      ],
+      "tags": [
+        "defense",
+        "plant"
+      ],
+      "effects": [
+        {
+          "effect": "ondamaged_burst",
+          "radius": 3,
+          "damage": 15,
+          "visual": "thorns"
+        }
+      ]
+    },
+    {
+      "id": "kin_bond",
+      "name": "Kin Bond",
+      "description": "Your companions share your gifts",
+      "kind": "Passive",
+      "rarity": "Rare",
+      "quality": 3,
+      "pools": [
+        "treasure"
+      ],
+      "tags": [
+        "companion"
+      ],
+      "effects": [
+        {
+          "effect": "companion_inherit",
+          "scale": 0.6
+        }
+      ]
+    },
+    {
+      "id": "storm_bell",
+      "name": "Storm Bell",
+      "description": "Ring to shock the room",
+      "kind": "Active",
+      "rarity": "Uncommon",
+      "quality": 2,
+      "pools": [
+        "treasure",
+        "shop"
+      ],
+      "tags": [
+        "shock"
+      ],
+      "active": {
+        "chargeType": "Rooms",
+        "maxCharge": 3,
+        "onUse": [
+          {
+            "effect": "active_room_damage",
+            "damage": 40,
+            "type": "Shock",
+            "status": "shock",
+            "duration": 3,
+            "visual": "bell_ring",
+            "audio": "bell"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mending_lantern",
+      "name": "Mending Lantern",
+      "description": "Light that heals",
+      "kind": "Active",
+      "rarity": "Common",
+      "quality": 1,
+      "pools": [
+        "treasure",
+        "shop"
+      ],
+      "tags": [
+        "health",
+        "light"
+      ],
+      "active": {
+        "chargeType": "Rooms",
+        "maxCharge": 4,
+        "onUse": [
+          {
+            "effect": "active_heal",
+            "halves": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "gambler_knuckle",
+      "name": "Gambler's Knuckle",
+      "description": "Luck up, more coins",
+      "kind": "Trinket",
+      "rarity": "Common",
+      "quality": 1,
+      "pools": [
+        "trinket"
+      ],
+      "tags": [
+        "luck"
+      ],
+      "effects": [
+        {
+          "effect": "stat",
+          "stat": "Luck",
+          "op": "Flat",
+          "value": 1
+        },
+        {
+          "effect": "drop_chance",
+          "pickup": "Coin",
+          "mult": 1.25
+        }
+      ]
+    },
+    {
+      "id": "brass_tally",
+      "name": "Brass Tally",
+      "description": "Merchants charge less",
+      "kind": "Trinket",
+      "rarity": "Common",
+      "quality": 1,
+      "pools": [
+        "trinket"
+      ],
+      "tags": [
+        "economy"
+      ],
+      "effects": [
+        {
+          "effect": "shop_discount",
+          "percent": 0.15
+        }
+      ]
+    }
+  ]
+}
