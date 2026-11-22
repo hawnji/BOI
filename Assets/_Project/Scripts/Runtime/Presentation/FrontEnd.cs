@@ -249,6 +249,45 @@ namespace Hollowcrawl.Presentation
                 case Screen.Settings: DrawSettings(w); break;
                 case Screen.Controls: DrawControls(w); break;
             }
+
+            if (HasBackButton(Current) && !_rebinding && GUI.Button(new Rect(20f, 664f, 140f, 40f), "< Back", _item)) Handle(MenuCommand.Cancel);
+            HandleGuiFallbackInput();
+        }
+
+        private static bool HasBackButton(Screen s) =>
+            s == Screen.CharacterSelect || s == Screen.Challenges || s == Screen.Stats || s == Screen.Settings
+            || s == Screen.Controls || s == Screen.Inventory;
+
+        /// <summary>
+        /// Right-click always goes back. If the Input System has no keyboard (for example its native backend is
+        /// disabled in the player settings), menu keys are read from IMGUI events instead so the menus never lock up.
+        /// </summary>
+        private void HandleGuiFallbackInput()
+        {
+            var ev = Event.current;
+            if (_rebinding || ev == null) return;
+            if (ev.type == EventType.MouseDown && ev.button == 1 && Current != Screen.Title)
+            {
+                ev.Use();
+                Handle(MenuCommand.Cancel);
+                return;
+            }
+            if (ev.type != EventType.KeyDown || UnityEngine.InputSystem.Keyboard.current != null) return;
+            MenuCommand cmd;
+            switch (ev.keyCode)
+            {
+                case KeyCode.Escape: case KeyCode.Backspace: cmd = MenuCommand.Cancel; break;
+                case KeyCode.Return: case KeyCode.KeypadEnter: cmd = MenuCommand.Submit; break;
+                case KeyCode.UpArrow: case KeyCode.W: cmd = MenuCommand.Up; break;
+                case KeyCode.DownArrow: case KeyCode.S: cmd = MenuCommand.Down; break;
+                case KeyCode.LeftArrow: case KeyCode.A: cmd = MenuCommand.Left; break;
+                case KeyCode.RightArrow: case KeyCode.D: cmd = MenuCommand.Right; break;
+                case KeyCode.Q: cmd = MenuCommand.TabLeft; break;
+                case KeyCode.E: cmd = MenuCommand.TabRight; break;
+                default: return;
+            }
+            ev.Use();
+            Handle(cmd);
         }
 
         private void DrawPause(float w)
@@ -302,12 +341,18 @@ namespace Hollowcrawl.Presentation
                 var e = entries[i];
                 if (e.Section != section) { section = e.Section; GUI.Label(new Rect(w * 0.5f - 300f, y, 600f, rowH), "<color=#888888>" + section + "</color>", _small); y += rowH; }
                 string label = i == _index ? "<color=#ffd36b>" + e.Label + "</color>" : e.Label;
-                string value = e.Kind == SettingKind.Action ? "" : "< " + SettingsMenu.Display(settings, e) + " >";
                 if (GUI.Button(new Rect(w * 0.5f - 300f, y, 400f, rowH), label, _small)) { _index = i; HandleSettings(MenuCommand.Submit); }
-                if (GUI.Button(new Rect(w * 0.5f + 100f, y, 200f, rowH), i == _index ? "<color=#ffd36b>" + value + "</color>" : value, _small)) { _index = i; HandleSettings(MenuCommand.Right); }
+                if (e.Kind != SettingKind.Action)
+                {
+                    // Separate arrows so the mouse can lower a value as well as raise it.
+                    string value = SettingsMenu.Display(settings, e);
+                    if (GUI.Button(new Rect(w * 0.5f + 100f, y, 40f, rowH), "<", _small)) { _index = i; HandleSettings(MenuCommand.Left); }
+                    GUI.Label(new Rect(w * 0.5f + 140f, y, 120f, rowH), i == _index ? "<color=#ffd36b>" + value + "</color>" : value, _small);
+                    if (GUI.Button(new Rect(w * 0.5f + 260f, y, 40f, rowH), ">", _small)) { _index = i; HandleSettings(MenuCommand.Right); }
+                }
                 y += rowH;
             }
-            GUI.Label(new Rect(0, 680, w, 30), "<color=#999999>Left/Right: change    Confirm: open/toggle    Back: save and return</color>", _small);
+            GUI.Label(new Rect(0, 680, w, 30), "<color=#999999>Left/Right or < >: change    Confirm: open/toggle    Back: save and return</color>", _small);
         }
 
         private void DrawControls(float w)
@@ -340,7 +385,7 @@ namespace Hollowcrawl.Presentation
             GUI.Label(new Rect(0, 90, w, 70), "<b>HOLLOWCRAWL</b>", _title);
             for (int i = 0; i < TitleEntries.Length; i++)
                 if (Entry(new Rect(w * 0.5f - 200f, 220f + i * 46f, 400f, 40f), TitleEntries[i], i == _index)) { _index = i; ChooseTitle(i); }
-            GUI.Label(new Rect(0, 660, w, 40), "Navigate: WASD / arrows / stick    Confirm: Enter / A    Back: Esc / B", _small);
+            GUI.Label(new Rect(0, 660, w, 40), "Navigate: WASD / arrows / stick    Confirm: Enter / A    Back: Esc / B / right-click", _small);
         }
 
         private void DrawCharacters(float w)

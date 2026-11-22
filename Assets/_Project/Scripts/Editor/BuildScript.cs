@@ -42,6 +42,7 @@ namespace Hollowcrawl.EditorTools
         public static BuildReport BuildWindows(string outputDir, bool development)
         {
             EnsureMainScene();
+            EnableInputSystemBackends();
             PlayerSettings.companyName = "Hawnji";
             PlayerSettings.productName = "Hollowcrawl";
             PlayerSettings.runInBackground = true;
@@ -57,6 +58,28 @@ namespace Hollowcrawl.EditorTools
                 options = development ? BuildOptions.Development : BuildOptions.None,
             };
             return BuildPipeline.BuildPlayer(options);
+        }
+
+        /// <summary>
+        /// The game reads keyboard, mouse and gamepad through the Input System package, whose native backends are
+        /// off unless Player Settings > Active Input Handling includes it. There is no public API for that setting,
+        /// so it is set on the serialized PlayerSettings (2 = Both; IMGUI keeps working either way).
+        /// </summary>
+        public static void EnableInputSystemBackends()
+        {
+            var all = AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/ProjectSettings.asset");
+            if (all == null || all.Length == 0) { Debug.LogWarning("[Build] ProjectSettings.asset not found; Active Input Handling unchanged"); return; }
+            var so = new SerializedObject(all[0]);
+            var prop = so.FindProperty("activeInputHandler");
+            if (prop == null) { Debug.LogWarning("[Build] activeInputHandler property not found"); return; }
+            Debug.Log("[Build] Active Input Handling was " + prop.intValue + " (0 = old, 1 = Input System, 2 = both)");
+            if (prop.intValue != 2)
+            {
+                prop.intValue = 2;
+                so.ApplyModifiedPropertiesWithoutUndo();
+                AssetDatabase.SaveAssets();
+                Debug.Log("[Build] Active Input Handling set to 2 (both)");
+            }
         }
 
         private static void EnsureMainScene()
