@@ -27,9 +27,11 @@ namespace Hollowcrawl.Items.Effects
         {
             if (Ctx.Health == null) return false;
             int ward = Ctx.P.GetInt("ward", 0);
+            int umbral = Ctx.P.GetInt("umbral", 0);
             int healed = Ctx.Health.Heal(Ctx.P.GetInt("halves", 2));
             if (ward > 0) Ctx.Health.AddWard(ward);
-            return healed > 0 || ward > 0;
+            if (umbral > 0) Ctx.Health.AddUmbral(umbral);
+            return healed > 0 || ward > 0 || umbral > 0;
         }
     }
 

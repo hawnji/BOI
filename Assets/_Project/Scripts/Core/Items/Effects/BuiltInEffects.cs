@@ -73,7 +73,7 @@ namespace Hollowcrawl.Items.Effects
 
             // Active item uses
             r.Register("active_room_damage", s => new ActiveRoomDamageEffect(), "damage, damageStatScale, type, status, duration, radius");
-            r.Register("active_heal", s => new ActiveHealEffect(), "halves, ward");
+            r.Register("active_heal", s => new ActiveHealEffect(), "halves, ward, umbral");
             r.Register("active_temp_stat", s => new ActiveTempStatEffect(), "stat, op, value, duration (0 = this room)");
             r.Register("active_projectile_ring", s => new ActiveProjectileRingEffect(), "count, damageScale");
             r.Register("active_teleport", s => new ActiveTeleportEffect(), "target");

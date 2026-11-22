@@ -188,3 +188,15 @@ challenge `rewardUnlock` (validator error otherwise).
 
 Practice runs record nothing. Custom-seed runs record statistics only. Daily runs use the date's seed, the Wanderer
 and ignore personal unlocks so everyone plays the same run.
+
+## Generated content files
+
+Large batches are written by scripts in `Tools/ContentGen/` (run from the repo root with `python3`). Edit the
+script, not the generated JSON, then run it and `dotnet test Tests/CoreTests`:
+
+| Script | Output |
+|---|---|
+| `gen_items.py` | `Content/Items/expansion_items.json` |
+| `gen_transformations.py` | `Content/Synergies/expansion_transformations.json` |
+
+`ContentTargetTests` guards the counts reached so far and runs every item through a short headless fight.

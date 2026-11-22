@@ -1,0 +1,7091 @@
+{
+ "items": [
+  {
+   "id": "ashen_bread",
+   "name": "Ashen Bread",
+   "description": "Dense, grey, filling. Vigor up.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure",
+    "boss"
+   ],
+   "tags": [
+    "health",
+    "food"
+   ],
+   "effects": [
+    {
+     "effect": "grant_health",
+     "containers": 1,
+     "heal": 2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "salt_pork",
+   "name": "Salt Pork",
+   "description": "Tough meat for a long walk. Vigor up.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "boss",
+    "shop"
+   ],
+   "tags": [
+    "health",
+    "food"
+   ],
+   "effects": [
+    {
+     "effect": "grant_health",
+     "containers": 1,
+     "heal": 2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "marrow_stew",
+   "name": "Marrow Stew",
+   "description": "Two vigor up, a little slower.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "boss"
+   ],
+   "tags": [
+    "health",
+    "food"
+   ],
+   "effects": [
+    {
+     "effect": "grant_health",
+     "containers": 2,
+     "heal": 4
+    },
+    {
+     "effect": "stat",
+     "stat": "MoveSpeed",
+     "op": "Flat",
+     "value": -0.1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "black_honey",
+   "name": "Black Honey",
+   "description": "Sweet and strange. Vigor up, luck up.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "health",
+    "food",
+    "insect"
+   ],
+   "effects": [
+    {
+     "effect": "grant_health",
+     "containers": 1,
+     "heal": 2
+    },
+    {
+     "effect": "stat",
+     "stat": "Luck",
+     "op": "Flat",
+     "value": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "cracked_whetstone",
+   "name": "Cracked Whetstone",
+   "description": "Damage up.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure",
+    "boss"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "iron_knuckles",
+   "name": "Iron Knuckles",
+   "description": "Damage up, knockback up.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.6
+    },
+    {
+     "effect": "stat",
+     "stat": "Knockback",
+     "op": "Flat",
+     "value": 0.5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "grudge_stone",
+   "name": "Grudge Stone",
+   "description": "Heavy with old anger. Big damage up, tears slower.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "boss"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 1.2
+    },
+    {
+     "effect": "stat",
+     "stat": "FireRate",
+     "op": "Flat",
+     "value": -0.3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "ember_heart",
+   "name": "Ember Heart",
+   "description": "Damage up and every shot runs hotter.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "offense",
+    "fire"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.8
+    },
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "PercentAdd",
+     "value": 0.15
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "widow_pin",
+   "name": "Widow's Pin",
+   "description": "A long black pin. Critical chance up.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "offense",
+    "precision"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "CritChance",
+     "op": "Flat",
+     "value": 0.08
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "hangmans_coin",
+   "name": "Hangman's Coin",
+   "description": "Critical hits cut deeper.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "offense",
+    "precision"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "CritDamage",
+     "op": "Flat",
+     "value": 0.6
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "quill_of_haste",
+   "name": "Quill of Haste",
+   "description": "Rate of fire up.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure",
+    "boss"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "FireRate",
+     "op": "Flat",
+     "value": 0.35
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "rattle_drum",
+   "name": "Rattle Drum",
+   "description": "A tiny drum keeps the rhythm. Rate of fire up.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "FireRate",
+     "op": "Flat",
+     "value": 0.5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "frenzy_mask",
+   "name": "Frenzy Mask",
+   "description": "Shoot much faster, hit a little softer.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "offense",
+    "risk"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "FireRate",
+     "op": "PercentAdd",
+     "value": 0.25
+    },
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "PercentAdd",
+     "value": -0.1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "long_sight",
+   "name": "Long Sight",
+   "description": "Range up, shot speed up.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "precision"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Range",
+     "op": "Flat",
+     "value": 2.0
+    },
+    {
+     "effect": "stat",
+     "stat": "ShotSpeed",
+     "op": "Flat",
+     "value": 0.15
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "tin_spyglass",
+   "name": "Tin Spyglass",
+   "description": "Range up.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 0,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "precision"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Range",
+     "op": "Flat",
+     "value": 2.5
+    }
+   ],
+   "shopPrice": 10
+  },
+  {
+   "id": "slingers_band",
+   "name": "Slinger's Band",
+   "description": "Shot speed up, damage up.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "precision"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "ShotSpeed",
+     "op": "Flat",
+     "value": 0.25
+    },
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "hollow_boots",
+   "name": "Hollow Boots",
+   "description": "Light as dust. Speed up.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "movement"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "MoveSpeed",
+     "op": "Flat",
+     "value": 0.2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "runners_wrap",
+   "name": "Runner's Wrap",
+   "description": "Speed up, range up.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "movement"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "MoveSpeed",
+     "op": "Flat",
+     "value": 0.15
+    },
+    {
+     "effect": "stat",
+     "stat": "Range",
+     "op": "Flat",
+     "value": 1.0
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "weighted_cloak",
+   "name": "Weighted Cloak",
+   "description": "Slower, but you take less damage.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "defense"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "MoveSpeed",
+     "op": "Flat",
+     "value": -0.15
+    },
+    {
+     "effect": "stat",
+     "stat": "Defense",
+     "op": "Flat",
+     "value": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "rabbit_bone",
+   "name": "Rabbit Bone",
+   "description": "Luck up.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 0,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "luck"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Luck",
+     "op": "Flat",
+     "value": 1
+    }
+   ],
+   "shopPrice": 10
+  },
+  {
+   "id": "four_leaf_ash",
+   "name": "Four-Leaf Ash",
+   "description": "A clover burned to ash and still lucky. Luck up twice.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "luck",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Luck",
+     "op": "Flat",
+     "value": 2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "bloated_tick",
+   "name": "Bloated Tick",
+   "description": "Shots grow fat. Shot size and damage up.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "insect",
+    "offense"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "ShotSize",
+     "op": "Flat",
+     "value": 0.25
+    },
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "pebble_pouch",
+   "name": "Pebble Pouch",
+   "description": "Smaller, faster, more shots.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "ShotSize",
+     "op": "Flat",
+     "value": -0.2
+    },
+    {
+     "effect": "stat",
+     "stat": "FireRate",
+     "op": "Flat",
+     "value": 0.4
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "anvil_charm",
+   "name": "Anvil Charm",
+   "description": "Heavier shots. Knockback way up.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 0,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Knockback",
+     "op": "Flat",
+     "value": 1.5
+    },
+    {
+     "effect": "stat",
+     "stat": "ShotSize",
+     "op": "Flat",
+     "value": 0.1
+    }
+   ],
+   "shopPrice": 10
+  },
+  {
+   "id": "pilgrim_staff",
+   "name": "Pilgrim's Staff",
+   "description": "All stats up a little.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure",
+    "boss"
+   ],
+   "tags": [
+    "holy"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.3
+    },
+    {
+     "effect": "stat",
+     "stat": "FireRate",
+     "op": "Flat",
+     "value": 0.2
+    },
+    {
+     "effect": "stat",
+     "stat": "MoveSpeed",
+     "op": "Flat",
+     "value": 0.1
+    },
+    {
+     "effect": "stat",
+     "stat": "Range",
+     "op": "Flat",
+     "value": 1.0
+    },
+    {
+     "effect": "stat",
+     "stat": "Luck",
+     "op": "Flat",
+     "value": 1
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "ossuary_key",
+   "name": "Ossuary Key",
+   "description": "Damage and range up. Smells of crypt.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "boss"
+   ],
+   "tags": [
+    "bone"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.5
+    },
+    {
+     "effect": "stat",
+     "stat": "Range",
+     "op": "Flat",
+     "value": 1.5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "crow_feather",
+   "name": "Crow Feather",
+   "description": "Speed and shot speed up.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "bird",
+    "movement"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "MoveSpeed",
+     "op": "Flat",
+     "value": 0.12
+    },
+    {
+     "effect": "stat",
+     "stat": "ShotSpeed",
+     "op": "Flat",
+     "value": 0.2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "owl_eye",
+   "name": "Owl Eye",
+   "description": "Range and critical chance up.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "bird",
+    "precision"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Range",
+     "op": "Flat",
+     "value": 1.5
+    },
+    {
+     "effect": "stat",
+     "stat": "CritChance",
+     "op": "Flat",
+     "value": 0.05
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "raven_quill",
+   "name": "Raven Quill",
+   "description": "Damage up, shots fly straighter and faster.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "bird",
+    "offense"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.4
+    },
+    {
+     "effect": "stat",
+     "stat": "ShotSpeed",
+     "op": "Flat",
+     "value": 0.3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "candle_stub",
+   "name": "Candle Stub",
+   "description": "A little light, a little courage. Damage and luck up.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "light"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.3
+    },
+    {
+     "effect": "stat",
+     "stat": "Luck",
+     "op": "Flat",
+     "value": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "burnt_hymnal",
+   "name": "Burnt Hymnal",
+   "description": "Holy pages, half-burned. Damage up, holy shots.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "holy",
+    "fire"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.4
+    },
+    {
+     "effect": "proj_element",
+     "type": "Holy"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "broken_halo",
+   "name": "Broken Halo",
+   "description": "Damage way up while you are unhurt.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "holy",
+    "risk"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 1.5,
+     "condition": "health_full"
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "last_breath",
+   "name": "Last Breath",
+   "description": "Damage way up when you are almost dead.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "risk"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 2.0,
+     "condition": "total_health_at_most:2"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "cornered_rat",
+   "name": "Cornered Rat",
+   "description": "Speed and fire rate up at low vigor.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "risk",
+    "movement"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "FireRate",
+     "op": "Flat",
+     "value": 0.6,
+     "condition": "health_at_most:2"
+    },
+    {
+     "effect": "stat",
+     "stat": "MoveSpeed",
+     "op": "Flat",
+     "value": 0.2,
+     "condition": "health_at_most:2"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "misers_ledger",
+   "name": "Miser's Ledger",
+   "description": "Damage grows with your coins.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "stat_scaling",
+     "stat": "Damage",
+     "perUnit": 0.04,
+     "source": "coins",
+     "max": 2.0
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "powder_heart",
+   "name": "Powder Heart",
+   "description": "Damage grows with your bombs.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "bomb"
+   ],
+   "effects": [
+    {
+     "effect": "stat_scaling",
+     "stat": "Damage",
+     "perUnit": 0.1,
+     "source": "bombs",
+     "max": 2.0
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "wounded_pride",
+   "name": "Wounded Pride",
+   "description": "The more vigor you're missing, the harder you hit.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "risk"
+   ],
+   "effects": [
+    {
+     "effect": "stat_scaling",
+     "stat": "Damage",
+     "perUnit": 0.25,
+     "source": "missing_health",
+     "max": 2.5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "collectors_eye",
+   "name": "Collector's Eye",
+   "description": "Every item you own sharpens your aim.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "precision"
+   ],
+   "effects": [
+    {
+     "effect": "stat_scaling",
+     "stat": "CritChance",
+     "perUnit": 0.01,
+     "source": "items",
+     "max": 0.25
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "hive_mind",
+   "name": "Hive Mind",
+   "description": "Faster fire for every companion at your side.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "insect"
+   ],
+   "effects": [
+    {
+     "effect": "stat_scaling",
+     "stat": "FireRate",
+     "perUnit": 0.12,
+     "source": "companions",
+     "max": 1.2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "deep_pockets",
+   "name": "Deep Pockets",
+   "description": "Luck grows with your keys.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "economy",
+    "luck"
+   ],
+   "effects": [
+    {
+     "effect": "stat_scaling",
+     "stat": "Luck",
+     "perUnit": 0.3,
+     "source": "keys",
+     "max": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "bramble_tip",
+   "name": "Bramble Tip",
+   "description": "Shots pierce two foes.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "piercing",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "proj_pierce",
+     "count": 2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "ghost_lance",
+   "name": "Ghost Lance",
+   "description": "Shots pierce everything.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "piercing"
+   ],
+   "effects": [
+    {
+     "effect": "proj_pierce",
+     "count": -1
+    },
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "PercentAdd",
+     "value": -0.1
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "lodestone_eye",
+   "name": "Lodestone Eye",
+   "description": "Strongly homing shots.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "homing"
+   ],
+   "effects": [
+    {
+     "effect": "proj_homing",
+     "strength": 1.0
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "hound_nose",
+   "name": "Hound's Nose",
+   "description": "Shots sniff out prey a little.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "homing"
+   ],
+   "effects": [
+    {
+     "effect": "proj_homing",
+     "strength": 0.35
+    },
+    {
+     "effect": "stat",
+     "stat": "Range",
+     "op": "Flat",
+     "value": 0.5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "rubber_marble",
+   "name": "Rubber Marble",
+   "description": "Shots bounce off walls twice.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "bouncing"
+   ],
+   "effects": [
+    {
+     "effect": "proj_bounce",
+     "count": 2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "ricochet_ring",
+   "name": "Ricochet Ring",
+   "description": "Shots bounce four times.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "bouncing"
+   ],
+   "effects": [
+    {
+     "effect": "proj_bounce",
+     "count": 4
+    },
+    {
+     "effect": "stat",
+     "stat": "Range",
+     "op": "Flat",
+     "value": 1.0
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "seed_pod",
+   "name": "Seed Pod",
+   "description": "Shots burst into three on impact.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "splitting",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "proj_split",
+     "count": 3,
+     "damageScale": 0.4
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "shatter_glass",
+   "name": "Shatter Glass",
+   "description": "Shots burst into five shards.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "splitting"
+   ],
+   "effects": [
+    {
+     "effect": "proj_split",
+     "count": 5,
+     "damageScale": 0.35
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "powder_shot",
+   "name": "Powder Shot",
+   "description": "Shots explode on impact.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "explosive"
+   ],
+   "effects": [
+    {
+     "effect": "proj_explode",
+     "radius": 1.0,
+     "damageScale": 0.6
+    },
+    {
+     "effect": "stat",
+     "stat": "FireRate",
+     "op": "Flat",
+     "value": -0.2
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "spark_jar",
+   "name": "Spark Jar",
+   "description": "Shots arc to one nearby foe.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "shock"
+   ],
+   "effects": [
+    {
+     "effect": "proj_chain",
+     "jumps": 1,
+     "range": 3.0,
+     "damageScale": 0.6
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "storm_heart",
+   "name": "Storm Heart",
+   "description": "Lightning leaps between three foes.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "shock"
+   ],
+   "effects": [
+    {
+     "effect": "proj_chain",
+     "jumps": 3,
+     "range": 3.5,
+     "damageScale": 0.55
+    },
+    {
+     "effect": "proj_element",
+     "type": "Shock",
+     "status": "shock",
+     "chance": 0.15,
+     "duration": 3
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "rime_shard",
+   "name": "Rime Shard",
+   "description": "Shots may chill.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "frost"
+   ],
+   "effects": [
+    {
+     "effect": "proj_element",
+     "type": "Frost",
+     "status": "chill",
+     "chance": 0.3,
+     "duration": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "glacier_core",
+   "name": "Glacier Core",
+   "description": "Shots often chill, sometimes freeze solid.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "frost"
+   ],
+   "effects": [
+    {
+     "effect": "proj_element",
+     "type": "Frost",
+     "status": "chill",
+     "chance": 0.5,
+     "duration": 3
+    },
+    {
+     "effect": "proj_element",
+     "type": "Frost",
+     "status": "freeze",
+     "chance": 0.1,
+     "duration": 1.5
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "nettle_sap",
+   "name": "Nettle Sap",
+   "description": "Shots poison often.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "poison",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "proj_element",
+     "type": "Poison",
+     "status": "poison",
+     "chance": 0.45,
+     "duration": 4
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "rot_tooth",
+   "name": "Rot Tooth",
+   "description": "Shots spread blight.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "blight"
+   ],
+   "effects": [
+    {
+     "effect": "proj_element",
+     "type": "Blight",
+     "status": "blight",
+     "chance": 0.3,
+     "duration": 4
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "night_ink",
+   "name": "Night Ink",
+   "description": "Shots may fill foes with dread.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "void"
+   ],
+   "effects": [
+    {
+     "effect": "proj_element",
+     "type": "Void",
+     "status": "dread",
+     "chance": 0.2,
+     "duration": 2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "void_pearl",
+   "name": "Void Pearl",
+   "description": "Shots ignore armour.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "void"
+   ],
+   "effects": [
+    {
+     "effect": "proj_element",
+     "type": "Void"
+    },
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.3
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "kindling_bundle",
+   "name": "Kindling Bundle",
+   "description": "Shots may burn, and rate of fire up.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "fire"
+   ],
+   "effects": [
+    {
+     "effect": "proj_element",
+     "type": "Fire",
+     "status": "burn",
+     "chance": 0.2,
+     "duration": 3
+    },
+    {
+     "effect": "stat",
+     "stat": "FireRate",
+     "op": "Flat",
+     "value": 0.15
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "magnifying_lens",
+   "name": "Magnifying Lens",
+   "description": "Huge shots.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "effects": [
+    {
+     "effect": "proj_size",
+     "mult": 1.6
+    },
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.4
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "needle_cluster",
+   "name": "Needle Cluster",
+   "description": "Fire a spread of three.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "multishot"
+   ],
+   "effects": [
+    {
+     "effect": "proj_volley",
+     "shots": 3,
+     "spread": 14,
+     "damageScale": 0.7
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "twin_barrel",
+   "name": "Twin Barrel",
+   "description": "Fire two shots side by side.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "multishot"
+   ],
+   "effects": [
+    {
+     "effect": "proj_volley",
+     "shots": 2,
+     "spread": 6,
+     "damageScale": 0.8
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "fan_of_knives",
+   "name": "Fan of Knives",
+   "description": "A wide fan of five weak shots.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "multishot"
+   ],
+   "effects": [
+    {
+     "effect": "proj_volley",
+     "shots": 5,
+     "spread": 40,
+     "damageScale": 0.5
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "hurling_arm",
+   "name": "Hurling Arm",
+   "description": "Shots arc over obstacles.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "delivery"
+   ],
+   "effects": [
+    {
+     "effect": "proj_delivery",
+     "delivery": "Lobbed",
+     "priority": 5
+    },
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "crescent_blade",
+   "name": "Crescent Blade",
+   "description": "Shots return to you.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "delivery",
+    "piercing"
+   ],
+   "effects": [
+    {
+     "effect": "proj_delivery",
+     "delivery": "Boomerang",
+     "priority": 6
+    },
+    {
+     "effect": "proj_pierce",
+     "count": -1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "dawn_prism",
+   "name": "Dawn Prism",
+   "description": "Fire a beam of light.",
+   "kind": "Passive",
+   "rarity": "Legendary",
+   "quality": 4,
+   "pools": [
+    "treasure",
+    "boss"
+   ],
+   "tags": [
+    "delivery",
+    "light",
+    "holy"
+   ],
+   "effects": [
+    {
+     "effect": "proj_delivery",
+     "delivery": "Beam",
+     "priority": 10
+    }
+   ],
+   "shopPrice": 30
+  },
+  {
+   "id": "orbit_stone",
+   "name": "Orbit Stone",
+   "description": "Shots circle you before flying off.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "delivery"
+   ],
+   "effects": [
+    {
+     "effect": "proj_delivery",
+     "delivery": "Orbiting",
+     "priority": 4
+    },
+    {
+     "effect": "stat",
+     "stat": "Range",
+     "op": "Flat",
+     "value": 2.0
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "tide_shell",
+   "name": "Tide Shell",
+   "description": "Shots roll out as a wave.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "delivery",
+    "piercing"
+   ],
+   "effects": [
+    {
+     "effect": "proj_delivery",
+     "delivery": "Wave",
+     "priority": 7
+    },
+    {
+     "effect": "proj_pierce",
+     "count": -1
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "wraith_veil",
+   "name": "Wraith Veil",
+   "description": "Shots pass through rocks and walls.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "spectral"
+   ],
+   "effects": [
+    {
+     "effect": "proj_spectral"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "drawn_bow",
+   "name": "Drawn Bow",
+   "description": "Hold to charge a mighty shot.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "charge"
+   ],
+   "effects": [
+    {
+     "effect": "proj_charge",
+     "time": 1.0,
+     "damageMult": 3.5
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "coiled_spring",
+   "name": "Coiled Spring",
+   "description": "Short charge, solid hit.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "charge"
+   ],
+   "effects": [
+    {
+     "effect": "proj_charge",
+     "time": 0.5,
+     "damageMult": 2.0
+    },
+    {
+     "effect": "stat",
+     "stat": "ShotSpeed",
+     "op": "Flat",
+     "value": 0.2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "comet_tail",
+   "name": "Comet Tail",
+   "description": "Shots speed up as they fly.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "precision"
+   ],
+   "effects": [
+    {
+     "effect": "proj_accelerate",
+     "perSecond": 6
+    },
+    {
+     "effect": "stat",
+     "stat": "Range",
+     "op": "Flat",
+     "value": 1.5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "serpent_coil",
+   "name": "Serpent Coil",
+   "description": "Shots wriggle through the air.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "wavy"
+   ],
+   "effects": [
+    {
+     "effect": "proj_wavy",
+     "amplitude": 0.4
+    },
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "executioner_mark",
+   "name": "Executioner's Mark",
+   "description": "Shot damage x1.5, rate of fire down.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "effects": [
+    {
+     "effect": "proj_damage_mult",
+     "mult": 1.5
+    },
+    {
+     "effect": "stat",
+     "stat": "FireRate",
+     "op": "Flat",
+     "value": -0.3
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "blood_quill",
+   "name": "Blood Quill",
+   "description": "Shot damage up by a quarter.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "offense",
+    "health"
+   ],
+   "effects": [
+    {
+     "effect": "proj_damage_mult",
+     "mult": 1.25
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "pestle",
+   "name": "Pestle",
+   "description": "Poison turns to blight.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "poison",
+    "blight"
+   ],
+   "effects": [
+    {
+     "effect": "proj_convert_status",
+     "fromStatus": "poison",
+     "toStatus": "blight",
+     "potencyMult": 1.2
+    },
+    {
+     "effect": "proj_element",
+     "type": "Poison",
+     "status": "poison",
+     "chance": 0.2,
+     "duration": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "hoarfrost_vial",
+   "name": "Hoarfrost Vial",
+   "description": "Chills deepen into freezes.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "frost"
+   ],
+   "effects": [
+    {
+     "effect": "proj_convert_status",
+     "fromStatus": "chill",
+     "toStatus": "freeze",
+     "durationMult": 0.6
+    },
+    {
+     "effect": "proj_element",
+     "type": "Frost",
+     "status": "chill",
+     "chance": 0.25,
+     "duration": 3
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "lightning_rod",
+   "name": "Lightning Rod",
+   "description": "Shots shock and fly fast.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "shock"
+   ],
+   "effects": [
+    {
+     "effect": "proj_element",
+     "type": "Shock",
+     "status": "shock",
+     "chance": 0.25,
+     "duration": 3
+    },
+    {
+     "effect": "stat",
+     "stat": "ShotSpeed",
+     "op": "Flat",
+     "value": 0.3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "scattershot",
+   "name": "Scattershot",
+   "description": "Your shots wobble and split into two.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "splitting",
+    "wavy"
+   ],
+   "effects": [
+    {
+     "effect": "proj_split",
+     "count": 2,
+     "damageScale": 0.5
+    },
+    {
+     "effect": "proj_wavy",
+     "amplitude": 0.2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "hunters_hood",
+   "name": "Hunter's Hood",
+   "description": "Homing shots and more critical hits.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "homing",
+    "precision"
+   ],
+   "effects": [
+    {
+     "effect": "proj_homing",
+     "strength": 0.5
+    },
+    {
+     "effect": "stat",
+     "stat": "CritChance",
+     "op": "Flat",
+     "value": 0.06
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "cinder_crown",
+   "name": "Cinder Crown",
+   "description": "Burning foes take heavier hits.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "fire"
+   ],
+   "effects": [
+    {
+     "effect": "proj_element",
+     "type": "Fire",
+     "status": "burn",
+     "chance": 0.3,
+     "duration": 3
+    },
+    {
+     "effect": "outgoing_mult",
+     "mult": 1.25,
+     "types": "Fire"
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "blasting_cap",
+   "name": "Blasting Cap",
+   "description": "Hits sometimes explode.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "explosive"
+   ],
+   "effects": [
+    {
+     "effect": "onhit_explode",
+     "chance": 0.12,
+     "radius": 1.2,
+     "damageScale": 1.0
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "thunder_seed",
+   "name": "Thunder Seed",
+   "description": "Hits sometimes burst into sparks.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "shock",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "onhit_status_aoe",
+     "chance": 0.15,
+     "radius": 1.5,
+     "status": "shock",
+     "duration": 2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "spore_sac",
+   "name": "Spore Sac",
+   "description": "Hits sometimes puff poison spores.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "poison",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "onhit_status_aoe",
+     "chance": 0.2,
+     "radius": 1.4,
+     "status": "poison",
+     "duration": 4
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "frost_bloom",
+   "name": "Frost Bloom",
+   "description": "Hits sometimes chill everything nearby.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "frost",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "onhit_status_aoe",
+     "chance": 0.18,
+     "radius": 1.6,
+     "status": "chill",
+     "duration": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "splinter_bark",
+   "name": "Splinter Bark",
+   "description": "Hits sometimes throw out splinters.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "splitting",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "onhit_burst",
+     "chance": 0.15,
+     "count": 4,
+     "damageScale": 0.4
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "bone_rattle",
+   "name": "Bone Rattle",
+   "description": "Hits often scatter bone chips.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "bone",
+    "splitting"
+   ],
+   "effects": [
+    {
+     "effect": "onhit_burst",
+     "chance": 0.25,
+     "count": 6,
+     "damageScale": 0.35
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "greedy_tooth",
+   "name": "Greedy Tooth",
+   "description": "Foes sometimes drop coins.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "onkill_drop",
+     "chance": 0.08,
+     "pickup": "Coin"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "keymakers_finger",
+   "name": "Keymaker's Finger",
+   "description": "Foes sometimes drop keys.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "onkill_drop",
+     "chance": 0.05,
+     "pickup": "Key"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "fuse_beetle_shell",
+   "name": "Beetle Shell",
+   "description": "Foes sometimes drop bombs.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "bomb",
+    "insect"
+   ],
+   "effects": [
+    {
+     "effect": "onkill_drop",
+     "chance": 0.05,
+     "pickup": "Bomb"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "vampire_moth",
+   "name": "Vampire Moth",
+   "description": "Kills sometimes heal half a heart.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "health",
+    "insect"
+   ],
+   "effects": [
+    {
+     "effect": "onkill_heal",
+     "chance": 0.06,
+     "halves": 1
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "leech_jar",
+   "name": "Leech Jar",
+   "description": "Kills now and then heal you.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "health"
+   ],
+   "effects": [
+    {
+     "effect": "onkill_heal",
+     "chance": 0.03,
+     "halves": 1
+    },
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "powder_corpse",
+   "name": "Powder Corpse",
+   "description": "Foes explode when they die.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "explosive"
+   ],
+   "effects": [
+    {
+     "effect": "onkill_explode",
+     "chance": 0.35,
+     "radius": 1.5,
+     "damage": 15
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "ember_corpse",
+   "name": "Pyre Ash",
+   "description": "Burning foes spread fire when they die.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "fire"
+   ],
+   "effects": [
+    {
+     "effect": "onkill_spread_status",
+     "status": "burn",
+     "radius": 2.0,
+     "duration": 3,
+     "requireType": "Fire"
+    },
+    {
+     "effect": "proj_element",
+     "type": "Fire",
+     "status": "burn",
+     "chance": 0.15,
+     "duration": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "frozen_tear",
+   "name": "Frozen Tear",
+   "description": "Frozen foes spread chill on death.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "frost"
+   ],
+   "effects": [
+    {
+     "effect": "onkill_spread_status",
+     "status": "chill",
+     "radius": 2.2,
+     "duration": 3,
+     "requireType": "Frost"
+    },
+    {
+     "effect": "proj_element",
+     "type": "Frost",
+     "status": "chill",
+     "chance": 0.15,
+     "duration": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "hex_doll",
+   "name": "Hex Doll",
+   "description": "Bosses take much more damage.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "offense",
+    "curse"
+   ],
+   "effects": [
+    {
+     "effect": "outgoing_mult",
+     "mult": 1.3,
+     "vsBoss": true
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "assassins_glove",
+   "name": "Assassin's Glove",
+   "description": "Critical hits hit harder still.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "precision"
+   ],
+   "effects": [
+    {
+     "effect": "outgoing_mult",
+     "mult": 1.4,
+     "crit": true
+    },
+    {
+     "effect": "stat",
+     "stat": "CritChance",
+     "op": "Flat",
+     "value": 0.04
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "sacred_salt",
+   "name": "Sacred Salt",
+   "description": "Holy damage is stronger.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "holy"
+   ],
+   "effects": [
+    {
+     "effect": "outgoing_mult",
+     "mult": 1.3,
+     "types": "Holy"
+    },
+    {
+     "effect": "proj_element",
+     "type": "Holy"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "venom_fang",
+   "name": "Venom Fang",
+   "description": "Poison does more damage.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "poison"
+   ],
+   "effects": [
+    {
+     "effect": "outgoing_mult",
+     "mult": 1.35,
+     "types": "Poison"
+    },
+    {
+     "effect": "proj_element",
+     "type": "Poison",
+     "status": "poison",
+     "chance": 0.2,
+     "duration": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "static_wire",
+   "name": "Static Wire",
+   "description": "Shock damage is stronger.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "shock"
+   ],
+   "effects": [
+    {
+     "effect": "outgoing_mult",
+     "mult": 1.35,
+     "types": "Shock"
+    },
+    {
+     "effect": "proj_element",
+     "type": "Shock",
+     "status": "shock",
+     "chance": 0.15,
+     "duration": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "frost_rune",
+   "name": "Frost Rune",
+   "description": "Frost damage is stronger.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "frost"
+   ],
+   "effects": [
+    {
+     "effect": "outgoing_mult",
+     "mult": 1.35,
+     "types": "Frost"
+    },
+    {
+     "effect": "proj_element",
+     "type": "Frost",
+     "status": "chill",
+     "chance": 0.15,
+     "duration": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "demolition_glove",
+   "name": "Demolition Glove",
+   "description": "Explosions hit much harder.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "explosive",
+    "bomb"
+   ],
+   "effects": [
+    {
+     "effect": "outgoing_mult",
+     "mult": 1.5,
+     "types": "Explosive"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "dread_lantern",
+   "name": "Dread Lantern",
+   "description": "Foes nearby are filled with dread.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "aura",
+    "void",
+    "light"
+   ],
+   "effects": [
+    {
+     "effect": "aura_status",
+     "radius": 2.0,
+     "status": "dread",
+     "interval": 2,
+     "duration": 1.5
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "frost_aura",
+   "name": "Winter Shroud",
+   "description": "A cold mist chills foes near you.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "aura",
+    "frost"
+   ],
+   "effects": [
+    {
+     "effect": "aura_status",
+     "radius": 1.8,
+     "status": "chill",
+     "interval": 1,
+     "duration": 2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "plague_censer",
+   "name": "Plague Censer",
+   "description": "A swinging censer poisons nearby foes.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "aura",
+    "poison"
+   ],
+   "effects": [
+    {
+     "effect": "aura_status",
+     "radius": 1.7,
+     "status": "poison",
+     "interval": 1.2,
+     "duration": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "bark_skin",
+   "name": "Bark Skin",
+   "description": "Take less damage.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "defense",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Defense",
+     "op": "Flat",
+     "value": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "scale_mail",
+   "name": "Scale Mail",
+   "description": "Take less damage, move slower.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "defense"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Defense",
+     "op": "Flat",
+     "value": 1
+    },
+    {
+     "effect": "stat",
+     "stat": "MoveSpeed",
+     "op": "Flat",
+     "value": -0.05
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "tortoise_shell",
+   "name": "Tortoise Shell",
+   "description": "A chance to shrug off a hit.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "defense"
+   ],
+   "effects": [
+    {
+     "effect": "incoming_block_chance",
+     "chance": 0.15
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "lucky_scar",
+   "name": "Lucky Scar",
+   "description": "Small chance to ignore a hit. Luck up.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "defense",
+    "luck"
+   ],
+   "effects": [
+    {
+     "effect": "incoming_block_chance",
+     "chance": 0.07
+    },
+    {
+     "effect": "stat",
+     "stat": "Luck",
+     "op": "Flat",
+     "value": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "asbestos_cloak",
+   "name": "Ashcloth Cloak",
+   "description": "Fire can't hurt you.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "defense",
+    "fire"
+   ],
+   "effects": [
+    {
+     "effect": "incoming_immunity",
+     "types": "Fire"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "blast_visor",
+   "name": "Blast Visor",
+   "description": "Explosions can't hurt you.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "defense",
+    "bomb"
+   ],
+   "effects": [
+    {
+     "effect": "incoming_immunity",
+     "types": "Explosive"
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "gum_boots",
+   "name": "Gum Boots",
+   "description": "Immune to shock and poison.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "defense"
+   ],
+   "effects": [
+    {
+     "effect": "incoming_immunity",
+     "types": "Shock, Poison"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "long_flinch",
+   "name": "Long Flinch",
+   "description": "You stay safe longer after a hit.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "defense"
+   ],
+   "effects": [
+    {
+     "effect": "invuln_on_hit",
+     "seconds": 0.6
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "spite_thorns",
+   "name": "Spite Thorns",
+   "description": "Getting hit bursts thorns around you.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "defense",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "ondamaged_burst",
+     "chance": 1.0,
+     "radius": 2.5,
+     "damage": 20,
+     "type": "Physical"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "frost_heart",
+   "name": "Frost Heart",
+   "description": "Getting hit freezes nearby foes.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "defense",
+    "frost"
+   ],
+   "effects": [
+    {
+     "effect": "ondamaged_burst",
+     "chance": 1.0,
+     "radius": 2.5,
+     "damage": 8,
+     "type": "Frost",
+     "status": "freeze",
+     "duration": 1.5
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "powder_vest",
+   "name": "Powder Vest",
+   "description": "Getting hit sets off an explosion that spares you.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "defense",
+    "explosive"
+   ],
+   "effects": [
+    {
+     "effect": "ondamaged_burst",
+     "chance": 0.5,
+     "radius": 2.0,
+     "damage": 30,
+     "type": "Explosive"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "guardian_seal",
+   "name": "Guardian Seal",
+   "description": "Getting hit sometimes grants a ward.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "defense",
+    "holy"
+   ],
+   "effects": [
+    {
+     "effect": "ondamaged_ward",
+     "chance": 0.25,
+     "halves": 2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "battery_heart",
+   "name": "Battery Heart",
+   "description": "Getting hit charges your active item.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "defense",
+    "charge"
+   ],
+   "effects": [
+    {
+     "effect": "ondamaged_charge",
+     "amount": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "moss_bandage",
+   "name": "Moss Bandage",
+   "description": "Slowly heal while fighting.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "health",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "regen",
+     "interval": 40,
+     "halves": 1,
+     "inCombatOnly": true
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "heartroot",
+   "name": "Heartroot",
+   "description": "Vigor up and slow healing.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "health",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "grant_health",
+     "containers": 1,
+     "heal": 2
+    },
+    {
+     "effect": "regen",
+     "interval": 60,
+     "halves": 1
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "holy_water",
+   "name": "Holy Water",
+   "description": "Two wards.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "health",
+    "holy"
+   ],
+   "effects": [
+    {
+     "effect": "grant_health",
+     "ward": 4
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "shadow_wine",
+   "name": "Shadow Wine",
+   "description": "Two umbral hearts.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "health",
+    "void"
+   ],
+   "effects": [
+    {
+     "effect": "grant_health",
+     "umbral": 4
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "blessed_rag",
+   "name": "Blessed Rag",
+   "description": "Clearing a room unhurt may grant a ward.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "holy",
+    "health"
+   ],
+   "effects": [
+    {
+     "effect": "roomclear_drop",
+     "chance": 0.25,
+     "pickup": "Ward",
+     "requireNoDamage": true
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "field_kit",
+   "name": "Field Kit",
+   "description": "Clearing rooms sometimes heals you.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "health"
+   ],
+   "effects": [
+    {
+     "effect": "roomclear_heal",
+     "chance": 0.2,
+     "halves": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "sentinel_eye",
+   "name": "Sentinel's Eye",
+   "description": "Take less damage while at full vigor.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "defense",
+    "holy"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Defense",
+     "op": "Flat",
+     "value": 2,
+     "condition": "health_full"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "tithe_box",
+   "name": "Tithe Box",
+   "description": "Coin pickups sometimes give extra.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "shop",
+    "treasure"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "pickup_bonus",
+     "pickup": "Coin",
+     "resource": "Coins",
+     "amount": 1,
+     "chance": 0.3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "bomb_bag",
+   "name": "Bomb Bag",
+   "description": "Bomb pickups sometimes give extra.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "shop",
+    "treasure"
+   ],
+   "tags": [
+    "bomb"
+   ],
+   "effects": [
+    {
+     "effect": "pickup_bonus",
+     "pickup": "Bomb",
+     "resource": "Bombs",
+     "amount": 1,
+     "chance": 0.3
+    },
+    {
+     "effect": "grant_resource",
+     "resource": "Bombs",
+     "amount": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "key_ring",
+   "name": "Key Ring",
+   "description": "Key pickups sometimes give extra.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "shop",
+    "treasure"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "pickup_bonus",
+     "pickup": "Key",
+     "resource": "Keys",
+     "amount": 1,
+     "chance": 0.3
+    },
+    {
+     "effect": "grant_resource",
+     "resource": "Keys",
+     "amount": 2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "merchants_seal",
+   "name": "Merchant's Seal",
+   "description": "Shop prices drop.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "shop"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "shop_discount",
+     "percent": 0.25
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "haggler_tongue",
+   "name": "Haggler's Tongue",
+   "description": "Everything costs 3 coins less.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "shop"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "shop_discount",
+     "percent": 0,
+     "flat": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "fat_purse",
+   "name": "Fat Purse",
+   "description": "Coins drop more often.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "shop"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "drop_chance",
+     "pickup": "Coin",
+     "mult": 1.5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "healers_herb",
+   "name": "Healer's Herb",
+   "description": "Hearts drop more often.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "health",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "drop_chance",
+     "pickup": "VigorHalf",
+     "mult": 1.5
+    },
+    {
+     "effect": "drop_chance",
+     "pickup": "VigorFull",
+     "mult": 1.5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "dowsing_rod",
+   "name": "Dowsing Rod",
+   "description": "Keys drop more often.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "drop_chance",
+     "pickup": "Key",
+     "mult": 1.6
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "allowance",
+   "name": "Allowance",
+   "description": "Gain 5 coins at the start of each floor.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "shop",
+    "treasure"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "floorstart_resource",
+     "resource": "Coins",
+     "amount": 5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "quartermaster",
+   "name": "Quartermaster",
+   "description": "Gain a bomb and a key every floor.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "economy",
+    "bomb"
+   ],
+   "effects": [
+    {
+     "effect": "floorstart_resource",
+     "resource": "Bombs",
+     "amount": 1
+    },
+    {
+     "effect": "floorstart_resource",
+     "resource": "Keys",
+     "amount": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "ember_tithe",
+   "name": "Ember Tithe",
+   "description": "Gain an ember every floor.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "secret",
+    "treasure"
+   ],
+   "tags": [
+    "economy",
+    "fire"
+   ],
+   "effects": [
+    {
+     "effect": "floorstart_resource",
+     "resource": "Embers",
+     "amount": 1
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "scavengers_sack",
+   "name": "Scavenger's Sack",
+   "description": "Clearing rooms sometimes drops a pickup.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "roomclear_drop",
+     "chance": 0.15,
+     "pickup": "Coin"
+    },
+    {
+     "effect": "roomclear_drop",
+     "chance": 0.08,
+     "pickup": "Bomb"
+    },
+    {
+     "effect": "roomclear_drop",
+     "chance": 0.08,
+     "pickup": "Key"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "perfect_ledger",
+   "name": "Perfect Ledger",
+   "description": "Clear rooms unhurt to earn coins.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "economy",
+    "precision"
+   ],
+   "effects": [
+    {
+     "effect": "roomclear_drop",
+     "chance": 0.5,
+     "pickup": "Coin",
+     "requireNoDamage": true
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "second_pocket",
+   "name": "Second Pocket",
+   "description": "Carry an extra trinket.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "trinket_slots",
+     "add": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "hunters_trophy",
+   "name": "Hunter's Trophy",
+   "description": "Clearing a room charges your active item twice.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "charge"
+   ],
+   "effects": [
+    {
+     "effect": "roomclear_charge",
+     "amount": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "wardstone",
+   "name": "Wardstone",
+   "description": "Enemies near the door are slowed as you enter.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "frost"
+   ],
+   "effects": [
+    {
+     "effect": "roomenter_status",
+     "status": "chill",
+     "duration": 2,
+     "radius": 4,
+     "chance": 1.0
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "big_powder",
+   "name": "Big Powder",
+   "description": "Bombs are bigger and stronger. +5 bombs.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "bomb"
+   ],
+   "effects": [
+    {
+     "effect": "bomb_mod",
+     "radiusMult": 1.3,
+     "damageAdd": 20
+    },
+    {
+     "effect": "grant_resource",
+     "resource": "Bombs",
+     "amount": 5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "seeking_fuse",
+   "name": "Seeking Fuse",
+   "description": "Bombs creep toward enemies.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "bomb",
+    "homing"
+   ],
+   "effects": [
+    {
+     "effect": "bomb_mod",
+     "homing": true
+    },
+    {
+     "effect": "grant_resource",
+     "resource": "Bombs",
+     "amount": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "tar_bombs",
+   "name": "Tar Bombs",
+   "description": "Bombs stick to what they touch.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "bomb"
+   ],
+   "effects": [
+    {
+     "effect": "bomb_mod",
+     "sticky": true,
+     "damageAdd": 10
+    },
+    {
+     "effect": "grant_resource",
+     "resource": "Bombs",
+     "amount": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "cluster_charge",
+   "name": "Cluster Charge",
+   "description": "Bombs scatter little bombs.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "bomb",
+    "splitting"
+   ],
+   "effects": [
+    {
+     "effect": "bomb_mod",
+     "cluster": 4
+    },
+    {
+     "effect": "grant_resource",
+     "resource": "Bombs",
+     "amount": 3
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "short_fuse",
+   "name": "Short Fuse",
+   "description": "Bombs go off sooner.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "bomb"
+   ],
+   "effects": [
+    {
+     "effect": "bomb_mod",
+     "fuseMult": 0.6
+    },
+    {
+     "effect": "grant_resource",
+     "resource": "Bombs",
+     "amount": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "napalm_jar",
+   "name": "Napalm Jar",
+   "description": "Bombs burn foes.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "bomb",
+    "fire"
+   ],
+   "effects": [
+    {
+     "effect": "bomb_mod",
+     "type": "Fire",
+     "status": "burn",
+     "statusDuration": 4
+    },
+    {
+     "effect": "grant_resource",
+     "resource": "Bombs",
+     "amount": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "nail_bomb",
+   "name": "Nail Bomb",
+   "description": "Bombs throw out shots when they explode.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "bomb",
+    "splitting"
+   ],
+   "effects": [
+    {
+     "effect": "bomb_explode_shots",
+     "count": 8,
+     "damageScale": 0.8
+    },
+    {
+     "effect": "grant_resource",
+     "resource": "Bombs",
+     "amount": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "tamed_powder",
+   "name": "Tamed Powder",
+   "description": "Your bombs never hurt you.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "bomb",
+    "defense"
+   ],
+   "effects": [
+    {
+     "effect": "bomb_mod",
+     "safe": true
+    },
+    {
+     "effect": "grant_resource",
+     "resource": "Bombs",
+     "amount": 5
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "mite_hive",
+   "name": "Mite Hive",
+   "description": "A wax hive that releases a drone mite.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "insect"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "drone_mite"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "coal_den",
+   "name": "Coal Den",
+   "description": "A cinder kit follows you home.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "fire"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "cinder_kit"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "rime_cocoon",
+   "name": "Rime Cocoon",
+   "description": "A frost moth hatches.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "frost",
+    "insect"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "frost_moth"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "toad_stool",
+   "name": "Toad Stool",
+   "description": "A blight toad hops alongside.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "poison"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "blight_toad"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "lantern_socket",
+   "name": "Lantern Socket",
+   "description": "A floating eye watches for you.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "light"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "lantern_eye"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "wrens_nest",
+   "name": "Wren's Nest",
+   "description": "A static wren joins you.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "shock",
+    "bird"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "static_wren"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "echo_shade",
+   "name": "Echo Shade",
+   "description": "Your shadow fights back.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "void"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "echo_shade"
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "twin_husk",
+   "name": "Twin Husk",
+   "description": "A hollow double copies your shots.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "bone"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "twin_husk"
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "mirror_shard",
+   "name": "Mirror Shard",
+   "description": "A glass sliver throws back your shots.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "mirror_shard"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "dread_puppet",
+   "name": "Dread Puppet",
+   "description": "A stitched doll that mimics you.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "void"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "dread_puppet"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "ash_halo",
+   "name": "Ash Halo",
+   "description": "A ring of burning ash orbits you.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "fire",
+    "defense"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "ash_halo"
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "grave_stone",
+   "name": "Grave Stone",
+   "description": "A heavy stone orbits and blocks shots.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "defense",
+    "bone"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "grave_stone"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "thorn_ring",
+   "name": "Thorn Ring",
+   "description": "Spinning thorns shred nearby foes.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "thorn_ring"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "ember_moon",
+   "name": "Ember Moon",
+   "description": "A slow wide orbit of flame.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "fire"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "ember_moon"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "cold_shield",
+   "name": "Cold Shield",
+   "description": "A spinning disc of ice blocks shots.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "defense",
+    "frost"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "cold_shield"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "gnaw_rat",
+   "name": "Gnaw Rat",
+   "description": "A hungry rat hunts for you.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "gnaw_rat"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "bramble_hound",
+   "name": "Bramble Hound",
+   "description": "A thorn-vine dog that bites hard.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "bramble_hound"
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "spite_imp",
+   "name": "Spite Imp",
+   "description": "A tiny imp throws itself at foes.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "spite_imp"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "rot_leech",
+   "name": "Rot Leech",
+   "description": "A leech that drinks from your foes.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "poison"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "rot_leech"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "magpie",
+   "name": "Magpie",
+   "description": "Fetches loose pickups.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "bird",
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "magpie"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "sack_goblin",
+   "name": "Sack Goblin",
+   "description": "Hoards dropped things for you.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "sack_goblin"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "fuse_beetle",
+   "name": "Fuse Beetle",
+   "description": "Lays bombs that spare you.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "bomb",
+    "insect"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "fuse_beetle"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "powder_crow",
+   "name": "Powder Crow",
+   "description": "Drops a big charge now and then.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "bomb",
+    "bird"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "powder_crow"
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "coin_mole",
+   "name": "Coin Mole",
+   "description": "Digs up coins after cleared rooms.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "coin_mole"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "key_wisp",
+   "name": "Key Wisp",
+   "description": "Finds keys after cleared rooms.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "key_wisp"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "heart_moth",
+   "name": "Heart Moth",
+   "description": "Leaves hearts after cleared rooms.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "health",
+    "insect"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "heart_moth"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "powder_sprite",
+   "name": "Powder Sprite",
+   "description": "Leaves bombs after cleared rooms.",
+   "kind": "Passive",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "bomb"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "powder_sprite"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "ward_knight",
+   "name": "Ward Knight",
+   "description": "A tiny knight blocks shots for you.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "defense",
+    "holy"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "ward_knight"
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "pack_leader",
+   "name": "Pack Leader",
+   "description": "Companions hit harder and grow.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion"
+   ],
+   "effects": [
+    {
+     "effect": "companion_boost",
+     "damageMult": 1.5,
+     "sizeMult": 1.2
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "feeding_bowl",
+   "name": "Feeding Bowl",
+   "description": "Companions grow stronger. Vigor up.",
+   "kind": "Passive",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "health"
+   ],
+   "effects": [
+    {
+     "effect": "companion_boost",
+     "damageMult": 1.25
+    },
+    {
+     "effect": "grant_health",
+     "containers": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "sparrow_flock",
+   "name": "Sparrow Flock",
+   "description": "Two bone sparrows join you.",
+   "kind": "Passive",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure"
+   ],
+   "tags": [
+    "companion",
+    "bird"
+   ],
+   "effects": [
+    {
+     "effect": "companion",
+     "companion": "bone_sparrow",
+     "count": 2
+    }
+   ],
+   "shopPrice": 20
+  },
+  {
+   "id": "rusty_trowel",
+   "name": "Rusty Trowel",
+   "description": "Dig up a few coins.",
+   "kind": "Active",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 2,
+    "onUse": [
+     {
+      "effect": "active_spawn_pickups",
+      "pickup": "Coin",
+      "count": 3
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "powder_keg",
+   "name": "Powder Keg",
+   "description": "Drop a pile of bombs.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "bomb"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 4,
+    "onUse": [
+     {
+      "effect": "active_spawn_pickups",
+      "pickup": "Bomb",
+      "count": 2
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "skeleton_key",
+   "name": "Skeleton Key",
+   "description": "Conjure a key.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 4,
+    "onUse": [
+     {
+      "effect": "active_spawn_pickups",
+      "pickup": "Key",
+      "count": 1
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "blood_jar",
+   "name": "Blood Jar",
+   "description": "Pour out a heart.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "health"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 4,
+    "onUse": [
+     {
+      "effect": "active_spawn_pickups",
+      "pickup": "VigorFull",
+      "count": 1
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "war_horn",
+   "name": "War Horn",
+   "description": "Damage way up for this room.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 3,
+    "onUse": [
+     {
+      "effect": "active_temp_stat",
+      "stat": "Damage",
+      "op": "Flat",
+      "value": 2.0,
+      "duration": 0
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "hasty_tonic",
+   "name": "Hasty Tonic",
+   "description": "Speed and rate of fire up for this room.",
+   "kind": "Active",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "offense",
+    "movement"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 2,
+    "onUse": [
+     {
+      "effect": "active_temp_stat",
+      "stat": "FireRate",
+      "op": "Flat",
+      "value": 1.0,
+      "duration": 0
+     },
+     {
+      "effect": "active_temp_stat",
+      "stat": "MoveSpeed",
+      "op": "Flat",
+      "value": 0.3,
+      "duration": 0
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "iron_draught",
+   "name": "Iron Draught",
+   "description": "Take less damage for 10 seconds.",
+   "kind": "Active",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "defense"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 2,
+    "onUse": [
+     {
+      "effect": "active_temp_stat",
+      "stat": "Defense",
+      "op": "Flat",
+      "value": 2,
+      "duration": 10
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "burning_book",
+   "name": "Burning Book",
+   "description": "Set the whole room ablaze.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "fire"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 3,
+    "onUse": [
+     {
+      "effect": "active_room_damage",
+      "damage": 15,
+      "type": "Fire",
+      "status": "burn",
+      "duration": 4
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "winter_bell",
+   "name": "Winter Bell",
+   "description": "Freeze every foe in the room.",
+   "kind": "Active",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "frost"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 4,
+    "onUse": [
+     {
+      "effect": "active_room_damage",
+      "damage": 10,
+      "type": "Frost",
+      "status": "freeze",
+      "duration": 2.5
+     }
+    ]
+   },
+   "shopPrice": 20
+  },
+  {
+   "id": "plague_rattle",
+   "name": "Plague Rattle",
+   "description": "Poison the whole room.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "poison"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 3,
+    "onUse": [
+     {
+      "effect": "active_room_damage",
+      "damage": 8,
+      "type": "Poison",
+      "status": "poison",
+      "duration": 6
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "doom_drum",
+   "name": "Doom Drum",
+   "description": "Heavy damage to the whole room, scaling with your damage.",
+   "kind": "Active",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 5,
+    "onUse": [
+     {
+      "effect": "active_room_damage",
+      "damage": 30,
+      "damageStatScale": 4
+     }
+    ]
+   },
+   "shopPrice": 20
+  },
+  {
+   "id": "nightmare_mask",
+   "name": "Nightmare Mask",
+   "description": "Fill the room with dread.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "void"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 3,
+    "onUse": [
+     {
+      "effect": "active_room_damage",
+      "damage": 5,
+      "type": "Void",
+      "status": "dread",
+      "duration": 4
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "wheel_of_knives",
+   "name": "Wheel of Knives",
+   "description": "Burst a ring of shots around you.",
+   "kind": "Active",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "multishot"
+   ],
+   "active": {
+    "chargeType": "Seconds",
+    "maxCharge": 8,
+    "onUse": [
+     {
+      "effect": "active_projectile_ring",
+      "count": 10,
+      "damageScale": 1.0
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "star_burst",
+   "name": "Star Burst",
+   "description": "A huge ring of shots.",
+   "kind": "Active",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "multishot",
+    "light"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 3,
+    "onUse": [
+     {
+      "effect": "active_projectile_ring",
+      "count": 24,
+      "damageScale": 1.5
+     }
+    ]
+   },
+   "shopPrice": 20
+  },
+  {
+   "id": "wanderers_map",
+   "name": "Wanderer's Map",
+   "description": "Teleport to a random room.",
+   "kind": "Active",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "movement"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 2,
+    "onUse": [
+     {
+      "effect": "active_teleport",
+      "target": "RandomRoom"
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "homeward_stone",
+   "name": "Homeward Stone",
+   "description": "Return to the first room.",
+   "kind": "Active",
+   "rarity": "Common",
+   "quality": 0,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "movement"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 1,
+    "onUse": [
+     {
+      "effect": "active_teleport",
+      "target": "StartRoom"
+     }
+    ]
+   },
+   "shopPrice": 10
+  },
+  {
+   "id": "pilgrims_compass",
+   "name": "Pilgrim's Compass",
+   "description": "Teleport to an unvisited special room.",
+   "kind": "Active",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "movement"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 6,
+    "onUse": [
+     {
+      "effect": "active_teleport",
+      "target": "UnvisitedSpecialRoom"
+     }
+    ]
+   },
+   "shopPrice": 20
+  },
+  {
+   "id": "bait_bucket",
+   "name": "Bait Bucket",
+   "description": "Summon three gnaw rats for this room.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "companion"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 3,
+    "onUse": [
+     {
+      "effect": "active_companion_room",
+      "companion": "gnaw_rat",
+      "count": 3
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "swarm_jar",
+   "name": "Swarm Jar",
+   "description": "Release five drone mites for this room.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "companion",
+    "insect"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 3,
+    "onUse": [
+     {
+      "effect": "active_companion_room",
+      "companion": "drone_mite",
+      "count": 5
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "ward_banner",
+   "name": "Ward Banner",
+   "description": "Call two ward knights for this room.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "companion",
+    "defense"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 4,
+    "onUse": [
+     {
+      "effect": "active_companion_room",
+      "companion": "ward_knight",
+      "count": 2
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "mortar_shell",
+   "name": "Mortar Shell",
+   "description": "Rain explosions on the room.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "explosive"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 3,
+    "onUse": [
+     {
+      "effect": "active_explosions",
+      "count": 6,
+      "radius": 1.4,
+      "damage": 30
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "thunderhead",
+   "name": "Thunderhead",
+   "description": "Call down a storm of blasts.",
+   "kind": "Active",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "explosive",
+    "shock"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 5,
+    "onUse": [
+     {
+      "effect": "active_explosions",
+      "count": 12,
+      "radius": 1.2,
+      "damage": 35
+     }
+    ]
+   },
+   "shopPrice": 20
+  },
+  {
+   "id": "whetting_ritual",
+   "name": "Whetting Ritual",
+   "description": "Lose half a heart, gain damage forever.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "risk",
+    "offense"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 3,
+    "onUse": [
+     {
+      "effect": "active_hurt_self",
+      "halves": 1
+     },
+     {
+      "effect": "active_perm_stat",
+      "stat": "Damage",
+      "value": 0.3
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "blood_offering",
+   "name": "Blood Offering",
+   "description": "Lose a heart, gain 8 coins.",
+   "kind": "Active",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "risk",
+    "economy"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 2,
+    "onUse": [
+     {
+      "effect": "active_hurt_self",
+      "halves": 2
+     },
+     {
+      "effect": "active_resource",
+      "resource": "Coins",
+      "amount": 8
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "coin_press",
+   "name": "Coin Press",
+   "description": "Turn 5 coins into a key and a bomb.",
+   "kind": "Active",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 1,
+    "onUse": [
+     {
+      "effect": "active_resource",
+      "resource": "Coins",
+      "amount": -5
+     },
+     {
+      "effect": "active_resource",
+      "resource": "Keys",
+      "amount": 1
+     },
+     {
+      "effect": "active_resource",
+      "resource": "Bombs",
+      "amount": 1
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "scrying_bowl",
+   "name": "Scrying Bowl",
+   "description": "Reveal the floor, secrets too.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "utility"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 4,
+    "onUse": [
+     {
+      "effect": "active_reveal_map",
+      "secrets": true
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "traveler_lamp",
+   "name": "Traveler's Lamp",
+   "description": "Reveal the floor map.",
+   "kind": "Active",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "light",
+    "utility"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 3,
+    "onUse": [
+     {
+      "effect": "active_reveal_map"
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "healing_salve",
+   "name": "Healing Salve",
+   "description": "Heal a heart and a half.",
+   "kind": "Active",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "health"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 3,
+    "onUse": [
+     {
+      "effect": "active_heal",
+      "halves": 3
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "holy_bell",
+   "name": "Holy Bell",
+   "description": "Gain a ward.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "health",
+    "holy"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 3,
+    "onUse": [
+     {
+      "effect": "active_heal",
+      "halves": 0,
+      "ward": 2
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "growth_tonic",
+   "name": "Growth Tonic",
+   "description": "Range up for good.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "precision"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 4,
+    "onUse": [
+     {
+      "effect": "active_perm_stat",
+      "stat": "Range",
+      "value": 0.5
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "lucky_coin_flip",
+   "name": "Lucky Flip",
+   "description": "Luck up for good.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "luck"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 6,
+    "onUse": [
+     {
+      "effect": "active_perm_stat",
+      "stat": "Luck",
+      "value": 1
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "bone_flute",
+   "name": "Bone Flute",
+   "description": "Slows every foe in the room.",
+   "kind": "Active",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "frost",
+    "bone"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 2,
+    "onUse": [
+     {
+      "effect": "active_room_damage",
+      "damage": 0,
+      "type": "Frost",
+      "status": "chill",
+      "duration": 5
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "thunder_drum",
+   "name": "Thunder Drum",
+   "description": "Shock every foe in the room.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "shock"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 3,
+    "onUse": [
+     {
+      "effect": "active_room_damage",
+      "damage": 20,
+      "type": "Shock",
+      "status": "shock",
+      "duration": 2
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "battle_tonic",
+   "name": "Battle Tonic",
+   "description": "Big burst of rate of fire for 6 seconds.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "active": {
+    "chargeType": "Seconds",
+    "maxCharge": 20,
+    "onUse": [
+     {
+      "effect": "active_temp_stat",
+      "stat": "FireRate",
+      "op": "PercentAdd",
+      "value": 0.8,
+      "duration": 6
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "frenzy_drum",
+   "name": "Frenzy Drum",
+   "description": "Kills charge it. Damage up for this room.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "active": {
+    "chargeType": "Kills",
+    "maxCharge": 12,
+    "onUse": [
+     {
+      "effect": "active_temp_stat",
+      "stat": "Damage",
+      "op": "PercentAdd",
+      "value": 0.6,
+      "duration": 0
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "reaper_sickle",
+   "name": "Reaper's Sickle",
+   "description": "Kills charge it. A ring of heavy blades.",
+   "kind": "Active",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "active": {
+    "chargeType": "Kills",
+    "maxCharge": 15,
+    "onUse": [
+     {
+      "effect": "active_projectile_ring",
+      "count": 12,
+      "damageScale": 2.5
+     }
+    ]
+   },
+   "shopPrice": 20
+  },
+  {
+   "id": "soul_jar",
+   "name": "Soul Jar",
+   "description": "Kills charge it. Gain an umbral heart.",
+   "kind": "Active",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "void",
+    "health"
+   ],
+   "active": {
+    "chargeType": "Kills",
+    "maxCharge": 20,
+    "onUse": [
+     {
+      "effect": "active_heal",
+      "halves": 0,
+      "umbral": 2
+     }
+    ]
+   },
+   "shopPrice": 20
+  },
+  {
+   "id": "lucky_pouch",
+   "name": "Lucky Pouch",
+   "description": "Spill a random handful of goods.",
+   "kind": "Active",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 3,
+    "onUse": [
+     {
+      "effect": "active_spawn_pickups",
+      "pickup": "Coin",
+      "count": 1
+     },
+     {
+      "effect": "active_spawn_pickups",
+      "pickup": "Bomb",
+      "count": 1
+     },
+     {
+      "effect": "active_spawn_pickups",
+      "pickup": "Key",
+      "count": 1
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "trinket_box",
+   "name": "Trinket Box",
+   "description": "Pop out a trinket. Single use.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "active": {
+    "chargeType": "OneShot",
+    "maxCharge": 1,
+    "onUse": [
+     {
+      "effect": "active_spawn_pickups",
+      "pickup": "Trinket",
+      "count": 1
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "wishing_bone",
+   "name": "Wishing Bone",
+   "description": "Pop out a random item. Single use.",
+   "kind": "Active",
+   "rarity": "Legendary",
+   "quality": 4,
+   "pools": [
+    "secret",
+    "treasure"
+   ],
+   "tags": [
+    "luck",
+    "bone"
+   ],
+   "active": {
+    "chargeType": "OneShot",
+    "maxCharge": 1,
+    "onUse": [
+     {
+      "effect": "active_spawn_pickups",
+      "pickup": "Item",
+      "count": 1
+     }
+    ]
+   },
+   "shopPrice": 30
+  },
+  {
+   "id": "smoke_pot",
+   "name": "Smoke Pot",
+   "description": "You can't be hit for 5 seconds.",
+   "kind": "Active",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "defense"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 3,
+    "onUse": [
+     {
+      "effect": "active_temp_stat",
+      "stat": "Defense",
+      "op": "Flat",
+      "value": 10,
+      "duration": 5
+     }
+    ]
+   },
+   "shopPrice": 15
+  },
+  {
+   "id": "bonfire_horn",
+   "name": "Bonfire Horn",
+   "description": "Burn and blast everything nearby.",
+   "kind": "Active",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "fire",
+    "explosive"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 4,
+    "onUse": [
+     {
+      "effect": "active_room_damage",
+      "damage": 40,
+      "type": "Fire",
+      "status": "scorch",
+      "duration": 3,
+      "radius": 4
+     }
+    ]
+   },
+   "shopPrice": 20
+  },
+  {
+   "id": "sunlight_vial",
+   "name": "Sunlight Vial",
+   "description": "Holy light sears the room.",
+   "kind": "Active",
+   "rarity": "Rare",
+   "quality": 3,
+   "pools": [
+    "treasure",
+    "shop"
+   ],
+   "tags": [
+    "holy",
+    "light"
+   ],
+   "active": {
+    "chargeType": "Rooms",
+    "maxCharge": 4,
+    "onUse": [
+     {
+      "effect": "active_room_damage",
+      "damage": 35,
+      "type": "Holy"
+     }
+    ]
+   },
+   "shopPrice": 20
+  },
+  {
+   "id": "bent_nail",
+   "name": "Bent Nail",
+   "description": "Damage up a little.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.25
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "chipped_tooth",
+   "name": "Chipped Tooth",
+   "description": "Rate of fire up a little.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "FireRate",
+     "op": "Flat",
+     "value": 0.2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "lucky_button",
+   "name": "Lucky Button",
+   "description": "Luck up.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "luck"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Luck",
+     "op": "Flat",
+     "value": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "sand_glass",
+   "name": "Sand Glass",
+   "description": "Speed up a little.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "movement"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "MoveSpeed",
+     "op": "Flat",
+     "value": 0.1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "lens_chip",
+   "name": "Lens Chip",
+   "description": "Range up.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "precision"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Range",
+     "op": "Flat",
+     "value": 1.5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "pewter_ring",
+   "name": "Pewter Ring",
+   "description": "Shot speed up.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "precision"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "ShotSpeed",
+     "op": "Flat",
+     "value": 0.2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "sharp_flint",
+   "name": "Sharp Flint",
+   "description": "Critical chance up.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "precision"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "CritChance",
+     "op": "Flat",
+     "value": 0.05
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "stone_bead",
+   "name": "Stone Bead",
+   "description": "Knockback up.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Knockback",
+     "op": "Flat",
+     "value": 1.0
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "worn_buckle",
+   "name": "Worn Buckle",
+   "description": "Take less damage at low vigor.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "defense"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Defense",
+     "op": "Flat",
+     "value": 1,
+     "condition": "health_at_most:2"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "snail_shell",
+   "name": "Snail Shell",
+   "description": "Slower, but shots hit harder.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "risk"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "MoveSpeed",
+     "op": "Flat",
+     "value": -0.1
+    },
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "ember_chip",
+   "name": "Ember Chip",
+   "description": "Shots sometimes burn.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "fire"
+   ],
+   "effects": [
+    {
+     "effect": "proj_element",
+     "type": "Fire",
+     "status": "burn",
+     "chance": 0.1,
+     "duration": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "frost_chip",
+   "name": "Frost Chip",
+   "description": "Shots sometimes chill.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "frost"
+   ],
+   "effects": [
+    {
+     "effect": "proj_element",
+     "type": "Frost",
+     "status": "chill",
+     "chance": 0.12,
+     "duration": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "toxic_chip",
+   "name": "Toxic Chip",
+   "description": "Shots sometimes poison.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "poison"
+   ],
+   "effects": [
+    {
+     "effect": "proj_element",
+     "type": "Poison",
+     "status": "poison",
+     "chance": 0.12,
+     "duration": 4
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "spark_chip",
+   "name": "Spark Chip",
+   "description": "Shots sometimes shock.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "shock"
+   ],
+   "effects": [
+    {
+     "effect": "proj_element",
+     "type": "Shock",
+     "status": "shock",
+     "chance": 0.1,
+     "duration": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "rot_chip",
+   "name": "Rot Chip",
+   "description": "Shots sometimes blight.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "blight"
+   ],
+   "effects": [
+    {
+     "effect": "proj_element",
+     "type": "Blight",
+     "status": "blight",
+     "chance": 0.1,
+     "duration": 4
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "crow_bone",
+   "name": "Crow Bone",
+   "description": "Shots home a little.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "homing",
+    "bird"
+   ],
+   "effects": [
+    {
+     "effect": "proj_homing",
+     "strength": 0.2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "loose_spring",
+   "name": "Loose Spring",
+   "description": "Shots bounce once.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "bouncing"
+   ],
+   "effects": [
+    {
+     "effect": "proj_bounce",
+     "count": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "splinter",
+   "name": "Splinter",
+   "description": "Shots pierce one foe.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "piercing"
+   ],
+   "effects": [
+    {
+     "effect": "proj_pierce",
+     "count": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "puffball",
+   "name": "Puffball",
+   "description": "Hits sometimes puff spores.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "poison",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "onhit_status_aoe",
+     "chance": 0.08,
+     "radius": 1.2,
+     "status": "poison",
+     "duration": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "firecracker",
+   "name": "Firecracker",
+   "description": "Hits rarely explode.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "explosive"
+   ],
+   "effects": [
+    {
+     "effect": "onhit_explode",
+     "chance": 0.05,
+     "radius": 1.0,
+     "damageScale": 0.8
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "penny_charm",
+   "name": "Penny Charm",
+   "description": "Foes sometimes drop coins.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "onkill_drop",
+     "chance": 0.04,
+     "pickup": "Coin"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "small_key_charm",
+   "name": "Key Charm",
+   "description": "Foes rarely drop keys.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "onkill_drop",
+     "chance": 0.025,
+     "pickup": "Key"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "fuse_charm",
+   "name": "Fuse Charm",
+   "description": "Foes rarely drop bombs.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "bomb"
+   ],
+   "effects": [
+    {
+     "effect": "onkill_drop",
+     "chance": 0.025,
+     "pickup": "Bomb"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "tick_charm",
+   "name": "Tick Charm",
+   "description": "Kills rarely heal you.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "health",
+    "insect"
+   ],
+   "effects": [
+    {
+     "effect": "onkill_heal",
+     "chance": 0.02,
+     "halves": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "dented_cup",
+   "name": "Dented Cup",
+   "description": "Clearing rooms sometimes heals.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "health"
+   ],
+   "effects": [
+    {
+     "effect": "roomclear_heal",
+     "chance": 0.1,
+     "halves": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "copper_bell",
+   "name": "Copper Bell",
+   "description": "Clearing rooms sometimes drops a coin.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "roomclear_drop",
+     "chance": 0.2,
+     "pickup": "Coin"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "lost_key",
+   "name": "Lost Key",
+   "description": "Clearing rooms sometimes drops a key.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "roomclear_drop",
+     "chance": 0.08,
+     "pickup": "Key"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "spare_fuse",
+   "name": "Spare Fuse",
+   "description": "Clearing rooms sometimes drops a bomb.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "bomb"
+   ],
+   "effects": [
+    {
+     "effect": "roomclear_drop",
+     "chance": 0.08,
+     "pickup": "Bomb"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "prayer_bead",
+   "name": "Prayer Bead",
+   "description": "Clean rooms sometimes grant a ward.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "holy"
+   ],
+   "effects": [
+    {
+     "effect": "roomclear_drop",
+     "chance": 0.12,
+     "pickup": "Ward",
+     "requireNoDamage": true
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "battery_shard",
+   "name": "Battery Shard",
+   "description": "Clearing a room gives one extra active charge.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "charge"
+   ],
+   "effects": [
+    {
+     "effect": "roomclear_charge",
+     "amount": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "static_plug",
+   "name": "Static Plug",
+   "description": "Taking a hit charges your active item.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "charge"
+   ],
+   "effects": [
+    {
+     "effect": "ondamaged_charge",
+     "amount": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "thorn_twig",
+   "name": "Thorn Twig",
+   "description": "Getting hit sometimes bursts thorns.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "defense",
+    "plant"
+   ],
+   "effects": [
+    {
+     "effect": "ondamaged_burst",
+     "chance": 0.4,
+     "radius": 2.0,
+     "damage": 12,
+     "type": "Physical"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "guardian_feather",
+   "name": "Guardian Feather",
+   "description": "Getting hit rarely grants a ward.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "defense",
+    "bird"
+   ],
+   "effects": [
+    {
+     "effect": "ondamaged_ward",
+     "chance": 0.12,
+     "halves": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "rubber_heel",
+   "name": "Rubber Heel",
+   "description": "A short extra moment of safety after hits.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "defense"
+   ],
+   "effects": [
+    {
+     "effect": "invuln_on_hit",
+     "seconds": 0.3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "clay_amulet",
+   "name": "Clay Amulet",
+   "description": "Rare chance to ignore a hit.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "defense"
+   ],
+   "effects": [
+    {
+     "effect": "incoming_block_chance",
+     "chance": 0.05
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "soot_mask",
+   "name": "Soot Mask",
+   "description": "Immune to fire.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "defense",
+    "fire"
+   ],
+   "effects": [
+    {
+     "effect": "incoming_immunity",
+     "types": "Fire"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "lead_lining",
+   "name": "Lead Lining",
+   "description": "Immune to explosions.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "defense",
+    "bomb"
+   ],
+   "effects": [
+    {
+     "effect": "incoming_immunity",
+     "types": "Explosive"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "bargain_slip",
+   "name": "Bargain Slip",
+   "description": "Shops are a little cheaper.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "shop_discount",
+     "percent": 0.1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "loaded_die",
+   "name": "Loaded Die",
+   "description": "Item drops lean your way. Luck up.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "luck",
+    "risk"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Luck",
+     "op": "Flat",
+     "value": 2
+    },
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": -0.2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "heart_locket",
+   "name": "Heart Locket",
+   "description": "Hearts drop more often.",
+   "kind": "Trinket",
+   "rarity": "Common",
+   "quality": 1,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "health"
+   ],
+   "effects": [
+    {
+     "effect": "drop_chance",
+     "pickup": "VigorHalf",
+     "mult": 1.3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "treasure_map_scrap",
+   "name": "Map Scrap",
+   "description": "Keys drop more often.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "drop_chance",
+     "pickup": "Key",
+     "mult": 1.3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "powder_pinch",
+   "name": "Powder Pinch",
+   "description": "Bombs drop more often.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "bomb"
+   ],
+   "effects": [
+    {
+     "effect": "drop_chance",
+     "pickup": "Bomb",
+     "mult": 1.3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "old_wallet",
+   "name": "Old Wallet",
+   "description": "Gain 3 coins each floor.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "floorstart_resource",
+     "resource": "Coins",
+     "amount": 3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "miners_lamp",
+   "name": "Miner's Lamp",
+   "description": "Gain a bomb each floor.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "bomb",
+    "light"
+   ],
+   "effects": [
+    {
+     "effect": "floorstart_resource",
+     "resource": "Bombs",
+     "amount": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "jailer_ring",
+   "name": "Jailer's Ring",
+   "description": "Gain a key each floor.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "floorstart_resource",
+     "resource": "Keys",
+     "amount": 1
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "short_wick",
+   "name": "Short Wick",
+   "description": "Bombs go off faster.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "bomb"
+   ],
+   "effects": [
+    {
+     "effect": "bomb_mod",
+     "fuseMult": 0.75
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "fat_wick",
+   "name": "Fat Wick",
+   "description": "Bombs are a bit bigger.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "bomb"
+   ],
+   "effects": [
+    {
+     "effect": "bomb_mod",
+     "radiusMult": 1.15,
+     "damageAdd": 8
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "glue_drop",
+   "name": "Glue Drop",
+   "description": "Bombs stick.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "bomb"
+   ],
+   "effects": [
+    {
+     "effect": "bomb_mod",
+     "sticky": true
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "chill_aura_charm",
+   "name": "Cold Charm",
+   "description": "A faint chill around you.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "aura",
+    "frost"
+   ],
+   "effects": [
+    {
+     "effect": "aura_status",
+     "radius": 1.3,
+     "status": "chill",
+     "interval": 1.5,
+     "duration": 1.5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "doorstop",
+   "name": "Doorstop",
+   "description": "Chill foes when you enter a room.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "frost"
+   ],
+   "effects": [
+    {
+     "effect": "roomenter_status",
+     "status": "chill",
+     "duration": 1.5,
+     "radius": 5,
+     "chance": 1.0
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "fear_tooth",
+   "name": "Fear Tooth",
+   "description": "Foes sometimes cower when you enter.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "void"
+   ],
+   "effects": [
+    {
+     "effect": "roomenter_status",
+     "status": "dread",
+     "duration": 2,
+     "radius": 6,
+     "chance": 0.5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "pet_collar",
+   "name": "Pet Collar",
+   "description": "Companions hit a bit harder.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "companion"
+   ],
+   "effects": [
+    {
+     "effect": "companion_boost",
+     "damageMult": 1.2
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "hunters_whistle",
+   "name": "Hunter's Whistle",
+   "description": "Companion shots copy your effects.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "companion"
+   ],
+   "effects": [
+    {
+     "effect": "companion_inherit",
+     "scale": 0.5
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "boss_tooth",
+   "name": "Boss Tooth",
+   "description": "Deal more damage to bosses.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "offense"
+   ],
+   "effects": [
+    {
+     "effect": "outgoing_mult",
+     "mult": 1.15,
+     "vsBoss": true
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "whetted_edge",
+   "name": "Whetted Edge",
+   "description": "Critical hits hit a bit harder.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "precision"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "CritDamage",
+     "op": "Flat",
+     "value": 0.3
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "glass_marble",
+   "name": "Glass Marble",
+   "description": "Low vigor makes you fire faster.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "risk"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "FireRate",
+     "op": "Flat",
+     "value": 0.5,
+     "condition": "health_at_most:1"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "miser_coin",
+   "name": "Miser's Coin",
+   "description": "Damage up while you hold 20 coins.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "economy"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": 0.8,
+     "condition": "coins_at_least:20"
+    }
+   ],
+   "shopPrice": 15
+  },
+  {
+   "id": "pocket_lint",
+   "name": "Pocket Lint",
+   "description": "Utterly useless. Probably. Luck up a little.",
+   "kind": "Trinket",
+   "rarity": "Uncommon",
+   "quality": 2,
+   "pools": [
+    "trinket"
+   ],
+   "tags": [
+    "luck"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Luck",
+     "op": "Flat",
+     "value": 0.5
+    }
+   ],
+   "shopPrice": 15
+  }
+ ]
+}

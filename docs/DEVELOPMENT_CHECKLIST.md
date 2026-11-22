@@ -15,7 +15,7 @@ Last updated: 2026-11-22.
 
 | Phase | Status | Notes |
 |---|---|---|
-| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 152 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
+| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 157 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
 | 2 Core player gameplay | In progress | Full gameplay loop runs headless (ADR-009): movement, shooting, enemies, bombs, pickups, doors, rooms, floors, boss exit; unit-tested incl. determinism and random-play soak. Unity presentation layer written (placeholder art, IMGUI HUD), not yet compiled in Unity. |
 | 3 Combat and interaction foundations | In progress | Pure parts exist and are unit-tested: damage info, status controller, health pool, enemy AI brain, attack patterns, difficulty scaling. Unity enemy components not started. |
 | 4 Item interaction engine | In progress | Engine core done early (spec: "design early"). Remaining: integration with real projectiles/companions/enemies, in-game debug overlay. |
@@ -97,23 +97,23 @@ count only if they are distinct, functional content.
 | Category | Target | Current | Status |
 |---|---:|---:|---|
 | Playable characters | 12 | 12 | Implemented (data + rules; no sprites) |
-| Collectible items (total) | 300 | 21 | In progress |
+| Collectible items (total) | 300 | 301 | Data complete; every item passes the headless smoke test (held, fired, actives used). Balance untested in play |
 | Consumables (sigils + draughts) | - | 14 | In progress |
 | Floor hexes | - | 5 | In progress |
 | Shrine events | - | 4 | In progress |
-| Passive items | 180 | 17 | In progress |
-| Active items | 45 | 2 | In progress |
-| Trinkets | 60 | 2 | In progress |
+| Passive items | 180 | 196 | Data complete |
+| Active items | 45 | 45 | Data complete |
+| Trinkets | 60 | 60 | Data complete |
 | Unique enemies | 120 | 7 | In progress (data only, no sprites) |
 | Major bosses | 30 | 2 | In progress (data only) |
 | Minibosses | 15 | 1 | In progress (data only) |
 | Handcrafted room templates | 250 | 24 | In progress |
 | Floor environments | 15 | 1 | In progress (data only, no art/audio) |
-| Transformations | 12 | 2 | In progress |
+| Transformations | 12 | 12 | Data complete; every required tag has enough items |
 | Companions | 30 | 30 | Data complete (Companions/companions.json), validated; balance untested in play |
 | Challenges | 30 | 8 | In progress |
 | Achievements | 100 | 63 | In progress |
-| Synergies (no minimum set) | - | 4 | In progress |
+| Synergies (no minimum set) | - | 10 | In progress |
 | Status effects | - | 8 | In progress |
 
 ## System integration checklist
@@ -121,11 +121,11 @@ count only if they are distinct, functional content.
 | Integration | Status |
 |---|---|
 | Bootstrap loads content + saves + input in Unity | Not verified in Unity |
-| Item engine <-> player shooting | Not started |
-| Item engine <-> enemies (hit/kill events) | Not started |
-| Item engine <-> companions | Not started |
-| Item engine <-> bombs / pickups / shops | Not started |
-| Floor generator <-> room instantiation / transitions | Not started |
-| Saves <-> progression / achievements | Not started |
-| Input <-> UI navigation | Not started |
-| Event bus <-> HUD / audio | Not started |
+| Item engine <-> player shooting | Done headless (RoomSimulation builds shots through the engine; SimulationTests, every-item smoke test). Unity side not verified |
+| Item engine <-> enemies (hit/kill events) | Done headless (DamageEnemy/Kill notify the engine; tested). Unity side not verified |
+| Item engine <-> companions | Done headless (CompanionTests). Unity side not verified |
+| Item engine <-> bombs / pickups / shops | Done headless (SimulationTests). Unity side not verified |
+| Floor generator <-> room instantiation / transitions | Done headless (doors, floors, exits tested). Unity drawing type-checked only |
+| Saves <-> progression / achievements | Done headless (ProgressionTests). Unity file IO not verified |
+| Input <-> UI navigation | MenuNavigator tested headless; Unity input bindings type-checked only |
+| Event bus <-> HUD / audio | SimEvents drained by RunDirector/HUD; type-checked only, not run in Unity |
