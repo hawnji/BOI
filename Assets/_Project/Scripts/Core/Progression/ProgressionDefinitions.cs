@@ -42,6 +42,7 @@ namespace Hollowcrawl.Progression
         DiscoverSynergies = 7,  // discovered synergy count >= target
         RunCondition = 8,       // a per-run flag `key` was true in a winning run (e.g. "flawless", "no_items", "speed")
         AllCharacterWins = 9,   // won with every character
+        EndingReached = 10,     // ending `key` seen at least once
     }
 
     public sealed class AchievementDefinition
@@ -56,6 +57,27 @@ namespace Hollowcrawl.Progression
         /// <summary>Unlock ids granted (characters, items, challenges use these in their unlockId).</summary>
         public List<string> Unlocks = new List<string>();
         public string IconKey;
+    }
+
+    /// <summary>
+    /// An epilogue shown after a won run. The highest-priority ending whose conditions all hold is chosen;
+    /// at least one ending must have no conditions. Data: Content/Progression/endings.json.
+    /// </summary>
+    public sealed class EndingDefinition
+    {
+        public string Id;
+        public string Name;
+        public List<string> Lines = new List<string>();
+        public int Priority;
+        /// <summary>Boss that must have been defeated during the run (usually a final-floor boss).</summary>
+        public string RequiresBoss;
+        public string RequiresCharacter;
+        /// <summary>A run flag from ProgressionService.RunFlags (flawless, no_items, speed, hard, nightmare, ascetic).</summary>
+        public string RequiresFlag;
+        public GameMode? RequiresMode;
+        public List<string> Unlocks = new List<string>();
+        public string MusicKey;
+        public string ArtKey;
     }
 
     public enum ChallengeGoal { DefeatFinalBoss = 0, ReachFloor = 1 }

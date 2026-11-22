@@ -214,5 +214,64 @@ namespace Hollowcrawl.Tests
             Assert.That(loaded.CompletionMarks["wanderer"], Is.EquivalentTo(profile.CompletionMarks["wanderer"]));
             Assert.That(loaded.Stats.WinsByCharacter["wanderer"], Is.EqualTo(1));
         }
+    
+        // ------------------------------------------------------------------ endings
+
+        private static ProfileData AllUnlocked()
+        {
+            var p = new ProfileData();
+            foreach (var c in TestContent.Database.Characters.Values) if (c.UnlockId != null) p.Unlocks.Add(c.UnlockId);
+            return p;
+        }
+
+        [Test]
+        public void FlawlessWinsSeeTheUntouchedEnding()
+        {
+            var run = Start(RunSetupFactory.Standard(TestContent.Database, new ProfileData(), "wanderer", new RunSeed(31)));
+            WinRun(run);
+            run.Stats.DamageTakenHalves = 0; // the scripted win can catch stray boss shots; treat it as flawless
+            var profile = new ProfileData();
+            var result = ProgressionService.RecordRun(profile, TestContent.Database, run, Now);
+            Assert.That(result.Ending?.Id, Is.EqualTo("ending_untouched"));
+            Assert.That(result.EndingIsNew, Is.True);
+            Assert.That(profile.EndingsSeen, Does.Contain("ending_untouched"));
+            Assert.That(profile.Achievements.ContainsKey("see_ending_untouched"), Is.True);
+        }
+
+        [Test]
+        public void HurtWinsSeeTheEndingOfTheFinalBossTheyBeat()
+        {
+            var run = Start(RunSetupFactory.Standard(TestContent.Database, new ProfileData(), "wanderer", new RunSeed(32)));
+            WinRun(run);
+            run.Stats.DamageTakenHalves = 3;
+            var final = run.Stats.BossesDefeated.Last();
+            var result = ProgressionService.RecordRun(new ProfileData(), TestContent.Database, run, Now);
+            var expected = final == "the_hollow_one" ? "ending_last_door" : final == "the_unformed" ? "ending_unwritten" : "ending_dawn";
+            Assert.That(result.Ending?.Id, Is.EqualTo(expected), "final boss " + final);
+            if (expected != "ending_dawn") Assert.That(result.NewUnlocks, Does.Contain(expected + "_seen"));
+        }
+
+        [Test]
+        public void CharacterEndingsOutrankBossEndingsAndLossesHaveNone()
+        {
+            var run = Start(RunSetupFactory.Standard(TestContent.Database, AllUnlocked(), "hollow_saint", new RunSeed(33)));
+            WinRun(run);
+            run.Stats.DamageTakenHalves = 2;
+            Assert.That(ProgressionService.ResolveEnding(TestContent.Database, run)?.Id, Is.EqualTo("ending_saints_rest"));
+
+            var lost = Start(RunSetupFactory.Standard(TestContent.Database, new ProfileData(), "wanderer", new RunSeed(34)));
+            Assert.That(ProgressionService.ResolveEnding(TestContent.Database, lost), Is.Null);
+        }
+
+        [Test]
+        public void SeeingEveryEndingCountsUp()
+        {
+            var profile = new ProfileData();
+            foreach (var id in TestContent.Database.Endings.Keys) { profile.EndingsSeen.Add(id); profile.Stats.Increment("endings", 1); }
+            var result = new ProgressionResult();
+            ProgressionService.EvaluateAchievements(profile, TestContent.Database, null, false, result, Now);
+            Assert.That(profile.Achievements.ContainsKey("every_ending"), Is.True);
+            Assert.That(TestContent.Database.Endings.Keys.All(id => profile.Achievements.ContainsKey("see_" + id)), Is.True);
+        }
     }
 }

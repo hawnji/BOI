@@ -197,6 +197,14 @@ floor (Story 5%, Normal 10%, Hard 20%, Nightmare 35%). Fields: `id`, `name`, `de
 `extraEnemies` (0..1), `explodeOnDeath` + `deathExplosionRadius`, `enemyRegenPerSecond` (0..0.2), `visionRadius`,
 `rewardPickups` (0..6), `rewardChest`. Bosses ignore the health, damage-taken, regen and explode rules.
 
+## Endings (`Content/Progression/endings.json`, key `endings`)
+
+A won run shows the highest-`priority` ending whose conditions all hold: `requiresBoss` (defeated this run),
+`requiresCharacter`, `requiresFlag` (flawless, no_items, speed, hard, nightmare, ascetic) and `requiresMode`
+(Standard, Challenge, Daily, Practice, Custom). One ending must have no conditions. `lines` is the epilogue text;
+`unlocks` are granted the first time it is seen. Achievements use trigger `EndingReached` with the ending id as `key`,
+and the lifetime counter `endings` counts distinct endings seen.
+
 ## Generated content files
 
 Large batches are written by scripts in `Tools/ContentGen/` (run from the repo root with `python3`). Edit the

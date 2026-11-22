@@ -1,0 +1,33 @@
+{
+  "endings": [
+    { "id": "ending_dawn", "name": "Dawn Above", "priority": 0, "musicKey": "music_ending", "artKey": "ending_dawn",
+      "lines": [ "The last door opens onto grey morning.", "Behind you the Hollow settles, and is quiet.", "For now." ] },
+    { "id": "ending_last_door", "name": "The Last Door", "priority": 10, "requiresBoss": "the_hollow_one", "artKey": "ending_last_door",
+      "lines": [ "The Hollow One falls, and every candle in the deep goes out at once.", "Its first breath and its last were the same breath.", "You climb toward a light that does not flicker." ],
+      "unlocks": [ "ending_last_door_seen" ] },
+    { "id": "ending_unwritten", "name": "Unwritten", "priority": 10, "requiresBoss": "the_unformed", "artKey": "ending_unwritten",
+      "lines": [ "The Unformed comes apart like wet paper.", "Where it stood there is nothing, not even a shadow.", "Somewhere above, a story you were never told begins to write itself." ],
+      "unlocks": [ "ending_unwritten_seen" ] },
+    { "id": "ending_untouched", "name": "Untouched", "priority": 20, "requiresFlag": "flawless", "artKey": "ending_untouched",
+      "lines": [ "Not a scratch. The Hollow does not know what to make of you.", "It lets you go, the way a river lets go of a stone." ] },
+    { "id": "ending_made_whole", "name": "Made Whole", "priority": 30, "requiresCharacter": "the_unmade", "artKey": "ending_made_whole",
+      "lines": [ "Piece by piece you took back what the Hollow kept.", "At the surface, for the first time, you cast a shadow." ] },
+    { "id": "ending_saints_rest", "name": "Saint's Rest", "priority": 30, "requiresCharacter": "hollow_saint", "artKey": "ending_saints_rest",
+      "lines": [ "The Saint lays down the lantern of their faith.", "The dark below was never punishment. It was only dark." ] },
+    { "id": "ending_nightmare", "name": "Through the Nightmare", "priority": 25, "requiresFlag": "nightmare", "artKey": "ending_nightmare",
+      "lines": [ "Every horror the Hollow could make, it made for you.", "None of them were enough." ] },
+    { "id": "ending_trial", "name": "Trial's End", "priority": 15, "requiresMode": "Challenge", "artKey": "ending_trial",
+      "lines": [ "The rules were cruel. You kept them anyway.", "The Hollow marks your name in its ledger of trials." ] }
+  ],
+  "achievements": [
+    { "id": "see_ending_dawn", "name": "Grey Morning", "description": "See the Dawn Above ending.", "trigger": "EndingReached", "key": "ending_dawn" },
+    { "id": "see_ending_last_door", "name": "Through the Last Door", "description": "See the Last Door ending.", "trigger": "EndingReached", "key": "ending_last_door" },
+    { "id": "see_ending_unwritten", "name": "Blank Pages", "description": "See the Unwritten ending.", "trigger": "EndingReached", "key": "ending_unwritten" },
+    { "id": "see_ending_untouched", "name": "Stone in the River", "description": "See the Untouched ending.", "trigger": "EndingReached", "key": "ending_untouched" },
+    { "id": "see_ending_made_whole", "name": "A Shadow of Your Own", "description": "See the Made Whole ending.", "trigger": "EndingReached", "key": "ending_made_whole" },
+    { "id": "see_ending_saints_rest", "name": "Lantern Down", "description": "See the Saint's Rest ending.", "trigger": "EndingReached", "key": "ending_saints_rest" },
+    { "id": "see_ending_nightmare", "name": "Not Enough", "description": "See the Through the Nightmare ending.", "trigger": "EndingReached", "key": "ending_nightmare" },
+    { "id": "see_ending_trial", "name": "Ledger of Trials", "description": "See the Trial's End ending.", "trigger": "EndingReached", "key": "ending_trial" },
+    { "id": "every_ending", "name": "Every Way Out", "description": "See all eight endings.", "trigger": "Counter", "key": "endings", "target": 8 }
+  ]
+}

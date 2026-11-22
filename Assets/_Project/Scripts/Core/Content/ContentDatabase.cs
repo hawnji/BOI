@@ -25,6 +25,7 @@ namespace Hollowcrawl.Content
         public List<Progression.ChallengeDefinition> Challenges;
         public List<Simulation.CompanionDefinition> Companions;
         public List<Simulation.RoomModifierDefinition> RoomModifiers;
+        public List<Progression.EndingDefinition> Endings;
     }
 
     /// <summary>
@@ -48,6 +49,7 @@ namespace Hollowcrawl.Content
         public readonly Dictionary<string, Progression.AchievementDefinition> Achievements = new Dictionary<string, Progression.AchievementDefinition>(StringComparer.Ordinal);
         public readonly Dictionary<string, Progression.ChallengeDefinition> Challenges = new Dictionary<string, Progression.ChallengeDefinition>(StringComparer.Ordinal);
         public readonly Dictionary<string, Simulation.CompanionDefinition> Companions = new Dictionary<string, Simulation.CompanionDefinition>(StringComparer.Ordinal);
+        public readonly Dictionary<string, Progression.EndingDefinition> Endings = new Dictionary<string, Progression.EndingDefinition>(StringComparer.Ordinal);
         public readonly Dictionary<string, Simulation.RoomModifierDefinition> RoomModifiers = new Dictionary<string, Simulation.RoomModifierDefinition>(StringComparer.Ordinal);
         /// <summary>Content order of characters as authored (menus list them in this order).</summary>
         public readonly List<string> CharacterOrder = new List<string>();
@@ -76,6 +78,7 @@ namespace Hollowcrawl.Content
             AddAll(sourceName, file.Challenges, Challenges, x => x.Id);
             AddAll(sourceName, file.Companions, Companions, x => x.Id);
             AddAll(sourceName, file.RoomModifiers, RoomModifiers, x => x.Id);
+            AddAll(sourceName, file.Endings, Endings, x => x.Id);
             if (file.Rooms != null) RoomTemplates.AddRange(file.Rooms);
         }
 
@@ -211,7 +214,26 @@ namespace Hollowcrawl.Content
             ValidateProgression(db, effects, conditions, r);
             ValidateCompanions(db, r);
             ValidateRoomModifiers(db, r);
+            ValidateEndings(db, r);
             return r;
+        }
+
+        private static void ValidateEndings(ContentDatabase db, ValidationReport r)
+        {
+            if (db.Endings.Count == 0) return;
+            bool fallback = false;
+            foreach (var e in db.Endings.Values)
+            {
+                string id = "ending " + e.Id;
+                if (string.IsNullOrWhiteSpace(e.Name)) r.Error($"{id}: missing name.");
+                if (e.Lines == null || e.Lines.Count == 0) r.Error($"{id}: no epilogue lines.");
+                if (e.RequiresBoss != null && !db.Bosses.ContainsKey(e.RequiresBoss)) r.Error($"{id}: unknown boss '{e.RequiresBoss}'.");
+                if (e.RequiresCharacter != null && db.Characters.Count > 0 && !db.Characters.ContainsKey(e.RequiresCharacter)) r.Error($"{id}: unknown character '{e.RequiresCharacter}'.");
+                if (e.RequiresBoss == null && e.RequiresCharacter == null && e.RequiresFlag == null && !e.RequiresMode.HasValue) fallback = true;
+            }
+            if (!fallback) r.Error("endings: one ending must have no conditions (the fallback).");
+            foreach (var a in db.Achievements.Values)
+                if (a.Trigger == Progression.AchievementTrigger.EndingReached && (a.Key == null || !db.Endings.ContainsKey(a.Key))) r.Error($"achievement {a.Id}: unknown ending '{a.Key}'.");
         }
 
         private static void ValidateRoomModifiers(ContentDatabase db, ValidationReport r)
@@ -264,6 +286,7 @@ namespace Hollowcrawl.Content
             var granted = new HashSet<string>(StringComparer.Ordinal);
             foreach (var a in db.Achievements.Values) foreach (var u in a.Unlocks) granted.Add(u);
             foreach (var ch in db.Challenges.Values) if (ch.RewardUnlock != null) granted.Add(ch.RewardUnlock);
+            foreach (var e in db.Endings.Values) foreach (var u in e.Unlocks) granted.Add(u);
             void NeedsGrant(string unlockId, string who) { if (unlockId != null && !granted.Contains(unlockId)) r.Error($"{who}: unlock '{unlockId}' is never granted."); }
 
             foreach (var c in db.Characters.Values)

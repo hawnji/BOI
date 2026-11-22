@@ -244,6 +244,14 @@ namespace Hollowcrawl.Presentation
                 $"Time {TimeSpan.FromSeconds(run.RunTime):mm\\:ss}   Score {LastResult?.Score ?? 0}" +
                 (LastResult != null && !LastResult.Recorded ? "\n<color=#999999>Practice run: no progress recorded</color>" : ""), _small);
             float y = 290f;
+            if (LastResult?.Ending != null)
+            {
+                var ending = LastResult.Ending;
+                GUI.Label(new Rect(0, y, w, 30), "<b>" + ending.Name + "</b>" + (LastResult.EndingIsNew ? "  <color=#ffd36b>(new ending)</color>" : ""), _small);
+                y += 32f;
+                foreach (var line in ending.Lines) { GUI.Label(new Rect(w * 0.5f - 360f, y, 720f, 24), "<i>" + line + "</i>", _small); y += 24f; }
+                y += 12f;
+            }
             if (LastResult != null)
             {
                 foreach (var a in LastResult.NewAchievements.Take(8)) { GUI.Label(new Rect(0, y, w, 26), "<color=#ffd36b>Achievement: " + a.Name + "</color>", _small); y += 26f; }
@@ -259,7 +267,9 @@ namespace Hollowcrawl.Presentation
             var ch = GameServices.Content.Challenges.Values.FirstOrDefault(x => x.UnlockId == id);
             if (ch != null) return "Challenge " + ch.Name;
             var it = GameServices.Content.Items.Values.FirstOrDefault(x => x.UnlockId == id);
-            return it != null ? it.Name : id;
+            if (it != null) return it.Name;
+            var en = GameServices.Content.Endings.Values.FirstOrDefault(x => x.Unlocks.Contains(id));
+            return en != null ? "Ending " + en.Name : id;
         }
 
         private static string Cap(string s) => char.ToUpperInvariant(s[0]) + s.Substring(1);

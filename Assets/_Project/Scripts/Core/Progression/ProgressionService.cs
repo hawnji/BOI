@@ -16,6 +16,9 @@ namespace Hollowcrawl.Progression
         public readonly List<string> NewMarks = new List<string>();
         public int Score;
         public bool Recorded;
+        /// <summary>Ending reached by a won run (null otherwise).</summary>
+        public EndingDefinition Ending;
+        public bool EndingIsNew;
     }
 
     /// <summary>
@@ -109,8 +112,36 @@ namespace Hollowcrawl.Progression
                     result.NewUnlocks.Add(chd.RewardUnlock);
             }
 
+            if (won)
+            {
+                result.Ending = ResolveEnding(content, run);
+                if (result.Ending != null && profile.EndingsSeen.Add(result.Ending.Id))
+                {
+                    result.EndingIsNew = true;
+                    st.Increment("endings", 1);
+                    foreach (var u in result.Ending.Unlocks) if (profile.Unlocks.Add(u)) result.NewUnlocks.Add(u);
+                }
+            }
+
             EvaluateAchievements(profile, content, run, won, result, utcNow);
             return result;
+        }
+
+        /// <summary>Picks the ending for a won run: highest priority whose conditions all hold (ties by id).</summary>
+        public static EndingDefinition ResolveEnding(ContentDatabase content, RunSimulation run)
+        {
+            if (run == null || run.State != RunState.Won) return null;
+            var flags = RunFlags(run);
+            EndingDefinition best = null;
+            foreach (var e in content.Endings.Values.OrderBy(x => x.Id, StringComparer.Ordinal))
+            {
+                if (e.RequiresBoss != null && !run.Stats.BossesDefeated.Contains(e.RequiresBoss)) continue;
+                if (e.RequiresCharacter != null && !string.Equals(e.RequiresCharacter, run.Setup.CharacterId, StringComparison.Ordinal)) continue;
+                if (e.RequiresFlag != null && !flags.Contains(e.RequiresFlag)) continue;
+                if (e.RequiresMode.HasValue && e.RequiresMode.Value != run.Setup.Mode) continue;
+                if (best == null || e.Priority > best.Priority) best = e;
+            }
+            return best;
         }
 
         /// <summary>Re-checks every achievement (also used after content updates to grant retroactive ones).</summary>
@@ -147,6 +178,7 @@ namespace Hollowcrawl.Progression
                 case AchievementTrigger.DiscoverItems: return p.DiscoveredItems.Count >= a.Target;
                 case AchievementTrigger.DiscoverSynergies: return p.DiscoveredSynergies.Count >= a.Target;
                 case AchievementTrigger.RunCondition: return won && flags.Contains(a.Key);
+                case AchievementTrigger.EndingReached: return p.EndingsSeen.Contains(a.Key);
                 case AchievementTrigger.AllCharacterWins:
                     return content.Characters.Count > 0 && content.Characters.Keys.All(c => st.WinsByCharacter.TryGetValue(c, out long x) && x > 0);
                 default: return false;
