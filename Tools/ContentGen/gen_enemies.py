@@ -210,7 +210,7 @@ FLOORS = [
    ("terminus_brute", "Terminus Brute", "Charges like the end of the world.", "brute"),
    ("fading_spiral", "Fading Spiral", "A spiral of the last light.", "spiraler"),
    ("ender_wall", "Ender Wall", "Patrols the last halls, firing walls of shot.", "waller")],
-   [("the_hollow_one", "The Hollow One", "First and Last"), ("the_unmade", "The Unmade", "What Waits Beyond")], ("last_warden", "Last Warden")),
+   [("the_hollow_one", "The Hollow One", "First and Last"), ("the_unformed", "The Unformed", "What Waits Beyond")], ("last_warden", "Last Warden")),
 ]
 assert len(FLOORS) == 14
 

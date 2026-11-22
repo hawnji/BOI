@@ -1,0 +1,764 @@
+{
+ "challenges": [
+  {
+   "id": "ch_iron_will",
+   "name": "Iron Will",
+   "description": "Start with Bark Skin and Scale Mail. Shots are weak.",
+   "characterId": "wanderer",
+   "startingItems": [
+    "bark_skin",
+    "scale_mail"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": -1.0
+    }
+   ],
+   "unlockId": "challenge_iron_will"
+  },
+  {
+   "id": "ch_marsh_crossing",
+   "name": "Marsh Crossing",
+   "description": "Reach the Mire Hollows' end with poison in your blood and no shops.",
+   "goal": "ReachFloor",
+   "characterId": "thornmaid",
+   "startingItems": [
+    "nettle_sap"
+   ],
+   "noShops": true,
+   "goalFloor": 4,
+   "unlockId": "challenge_marsh_crossing"
+  },
+  {
+   "id": "ch_forge_born",
+   "name": "Forge-Born",
+   "description": "Fire immune, fire shot, half your vigor.",
+   "characterId": "ashwright",
+   "startingItems": [
+    "asbestos_cloak",
+    "kindling_bundle"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "MaxHealth",
+     "op": "Flat",
+     "value": -1
+    }
+   ],
+   "unlockId": "challenge_forge_born"
+  },
+  {
+   "id": "ch_long_winter",
+   "name": "The Long Winter",
+   "description": "Everything you hit freezes, but you crawl.",
+   "characterId": "wanderer",
+   "startingItems": [
+    "glacier_core"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "MoveSpeed",
+     "op": "Flat",
+     "value": -0.3
+    }
+   ],
+   "unlockId": "challenge_long_winter"
+  },
+  {
+   "id": "ch_green_thumb",
+   "name": "Green Thumb",
+   "description": "Companions only: your own shots barely sting.",
+   "characterId": "beastcaller",
+   "startingItems": [
+    "thorn_ring",
+    "gnaw_rat",
+    "bramble_hound"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": -2.0
+    }
+   ],
+   "unlockId": "challenge_green_thumb"
+  },
+  {
+   "id": "ch_bell_toll",
+   "name": "Bell Toll",
+   "description": "Start with the Storm Bell and Battery Heart. No treasure rooms.",
+   "characterId": "bellwarden",
+   "startingItems": [
+    "storm_bell",
+    "battery_heart"
+   ],
+   "noTreasureRooms": true,
+   "unlockId": "challenge_bell_toll"
+  },
+  {
+   "id": "ch_flooded_faith",
+   "name": "Flooded Faith",
+   "description": "Holy shots and two wards. Hearts never drop.",
+   "characterId": "hollow_saint",
+   "startingItems": [
+    "burnt_hymnal",
+    "holy_water"
+   ],
+   "noHealthPickups": true,
+   "unlockId": "challenge_flooded_faith"
+  },
+  {
+   "id": "ch_harvest_moon",
+   "name": "Harvest Moon",
+   "description": "Seed Pod and Shatter Glass. Every floor is shrouded.",
+   "characterId": "wanderer",
+   "startingItems": [
+    "seed_pod",
+    "shatter_glass"
+   ],
+   "forcedHex": "hex_shroud",
+   "unlockId": "challenge_harvest_moon"
+  },
+  {
+   "id": "ch_queen_swarm",
+   "name": "Queen of the Swarm",
+   "description": "Mite hive and swarm jar. Four floors to prove it.",
+   "goal": "ReachFloor",
+   "characterId": "moth_seer",
+   "startingItems": [
+    "mite_hive",
+    "swarm_jar",
+    "hive_mind"
+   ],
+   "goalFloor": 5,
+   "unlockId": "challenge_queen_swarm"
+  },
+  {
+   "id": "ch_glass_cannon",
+   "name": "Glass Cannon",
+   "description": "Huge damage, one heart, no wards.",
+   "characterId": "wanderer",
+   "startingItems": [
+    "executioner_mark",
+    "glass_fang"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "MaxHealth",
+     "op": "Flat",
+     "value": -2
+    }
+   ],
+   "unlockId": "challenge_glass_cannon"
+  },
+  {
+   "id": "ch_lights_out",
+   "name": "Lights Out",
+   "description": "Every floor is in gloom. Your lantern helps a little.",
+   "characterId": "lanternbearer",
+   "forcedHex": "hex_gloom",
+   "startingItems": [
+    "dread_lantern"
+   ],
+   "unlockId": "challenge_lights_out"
+  },
+  {
+   "id": "ch_ash_crown",
+   "name": "Crown of Ash",
+   "description": "Every hex, every floor. Nightmare difficulty.",
+   "characterId": "ashwright",
+   "hexChance": 1.0,
+   "difficultyId": "nightmare",
+   "unlockId": "challenge_ash_crown"
+  },
+  {
+   "id": "ch_heartless",
+   "name": "Heartless",
+   "description": "The Unmade with umbral hearts only, and no health drops.",
+   "characterId": "the_unmade",
+   "startingItems": [
+    "shadow_wine"
+   ],
+   "noHealthPickups": true,
+   "unlockId": "challenge_heartless"
+  },
+  {
+   "id": "ch_last_light",
+   "name": "Last Light",
+   "description": "Reach the Last Hollow on hard with only the Dawn Prism.",
+   "characterId": "lanternbearer",
+   "startingItems": [
+    "dawn_prism"
+   ],
+   "difficultyId": "hard",
+   "unlockId": "challenge_last_light"
+  },
+  {
+   "id": "ch_pauper_prince",
+   "name": "Pauper Prince",
+   "description": "The Gambler with no coins and no shops.",
+   "characterId": "gambler",
+   "startingCoins": 0,
+   "noShops": true
+  },
+  {
+   "id": "ch_bomb_squad",
+   "name": "Bomb Squad",
+   "description": "Ninety-nine bombs. Shots barely work.",
+   "characterId": "tinker",
+   "startingBombs": 99,
+   "startingItems": [
+    "tamed_powder",
+    "cluster_charge"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": -2.0
+    },
+    {
+     "effect": "stat",
+     "stat": "FireRate",
+     "op": "Flat",
+     "value": -0.5
+    }
+   ]
+  },
+  {
+   "id": "ch_speedrun",
+   "name": "Breakneck",
+   "description": "Speed is all you have. Reach the fifth floor.",
+   "goal": "ReachFloor",
+   "characterId": "quickling",
+   "startingItems": [
+    "hollow_boots",
+    "runners_wrap"
+   ],
+   "goalFloor": 5,
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "MaxHealth",
+     "op": "Flat",
+     "value": -1
+    }
+   ]
+  },
+  {
+   "id": "ch_maze_runner",
+   "name": "Maze Runner",
+   "description": "Every floor is a labyrinth.",
+   "goal": "ReachFloor",
+   "characterId": "wanderer",
+   "forcedHex": "hex_labyrinth",
+   "goalFloor": 6
+  },
+  {
+   "id": "ch_blindfold",
+   "name": "Blindfold",
+   "description": "Every floor is veiled. Trust your instincts.",
+   "characterId": "moth_seer",
+   "forcedHex": "hex_veil"
+  },
+  {
+   "id": "ch_frailty",
+   "name": "Brittle Bones",
+   "description": "Every floor carries frailty.",
+   "goal": "ReachFloor",
+   "characterId": "wanderer",
+   "forcedHex": "hex_frailty",
+   "goalFloor": 8
+  },
+  {
+   "id": "ch_one_shot",
+   "name": "One Shot",
+   "description": "Charge every shot; you can't fire quickly.",
+   "characterId": "wanderer",
+   "startingItems": [
+    "drawn_bow",
+    "grudge_stone"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "FireRate",
+     "op": "Flat",
+     "value": -0.8
+    }
+   ]
+  },
+  {
+   "id": "ch_menagerie",
+   "name": "Menagerie",
+   "description": "Five companions to start. You cannot hurt anything yourself.",
+   "goal": "ReachFloor",
+   "characterId": "beastcaller",
+   "startingItems": [
+    "magpie",
+    "spite_imp",
+    "echo_shade",
+    "ash_halo",
+    "ward_knight"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "op": "Flat",
+     "value": -10.0
+    }
+   ],
+   "goalFloor": 5
+  }
+ ],
+ "achievements": [
+  {
+   "id": "slay_osseous_matron",
+   "name": "Slayer of Osseous Matron",
+   "description": "Defeat The Osseous Matron.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "osseous_matron",
+   "unlocks": [
+    "challenge_iron_will"
+   ]
+  },
+  {
+   "id": "slay_the_drowned_mother",
+   "name": "Slayer of Drowned Mother",
+   "description": "Defeat The Drowned Mother.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "the_drowned_mother",
+   "unlocks": [
+    "challenge_marsh_crossing"
+   ]
+  },
+  {
+   "id": "slay_the_ironmonger",
+   "name": "Slayer of Ironmonger",
+   "description": "Defeat The Ironmonger.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "the_ironmonger",
+   "unlocks": [
+    "challenge_forge_born"
+   ]
+  },
+  {
+   "id": "slay_the_winter_widow",
+   "name": "Slayer of Winter Widow",
+   "description": "Defeat The Winter Widow.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "the_winter_widow",
+   "unlocks": [
+    "challenge_long_winter"
+   ]
+  },
+  {
+   "id": "slay_the_gardener",
+   "name": "Slayer of Gardener",
+   "description": "Defeat The Gardener.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "the_gardener",
+   "unlocks": [
+    "challenge_green_thumb"
+   ]
+  },
+  {
+   "id": "slay_the_bellringer",
+   "name": "Slayer of Bellringer",
+   "description": "Defeat The Bellringer.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "the_bellringer",
+   "unlocks": [
+    "challenge_bell_toll"
+   ]
+  },
+  {
+   "id": "slay_the_abbess_below",
+   "name": "Slayer of Abbess Below",
+   "description": "Defeat The Abbess Below.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "the_abbess_below",
+   "unlocks": [
+    "challenge_flooded_faith"
+   ]
+  },
+  {
+   "id": "slay_the_harvester",
+   "name": "Slayer of Harvester",
+   "description": "Defeat The Harvester.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "the_harvester",
+   "unlocks": [
+    "challenge_harvest_moon"
+   ]
+  },
+  {
+   "id": "slay_the_hive_queen",
+   "name": "Slayer of Hive Queen",
+   "description": "Defeat The Hive Queen.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "the_hive_queen",
+   "unlocks": [
+    "challenge_queen_swarm"
+   ]
+  },
+  {
+   "id": "slay_the_glazier",
+   "name": "Slayer of Glazier",
+   "description": "Defeat The Glazier.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "the_glazier",
+   "unlocks": [
+    "challenge_glass_cannon"
+   ]
+  },
+  {
+   "id": "slay_the_umbral_regent",
+   "name": "Slayer of Umbral Regent",
+   "description": "Defeat The Umbral Regent.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "the_umbral_regent",
+   "unlocks": [
+    "challenge_lights_out"
+   ]
+  },
+  {
+   "id": "slay_the_ash_king",
+   "name": "Slayer of Ash King",
+   "description": "Defeat The Ash King.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "the_ash_king",
+   "unlocks": [
+    "challenge_ash_crown"
+   ]
+  },
+  {
+   "id": "slay_the_beating_dark",
+   "name": "Slayer of Beating Dark",
+   "description": "Defeat The Beating Dark.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "the_beating_dark",
+   "unlocks": [
+    "challenge_heartless"
+   ]
+  },
+  {
+   "id": "slay_the_hollow_one",
+   "name": "Slayer of Hollow One",
+   "description": "Defeat The Hollow One.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "the_hollow_one",
+   "unlocks": [
+    "challenge_last_light"
+   ]
+  },
+  {
+   "id": "slay_the_unformed",
+   "name": "Slayer of Unformed",
+   "description": "Defeat The Unformed.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "the_unformed"
+  },
+  {
+   "id": "reach_floor_5",
+   "name": "Halfway Down",
+   "description": "Reach floor 5.",
+   "trigger": "ReachFloor",
+   "target": 5
+  },
+  {
+   "id": "reach_floor_10",
+   "name": "Deep Delver",
+   "description": "Reach floor 10.",
+   "trigger": "ReachFloor",
+   "target": 10
+  },
+  {
+   "id": "reach_floor_15",
+   "name": "The Bottom",
+   "description": "Reach floor 15.",
+   "trigger": "ReachFloor",
+   "target": 15
+  },
+  {
+   "id": "become_plaguebearer",
+   "name": "Become Plaguebearer",
+   "description": "Transform into the Plaguebearer.",
+   "trigger": "Transformation",
+   "target": 1,
+   "key": "plaguebearer"
+  },
+  {
+   "id": "become_stormcaller",
+   "name": "Become Stormcaller",
+   "description": "Transform into the Stormcaller.",
+   "trigger": "Transformation",
+   "target": 1,
+   "key": "stormcaller"
+  },
+  {
+   "id": "become_rimeborn",
+   "name": "Become Rimeborn",
+   "description": "Transform into the Rimeborn.",
+   "trigger": "Transformation",
+   "target": 1,
+   "key": "rimeborn"
+  },
+  {
+   "id": "become_powderkin",
+   "name": "Become Powderkin",
+   "description": "Transform into the Powderkin.",
+   "trigger": "Transformation",
+   "target": 1,
+   "key": "powderkin"
+  },
+  {
+   "id": "become_huntmaster",
+   "name": "Become Huntmaster",
+   "description": "Transform into the Huntmaster.",
+   "trigger": "Transformation",
+   "target": 1,
+   "key": "huntmaster"
+  },
+  {
+   "id": "become_bulwark",
+   "name": "Become Bulwark",
+   "description": "Transform into the Bulwark.",
+   "trigger": "Transformation",
+   "target": 1,
+   "key": "bulwark"
+  },
+  {
+   "id": "become_goldtongue",
+   "name": "Become Goldtongue",
+   "description": "Transform into the Goldtongue.",
+   "trigger": "Transformation",
+   "target": 1,
+   "key": "goldtongue"
+  },
+  {
+   "id": "become_swarmlord",
+   "name": "Become Swarmlord",
+   "description": "Transform into the Swarmlord.",
+   "trigger": "Transformation",
+   "target": 1,
+   "key": "swarmlord"
+  },
+  {
+   "id": "become_ossuary_saint",
+   "name": "Become Ossuary Saint",
+   "description": "Transform into the Ossuary Saint.",
+   "trigger": "Transformation",
+   "target": 1,
+   "key": "ossuary_saint"
+  },
+  {
+   "id": "become_verdant",
+   "name": "Become Verdant",
+   "description": "Transform into the Verdant.",
+   "trigger": "Transformation",
+   "target": 1,
+   "key": "verdant"
+  },
+  {
+   "id": "done_ch_iron_will",
+   "name": "Iron Will Complete",
+   "description": "Complete the Iron Will challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_iron_will"
+  },
+  {
+   "id": "done_ch_marsh_crossing",
+   "name": "Marsh Crossing Complete",
+   "description": "Complete the Marsh Crossing challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_marsh_crossing"
+  },
+  {
+   "id": "done_ch_forge_born",
+   "name": "Forge-Born Complete",
+   "description": "Complete the Forge-Born challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_forge_born"
+  },
+  {
+   "id": "done_ch_long_winter",
+   "name": "The Long Winter Complete",
+   "description": "Complete the The Long Winter challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_long_winter"
+  },
+  {
+   "id": "done_ch_green_thumb",
+   "name": "Green Thumb Complete",
+   "description": "Complete the Green Thumb challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_green_thumb"
+  },
+  {
+   "id": "done_ch_bell_toll",
+   "name": "Bell Toll Complete",
+   "description": "Complete the Bell Toll challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_bell_toll"
+  },
+  {
+   "id": "done_ch_flooded_faith",
+   "name": "Flooded Faith Complete",
+   "description": "Complete the Flooded Faith challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_flooded_faith"
+  },
+  {
+   "id": "done_ch_harvest_moon",
+   "name": "Harvest Moon Complete",
+   "description": "Complete the Harvest Moon challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_harvest_moon"
+  },
+  {
+   "id": "done_ch_queen_swarm",
+   "name": "Queen of the Swarm Complete",
+   "description": "Complete the Queen of the Swarm challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_queen_swarm"
+  },
+  {
+   "id": "done_ch_glass_cannon",
+   "name": "Glass Cannon Complete",
+   "description": "Complete the Glass Cannon challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_glass_cannon"
+  },
+  {
+   "id": "done_ch_lights_out",
+   "name": "Lights Out Complete",
+   "description": "Complete the Lights Out challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_lights_out"
+  },
+  {
+   "id": "done_ch_ash_crown",
+   "name": "Crown of Ash Complete",
+   "description": "Complete the Crown of Ash challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_ash_crown"
+  },
+  {
+   "id": "done_ch_heartless",
+   "name": "Heartless Complete",
+   "description": "Complete the Heartless challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_heartless"
+  },
+  {
+   "id": "done_ch_last_light",
+   "name": "Last Light Complete",
+   "description": "Complete the Last Light challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_last_light"
+  },
+  {
+   "id": "done_ch_pauper_prince",
+   "name": "Pauper Prince Complete",
+   "description": "Complete the Pauper Prince challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_pauper_prince"
+  },
+  {
+   "id": "done_ch_bomb_squad",
+   "name": "Bomb Squad Complete",
+   "description": "Complete the Bomb Squad challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_bomb_squad"
+  },
+  {
+   "id": "done_ch_speedrun",
+   "name": "Breakneck Complete",
+   "description": "Complete the Breakneck challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_speedrun"
+  },
+  {
+   "id": "done_ch_maze_runner",
+   "name": "Maze Runner Complete",
+   "description": "Complete the Maze Runner challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_maze_runner"
+  },
+  {
+   "id": "done_ch_blindfold",
+   "name": "Blindfold Complete",
+   "description": "Complete the Blindfold challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_blindfold"
+  },
+  {
+   "id": "done_ch_frailty",
+   "name": "Brittle Bones Complete",
+   "description": "Complete the Brittle Bones challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_frailty"
+  },
+  {
+   "id": "done_ch_one_shot",
+   "name": "One Shot Complete",
+   "description": "Complete the One Shot challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_one_shot"
+  },
+  {
+   "id": "done_ch_menagerie",
+   "name": "Menagerie Complete",
+   "description": "Complete the Menagerie challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_menagerie"
+  }
+ ]
+}

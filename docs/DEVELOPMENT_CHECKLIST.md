@@ -15,7 +15,7 @@ Last updated: 2026-11-22.
 
 | Phase | Status | Notes |
 |---|---|---|
-| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 160 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
+| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 162 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
 | 2 Core player gameplay | In progress | Full gameplay loop runs headless (ADR-009): movement, shooting, enemies, bombs, pickups, doors, rooms, floors, boss exit; unit-tested incl. determinism and random-play soak. Unity presentation layer written (placeholder art, IMGUI HUD), not yet compiled in Unity. |
 | 3 Combat and interaction foundations | In progress | Pure parts exist and are unit-tested: damage info, status controller, health pool, enemy AI brain, attack patterns, difficulty scaling. Unity enemy components not started. |
 | 4 Item interaction engine | In progress | Engine core done early (spec: "design early"). Remaining: integration with real projectiles/companions/enemies, in-game debug overlay. |
@@ -111,8 +111,8 @@ count only if they are distinct, functional content.
 | Floor environments | 15 | 15 | Data complete; every floor generates and is walked headless. No art/audio |
 | Transformations | 12 | 12 | Data complete; every required tag has enough items |
 | Companions | 30 | 30 | Data complete (Companions/companions.json), validated; balance untested in play |
-| Challenges | 30 | 8 | In progress |
-| Achievements | 100 | 63 | In progress |
+| Challenges | 30 | 30 | Data complete; 14 are unlocked by defeating a floor boss. Every challenge starts and plays headless |
+| Achievements | 100 | 113 | Data complete (boss, floor-depth, transformation and challenge achievements added); unlock chain validated |
 | Synergies (no minimum set) | - | 10 | In progress |
 | Status effects | - | 8 | In progress |
 

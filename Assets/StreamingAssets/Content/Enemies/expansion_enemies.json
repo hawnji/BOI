@@ -8510,17 +8510,17 @@
    ]
   },
   {
-   "id": "the_unmade",
-   "name": "The Unmade",
+   "id": "the_unformed",
+   "name": "The Unformed",
    "title": "What Waits Beyond",
    "tier": "Final",
    "description": "Ruler of the The Last Hollow.",
    "musicKey": "music_boss_final",
-   "introKey": "intro_the_unmade",
+   "introKey": "intro_the_unformed",
    "rewardPool": "boss",
    "body": {
-    "id": "the_unmade_body",
-    "spriteKey": "boss_the_unmade",
+    "id": "the_unformed_body",
+    "spriteKey": "boss_the_unformed",
     "health": 515,
     "healthPerFloor": 0.1,
     "contactDamage": 1,
@@ -8547,7 +8547,7 @@
      "invulnerableOnEnter": 0,
      "attacks": [
       {
-       "id": "the_unmade_cross",
+       "id": "the_unformed_cross",
        "kind": "Projectile",
        "pattern": "Cross",
        "count": 1,
@@ -8561,7 +8561,7 @@
        "requiresLineOfSight": false
       },
       {
-       "id": "the_unmade_xcross",
+       "id": "the_unformed_xcross",
        "kind": "Projectile",
        "pattern": "X",
        "count": 1,
@@ -8579,7 +8579,7 @@
     {
      "healthAtOrBelow": 0.6,
      "invulnerableOnEnter": 1.0,
-     "transitionKey": "the_unmade_phase2",
+     "transitionKey": "the_unformed_phase2",
      "movement": {
       "kind": "Orbit",
       "speed": 2.15,
@@ -8588,7 +8588,7 @@
      },
      "attacks": [
       {
-       "id": "the_unmade_beam",
+       "id": "the_unformed_beam",
        "kind": "Beam",
        "cooldown": 4.5,
        "telegraph": 1.0,
@@ -8599,7 +8599,7 @@
        "weight": 2
       },
       {
-       "id": "the_unmade_blink",
+       "id": "the_unformed_blink",
        "kind": "Teleport",
        "cooldown": 5,
        "telegraph": 0.5,
@@ -8607,7 +8607,7 @@
        "requiresLineOfSight": false
       },
       {
-       "id": "the_unmade_wall",
+       "id": "the_unformed_wall",
        "kind": "Projectile",
        "pattern": "Wall",
        "count": 7,
@@ -8623,7 +8623,7 @@
     {
      "healthAtOrBelow": 0.3,
      "invulnerableOnEnter": 1.2,
-     "transitionKey": "the_unmade_phase3",
+     "transitionKey": "the_unformed_phase3",
      "movement": {
       "kind": "Chase",
       "speed": 2.25,
@@ -8631,7 +8631,7 @@
      },
      "attacks": [
       {
-       "id": "the_unmade_double_spiral",
+       "id": "the_unformed_double_spiral",
        "kind": "Projectile",
        "pattern": "Spiral",
        "count": 4,
@@ -8647,7 +8647,7 @@
        "weight": 2
       },
       {
-       "id": "the_unmade_hazard",
+       "id": "the_unformed_hazard",
        "kind": "Hazard",
        "cooldown": 4,
        "telegraph": 0.6,
@@ -8659,7 +8659,7 @@
        "damage": 1
       },
       {
-       "id": "the_unmade_call",
+       "id": "the_unformed_call",
        "kind": "Summon",
        "cooldown": 8,
        "telegraph": 0.9,

@@ -3,6 +3,8 @@ using System.Linq;
 using Hollowcrawl.Combat;
 using Hollowcrawl.Input;
 using Hollowcrawl.ProcGen;
+using Hollowcrawl.Progression;
+using Hollowcrawl.Save;
 using Hollowcrawl.Rng;
 using Hollowcrawl.Rooms;
 using Hollowcrawl.Simulation;
@@ -136,6 +138,34 @@ namespace Hollowcrawl.Tests
                     Assert.That(run.State, Is.EqualTo(RunState.Playing), floor.Id + " player survived with 12 containers");
                 }
                 catch (Exception ex) { Assert.Fail(floor.Id + ": " + ex); }
+            }
+        }
+    
+        [Test]
+        public void ChallengeAndAchievementTargetsAreMet()
+        {
+            Assert.That(TestContent.Database.Challenges.Count, Is.GreaterThanOrEqualTo(30));
+            Assert.That(TestContent.Database.Achievements.Count, Is.GreaterThanOrEqualTo(100));
+        }
+
+        /// <summary>Every challenge builds a run that starts and plays a few seconds.</summary>
+        [Test]
+        public void EveryChallengeStartsHeadless()
+        {
+            var library = new RoomTemplateLibrary();
+            library.AddRange(TestContent.Database.RoomTemplates);
+            var fire = new PlayerInputFrame { Aim = new Vec2(1f, 0f), FireHeld = true, Move = new Vec2(0.3f, 0.2f) };
+            foreach (var ch in TestContent.Database.Challenges.Values.OrderBy(c => c.Id, StringComparer.Ordinal))
+            {
+                try
+                {
+                    var setup = RunSetupFactory.Challenge(TestContent.Database, new ProfileData(), ch.Id, new RunSeed(3));
+                    var run = new RunSimulation(setup, TestContent.Database, library, EffectRegistry.CreateDefault());
+                    foreach (var id in ch.StartingItems) Assert.That(run.Engine.HasItem(id) || run.Engine.ActiveItem?.Id == id, Is.True, ch.Id + " starts with " + id);
+                    for (int i = 0; i < 180 && run.State == RunState.Playing; i++) run.Step(fire);
+                    Assert.That(run.State, Is.EqualTo(RunState.Playing), ch.Id);
+                }
+                catch (Exception ex) { Assert.Fail(ch.Id + ": " + ex); }
             }
         }
     }

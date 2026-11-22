@@ -199,6 +199,7 @@ script, not the generated JSON, then run it and `dotnet test Tests/CoreTests`:
 | `gen_items.py` | `Content/Items/expansion_items.json` |
 | `gen_transformations.py` | `Content/Synergies/expansion_transformations.json` |
 | `gen_enemies.py` | `Content/Enemies/expansion_enemies.json`, `Content/Floors/expansion_floors.json` |
+| `gen_progression.py` | `Content/Progression/expansion_progression.json` (challenges + achievements) |
 | `gen_rooms.py` | `Content/Rooms/expansion_rooms.json` (seeded, so reruns give the same rooms) |
 
 `ContentTargetTests` guards the counts reached so far and runs every item through a short headless fight.
