@@ -390,6 +390,13 @@ namespace Hollowcrawl.Simulation
             var node = runtime.Node;
             Engine.NotifyRoomCleared(new RoomContext { RoomType = node.Type.ToString(), RoomIndex = node.Index, FirstVisit = true, TookDamage = runtime.TookDamageHere });
             Events.Add(new SimEvent { Kind = SimEventKind.RoomCleared, Value = node.Index, Key = node.Type.ToString() });
+            foreach (var c in Companions)
+            {
+                if (c.Definition == null || c.Definition.Behavior != CompanionBehavior.Provider) continue;
+                if (++c.RoomsSinceProvide < c.Definition.ProvideEveryRooms) continue;
+                c.RoomsSinceProvide = 0;
+                sim.SpawnPickupActor(ResolvePickupKind(c.Definition.ProvidesPickup.ToString()), c.Position);
+            }
             if (node.Type == RoomType.Boss)
             {
                 var boss = node.EncounterId != null ? FindBoss(node.EncounterId) : null;
@@ -494,6 +501,7 @@ namespace Hollowcrawl.Simulation
 
         public EnemyDefinition FindEnemy(string id) => id != null && Content.Enemies.TryGetValue(id, out var e) ? e : null;
         public BossDefinition FindBoss(string id) => id != null && Content.Bosses.TryGetValue(id, out var b) ? b : null;
+        public CompanionDefinition FindCompanion(string id) => id != null && Content.Companions.TryGetValue(id, out var c) ? c : null;
         public StatusEffectDefinition FindStatus(string id) => id != null && Content.Statuses.TryGetValue(id, out var s) ? s : null;
 
         public bool TryCollect(PickupActor p)
@@ -636,7 +644,13 @@ namespace Hollowcrawl.Simulation
         public void SpawnCompanion(string companionId, object source)
         {
             if (Companions.Count >= 12) return;
-            Companions.Add(new CompanionActor { Id = _ids.Next(), CompanionId = companionId, Source = source, Position = Player.Position, Radius = 0.25f, ViewKey = "companion_" + companionId });
+            var def = FindCompanion(companionId);
+            Companions.Add(new CompanionActor
+            {
+                Id = _ids.Next(), CompanionId = companionId, Source = source, Position = Player.Position, Definition = def,
+                Radius = def?.Radius ?? 0.25f, FireInterval = def?.FireInterval ?? 1.2f,
+                ViewKey = def?.SpriteKey ?? "companion_" + companionId,
+            });
         }
 
         public void RemoveCompanions(object source) => Companions.RemoveAll(c => ReferenceEquals(c.Source, source));

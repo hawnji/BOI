@@ -148,6 +148,26 @@ points, damage never lethal), Hex (`contentId`), Consumable (`contentId` or rand
 effect kept for the run), Enemies (`contentId`, `count`; relocks the room). `message` is shown to the player.
 Health costs are refused if they would take the last half point.
 
+## Companions (`Content/Companions/*.json`)
+
+Items spawn companions with the `companion` effect (`"companion": "<id>"`); the id must exist here.
+Fields: `id`, `name`, `description`, `spriteKey`, `behavior`, plus tuning:
+
+| Behavior | What it does | Fields that matter |
+|---|---|---|
+| Shooter | trails you, shoots the nearest enemy in `range` | `fireInterval`, `damageScale`, `range`, `shotStatus`, `shotStatusChance` |
+| Mimic | fires along your aim whenever you fire | `fireInterval`, `damageScale`, `shotStatus` |
+| Orbital | circles you, contact damage | `orbitRadius`, `orbitSpeed`, `contactDps`, `blocksShots` |
+| Chaser | hunts the nearest enemy | `speed`, `contactDps`, `range` |
+| Collector | fetches loose pickups (never shop goods or pedestals) | `speed`, `range` |
+| Bomber | drops player-safe bombs on enemies | `fireInterval`, `bombDamage`, `bombRadius`, `range` |
+| Provider | spawns `providesPickup` every `provideEveryRooms` cleared rooms | `providesPickup`, `provideEveryRooms` |
+| Guardian | steps between you and the nearest enemy shot and blocks it | `speed`, `radius` |
+
+Companion shot damage is the player's built shot times `damageScale`; contact and bomb damage scale with the
+player's Damage stat. The validator rejects shooters without a fire interval, contact companions that neither hurt
+nor block, and providers with `provideEveryRooms` below 1.
+
 ## Characters, achievements and challenges (`Content/Progression/*.json`)
 
 **characters** (listed in menus in file order): `id`, `name`, `title`, `description`, `trait`, `spriteKey`,

@@ -1,0 +1,298 @@
+{
+ "companions": [
+  {
+   "id": "wisp",
+   "name": "Wisp",
+   "description": "A pale flame that drifts behind you and spits sparks at the nearest foe.",
+   "spriteKey": "companion_wisp",
+   "behavior": "Shooter",
+   "fireInterval": 1.1,
+   "damageScale": 0.5
+  },
+  {
+   "id": "bone_sparrow",
+   "name": "Bone Sparrow",
+   "description": "A little bird of knuckle bones. It pecks from afar.",
+   "spriteKey": "companion_bone_sparrow",
+   "behavior": "Shooter",
+   "fireInterval": 0.9,
+   "damageScale": 0.4,
+   "speed": 7
+  },
+  {
+   "id": "drone_mite",
+   "name": "Drone Mite",
+   "description": "A buzzing mite of wire and wax that fires quick, weak shots.",
+   "spriteKey": "companion_drone_mite",
+   "behavior": "Shooter",
+   "fireInterval": 0.5,
+   "damageScale": 0.25,
+   "radius": 0.2
+  },
+  {
+   "id": "cinder_kit",
+   "name": "Cinder Kit",
+   "description": "A fox kit made of coals. Its shots sometimes set foes alight.",
+   "spriteKey": "companion_cinder_kit",
+   "behavior": "Shooter",
+   "fireInterval": 1.3,
+   "damageScale": 0.5,
+   "shotStatus": "burn",
+   "shotStatusChance": 0.3
+  },
+  {
+   "id": "frost_moth",
+   "name": "Frost Moth",
+   "description": "Its wingbeats leave rime on whatever it hits.",
+   "spriteKey": "companion_frost_moth",
+   "behavior": "Shooter",
+   "fireInterval": 1.2,
+   "damageScale": 0.45,
+   "shotStatus": "chill",
+   "shotStatusChance": 0.35
+  },
+  {
+   "id": "blight_toad",
+   "name": "Blight Toad",
+   "description": "Spits green bile that festers.",
+   "spriteKey": "companion_blight_toad",
+   "behavior": "Shooter",
+   "fireInterval": 1.5,
+   "damageScale": 0.55,
+   "shotStatus": "poison",
+   "shotStatusChance": 0.4,
+   "speed": 5
+  },
+  {
+   "id": "lantern_eye",
+   "name": "Lantern Eye",
+   "description": "A floating eye that watches the far side of the room.",
+   "spriteKey": "companion_lantern_eye",
+   "behavior": "Shooter",
+   "fireInterval": 1.6,
+   "damageScale": 0.9,
+   "range": 12
+  },
+  {
+   "id": "static_wren",
+   "name": "Static Wren",
+   "description": "Crackles as it flies. Hits may stun.",
+   "spriteKey": "companion_static_wren",
+   "behavior": "Shooter",
+   "fireInterval": 1.0,
+   "damageScale": 0.4,
+   "shotStatus": "shock",
+   "shotStatusChance": 0.25
+  },
+  {
+   "id": "echo_shade",
+   "name": "Echo Shade",
+   "description": "A shadow that copies every shot you take, a little weaker.",
+   "spriteKey": "companion_echo_shade",
+   "behavior": "Mimic",
+   "fireInterval": 0.3,
+   "damageScale": 0.35
+  },
+  {
+   "id": "twin_husk",
+   "name": "Twin Husk",
+   "description": "A hollow double of you. It fires when you fire.",
+   "spriteKey": "companion_twin_husk",
+   "behavior": "Mimic",
+   "fireInterval": 0.4,
+   "damageScale": 0.5
+  },
+  {
+   "id": "mirror_shard",
+   "name": "Mirror Shard",
+   "description": "A floating sliver of glass that throws back your shots.",
+   "spriteKey": "companion_mirror_shard",
+   "behavior": "Mimic",
+   "fireInterval": 0.5,
+   "damageScale": 0.6,
+   "radius": 0.2
+  },
+  {
+   "id": "dread_puppet",
+   "name": "Dread Puppet",
+   "description": "A stitched doll that mimics your aim. Its shots unsettle.",
+   "spriteKey": "companion_dread_puppet",
+   "behavior": "Mimic",
+   "fireInterval": 0.45,
+   "damageScale": 0.35,
+   "shotStatus": "dread",
+   "shotStatusChance": 0.2
+  },
+  {
+   "id": "ash_halo",
+   "name": "Ash Halo",
+   "description": "A ring of ash circling you. It burns what it touches and eats shots.",
+   "spriteKey": "companion_ash_halo",
+   "behavior": "Orbital",
+   "contactDps": 15,
+   "blocksShots": true
+  },
+  {
+   "id": "grave_stone",
+   "name": "Grave Stone",
+   "description": "A heavy stone on a slow orbit. Shots break against it.",
+   "spriteKey": "companion_grave_stone",
+   "behavior": "Orbital",
+   "contactDps": 6,
+   "blocksShots": true,
+   "orbitSpeed": 70,
+   "radius": 0.35
+  },
+  {
+   "id": "thorn_ring",
+   "name": "Thorn Ring",
+   "description": "Fast-spinning thorns that shred enemies close to you.",
+   "spriteKey": "companion_thorn_ring",
+   "behavior": "Orbital",
+   "contactDps": 24,
+   "orbitSpeed": 200,
+   "orbitRadius": 1.1
+  },
+  {
+   "id": "ember_moon",
+   "name": "Ember Moon",
+   "description": "A wide orbit of slow fire.",
+   "spriteKey": "companion_ember_moon",
+   "behavior": "Orbital",
+   "contactDps": 18,
+   "orbitRadius": 2.0,
+   "orbitSpeed": 90
+  },
+  {
+   "id": "cold_shield",
+   "name": "Cold Shield",
+   "description": "A disc of ice that spins close and soaks up shots.",
+   "spriteKey": "companion_cold_shield",
+   "behavior": "Orbital",
+   "contactDps": 0,
+   "blocksShots": true,
+   "orbitRadius": 0.9,
+   "orbitSpeed": 160
+  },
+  {
+   "id": "gnaw_rat",
+   "name": "Gnaw Rat",
+   "description": "A starving rat that runs down the nearest enemy.",
+   "spriteKey": "companion_gnaw_rat",
+   "behavior": "Chaser",
+   "contactDps": 14,
+   "speed": 6.5
+  },
+  {
+   "id": "bramble_hound",
+   "name": "Bramble Hound",
+   "description": "A dog of thorny vines. Slow, but it bites hard.",
+   "spriteKey": "companion_bramble_hound",
+   "behavior": "Chaser",
+   "contactDps": 26,
+   "speed": 4.5,
+   "radius": 0.35
+  },
+  {
+   "id": "spite_imp",
+   "name": "Spite Imp",
+   "description": "A tiny imp that throws itself at foes.",
+   "spriteKey": "companion_spite_imp",
+   "behavior": "Chaser",
+   "contactDps": 10,
+   "speed": 8
+  },
+  {
+   "id": "rot_leech",
+   "name": "Rot Leech",
+   "description": "Clings to enemies and drinks.",
+   "spriteKey": "companion_rot_leech",
+   "behavior": "Chaser",
+   "contactDps": 18,
+   "speed": 5
+  },
+  {
+   "id": "magpie",
+   "name": "Magpie",
+   "description": "Grabs loose pickups and brings them to you.",
+   "spriteKey": "companion_magpie",
+   "behavior": "Collector",
+   "speed": 8
+  },
+  {
+   "id": "sack_goblin",
+   "name": "Sack Goblin",
+   "description": "A grubby goblin that hoards dropped things for you.",
+   "spriteKey": "companion_sack_goblin",
+   "behavior": "Collector",
+   "speed": 5.5,
+   "radius": 0.3
+  },
+  {
+   "id": "fuse_beetle",
+   "name": "Fuse Beetle",
+   "description": "Lays little bombs near enemies. They never hurt you.",
+   "spriteKey": "companion_fuse_beetle",
+   "behavior": "Bomber",
+   "fireInterval": 4,
+   "bombDamage": 25,
+   "bombRadius": 1.4
+  },
+  {
+   "id": "powder_crow",
+   "name": "Powder Crow",
+   "description": "Drops a big charge every so often.",
+   "spriteKey": "companion_powder_crow",
+   "behavior": "Bomber",
+   "fireInterval": 6,
+   "bombDamage": 45,
+   "bombRadius": 1.8
+  },
+  {
+   "id": "coin_mole",
+   "name": "Coin Mole",
+   "description": "Digs up a coin every couple of cleared rooms.",
+   "spriteKey": "companion_coin_mole",
+   "behavior": "Provider",
+   "providesPickup": "Coin",
+   "provideEveryRooms": 2
+  },
+  {
+   "id": "key_wisp",
+   "name": "Key Wisp",
+   "description": "Finds a key every few cleared rooms.",
+   "spriteKey": "companion_key_wisp",
+   "behavior": "Provider",
+   "providesPickup": "Key",
+   "provideEveryRooms": 4
+  },
+  {
+   "id": "heart_moth",
+   "name": "Heart Moth",
+   "description": "Leaves a half heart behind every few cleared rooms.",
+   "spriteKey": "companion_heart_moth",
+   "behavior": "Provider",
+   "providesPickup": "VigorHalf",
+   "provideEveryRooms": 3
+  },
+  {
+   "id": "powder_sprite",
+   "name": "Powder Sprite",
+   "description": "Leaves a bomb behind every few cleared rooms.",
+   "spriteKey": "companion_powder_sprite",
+   "behavior": "Provider",
+   "providesPickup": "Bomb",
+   "provideEveryRooms": 3
+  },
+  {
+   "id": "ward_knight",
+   "name": "Ward Knight",
+   "description": "A tiny knight that steps in front of incoming shots.",
+   "spriteKey": "companion_ward_knight",
+   "behavior": "Guardian",
+   "speed": 7,
+   "radius": 0.35,
+   "blocksShots": true
+  }
+ ]
+}

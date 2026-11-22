@@ -18,7 +18,7 @@ namespace Hollowcrawl.Simulation
     /// player is inside. Unity only feeds input and draws the actors, so the whole loop runs headless in
     /// tests (including scripted bot play).
     /// </summary>
-    public sealed class RoomSimulation : IGameWorld, IProjectileQueries, Items.Effects.IRunWorld
+    public sealed partial class RoomSimulation : IGameWorld, IProjectileQueries, Items.Effects.IRunWorld
     {
         public const int MaxShots = 600;
         public const int MaxEnemies = 60;
@@ -269,6 +269,7 @@ namespace Hollowcrawl.Simulation
                 SpawnPlayerShot(_shotSpec, origin + _dirs[i] * 0.3f, _dirs[i], false);
             }
             Emit(new SimEvent { Kind = SimEventKind.ShotFired, ActorId = Player.Id, Position = origin, Value = charge });
+            _playerFiredThisFrame = true;
         }
 
         public ShotActor SpawnPlayerShot(ProjectileSpec spec, Vec2 origin, Vec2 dir, bool fromCompanion)
@@ -298,26 +299,6 @@ namespace Hollowcrawl.Simulation
             var spec = new BombSpec { Damage = Engine.Stats[StatId.BombDamage] };
             if (byPlayer) Engine.ModifyBomb(spec);
             Bombs.Add(new BombActor { Id = _ids.Next(), Position = position, Spec = spec, Fuse = spec.Fuse, PlacedByPlayer = byPlayer, Radius = 0.3f, ViewKey = "bomb" });
-        }
-
-        private void StepCompanions(float dt)
-        {
-            if (Player == null) return;
-            for (int i = 0; i < Companions.Count; i++)
-            {
-                var c = Companions[i];
-                c.OrbitAngle += dt * 70f;
-                var target = Player.Position + new Vec2(1.1f, 0f).Rotated(c.OrbitAngle + 360f / Math.Max(1, Companions.Count) * i);
-                c.Position = c.Position + (target - c.Position) * Math.Min(1f, dt * 6f);
-                c.Cooldown -= dt;
-                if (c.Cooldown > 0f) continue;
-                int n = FindNearestEnemies(c.Position, 8f, -1, _nearest);
-                if (n == 0 || !TryGetEnemyPosition(_nearest[0], out var ep)) continue;
-                c.Cooldown = c.FireInterval;
-                Engine.BuildShot(_companionSpec, new ShotContext { IsCompanion = true, CompanionId = c.CompanionId });
-                _companionSpec.Damage *= CompanionDamageScale;
-                SpawnPlayerShot(_companionSpec, c.Position, ep - c.Position, true);
-            }
         }
 
         private void StepShots(float dt)
@@ -400,6 +381,7 @@ namespace Hollowcrawl.Simulation
             s.RangeLeft -= step.Length;
             if (s.RangeLeft <= 0f) { s.Removed = true; return; }
             if (RoomGrid.BlocksShot(Grid.At(s.Position), out bool boundary) && (!s.Spectral || boundary)) { s.Removed = true; Emit(new SimEvent { Kind = SimEventKind.ShotImpact, Position = s.Position }); return; }
+            if (CompanionBlocks(s)) { s.Removed = true; Emit(new SimEvent { Kind = SimEventKind.ShotImpact, Position = s.Position }); return; }
             if (Player != null && (Player.Position - s.Position).Length < Player.Radius + s.Radius)
             {
                 s.Removed = true;
@@ -508,7 +490,7 @@ namespace Hollowcrawl.Simulation
                 b.Fuse -= dt;
                 if (b.Fuse > 0f) continue;
                 b.Removed = true;
-                QueueExplosion(b.Position, b.Spec.Radius, b.Spec.Damage, Team.Neutral, b.Spec.Types | DamageType.Explosive);
+                QueueExplosion(b.Position, b.Spec.Radius, b.Spec.Damage, b.PlayerSafe ? Team.Player : Team.Neutral, b.Spec.Types | DamageType.Explosive);
                 if (b.PlacedByPlayer) Engine.NotifyBombExploded(b.Position, b.Spec);
             }
         }

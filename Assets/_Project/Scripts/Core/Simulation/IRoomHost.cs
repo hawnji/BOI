@@ -14,6 +14,7 @@ namespace Hollowcrawl.Simulation
         EnemyDefinition FindEnemy(string id);
         BossDefinition FindBoss(string id);
         StatusEffectDefinition FindStatus(string id);
+        CompanionDefinition FindCompanion(string id);
 
         /// <summary>Called when the player touches a pickup. Return true to consume it.</summary>
         bool TryCollect(PickupActor pickup);

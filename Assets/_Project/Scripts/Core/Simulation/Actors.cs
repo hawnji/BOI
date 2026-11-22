@@ -97,6 +97,8 @@ namespace Hollowcrawl.Simulation
         public BombSpec Spec;
         public float Fuse;
         public bool PlacedByPlayer;
+        /// <summary>Companion bombs: never damage the player.</summary>
+        public bool PlayerSafe;
     }
 
     public sealed class HazardActor : Actor
@@ -116,6 +118,9 @@ namespace Hollowcrawl.Simulation
         public float Cooldown;
         public float OrbitAngle;
         public float FireInterval = 1.2f;
+        public CompanionDefinition Definition;
+        public int RoomsSinceProvide;
+        public int TargetId;
     }
 
     /// <summary>One option of an event-room shrine. Touching it pays the cost and rolls an outcome.</summary>

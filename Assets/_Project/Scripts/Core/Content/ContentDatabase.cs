@@ -23,6 +23,7 @@ namespace Hollowcrawl.Content
         public List<Progression.CharacterDefinition> Characters;
         public List<Progression.AchievementDefinition> Achievements;
         public List<Progression.ChallengeDefinition> Challenges;
+        public List<Simulation.CompanionDefinition> Companions;
     }
 
     /// <summary>
@@ -45,6 +46,7 @@ namespace Hollowcrawl.Content
         public readonly Dictionary<string, Progression.CharacterDefinition> Characters = new Dictionary<string, Progression.CharacterDefinition>(StringComparer.Ordinal);
         public readonly Dictionary<string, Progression.AchievementDefinition> Achievements = new Dictionary<string, Progression.AchievementDefinition>(StringComparer.Ordinal);
         public readonly Dictionary<string, Progression.ChallengeDefinition> Challenges = new Dictionary<string, Progression.ChallengeDefinition>(StringComparer.Ordinal);
+        public readonly Dictionary<string, Simulation.CompanionDefinition> Companions = new Dictionary<string, Simulation.CompanionDefinition>(StringComparer.Ordinal);
         /// <summary>Content order of characters as authored (menus list them in this order).</summary>
         public readonly List<string> CharacterOrder = new List<string>();
         public readonly List<RoomTemplate> RoomTemplates = new List<RoomTemplate>();
@@ -70,6 +72,7 @@ namespace Hollowcrawl.Content
             if (file.Characters != null) foreach (var c in file.Characters) if (c?.Id != null && !CharacterOrder.Contains(c.Id)) CharacterOrder.Add(c.Id);
             AddAll(sourceName, file.Achievements, Achievements, x => x.Id);
             AddAll(sourceName, file.Challenges, Challenges, x => x.Id);
+            AddAll(sourceName, file.Companions, Companions, x => x.Id);
             if (file.Rooms != null) RoomTemplates.AddRange(file.Rooms);
         }
 
@@ -203,7 +206,36 @@ namespace Hollowcrawl.Content
                 }
             }
             ValidateProgression(db, effects, conditions, r);
+            ValidateCompanions(db, r);
             return r;
+        }
+
+        private static void ValidateCompanions(ContentDatabase db, ValidationReport r)
+        {
+            foreach (var c in db.Companions.Values)
+            {
+                string id = "companion " + c.Id;
+                if (string.IsNullOrWhiteSpace(c.Name) || string.IsNullOrWhiteSpace(c.Description)) r.Error($"{id}: missing name or description.");
+                if (c.Speed <= 0f || c.Radius <= 0f) r.Error($"{id}: speed and radius must be positive.");
+                if ((c.Behavior == Simulation.CompanionBehavior.Shooter || c.Behavior == Simulation.CompanionBehavior.Mimic) && (c.FireInterval <= 0.05f || c.DamageScale <= 0f)) r.Error($"{id}: shooters need fireInterval > 0.05 and damageScale > 0.");
+                if ((c.Behavior == Simulation.CompanionBehavior.Orbital || c.Behavior == Simulation.CompanionBehavior.Chaser) && c.ContactDps <= 0f && !c.BlocksShots) r.Error($"{id}: contact companion that neither hurts nor blocks.");
+                if (c.Behavior == Simulation.CompanionBehavior.Provider && c.ProvideEveryRooms < 1) r.Error($"{id}: provideEveryRooms must be >= 1.");
+                if (c.ShotStatus != null && !db.Statuses.ContainsKey(c.ShotStatus)) r.Error($"{id}: unknown status '{c.ShotStatus}'.");
+            }
+            // every companion id referenced by an effect must exist
+            void Check(IEnumerable<EffectSpec> specs, string who)
+            {
+                if (specs == null) return;
+                foreach (var e in specs)
+                {
+                    if (e == null || (e.Type != "companion" && e.Type != "active_companion_room")) continue;
+                    var cid = e.Params.GetString("companion");
+                    if (db.Companions.Count > 0 && (cid == null || !db.Companions.ContainsKey(cid))) r.Error($"{who}: unknown companion '{cid}'.");
+                }
+            }
+            foreach (var i in db.Items.Values) { Check(i.Effects, "item " + i.Id); if (i.Active != null) Check(i.Active.OnUse, "item " + i.Id); }
+            foreach (var s in db.Synergies.Values) Check(s.Effects, "synergy " + s.Id);
+            foreach (var t in db.Transformations.Values) Check(t.Effects, "transformation " + t.Id);
         }
 
         private static void ValidateProgression(ContentDatabase db, EffectRegistry effects, ConditionRegistry conditions, ValidationReport r)

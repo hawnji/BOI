@@ -15,7 +15,7 @@ Last updated: 2026-11-22.
 
 | Phase | Status | Notes |
 |---|---|---|
-| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 141 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
+| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 152 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
 | 2 Core player gameplay | In progress | Full gameplay loop runs headless (ADR-009): movement, shooting, enemies, bombs, pickups, doors, rooms, floors, boss exit; unit-tested incl. determinism and random-play soak. Unity presentation layer written (placeholder art, IMGUI HUD), not yet compiled in Unity. |
 | 3 Combat and interaction foundations | In progress | Pure parts exist and are unit-tested: damage info, status controller, health pool, enemy AI brain, attack patterns, difficulty scaling. Unity enemy components not started. |
 | 4 Item interaction engine | In progress | Engine core done early (spec: "design early"). Remaining: integration with real projectiles/companions/enemies, in-game debug overlay. |
@@ -47,7 +47,7 @@ Last updated: 2026-11-22.
 | Built-in effect library | Implemented (partly unit-tested) | 60 effect types; not all individually tested yet |
 | Active item charge/use/swap | Implemented (unit-tested) | Rooms / seconds / kills / one-shot |
 | Trinket slots | Implemented (unit-tested) | |
-| Companion hooks (spawn per stack, inherit player shots, boost) | Implemented (unit-tested) | Companion AI not started |
+| Companion hooks (spawn per stack, inherit player shots, boost) and companion AI (8 behaviours: shooter, mimic, orbital, chaser, collector, bomber, provider, guardian) | Implemented (headless-tested, CompanionTests) | Companion sprites are placeholder shapes; not seen in Unity |
 | Room template model + validator + duplicate detection | Implemented (unit-tested) | |
 | Floor graph, room types, secrets, loops, door kinds | Implemented (unit-tested) | 300 seeds x 2 floors validated in tests |
 | Template selection with anti-repetition | Implemented (unit-tested) | |
@@ -110,7 +110,7 @@ count only if they are distinct, functional content.
 | Handcrafted room templates | 250 | 24 | In progress |
 | Floor environments | 15 | 1 | In progress (data only, no art/audio) |
 | Transformations | 12 | 2 | In progress |
-| Companions | 30 | 0 | Not started (ids referenced: wisp, bone_sparrow, drone_mite) |
+| Companions | 30 | 30 | Data complete (Companions/companions.json), validated; balance untested in play |
 | Challenges | 30 | 8 | In progress |
 | Achievements | 100 | 63 | In progress |
 | Synergies (no minimum set) | - | 4 | In progress |
