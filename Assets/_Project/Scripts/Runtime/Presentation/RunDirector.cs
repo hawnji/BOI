@@ -31,6 +31,7 @@ namespace Hollowcrawl.Presentation
         private float _shake;
         private readonly System.Random _shakeRng = new System.Random();
         private bool _roomDirty;
+        private SpriteRenderer _darkness;
         private readonly ShootingIntent _shooting = new ShootingIntent();
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -105,6 +106,7 @@ namespace Hollowcrawl.Presentation
             }
             if (_roomDirty) RebuildRoom();
             _views.Sync(Run.CurrentRoom, Run.Companions, Time.deltaTime);
+            UpdateDarkness();
             if (Run.Player != null) _aimOrigin.localPosition = new Vector3(Run.Player.Position.X, Run.Player.Position.Y, 0f);
             UpdateCamera();
         }
@@ -148,6 +150,44 @@ namespace Hollowcrawl.Presentation
         {
             _roomDirty = false;
             if (Run.CurrentRoom != null) _roomRenderer.Show(Run.CurrentRoom.Grid);
+        }
+
+        /// <summary>Gloom-style hexes: a dark overlay with a clear circle around the player.</summary>
+        private void UpdateDarkness()
+        {
+            float radius = Run.ActiveHex != null ? Run.ActiveHex.VisionRadius : 0f;
+            if (radius <= 0f || Run.Player == null) { if (_darkness != null) _darkness.enabled = false; return; }
+            if (_darkness == null)
+            {
+                var go = new GameObject("Darkness");
+                go.transform.SetParent(_world, false);
+                _darkness = go.AddComponent<SpriteRenderer>();
+                _darkness.sortingOrder = 50;
+                _darkness.sprite = MakeVignette();
+            }
+            _darkness.enabled = true;
+            // the vignette's clear area is 1/6 of its size
+            float size = radius * 6f;
+            _darkness.transform.localScale = new Vector3(size, size, 1f);
+            _darkness.transform.localPosition = new Vector3(Run.Player.Position.X, Run.Player.Position.Y, 0f);
+        }
+
+        private static Sprite MakeVignette()
+        {
+            const int n = 192;
+            var tex = new Texture2D(n, n, TextureFormat.RGBA32, false) { filterMode = FilterMode.Bilinear, wrapMode = TextureWrapMode.Clamp };
+            var px = new Color32[n * n];
+            float c = (n - 1) * 0.5f, clear = n / 6f, fade = n / 10f;
+            for (int y = 0; y < n; y++)
+                for (int x = 0; x < n; x++)
+                {
+                    float d = Mathf.Sqrt((x - c) * (x - c) + (y - c) * (y - c));
+                    float a = Mathf.Clamp01((d - clear) / fade);
+                    px[y * n + x] = new Color32(0, 0, 0, (byte)(a * 245f));
+                }
+            tex.SetPixels32(px);
+            tex.Apply();
+            return Sprite.Create(tex, new Rect(0, 0, n, n), new Vector2(0.5f, 0.5f), n);
         }
 
         private void UpdateCamera()

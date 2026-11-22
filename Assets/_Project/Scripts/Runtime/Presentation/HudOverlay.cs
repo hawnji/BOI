@@ -24,6 +24,10 @@ namespace Hollowcrawl.Presentation
                 ShowPopup(item.Name + (string.IsNullOrEmpty(item.Description) ? "" : "\n<size=14>" + item.Description + "</size>"));
             else if (e.Kind == SimEventKind.FloorStarted && run.Floor != null) ShowPopup(run.Floor.Name);
             else if (e.Kind == SimEventKind.Feedback && e.Key == "door_needs_key") ShowPopup("<size=16>Locked: needs a key</size>");
+            else if (e.Kind == SimEventKind.ConsumableUsed && run.Content.Consumables.TryGetValue(e.Key, out var c)) ShowPopup(c.Name + "\n<size=14>" + c.Description + "</size>");
+            else if (e.Kind == SimEventKind.ShrineUsed && e.Key != null) ShowPopup("<size=18>" + e.Key + "</size>");
+            else if (e.Kind == SimEventKind.HexApplied && run.Content.Hexes.TryGetValue(e.Key, out var hx)) ShowPopup("<color=#c080ff>" + hx.Name + "</color>\n<size=14>" + hx.Description + "</size>");
+            else if (e.Kind == SimEventKind.PurchaseFailed) ShowPopup("<size=16>You can't afford that</size>");
         }
 
         private void ShowPopup(string text) { _popup = text; _popupTime = 3f; }
@@ -49,9 +53,12 @@ namespace Hollowcrawl.Presentation
             var r = run.Engine.Resources;
             GUI.Label(new Rect(16f, 44f, 300f, 24f), $"Coins {r.Get(ResourceKind.Coins):00}   Bombs {r.Get(ResourceKind.Bombs):00}   Keys {r.Get(ResourceKind.Keys):00}", _label);
             DrawActive(run, 16f, 72f);
+            if (run.ConsumableSlots.Count > 0)
+                GUI.Label(new Rect(16f, 108f, 360f, 22f), "Held: " + run.ConsumableDisplayName(run.ConsumableSlots[0]) + (run.ConsumableSlots.Count > 1 ? $"  (+{run.ConsumableSlots.Count - 1})" : ""), _small);
+            if (run.ActiveHex != null) GUI.Label(new Rect(w - 316f, 52f, 300f, 20f), "<color=#c080ff>" + run.ActiveHex.Name + "</color>", _small);
             GUI.Label(new Rect(w - 316f, 12f, 300f, 24f), $"<b>{run.Floor?.Name}</b>  {run.FloorIndex + 1}/{run.TotalFloors}", _label);
             GUI.Label(new Rect(w - 316f, 36f, 300f, 20f), "Seed " + Director.SeedCode, _small);
-            DrawMinimap(run, w - 170f, 60f);
+            DrawMinimap(run, w - 170f, 76f);
             DrawBossBar(run, w);
 
             if (_popupTime > 0f)
@@ -117,7 +124,8 @@ namespace Hollowcrawl.Presentation
             {
                 var rt = run.FloorState.Rooms[kv.Value];
                 bool current = kv.Value == run.FloorState.CurrentRoom;
-                if (!rt.Visited && !rt.Revealed && !current) continue;
+                bool known = rt.Visited || (rt.Revealed && !run.MapHidden);
+                if (!known && !current) continue;
                 var col = current ? Color.white : rt.Visited ? new Color(0.55f, 0.55f, 0.6f) : new Color(0.3f, 0.3f, 0.33f);
                 Box(new Rect(x + (kv.Key.X - minX) * cell, y + (kv.Key.Y - minY) * cell, cell - 1f, cell - 1f), col);
                 if (rt.Node.Type != RoomType.Combat && rt.Node.Type != RoomType.Start && (rt.Visited || rt.Revealed))

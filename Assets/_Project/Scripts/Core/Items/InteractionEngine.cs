@@ -813,6 +813,37 @@ namespace Hollowcrawl.Items
             return true;
         }
 
+        /// <summary>
+        /// Runs the on-use effects of a source that is not the held active item (consumables, shrine boons).
+        /// The source stays attached for the run so timed effects keep ticking; each call fires it again.
+        /// Returns true if any effect did something.
+        /// </summary>
+        public bool UseStandalone(object owner, string sourceId, IReadOnlyList<EffectSpec> specs, Vec2 position, Vec2 aim)
+        {
+            if (owner == null || specs == null) return false;
+            if (!_misc.TryGetValue(owner, out var records))
+            {
+                records = new List<EffectRecord>();
+                AttachSpecs(specs, EffectSourceKind.ActiveUse, sourceId, owner, 1, true, records);
+                _misc[owner] = records;
+            }
+            var use = new ActiveUseContext { ItemId = sourceId, Position = position, Aim = aim, Stacks = 1 };
+            bool any = false;
+            if (!EnterProc("standalone")) return false;
+            try
+            {
+                foreach (var rec in records)
+                    if (rec.Effect is IActiveEffect a && rec.ConditionMet)
+                    {
+                        try { any |= a.Use(use); }
+                        catch (Exception ex) { Log.Add(InteractionLogKind.Error, rec.SourceId, ex.Message); }
+                    }
+            }
+            finally { ExitProc(); }
+            if (any) Log.Add(InteractionLogKind.Active, sourceId, "used");
+            return any;
+        }
+
         private void Safe(EffectRecord rec, Action a)
         {
             try { a(); }

@@ -18,7 +18,7 @@ namespace Hollowcrawl.Simulation
     /// player is inside. Unity only feeds input and draws the actors, so the whole loop runs headless in
     /// tests (including scripted bot play).
     /// </summary>
-    public sealed class RoomSimulation : IGameWorld, IProjectileQueries
+    public sealed class RoomSimulation : IGameWorld, IProjectileQueries, Items.Effects.IRunWorld
     {
         public const int MaxShots = 600;
         public const int MaxEnemies = 60;
@@ -41,6 +41,7 @@ namespace Hollowcrawl.Simulation
         public readonly List<BombActor> Bombs = new List<BombActor>();
         public readonly List<HazardActor> Hazards = new List<HazardActor>();
         public readonly List<ExitActor> Exits = new List<ExitActor>();
+        public readonly List<ShrineActor> Shrines = new List<ShrineActor>();
         /// <summary>Owned by the run (companions follow the player between rooms).</summary>
         public List<CompanionActor> Companions = new List<CompanionActor>();
 
@@ -150,6 +151,13 @@ namespace Hollowcrawl.Simulation
             return x;
         }
 
+        public ShrineActor SpawnShrine(Consumables.ShrineDefinition def, int option, Vec2 position)
+        {
+            var sh = new ShrineActor { Id = _ids.Next(), Definition = def, OptionIndex = option, Position = NearestOpen(position), Radius = 0.45f, ViewKey = def.SpriteKey ?? "shrine_" + def.Id };
+            Shrines.Add(sh);
+            return sh;
+        }
+
         public HazardActor SpawnHazard(string hazardId, Vec2 position, float radius, float duration, int damage, bool hurtsPlayer = true)
         {
             var h = new HazardActor { Id = _ids.Next(), Position = position, Radius = radius, HazardId = hazardId, Remaining = duration, Damage = damage, HurtsPlayer = hurtsPlayer, ViewKey = "hazard_" + hazardId };
@@ -199,6 +207,7 @@ namespace Hollowcrawl.Simulation
             StepBombs(dt);
             StepHazards(dt);
             if (alive) StepPickups(dt);
+            if (alive) StepShrines(dt);
             ProcessExplosions();
             Cleanup();
         }
@@ -517,8 +526,9 @@ namespace Hollowcrawl.Simulation
 
         private void StepPickups(float dt)
         {
-            foreach (var p in Pickups)
+            for (int i = 0; i < Pickups.Count; i++) // collecting may spawn pickups (swaps), so index rather than foreach
             {
+                var p = Pickups[i];
                 if (p.Removed) continue;
                 if (p.SpawnProtection > 0f) { p.SpawnProtection -= dt; continue; }
                 if (!Overlaps(Player, p)) continue;
@@ -531,8 +541,21 @@ namespace Hollowcrawl.Simulation
             }
         }
 
+        private void StepShrines(float dt)
+        {
+            foreach (var sh in Shrines)
+            {
+                if (sh.Removed) continue;
+                if (sh.Cooldown > 0f) { sh.Cooldown -= dt; continue; }
+                if (!Overlaps(Player, sh)) continue;
+                sh.Cooldown = 1f;
+                _host.UseShrine(sh);
+            }
+        }
+
         private void Cleanup()
         {
+            Shrines.RemoveAll(x => x.Removed);
             Shots.RemoveAll(s => s.Removed);
             Bombs.RemoveAll(b => b.Removed);
             Hazards.RemoveAll(h => h.Removed);
@@ -767,6 +790,7 @@ namespace Hollowcrawl.Simulation
         public void SpawnCompanion(string companionId, object source) => _host.SpawnCompanion(companionId, source);
         public void RemoveCompanionsFromSource(object source) => _host.RemoveCompanions(source);
         public void TeleportPlayer(TeleportTarget target) => _host.TeleportPlayer(target);
+        public void RevealMap(bool includeSecrets) => _host.RevealMap(includeSecrets);
         public void PlayFeedback(string visualKey, string audioKey, Vec2 position) => Emit(new SimEvent { Kind = SimEventKind.Feedback, Key = visualKey, AudioKey = audioKey, Position = position });
 
         private readonly List<(float dist, int id)> _nearestScratch = new List<(float, int)>(16);

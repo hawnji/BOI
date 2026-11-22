@@ -17,6 +17,9 @@ namespace Hollowcrawl.Content
         public List<FloorDefinition> Floors;
         public List<Enemies.EnemyDefinition> Enemies;
         public List<Enemies.BossDefinition> Bosses;
+        public List<Consumables.ConsumableDefinition> Consumables;
+        public List<Consumables.HexDefinition> Hexes;
+        public List<Consumables.ShrineDefinition> Shrines;
     }
 
     /// <summary>
@@ -33,6 +36,9 @@ namespace Hollowcrawl.Content
         public readonly Dictionary<string, FloorDefinition> Floors = new Dictionary<string, FloorDefinition>(StringComparer.Ordinal);
         public readonly Dictionary<string, Enemies.EnemyDefinition> Enemies = new Dictionary<string, Enemies.EnemyDefinition>(StringComparer.Ordinal);
         public readonly Dictionary<string, Enemies.BossDefinition> Bosses = new Dictionary<string, Enemies.BossDefinition>(StringComparer.Ordinal);
+        public readonly Dictionary<string, Consumables.ConsumableDefinition> Consumables = new Dictionary<string, Consumables.ConsumableDefinition>(StringComparer.Ordinal);
+        public readonly Dictionary<string, Consumables.HexDefinition> Hexes = new Dictionary<string, Consumables.HexDefinition>(StringComparer.Ordinal);
+        public readonly Dictionary<string, Consumables.ShrineDefinition> Shrines = new Dictionary<string, Consumables.ShrineDefinition>(StringComparer.Ordinal);
         public readonly List<RoomTemplate> RoomTemplates = new List<RoomTemplate>();
         public readonly List<string> LoadErrors = new List<string>();
 
@@ -49,6 +55,9 @@ namespace Hollowcrawl.Content
             AddAll(sourceName, file.Floors, Floors, x => x.Id);
             AddAll(sourceName, file.Enemies, Enemies, x => x.Id);
             AddAll(sourceName, file.Bosses, Bosses, x => x.Id);
+            AddAll(sourceName, file.Consumables, Consumables, x => x.Id);
+            AddAll(sourceName, file.Hexes, Hexes, x => x.Id);
+            AddAll(sourceName, file.Shrines, Shrines, x => x.Id);
             if (file.Rooms != null) RoomTemplates.AddRange(file.Rooms);
         }
 
@@ -143,6 +152,43 @@ namespace Hollowcrawl.Content
                     foreach (var a in p.OnEnter) CheckAttack(a, id, db, r);
                 }
                 if (b.Tier != Enemies.BossTier.Miniboss && b.Phases.Count < 2) r.Warn($"{id}: major bosses should have phase transitions.");
+            }
+            foreach (var c in db.Consumables.Values)
+            {
+                string id = "consumable " + c.Id;
+                if (string.IsNullOrWhiteSpace(c.Name) || string.IsNullOrWhiteSpace(c.Description)) r.Error($"{id}: missing name or description.");
+                if (c.OnUse.Count == 0) r.Error($"{id}: no on-use effects.");
+                CheckEffects(c.OnUse, id, effects, conditions, db, r);
+                foreach (var spec in c.OnUse)
+                    if (effects.IsRegistered(spec.Type) && !(effects.Create(spec) is IActiveEffect)) r.Error($"{id}: '{spec.Type}' is not an on-use effect.");
+            }
+            foreach (var h in db.Hexes.Values)
+            {
+                string id = "hex " + h.Id;
+                if (string.IsNullOrWhiteSpace(h.Name) || string.IsNullOrWhiteSpace(h.Description)) r.Error($"{id}: missing name or description.");
+                if (h.FloorSizeMultiplier < 1f || h.FloorSizeMultiplier > 2f) r.Error($"{id}: floorSizeMultiplier must be 1..2.");
+                bool any = h.HideMap || h.HideRoomIcons || h.FloorSizeMultiplier > 1f || h.VeilPedestals || h.VisionRadius > 0f || h.Effects.Count > 0;
+                if (!any) r.Error($"{id}: does nothing.");
+                CheckEffects(h.Effects, id, effects, conditions, db, r);
+            }
+            foreach (var s in db.Shrines.Values)
+            {
+                string id = "shrine " + s.Id;
+                if (string.IsNullOrWhiteSpace(s.Name)) r.Error($"{id}: missing name.");
+                if (s.Options.Count == 0) r.Error($"{id}: no options.");
+                foreach (var o in s.Options)
+                {
+                    if (o.Outcomes.Count == 0) r.Error($"{id}: option '{o.Label}' has no outcomes.");
+                    if (o.Cost != Consumables.ShrineCostKind.None && o.Amount <= 0) r.Error($"{id}: option '{o.Label}' cost needs a positive amount.");
+                    if (o.MaxUses < 1) r.Error($"{id}: option '{o.Label}' maxUses must be >= 1.");
+                    foreach (var oc in o.Outcomes)
+                    {
+                        if (oc.Kind == Consumables.ShrineOutcomeKind.Enemies && (oc.ContentId == null || !db.Enemies.ContainsKey(oc.ContentId))) r.Error($"{id}: spawns unknown enemy '{oc.ContentId}'.");
+                        if (oc.Kind == Consumables.ShrineOutcomeKind.Hex && (oc.ContentId == null || !db.Hexes.ContainsKey(oc.ContentId))) r.Error($"{id}: unknown hex '{oc.ContentId}'.");
+                        if (oc.Kind == Consumables.ShrineOutcomeKind.Consumable && oc.ContentId != null && !db.Consumables.ContainsKey(oc.ContentId)) r.Error($"{id}: unknown consumable '{oc.ContentId}'.");
+                        if (oc.Kind == Consumables.ShrineOutcomeKind.Stat) { if (oc.Effect == null) r.Error($"{id}: stat outcome without effect."); else CheckEffects(new List<EffectSpec> { oc.Effect }, id, effects, conditions, db, r); }
+                    }
+                }
             }
             return r;
         }

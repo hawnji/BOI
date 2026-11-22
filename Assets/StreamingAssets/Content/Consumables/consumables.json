@@ -1,0 +1,80 @@
+{
+  "consumables": [
+    { "id": "sigil_hearth", "name": "Hearth Sigil", "description": "Restores two hearts.", "kind": "Sigil", "weight": 1.2,
+      "onUse": [ { "effect": "active_heal", "halves": 4 } ] },
+    { "id": "sigil_cartographer", "name": "Cartographer's Sigil", "description": "The whole floor is drawn for you, hidden places too.", "kind": "Sigil",
+      "onUse": [ { "effect": "active_reveal_map", "secrets": true } ] },
+    { "id": "sigil_tremor", "name": "Tremor Sigil", "description": "The room shakes; every foe takes heavy damage.", "kind": "Sigil",
+      "onUse": [ { "effect": "active_room_damage", "damage": 40 } ] },
+    { "id": "sigil_wayfarer", "name": "Wayfarer's Sigil", "description": "Carries you to a random room.", "kind": "Sigil", "weight": 0.8,
+      "onUse": [ { "effect": "active_teleport", "target": "RandomRoom" } ] },
+    { "id": "sigil_coffer", "name": "Coffer Sigil", "description": "Spills a handful of coins.", "kind": "Sigil",
+      "onUse": [ { "effect": "active_spawn_pickups", "pickup": "Coin", "count": 5 } ] },
+    { "id": "sigil_wheel", "name": "Sigil of the Wheel", "description": "Fires your shot in every direction at once.", "kind": "Sigil",
+      "onUse": [ { "effect": "active_projectile_ring", "count": 16, "damageScale": 1.5 } ] },
+
+    { "id": "draught_swiftwater", "name": "Swiftwater", "description": "Speed up.", "kind": "Draught",
+      "onUse": [ { "effect": "active_perm_stat", "stat": "MoveSpeed", "value": 0.15 } ] },
+    { "id": "draught_ironblood", "name": "Ironblood", "description": "Damage up.", "kind": "Draught",
+      "onUse": [ { "effect": "active_perm_stat", "stat": "Damage", "value": 0.35 } ] },
+    { "id": "draught_longsight", "name": "Longsight", "description": "Range up.", "kind": "Draught",
+      "onUse": [ { "effect": "active_perm_stat", "stat": "Range", "value": 1.2 } ] },
+    { "id": "draught_frenzy", "name": "Frenzy", "description": "Fire rate surges until you leave the room.", "kind": "Draught",
+      "onUse": [ { "effect": "active_temp_stat", "stat": "FireRate", "value": 1.5, "duration": 0 } ] },
+    { "id": "draught_bulwark", "name": "Bulwark", "description": "A shell of Ward forms around you.", "kind": "Draught",
+      "onUse": [ { "effect": "active_heal", "halves": 0, "ward": 2 } ] },
+    { "id": "draught_bile", "name": "Bile", "description": "That was a mistake. (Never lethal.)", "kind": "Draught", "harmful": true,
+      "onUse": [ { "effect": "active_hurt_self", "halves": 1 } ] },
+    { "id": "draught_mire", "name": "Mire", "description": "Speed down.", "kind": "Draught", "harmful": true, "weight": 0.7,
+      "onUse": [ { "effect": "active_perm_stat", "stat": "MoveSpeed", "value": -0.1 } ] },
+    { "id": "draught_ill_omen", "name": "Ill Omen", "description": "Luck down.", "kind": "Draught", "harmful": true, "weight": 0.7,
+      "onUse": [ { "effect": "active_perm_stat", "stat": "Luck", "value": -1 } ] }
+  ],
+
+  "hexes": [
+    { "id": "hex_shroud", "name": "Hex of the Shroud", "description": "Your map only remembers where you have been.", "hideMap": true },
+    { "id": "hex_labyrinth", "name": "Hex of the Labyrinth", "description": "The floor sprawls far larger than it should.", "minFloor": 1, "floorSizeMultiplier": 1.5, "weight": 0.8 },
+    { "id": "hex_veil", "name": "Hex of the Veil", "description": "Relics on pedestals are hidden until taken.", "veilPedestals": true },
+    { "id": "hex_gloom", "name": "Hex of Gloom", "description": "Darkness presses in around you.", "visionRadius": 4.5 },
+    { "id": "hex_frailty", "name": "Hex of Frailty", "description": "Fortune turns away from you.", "effects": [ { "effect": "stat", "stat": "Luck", "value": -2 } ] }
+  ],
+
+  "shrines": [
+    { "id": "shrine_blood_font", "name": "Blood Font", "description": "A basin that thirsts.", "weight": 1,
+      "options": [
+        { "label": "Offer blood", "cost": "Health", "amount": 2, "maxUses": 3,
+          "outcomes": [
+            { "kind": "Coins", "count": 3, "weight": 3, "message": "Coins well up from the basin." },
+            { "kind": "Pickup", "pickup": "Ward", "weight": 1, "message": "A shell of Ward forms." },
+            { "kind": "Item", "pool": "curse", "weight": 0.6, "message": "Something rises from the font." },
+            { "kind": "Nothing", "weight": 1, "message": "The font drinks deeply and gives nothing." } ] } ] },
+
+    { "id": "shrine_gilded_idol", "name": "Gilded Idol", "description": "Feed it coins. Perhaps it feeds you back.", "weight": 1.2,
+      "options": [
+        { "label": "Offer coins", "cost": "Coins", "amount": 3, "maxUses": 6, "firstOutcomeWeightPerUse": 0.3,
+          "outcomes": [
+            { "kind": "Nothing", "weight": 3, "message": "The idol stays silent." },
+            { "kind": "Pickup", "pickup": "Coin", "count": 4, "weight": 1.5, "message": "The idol coughs up coins." },
+            { "kind": "Pickup", "pickup": "VigorFull", "weight": 1, "message": "A warm glow." },
+            { "kind": "Item", "pool": "treasure", "weight": 0.25, "message": "The idol cracks open!" } ] } ] },
+
+    { "id": "shrine_crossroads", "name": "Crossroads Cairn", "description": "Two stones. Take one.", "weight": 0.8,
+      "options": [
+        { "label": "Left stone", "maxUses": 1,
+          "outcomes": [
+            { "kind": "Stat", "weight": 1, "effect": { "effect": "stat", "stat": "Damage", "value": 0.5 }, "message": "Strength flows into you." },
+            { "kind": "Hex", "contentId": "hex_gloom", "weight": 1, "message": "The light dims." } ] },
+        { "label": "Right stone", "maxUses": 1,
+          "outcomes": [
+            { "kind": "Consumable", "weight": 1, "message": "A gift beneath the stone." },
+            { "kind": "Enemies", "contentId": "husk_shambler", "count": 3, "weight": 1, "message": "The dead were sleeping under it." } ] } ] },
+
+    { "id": "shrine_reliquary_lock", "name": "Reliquary Lock", "description": "An iron box with a keyhole.", "weight": 0.8,
+      "options": [
+        { "label": "Use a key", "cost": "Keys", "amount": 1, "maxUses": 1,
+          "outcomes": [
+            { "kind": "Item", "pool": "treasure", "weight": 1, "message": "A relic inside!" },
+            { "kind": "Pickup", "pickup": "Bomb", "count": 3, "weight": 1, "message": "Bombs, neatly packed." },
+            { "kind": "Consumable", "weight": 1, "message": "A sealed flask." } ] } ] }
+  ]
+}

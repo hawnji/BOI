@@ -6,7 +6,7 @@ using Hollowcrawl.ProcGen;
 
 namespace Hollowcrawl.Simulation
 {
-    public enum ActorKind { Player, Enemy, PlayerShot, EnemyShot, Pickup, Bomb, Hazard, Companion, Exit }
+    public enum ActorKind { Player, Enemy, PlayerShot, EnemyShot, Pickup, Bomb, Hazard, Companion, Exit, Shrine }
 
     /// <summary>Anything that lives in a room. Ids are unique per run so presentation can pool views by id.</summary>
     public abstract class Actor
@@ -86,6 +86,7 @@ namespace Hollowcrawl.Simulation
         public string ContentId;      // item/trinket id for pedestals
         public int Price;             // > 0 in shops
         public bool Pedestal;         // stays in place, collected by touching
+        public bool Veiled;           // hex: contents hidden until collected
         public float SpawnProtection = 0.35f; // can't be collected the instant it appears
         public bool CanCollect => SpawnProtection <= 0f;
     }
@@ -115,6 +116,17 @@ namespace Hollowcrawl.Simulation
         public float Cooldown;
         public float OrbitAngle;
         public float FireInterval = 1.2f;
+    }
+
+    /// <summary>One option of an event-room shrine. Touching it pays the cost and rolls an outcome.</summary>
+    public sealed class ShrineActor : Actor
+    {
+        public override ActorKind Kind => ActorKind.Shrine;
+        public Consumables.ShrineDefinition Definition;
+        public int OptionIndex;
+        public int Uses;
+        public float Cooldown;
+        public Consumables.ShrineOption Option => Definition.Options[OptionIndex];
     }
 
     /// <summary>The trapdoor / portal that appears after a boss.</summary>

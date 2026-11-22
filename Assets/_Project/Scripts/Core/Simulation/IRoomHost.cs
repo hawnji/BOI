@@ -28,6 +28,9 @@ namespace Hollowcrawl.Simulation
         void SpawnCompanion(string companionId, object source);
         void RemoveCompanions(object source);
         void TeleportPlayer(TeleportTarget target);
+        void RevealMap(bool includeSecrets);
+        /// <summary>The player touched a shrine option whose cooldown has elapsed.</summary>
+        void UseShrine(ShrineActor shrine);
     }
 
     /// <summary>Hands out run-unique actor ids.</summary>

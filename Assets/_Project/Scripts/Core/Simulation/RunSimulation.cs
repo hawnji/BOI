@@ -44,7 +44,7 @@ namespace Hollowcrawl.Simulation
     /// shops, floor progression, victory and defeat. Owns the player's item engine. Unity drives it with
     /// <see cref="Step"/> on a fixed timestep and draws <see cref="CurrentRoom"/>.
     /// </summary>
-    public sealed class RunSimulation : IRoomHost
+    public sealed partial class RunSimulation : IRoomHost
     {
         public const float FixedStep = 1f / 60f;
 
@@ -97,6 +97,10 @@ namespace Hollowcrawl.Simulation
             _dropRng = root.Fork("drops");
 
             var stats = new StatSheet();
+            // the character's container count replaces the default base so max-health items still stack on top
+            float baseContainers = StatTable.Get(StatId.MaxHealth).Base;
+            if (Setup.StartingContainers != (int)baseContainers)
+                stats.Add(new StatModifier(StatId.MaxHealth, ModifierOp.Flat, Setup.StartingContainers - baseContainers, Setup, 0, null, "character"));
             foreach (var m in Setup.StatModifiers) stats.Add(m);
             var health = new HealthPool(Setup.StartingContainers, Setup.StartingContainers * 2, Setup.StartingWard, Setup.StartingUmbral);
             var resources = new PlayerResources();
@@ -113,6 +117,7 @@ namespace Hollowcrawl.Simulation
             Player = new PlayerActor(new MovementTuning()) { Id = _ids.Next() };
             _pools = new ItemPools(Content.Items.Values, Setup.IsUnlocked, root.Fork("pools"));
             _generator = new FloorGenerator(Templates);
+            InitConsumables(root);
 
             if (Setup.FloorSequence.Count > 0)
                 foreach (var id in Setup.FloorSequence) { if (Content.Floors.TryGetValue(id, out var f)) _sequence.Add(f); }
@@ -134,6 +139,7 @@ namespace Hollowcrawl.Simulation
             if (State != RunState.Playing) return;
             RunTime += dt;
             SyncPlayerFromItems();
+            HandleConsumableInput(input);
             var room = CurrentRoom;
             room.Step(dt, input);
             if (State != RunState.Playing) return;
@@ -161,7 +167,7 @@ namespace Hollowcrawl.Simulation
             CurrentRoom?.OnPlayerLeft();
             FloorIndex = index;
             Floor = _sequence[Math.Min(index, _sequence.Count - 1)];
-            Layout = _generator.Generate(Floor, index, Setup.Seed, _history);
+            Layout = _generator.Generate(PrepareHex(Floor, index), index, Setup.Seed, _history);
             _rooms.Clear();
             _populated.Clear();
             _shopSlots.Clear();
@@ -237,6 +243,9 @@ namespace Hollowcrawl.Simulation
                     sim.SpawnPickupActor(PickupKind.VigorFull, grid.Center + new Vec2(-1f, 0f), scatter: false);
                     sim.SpawnPickupActor(PickupKind.VigorFull, grid.Center + new Vec2(1f, 0f), scatter: false);
                     break;
+                case RoomType.Event:
+                    PopulateShrine(sim, slots);
+                    break;
                 case RoomType.Reward:
                     for (int i = 0; i < 3; i++) sim.SpawnPickupActor(ResolvePickupKind(_drops.RollChest(_dropRng).ToString()), grid.Center + new Vec2(i - 1f, 0f));
                     break;
@@ -252,7 +261,8 @@ namespace Hollowcrawl.Simulation
         {
             var item = _pools.Draw(pool, Engine, Engine.Stats[StatId.Luck]) ?? _pools.Draw(fallbackPool, Engine, Engine.Stats[StatId.Luck]);
             if (item == null) { sim.SpawnPickupActor(PickupKind.Coin, pos); return; }
-            sim.SpawnPickupActor(item.Kind == ItemKind.Trinket ? PickupKind.Trinket : PickupKind.Item, pos, item.Id, price, pedestal: true, scatter: false);
+            var ped = sim.SpawnPickupActor(item.Kind == ItemKind.Trinket ? PickupKind.Trinket : PickupKind.Item, pos, item.Id, price, pedestal: true, scatter: false);
+            if (ped != null && ActiveHex != null && ActiveHex.VeilPedestals) ped.Veiled = true;
         }
 
         private void PopulateShop(RoomSimulation sim, List<(int x, int y)> slots)
@@ -268,16 +278,16 @@ namespace Hollowcrawl.Simulation
             }
         }
 
-        /// <summary>Maps generator/drop pickup names to kinds this build can grant. Consumables arrive in phase 7.</summary>
+        /// <summary>Maps generator/drop pickup names to kinds this build can grant (consumables only when content defines some).</summary>
         private PickupKind ResolvePickupKind(string kind)
         {
             if (kind == null || kind == "random")
             {
                 var k = _drops.RollProp(_dropRng, null) ?? PickupKind.Coin;
-                return k == PickupKind.Consumable ? PickupKind.Coin : k;
+                return k == PickupKind.Consumable && !HasConsumableContent ? PickupKind.Coin : k;
             }
             if (!Enum.TryParse(kind, out PickupKind parsed)) return PickupKind.Coin;
-            return parsed == PickupKind.Consumable ? PickupKind.Coin : parsed;
+            return parsed == PickupKind.Consumable && !HasConsumableContent ? PickupKind.Coin : parsed;
         }
 
         private void RefreshDoors()
@@ -471,6 +481,7 @@ namespace Hollowcrawl.Simulation
                 case PickupKind.VigorFull: if (!CanGrant(p.Pickup)) return false; h.Heal(2); Heal(p, 2); return true;
                 case PickupKind.Ward: h.AddWard(2); return true;
                 case PickupKind.Umbral: h.AddUmbral(2); return true;
+                case PickupKind.Consumable: return GrantConsumable(p);
                 case PickupKind.Item:
                 case PickupKind.Trinket:
                 {
@@ -558,5 +569,7 @@ namespace Hollowcrawl.Simulation
         public void RemoveCompanions(object source) => Companions.RemoveAll(c => ReferenceEquals(c.Source, source));
 
         public void TeleportPlayer(TeleportTarget target) => _pendingTeleport = target;
+
+        public void RevealMap(bool includeSecrets) => FloorState.RevealMap(includeSecrets);
     }
 }

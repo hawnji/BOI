@@ -80,6 +80,10 @@ namespace Hollowcrawl.Items.Effects
             r.Register("active_spawn_pickups", s => new ActiveSpawnPickupsEffect(), "pickup, count");
             r.Register("active_companion_room", s => new ActiveCompanionRoomEffect(), "companion, count");
             r.Register("active_explosions", s => new ActiveExplosionsEffect(), "count, radius, damage");
+            r.Register("active_perm_stat", s => new ActivePermanentStatEffect(), "stat, op=Flat, value");
+            r.Register("active_resource", s => new ActiveResourceEffect(), "resource (Coins|Bombs|Keys|Embers), amount (may be negative)");
+            r.Register("active_hurt_self", s => new ActiveHurtSelfEffect(), "halves (never lethal)");
+            r.Register("active_reveal_map", s => new ActiveRevealMapEffect(), "secrets=false");
         }
     }
 }

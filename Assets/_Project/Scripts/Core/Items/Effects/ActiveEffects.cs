@@ -144,3 +144,60 @@ namespace Hollowcrawl.Items.Effects
         }
     }
 }
+
+namespace Hollowcrawl.Items.Effects
+{
+    /// <summary>Optional world capabilities beyond <see cref="IGameWorld"/> (the run simulation implements them).</summary>
+    public interface IRunWorld
+    {
+        void RevealMap(bool includeSecrets);
+    }
+
+    /// <summary>"active_perm_stat": {stat, op=Flat, value}. A permanent stat change each use (draughts, shrines).</summary>
+    public sealed class ActivePermanentStatEffect : EffectBase, IActiveEffect
+    {
+        public bool Use(ActiveUseContext use)
+        {
+            var mod = new Stats.StatModifier(Ctx.P.GetEnum("stat", Stats.StatId.Damage), Ctx.P.GetEnum("op", Stats.ModifierOp.Flat),
+                Ctx.P.GetFloat("value", 0.1f), Ctx.Engine, 0, null, Ctx.SourceId);
+            return Ctx.Stats.Add(mod); // owned by the engine, so detaching this source never removes it
+        }
+    }
+
+    /// <summary>"active_resource": {resource=Coins|Bombs|Keys|Embers, amount}. Amount may be negative (fails if not affordable).</summary>
+    public sealed class ActiveResourceEffect : EffectBase, IActiveEffect
+    {
+        public bool Use(ActiveUseContext use)
+        {
+            var kind = Ctx.P.GetEnum("resource", Economy.ResourceKind.Coins);
+            int amount = Ctx.P.GetInt("amount", 1);
+            if (amount < 0) return Ctx.Resources.TrySpend(kind, -amount);
+            Ctx.Resources.Add(kind, amount);
+            return amount > 0;
+        }
+    }
+
+    /// <summary>"active_hurt_self": {halves=1}. Ignores defense and invulnerability but never kills (leaves half a point).</summary>
+    public sealed class ActiveHurtSelfEffect : EffectBase, IActiveEffect
+    {
+        public bool Use(ActiveUseContext use)
+        {
+            if (Ctx.Health == null) return false;
+            int halves = Math.Min(Ctx.P.GetInt("halves", 1), Math.Max(0, Ctx.Health.TotalHalves - 1));
+            if (halves <= 0) return true; // the curse fizzles harmlessly rather than killing
+            Ctx.Health.TakeDamage(halves, 0f, null, ignoreInvulnerability: true);
+            return true;
+        }
+    }
+
+    /// <summary>"active_reveal_map": {secrets=false}. Reveals the floor map.</summary>
+    public sealed class ActiveRevealMapEffect : EffectBase, IActiveEffect
+    {
+        public bool Use(ActiveUseContext use)
+        {
+            if (!(Ctx.World is IRunWorld w)) return false;
+            w.RevealMap(Ctx.P.GetBool("secrets", false));
+            return true;
+        }
+    }
+}

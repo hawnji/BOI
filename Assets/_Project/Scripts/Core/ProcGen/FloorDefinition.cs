@@ -59,5 +59,8 @@ namespace Hollowcrawl.ProcGen
         public string MusicKey;
         public string AmbienceKey;
         public string[] Hazards = Array.Empty<string>();
+
+        /// <summary>Shallow copy for per-run tweaks (hexes that enlarge floors). Lists are shared: don't mutate them.</summary>
+        public FloorDefinition Clone() => (FloorDefinition)MemberwiseClone();
     }
 }

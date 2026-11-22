@@ -129,3 +129,21 @@ thresholds. Major bosses need at least two phases (validator warning).
 
 Sprites: put art at `Resources/Sprites/<spriteKey>`; until then a coloured placeholder shape is drawn.
 Audio: `Resources/Audio/<audioKey>` clips play for events when they exist.
+
+## Consumables, hexes and shrines (`Content/Consumables/*.json`)
+
+**consumables**: `id`, `name`, `description`, `kind` (Sigil = effect printed on it; Draught = unidentified, shown by a
+per-run random colour until first drunk), `weight`, `harmful`, `minFloor`, `unlockId`, `onUse` (active effects only:
+`active_heal`, `active_room_damage`, `active_teleport`, `active_spawn_pickups`, `active_projectile_ring`,
+`active_temp_stat`, `active_perm_stat`, `active_resource`, `active_hurt_self` (never lethal), `active_reveal_map`, ...).
+
+**hexes** (one may roll per floor after the first, chance from the difficulty): `id`, `name`, `description`, `weight`,
+`minFloor`, flags `hideMap`, `hideRoomIcons`, `floorSizeMultiplier` (1..2), `veilPedestals`, `visionRadius`, and
+ordinary `effects` attached as a curse for the floor (so `curse:<id>` conditions work).
+
+**shrines** (event rooms): `id`, `name`, `description`, `spriteKey`, `weight`, `minFloor`, `options`. Each option has
+`label`, `cost` (None, Coins, Health, Keys, Bombs) + `amount`, `maxUses`, `firstOutcomeWeightPerUse`, and weighted
+`outcomes` of `kind` Nothing, Pickup (`pickup`, `count`), Coins (`count`), Item (`pool`), Heal/Damage (`count` half
+points, damage never lethal), Hex (`contentId`), Consumable (`contentId` or random), Stat (`effect`: a passive
+effect kept for the run), Enemies (`contentId`, `count`; relocks the room). `message` is shown to the player.
+Health costs are refused if they would take the last half point.

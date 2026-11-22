@@ -15,7 +15,7 @@ Last updated: 2026-11-22.
 
 | Phase | Status | Notes |
 |---|---|---|
-| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 118 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
+| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 128 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
 | 2 Core player gameplay | In progress | Full gameplay loop runs headless (ADR-009): movement, shooting, enemies, bombs, pickups, doors, rooms, floors, boss exit; unit-tested incl. determinism and random-play soak. Unity presentation layer written (placeholder art, IMGUI HUD), not yet compiled in Unity. |
 | 3 Combat and interaction foundations | In progress | Pure parts exist and are unit-tested: damage info, status controller, health pool, enemy AI brain, attack patterns, difficulty scaling. Unity enemy components not started. |
 | 4 Item interaction engine | In progress | Engine core done early (spec: "design early"). Remaining: integration with real projectiles/companions/enemies, in-game debug overlay. |
@@ -70,7 +70,7 @@ Last updated: 2026-11-22.
 | Projectile simulation (homing, accel, wavy, boomerang, lobbed, range, pierce, bounce, spectral, split, chain, explode) | Implemented (unit-tested) | `Core/Combat/ProjectileSimulation.cs` |
 | Floor/room state (combat door locks, keys, secret reveal, challenge/curse doors, map reveal) | Implemented (unit-tested) | `Core/Rooms/RoomState.cs` |
 | Room simulation (tile collision, player move/fire/bomb/active, enemy AI execution, shots, explosions, destructible tiles, hazards, pickups, doorways) | Implemented (unit-tested) | `Core/Simulation/RoomSimulation.cs`, ADR-009 |
-| Run simulation (floor sequence, transitions, room population, treasure/shop/secret/healing/reward rooms, clear rewards, boss exit, victory/defeat, teleports, companions) | Implemented (unit-tested) | `Core/Simulation/RunSimulation.cs`; consumable pickups convert to coins until Phase 7 |
+| Run simulation (floor sequence, transitions, room population, treasure/shop/secret/healing/reward rooms, clear rewards, boss exit, victory/defeat, teleports, companions) | Implemented (unit-tested) | `Core/Simulation/RunSimulation.cs`; consumables granted when content defines them |
 | Unity presentation (room texture, pooled actor sprites, camera follow + shake, placeholder art/audio hooks, IMGUI HUD with health/resources/active/minimap/boss bar/pause/run end, auto-start run) | Implemented (type-checked only) | `Runtime/Presentation`; not compiled or run in Unity |
 | Player controller, projectile objects, camera, room instantiation, door transitions (Unity) | Not started | Phase 2 Unity side |
 | Enemy framework and AI (data-driven movement/attacks, telegraphs, cooldowns, waves, dash, summon caps, retreat, aggro, difficulty gating, deterministic) | Implemented (unit-tested) | `Core/Enemies`; Unity enemy component not started |
@@ -78,15 +78,15 @@ Last updated: 2026-11-22.
 | Item pools (seeded, rarity/quality/luck weighted, unlock-aware, no repeats per run) | Implemented (unit-tested) | `Core/Economy/ItemPools.cs` |
 | Shop inventory generation, pricing, discounts, purchases | Implemented (unit-tested) | `Core/Economy/ShopInventory.cs`; shop room/UI not started |
 | Drop tables (room clear, enemy, prop, chest; luck and item modifiers) | Implemented (unit-tested) | `Core/Economy/DropTables.cs` |
-| Pickup objects, bombs, consumables (Unity) | Not started | Bomb spec and modifiers exist in Core |
-| Curses, random events, room modifiers | Not started | Engine supports curse sources and `curse:` conditions |
-| Difficulty system | Not started | |
+| Pickups, bombs, consumables (sigils + unidentified draughts with per-run colours, slots, swap) | Implemented (unit-tested in Core; Unity drawing type-checked only) | `Core/Consumables`, `RunSimulation.Consumables.cs` |
+| Floor hexes (curses), shrine events | Implemented (unit-tested) | 5 hexes (map hide, larger floor, veiled pedestals, darkness, stat), 4 shrines with costs/outcomes/ambush; room modifiers not started |
+| Difficulty system | In progress | Story/Normal/Hard/Nightmare presets drive enemy scaling, attack gating, damage bonus and hex chance; no selection UI yet |
 | Game modes (standard, challenge, daily, practice, custom) | Not started | Daily seed function exists |
 | Unlocks, achievements, completion marks, endings, statistics UI | Not started | Save models exist |
 | UI (menus, HUD, minimap, settings, inventory) | Not started | |
 | Audio (music, SFX, mixing) | Not started | |
 | Art, animation, lighting, VFX | Not started | |
-| Object pooling | Not started | |
+| Object pooling | Implemented (type-checked only) | Actor sprites pooled by id (`ActorViews`); simulation actors are plain objects |
 | Windows build | Not started | |
 
 ## Content production checklist
@@ -98,6 +98,9 @@ count only if they are distinct, functional content.
 |---|---:|---:|---|
 | Playable characters | 12 | 0 | Not started |
 | Collectible items (total) | 300 | 21 | In progress |
+| Consumables (sigils + draughts) | - | 14 | In progress |
+| Floor hexes | - | 5 | In progress |
+| Shrine events | - | 4 | In progress |
 | Passive items | 180 | 17 | In progress |
 | Active items | 45 | 2 | In progress |
 | Trinkets | 60 | 2 | In progress |

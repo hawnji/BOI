@@ -41,7 +41,12 @@ namespace Hollowcrawl.Presentation
                     if (e.Elite) v.transform.localScale = v.transform.localScale * 1.15f;
                 }
                 foreach (var s in room.Shots) Show(s, s.Team == Combat.Team.Player ? 8 : 9);
-                foreach (var p in room.Pickups) Show(p, 2);
+                foreach (var p in room.Pickups)
+                {
+                    var v = Show(p, 2);
+                    if (p.Veiled) v.color = new Color(0.4f, 0.4f, 0.45f);
+                }
+                foreach (var sh in room.Shrines) Show(sh, 1);
                 foreach (var b in room.Bombs)
                 {
                     var v = Show(b, 3);
