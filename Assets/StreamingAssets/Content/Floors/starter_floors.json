@@ -1,17 +1,91 @@
 {
-  "floors": [
-    { "id": "ashen_crypt", "name": "Ashen Crypt", "theme": "crypt", "depth": 1,
-      "minRooms": 9, "maxRooms": 12, "minTemplateDifficulty": 1, "maxTemplateDifficulty": 3, "baseEnemyBudget": 5,
-      "largeRoomChance": 0.15, "loopChance": 0.08,
-      "enemies": [
-        { "enemyId": "husk_shambler", "cost": 1, "weight": 3, "tags": ["melee"] },
-        { "enemyId": "ash_bat", "cost": 1, "weight": 2, "tags": ["flying"] },
-        { "enemyId": "cinder_imp", "cost": 2, "weight": 1.5, "tags": ["ranged"] },
-        { "enemyId": "bone_thrower", "cost": 2, "weight": 1.5, "tags": ["ranged"] },
-        { "enemyId": "mote_swarm", "cost": 3, "weight": 0.8, "tags": ["flying", "summoner"], "maxPerRoom": 2 }
-      ],
-      "bosses": [ { "id": "pyre_warden", "weight": 1 }, { "id": "grave_choir", "weight": 1 } ],
-      "minibosses": [ { "id": "ossuary_brute", "weight": 1 } ],
-      "musicKey": "music_ashen_crypt", "ambienceKey": "amb_crypt", "hazards": ["spikes", "fire"] }
-  ]
+ "floors": [
+  {
+   "id": "ashen_crypt",
+   "name": "Ashen Crypt",
+   "theme": "crypt",
+   "depth": 1,
+   "minRooms": 9,
+   "maxRooms": 12,
+   "minTemplateDifficulty": 1,
+   "maxTemplateDifficulty": 3,
+   "baseEnemyBudget": 5,
+   "largeRoomChance": 0.15,
+   "loopChance": 0.08,
+   "enemies": [
+    {
+     "enemyId": "husk_shambler",
+     "cost": 1,
+     "weight": 3,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "ash_bat",
+     "cost": 1,
+     "weight": 2,
+     "tags": [
+      "flying"
+     ]
+    },
+    {
+     "enemyId": "cinder_imp",
+     "cost": 2,
+     "weight": 1.5,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "bone_thrower",
+     "cost": 2,
+     "weight": 1.5,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "mote_swarm",
+     "cost": 3,
+     "weight": 0.8,
+     "tags": [
+      "flying",
+      "summoner"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "crypt_lantern",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    }
+   ],
+   "bosses": [
+    {
+     "id": "pyre_warden",
+     "weight": 1
+    },
+    {
+     "id": "grave_choir",
+     "weight": 1
+    }
+   ],
+   "minibosses": [
+    {
+     "id": "ossuary_brute",
+     "weight": 1
+    }
+   ],
+   "musicKey": "music_ashen_crypt",
+   "ambienceKey": "amb_crypt",
+   "hazards": [
+    "spikes",
+    "fire"
+   ]
+  }
+ ]
 }

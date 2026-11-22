@@ -1,0 +1,1454 @@
+{
+ "floors": [
+  {
+   "id": "sunken_ossuary",
+   "name": "Sunken Ossuary",
+   "theme": "ossuary",
+   "depth": 2,
+   "minRooms": 10,
+   "maxRooms": 13,
+   "minTemplateDifficulty": 1,
+   "maxTemplateDifficulty": 3,
+   "baseEnemyBudget": 6,
+   "largeRoomChance": 0.16999999999999998,
+   "loopChance": 0.08,
+   "enemies": [
+    {
+     "enemyId": "rib_crawler",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "skull_lantern",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "flying"
+     ]
+    },
+    {
+     "enemyId": "marrow_brute",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "bone_reliquary",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "knuckle_hopper",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "ossuary_acolyte",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "summoner"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "vertebra_snake",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "crypt_bellows",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    }
+   ],
+   "bosses": [
+    {
+     "id": "osseous_matron",
+     "weight": 1
+    },
+    {
+     "id": "hollow_sexton",
+     "weight": 1
+    }
+   ],
+   "minibosses": [
+    {
+     "id": "knucklebone_king",
+     "weight": 1
+    }
+   ],
+   "musicKey": "music_sunken_ossuary",
+   "ambienceKey": "amb_ossuary",
+   "hazards": [
+    "spikes"
+   ]
+  },
+  {
+   "id": "mire_hollows",
+   "name": "Mire Hollows",
+   "theme": "mire",
+   "depth": 3,
+   "minRooms": 10,
+   "maxRooms": 13,
+   "minTemplateDifficulty": 1,
+   "maxTemplateDifficulty": 4,
+   "baseEnemyBudget": 6,
+   "largeRoomChance": 0.18,
+   "loopChance": 0.08,
+   "enemies": [
+    {
+     "enemyId": "bog_leech",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "mire_toad",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "spore_puff",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "flying"
+     ]
+    },
+    {
+     "enemyId": "rot_wader",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "hazard"
+     ]
+    },
+    {
+     "enemyId": "sludge_mound",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "reed_spitter",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "mire_burrower",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "burrow"
+     ]
+    },
+    {
+     "enemyId": "bloat_fly",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "flying"
+     ]
+    }
+   ],
+   "bosses": [
+    {
+     "id": "the_drowned_mother",
+     "weight": 1
+    },
+    {
+     "id": "gutmaw",
+     "weight": 1
+    }
+   ],
+   "minibosses": [
+    {
+     "id": "swamp_hag",
+     "weight": 1
+    }
+   ],
+   "musicKey": "music_mire_hollows",
+   "ambienceKey": "amb_mire",
+   "hazards": [
+    "acid",
+    "spikes"
+   ]
+  },
+  {
+   "id": "ember_forge",
+   "name": "Ember Forge",
+   "theme": "forge",
+   "depth": 4,
+   "minRooms": 11,
+   "maxRooms": 14,
+   "minTemplateDifficulty": 2,
+   "maxTemplateDifficulty": 4,
+   "baseEnemyBudget": 7,
+   "largeRoomChance": 0.19,
+   "loopChance": 0.08,
+   "enemies": [
+    {
+     "enemyId": "slag_imp",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "anvil_golem",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "bellows_bat",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "flying"
+     ]
+    },
+    {
+     "enemyId": "cinder_hound",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "forge_turret",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "magma_wader",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "hazard"
+     ]
+    },
+    {
+     "enemyId": "powder_monk",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "smelter",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    }
+   ],
+   "bosses": [
+    {
+     "id": "the_ironmonger",
+     "weight": 1
+    },
+    {
+     "id": "crucible",
+     "weight": 1
+    }
+   ],
+   "minibosses": [
+    {
+     "id": "bellows_giant",
+     "weight": 1
+    }
+   ],
+   "musicKey": "music_ember_forge",
+   "ambienceKey": "amb_forge",
+   "hazards": [
+    "fire",
+    "spikes"
+   ]
+  },
+  {
+   "id": "frost_catacomb",
+   "name": "Frost Catacomb",
+   "theme": "frost",
+   "depth": 5,
+   "minRooms": 11,
+   "maxRooms": 14,
+   "minTemplateDifficulty": 2,
+   "maxTemplateDifficulty": 5,
+   "baseEnemyBudget": 7,
+   "largeRoomChance": 0.2,
+   "loopChance": 0.08,
+   "enemies": [
+    {
+     "enemyId": "rime_walker",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "icicle_turret",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "snow_wisp",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "flying"
+     ]
+    },
+    {
+     "enemyId": "glacier_brute",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "frost_hopper",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "hoarfrost_witch",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "summoner"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "shard_skater",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "blizzard_eye",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "ranged"
+     ],
+     "maxPerRoom": 2
+    }
+   ],
+   "bosses": [
+    {
+     "id": "the_winter_widow",
+     "weight": 1
+    },
+    {
+     "id": "permafrost",
+     "weight": 1
+    }
+   ],
+   "minibosses": [
+    {
+     "id": "yeti_bones",
+     "weight": 1
+    }
+   ],
+   "musicKey": "music_frost_catacomb",
+   "ambienceKey": "amb_frost",
+   "hazards": [
+    "spikes"
+   ]
+  },
+  {
+   "id": "gloam_gardens",
+   "name": "Gloam Gardens",
+   "theme": "garden",
+   "depth": 6,
+   "minRooms": 12,
+   "maxRooms": 15,
+   "minTemplateDifficulty": 2,
+   "maxTemplateDifficulty": 5,
+   "baseEnemyBudget": 8,
+   "largeRoomChance": 0.21,
+   "loopChance": 0.08,
+   "enemies": [
+    {
+     "enemyId": "thorn_crawler",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "pod_spitter",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "moth_wraith",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "flying"
+     ]
+    },
+    {
+     "enemyId": "root_burrower",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "burrow"
+     ]
+    },
+    {
+     "enemyId": "bloom_turret",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "seed_mother",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "summoner"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "mushroom_bloat",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "vine_lasher",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "ranged"
+     ],
+     "maxPerRoom": 2
+    }
+   ],
+   "bosses": [
+    {
+     "id": "the_gardener",
+     "weight": 1
+    },
+    {
+     "id": "rotbloom",
+     "weight": 1
+    }
+   ],
+   "minibosses": [
+    {
+     "id": "hedge_beast",
+     "weight": 1
+    }
+   ],
+   "musicKey": "music_gloam_gardens",
+   "ambienceKey": "amb_garden",
+   "hazards": [
+    "acid",
+    "spikes"
+   ]
+  },
+  {
+   "id": "storm_belfry",
+   "name": "Storm Belfry",
+   "theme": "belfry",
+   "depth": 7,
+   "minRooms": 12,
+   "maxRooms": 15,
+   "minTemplateDifficulty": 3,
+   "maxTemplateDifficulty": 6,
+   "baseEnemyBudget": 8,
+   "largeRoomChance": 0.22,
+   "loopChance": 0.08,
+   "enemies": [
+    {
+     "enemyId": "bell_bat",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "flying"
+     ]
+    },
+    {
+     "enemyId": "spark_sprite",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "rope_hanger",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "chime_turret",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "rafter_runner",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "lightning_eye",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "ranged"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "thunder_monk",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "storm_crow",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "ranged"
+     ],
+     "maxPerRoom": 2
+    }
+   ],
+   "bosses": [
+    {
+     "id": "the_bellringer",
+     "weight": 1
+    },
+    {
+     "id": "tempest",
+     "weight": 1
+    }
+   ],
+   "minibosses": [
+    {
+     "id": "great_clapper",
+     "weight": 1
+    }
+   ],
+   "musicKey": "music_storm_belfry",
+   "ambienceKey": "amb_belfry",
+   "hazards": [
+    "spikes"
+   ]
+  },
+  {
+   "id": "drowned_chapel",
+   "name": "Drowned Chapel",
+   "theme": "chapel",
+   "depth": 8,
+   "minRooms": 13,
+   "maxRooms": 16,
+   "minTemplateDifficulty": 3,
+   "maxTemplateDifficulty": 6,
+   "baseEnemyBudget": 9,
+   "largeRoomChance": 0.22999999999999998,
+   "loopChance": 0.08,
+   "enemies": [
+    {
+     "enemyId": "drowned_pilgrim",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "eel_swimmer",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "burrow"
+     ]
+    },
+    {
+     "enemyId": "chapel_gargoyle",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "tide_priest",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "summoner"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "bubble_fish",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "flying"
+     ]
+    },
+    {
+     "enemyId": "barnacle_brute",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "hymn_swirl",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "ranged"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "bloated_deacon",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    }
+   ],
+   "bosses": [
+    {
+     "id": "the_abbess_below",
+     "weight": 1
+    },
+    {
+     "id": "leviathan_font",
+     "weight": 1
+    }
+   ],
+   "minibosses": [
+    {
+     "id": "choir_eel",
+     "weight": 1
+    }
+   ],
+   "musicKey": "music_drowned_chapel",
+   "ambienceKey": "amb_chapel",
+   "hazards": [
+    "acid",
+    "spikes"
+   ]
+  },
+  {
+   "id": "bone_orchard",
+   "name": "Bone Orchard",
+   "theme": "orchard",
+   "depth": 9,
+   "minRooms": 13,
+   "maxRooms": 16,
+   "minTemplateDifficulty": 3,
+   "maxTemplateDifficulty": 7,
+   "baseEnemyBudget": 9,
+   "largeRoomChance": 0.24,
+   "loopChance": 0.08,
+   "enemies": [
+    {
+     "enemyId": "orchard_scarecrow",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "harvest_runner",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "rot_apple",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "bone_tree",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "crow_reaper",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "flying"
+     ]
+    },
+    {
+     "enemyId": "root_digger",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "burrow"
+     ]
+    },
+    {
+     "enemyId": "husk_farmer",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "summoner"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "thresher",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    }
+   ],
+   "bosses": [
+    {
+     "id": "the_harvester",
+     "weight": 1
+    },
+    {
+     "id": "mother_bough",
+     "weight": 1
+    }
+   ],
+   "minibosses": [
+    {
+     "id": "scarecrow_lord",
+     "weight": 1
+    }
+   ],
+   "musicKey": "music_bone_orchard",
+   "ambienceKey": "amb_orchard",
+   "hazards": [
+    "spikes"
+   ]
+  },
+  {
+   "id": "hive_depths",
+   "name": "Hive Depths",
+   "theme": "hive",
+   "depth": 10,
+   "minRooms": 14,
+   "maxRooms": 17,
+   "minTemplateDifficulty": 4,
+   "maxTemplateDifficulty": 7,
+   "baseEnemyBudget": 10,
+   "largeRoomChance": 0.25,
+   "loopChance": 0.08,
+   "enemies": [
+    {
+     "enemyId": "drone_wasp",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "flying"
+     ]
+    },
+    {
+     "enemyId": "larva_crawler",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "honey_spitter",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "brood_nurse",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "summoner"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "comb_turret",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "sting_strafer",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "royal_jelly",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "hive_bomber",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "melee"
+     ]
+    }
+   ],
+   "bosses": [
+    {
+     "id": "the_hive_queen",
+     "weight": 1
+    },
+    {
+     "id": "swarm_engine",
+     "weight": 1
+    }
+   ],
+   "minibosses": [
+    {
+     "id": "wax_knight",
+     "weight": 1
+    }
+   ],
+   "musicKey": "music_hive_depths",
+   "ambienceKey": "amb_hive",
+   "hazards": [
+    "acid",
+    "spikes"
+   ]
+  },
+  {
+   "id": "glass_labyrinth",
+   "name": "Glass Labyrinth",
+   "theme": "glass",
+   "depth": 11,
+   "minRooms": 14,
+   "maxRooms": 17,
+   "minTemplateDifficulty": 4,
+   "maxTemplateDifficulty": 8,
+   "baseEnemyBudget": 10,
+   "largeRoomChance": 0.26,
+   "loopChance": 0.08,
+   "enemies": [
+    {
+     "enemyId": "shard_sentry",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "ranged"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "prism_wisp",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "mirror_runner",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "glass_golem",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "splinter_turret",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "refraction",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "ranged"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "pane_walker",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "ranged"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "shatterling",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    }
+   ],
+   "bosses": [
+    {
+     "id": "the_glazier",
+     "weight": 1
+    },
+    {
+     "id": "kaleidos",
+     "weight": 1
+    }
+   ],
+   "minibosses": [
+    {
+     "id": "mirror_knight",
+     "weight": 1
+    }
+   ],
+   "musicKey": "music_glass_labyrinth",
+   "ambienceKey": "amb_glass",
+   "hazards": [
+    "spikes"
+   ]
+  },
+  {
+   "id": "umbral_vault",
+   "name": "Umbral Vault",
+   "theme": "void",
+   "depth": 12,
+   "minRooms": 15,
+   "maxRooms": 18,
+   "minTemplateDifficulty": 4,
+   "maxTemplateDifficulty": 8,
+   "baseEnemyBudget": 11,
+   "largeRoomChance": 0.27,
+   "loopChance": 0.08,
+   "enemies": [
+    {
+     "enemyId": "shade_stalker",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "void_eye",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "ranged"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "gloom_wisp",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "flying"
+     ]
+    },
+    {
+     "enemyId": "hollow_priest",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "summoner"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "null_blinker",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "abyss_turret",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "umbral_brute",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "rift_spiral",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "ranged"
+     ],
+     "maxPerRoom": 2
+    }
+   ],
+   "bosses": [
+    {
+     "id": "the_umbral_regent",
+     "weight": 1
+    },
+    {
+     "id": "maw_of_nothing",
+     "weight": 1
+    }
+   ],
+   "minibosses": [
+    {
+     "id": "vault_warden",
+     "weight": 1
+    }
+   ],
+   "musicKey": "music_umbral_vault",
+   "ambienceKey": "amb_void",
+   "hazards": [
+    "acid",
+    "spikes"
+   ]
+  },
+  {
+   "id": "cinder_throne",
+   "name": "Cinder Throne",
+   "theme": "throne",
+   "depth": 13,
+   "minRooms": 15,
+   "maxRooms": 18,
+   "minTemplateDifficulty": 5,
+   "maxTemplateDifficulty": 9,
+   "baseEnemyBudget": 11,
+   "largeRoomChance": 0.28,
+   "loopChance": 0.08,
+   "enemies": [
+    {
+     "enemyId": "ash_knight",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "ember_herald",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "pyre_bat",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "flying"
+     ]
+    },
+    {
+     "enemyId": "brand_turret",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "throne_zealot",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "cinder_monk",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "hazard"
+     ]
+    },
+    {
+     "enemyId": "flame_dancer",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "ranged"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "phoenix_chick",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    }
+   ],
+   "bosses": [
+    {
+     "id": "the_ash_king",
+     "weight": 1
+    },
+    {
+     "id": "pyroclasm",
+     "weight": 1
+    }
+   ],
+   "minibosses": [
+    {
+     "id": "throne_guard",
+     "weight": 1
+    }
+   ],
+   "musicKey": "music_cinder_throne",
+   "ambienceKey": "amb_throne",
+   "hazards": [
+    "fire",
+    "spikes"
+   ]
+  },
+  {
+   "id": "hollow_heart",
+   "name": "Hollow Heart",
+   "theme": "heart",
+   "depth": 14,
+   "minRooms": 16,
+   "maxRooms": 19,
+   "minTemplateDifficulty": 5,
+   "maxTemplateDifficulty": 9,
+   "baseEnemyBudget": 12,
+   "largeRoomChance": 0.29000000000000004,
+   "loopChance": 0.08,
+   "enemies": [
+    {
+     "enemyId": "vein_crawler",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "clot_hopper",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "artery_turret",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "flesh_brute",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "bile_spitter",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "heart_burrower",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "burrow"
+     ]
+    },
+    {
+     "enemyId": "pulse_mother",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "summoner"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "throb_slammer",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    }
+   ],
+   "bosses": [
+    {
+     "id": "the_beating_dark",
+     "weight": 1
+    },
+    {
+     "id": "twin_ventricle",
+     "weight": 1
+    }
+   ],
+   "minibosses": [
+    {
+     "id": "organ_warden",
+     "weight": 1
+    }
+   ],
+   "musicKey": "music_hollow_heart",
+   "ambienceKey": "amb_heart",
+   "hazards": [
+    "acid",
+    "spikes"
+   ]
+  },
+  {
+   "id": "the_last_hollow",
+   "name": "The Last Hollow",
+   "theme": "last",
+   "depth": 15,
+   "minRooms": 16,
+   "maxRooms": 19,
+   "minTemplateDifficulty": 5,
+   "maxTemplateDifficulty": 10,
+   "baseEnemyBudget": 12,
+   "largeRoomChance": 0.3,
+   "loopChance": 0.08,
+   "enemies": [
+    {
+     "enemyId": "final_husk",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "echo_runner",
+     "cost": 1,
+     "weight": 1.5,
+     "tags": [
+      "melee"
+     ]
+    },
+    {
+     "enemyId": "end_eye",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "ranged"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "last_choir",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "hollow_herald",
+     "cost": 2,
+     "weight": 1.0,
+     "tags": [
+      "ranged"
+     ]
+    },
+    {
+     "enemyId": "terminus_brute",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "melee"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "fading_spiral",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "ranged"
+     ],
+     "maxPerRoom": 2
+    },
+    {
+     "enemyId": "ender_wall",
+     "cost": 3,
+     "weight": 0.7,
+     "tags": [
+      "ranged"
+     ],
+     "maxPerRoom": 2
+    }
+   ],
+   "bosses": [
+    {
+     "id": "the_hollow_one",
+     "weight": 1
+    },
+    {
+     "id": "the_unmade",
+     "weight": 1
+    }
+   ],
+   "minibosses": [
+    {
+     "id": "last_warden",
+     "weight": 1
+    }
+   ],
+   "musicKey": "music_the_last_hollow",
+   "ambienceKey": "amb_last",
+   "hazards": [
+    "fire",
+    "spikes"
+   ]
+  }
+ ]
+}

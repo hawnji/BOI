@@ -1,0 +1,8740 @@
+{
+ "enemies": [
+  {
+   "id": "crypt_lantern",
+   "name": "Crypt Lantern",
+   "description": "A hanging lantern that sheds a ring of embers.",
+   "spriteKey": "enemy_crypt_lantern",
+   "contactDamage": 1,
+   "statusImmunities": [
+    "burn"
+   ],
+   "health": 14.0,
+   "radius": 0.45,
+   "knockbackResistance": 1.0,
+   "tags": [
+    "ranged",
+    "stationary",
+    "fire"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "ring",
+     "kind": "Projectile",
+     "pattern": "Ring",
+     "count": 6,
+     "projectileSpeed": 4.5,
+     "cooldown": 3.0,
+     "telegraph": 0.6,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false,
+     "telegraphKey": "tele_pulse"
+    }
+   ]
+  },
+  {
+   "id": "rib_crawler",
+   "name": "Rib Crawler",
+   "description": "A ribcage scuttling on finger bones.",
+   "spriteKey": "enemy_rib_crawler",
+   "contactDamage": 1,
+   "health": 6.4,
+   "radius": 0.32,
+   "tags": [
+    "melee",
+    "fast",
+    "ossuary"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 2.9
+   }
+  },
+  {
+   "id": "skull_lantern",
+   "name": "Skull Lantern",
+   "description": "A hollow skull with a candle inside; it spits wax.",
+   "spriteKey": "enemy_skull_lantern",
+   "contactDamage": 1,
+   "health": 8.5,
+   "radius": 0.35,
+   "tags": [
+    "flying",
+    "ranged",
+    "ossuary"
+   ],
+   "movement": {
+    "kind": "Wander",
+    "speed": 1.6,
+    "flying": true
+   },
+   "attacks": [
+    {
+     "id": "spit",
+     "kind": "Projectile",
+     "pattern": "Aimed",
+     "count": 1,
+     "projectileSpeed": 5.12,
+     "cooldown": 2.34,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    }
+   ]
+  },
+  {
+   "id": "marrow_brute",
+   "name": "Marrow Brute",
+   "description": "A heap of thigh bones that charges blindly.",
+   "spriteKey": "enemy_marrow_brute",
+   "contactDamage": 1,
+   "health": 23.3,
+   "radius": 0.6,
+   "knockbackResistance": 0.7,
+   "tags": [
+    "melee",
+    "heavy",
+    "ossuary"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.3
+   },
+   "attacks": [
+    {
+     "id": "charge",
+     "kind": "Dash",
+     "cooldown": 3.51,
+     "telegraph": 0.7,
+     "duration": 0.5,
+     "recovery": 0.7,
+     "minRange": 2,
+     "dashSpeed": 9,
+     "telegraphKey": "tele_stomp"
+    }
+   ]
+  },
+  {
+   "id": "bone_reliquary",
+   "name": "Bone Reliquary",
+   "description": "A box of relics that fires shards in every direction.",
+   "spriteKey": "enemy_bone_reliquary",
+   "contactDamage": 1,
+   "health": 14.8,
+   "radius": 0.45,
+   "knockbackResistance": 1.0,
+   "tags": [
+    "ranged",
+    "stationary",
+    "ossuary"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "ring",
+     "kind": "Projectile",
+     "pattern": "Ring",
+     "count": 6,
+     "projectileSpeed": 4.61,
+     "cooldown": 2.93,
+     "telegraph": 0.6,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false,
+     "telegraphKey": "tele_pulse"
+    }
+   ]
+  },
+  {
+   "id": "knuckle_hopper",
+   "name": "Knuckle Hopper",
+   "description": "Leaps on fused knuckles and bursts into chips.",
+   "spriteKey": "enemy_knuckle_hopper",
+   "contactDamage": 1,
+   "health": 10.6,
+   "radius": 0.4,
+   "tags": [
+    "melee",
+    "ossuary"
+   ],
+   "movement": {
+    "kind": "Hop",
+    "speed": 2.4,
+    "pauseTime": 0.7,
+    "hopDistance": 2.2
+   },
+   "onDeath": [
+    {
+     "kind": "ProjectileRing",
+     "count": 4,
+     "projectileSpeed": 4,
+     "damage": 1
+    }
+   ]
+  },
+  {
+   "id": "ossuary_acolyte",
+   "name": "Ossuary Acolyte",
+   "description": "Calls rib crawlers from the walls.",
+   "spriteKey": "enemy_ossuary_acolyte",
+   "contactDamage": 1,
+   "health": 15.9,
+   "radius": 0.48,
+   "tags": [
+    "summoner",
+    "ossuary"
+   ],
+   "retreatBelowHealth": 0.4,
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.4,
+    "preferredDistance": 6
+   },
+   "attacks": [
+    {
+     "id": "call",
+     "kind": "Summon",
+     "cooldown": 4.39,
+     "telegraph": 0.7,
+     "recovery": 0.5,
+     "requiresLineOfSight": false,
+     "summonId": "rib_crawler",
+     "summonCount": 2,
+     "maxAlive": 4,
+     "telegraphKey": "tele_pulse"
+    }
+   ]
+  },
+  {
+   "id": "vertebra_snake",
+   "name": "Vertebra Snake",
+   "description": "A spine that slithers sideways and spits.",
+   "spriteKey": "enemy_vertebra_snake",
+   "contactDamage": 1,
+   "health": 9.5,
+   "radius": 0.38,
+   "tags": [
+    "ranged",
+    "ossuary"
+   ],
+   "movement": {
+    "kind": "Strafe",
+    "speed": 2.4,
+    "preferredDistance": 4
+   },
+   "attacks": [
+    {
+     "id": "burst",
+     "kind": "Projectile",
+     "pattern": "Aimed",
+     "count": 1,
+     "projectileSpeed": 7.17,
+     "cooldown": 2.54,
+     "telegraph": 0.4,
+     "recovery": 0.35,
+     "damage": 1,
+     "duration": 0.5,
+     "waves": 3
+    }
+   ]
+  },
+  {
+   "id": "crypt_bellows",
+   "name": "Crypt Bellows",
+   "description": "A bloated corpse that bursts into smaller ones.",
+   "spriteKey": "enemy_crypt_bellows",
+   "contactDamage": 1,
+   "health": 17.0,
+   "radius": 0.55,
+   "tags": [
+    "melee",
+    "splitter",
+    "ossuary"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.5
+   },
+   "onDeath": [
+    {
+     "kind": "Split",
+     "enemyId": "rib_crawler",
+     "count": 2
+    }
+   ]
+  },
+  {
+   "id": "bog_leech",
+   "name": "Bog Leech",
+   "description": "A fat leech that hunts by heat.",
+   "spriteKey": "enemy_bog_leech",
+   "contactDamage": 1,
+   "health": 11.2,
+   "radius": 0.42,
+   "tags": [
+    "melee",
+    "mire"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.9
+   },
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "mire_toad",
+   "name": "Mire Toad",
+   "description": "Hops close and bursts into spit.",
+   "spriteKey": "enemy_mire_toad",
+   "contactDamage": 1,
+   "health": 11.2,
+   "radius": 0.4,
+   "tags": [
+    "melee",
+    "mire"
+   ],
+   "movement": {
+    "kind": "Hop",
+    "speed": 2.4,
+    "pauseTime": 0.7,
+    "hopDistance": 2.2
+   },
+   "onDeath": [
+    {
+     "kind": "ProjectileRing",
+     "count": 4,
+     "projectileSpeed": 4,
+     "damage": 1
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "spore_puff",
+   "name": "Spore Puff",
+   "description": "Floats about, puffing poison spores.",
+   "spriteKey": "enemy_spore_puff",
+   "contactDamage": 1,
+   "health": 9.0,
+   "radius": 0.35,
+   "tags": [
+    "flying",
+    "ranged",
+    "mire"
+   ],
+   "movement": {
+    "kind": "Wander",
+    "speed": 1.6,
+    "flying": true
+   },
+   "attacks": [
+    {
+     "id": "spit",
+     "kind": "Projectile",
+     "pattern": "Aimed",
+     "count": 1,
+     "projectileSpeed": 5.25,
+     "cooldown": 2.29,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "rot_wader",
+   "name": "Rot Wader",
+   "description": "Leaves acid pools wherever it walks.",
+   "spriteKey": "enemy_rot_wader",
+   "contactDamage": 1,
+   "health": 12.3,
+   "radius": 0.42,
+   "tags": [
+    "hazard",
+    "mire"
+   ],
+   "movement": {
+    "kind": "Wander",
+    "speed": 1.8
+   },
+   "attacks": [
+    {
+     "id": "puddle",
+     "kind": "Hazard",
+     "cooldown": 2.86,
+     "telegraph": 0.4,
+     "recovery": 0.3,
+     "requiresLineOfSight": false,
+     "radius": 1.0,
+     "hazardId": "acid",
+     "duration": 4,
+     "damage": 1
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "sludge_mound",
+   "name": "Sludge Mound",
+   "description": "Splits into smaller blobs when struck down.",
+   "spriteKey": "enemy_sludge_mound",
+   "contactDamage": 1,
+   "health": 17.9,
+   "radius": 0.55,
+   "tags": [
+    "melee",
+    "splitter",
+    "mire"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.5
+   },
+   "onDeath": [
+    {
+     "kind": "Split",
+     "enemyId": "bog_leech",
+     "count": 2
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "reed_spitter",
+   "name": "Reed Spitter",
+   "description": "Hides in the reeds and spits three darts.",
+   "spriteKey": "enemy_reed_spitter",
+   "contactDamage": 1,
+   "health": 12.3,
+   "radius": 0.42,
+   "tags": [
+    "ranged",
+    "mire"
+   ],
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.7,
+    "preferredDistance": 4.5
+   },
+   "attacks": [
+    {
+     "id": "fan",
+     "kind": "Projectile",
+     "pattern": "Spread",
+     "count": 3,
+     "projectileSpeed": 5.78,
+     "cooldown": 2.38,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "spread": 18,
+     "maxRange": 9,
+     "telegraphKey": "tele_windup"
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "mire_burrower",
+   "name": "Mire Burrower",
+   "description": "Swims under the mud and surfaces with a splash.",
+   "spriteKey": "enemy_mire_burrower",
+   "contactDamage": 1,
+   "health": 13.4,
+   "radius": 0.42,
+   "tags": [
+    "burrow",
+    "mire"
+   ],
+   "movement": {
+    "kind": "Burrow",
+    "speed": 2.0,
+    "pauseTime": 1.2
+   },
+   "attacks": [
+    {
+     "id": "surface_ring",
+     "kind": "Projectile",
+     "pattern": "Ring",
+     "count": 8,
+     "projectileSpeed": 4.2,
+     "cooldown": 3.05,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "bloat_fly",
+   "name": "Bloat Fly",
+   "description": "A swollen fly that swoops and stings.",
+   "spriteKey": "enemy_bloat_fly",
+   "contactDamage": 1,
+   "health": 6.7,
+   "radius": 0.3,
+   "tags": [
+    "flying",
+    "mire"
+   ],
+   "movement": {
+    "kind": "Orbit",
+    "speed": 3.0,
+    "preferredDistance": 2.5,
+    "flying": true
+   },
+   "attacks": [
+    {
+     "id": "swoop",
+     "kind": "Dash",
+     "cooldown": 2.67,
+     "telegraph": 0.45,
+     "duration": 0.35,
+     "recovery": 0.4,
+     "maxRange": 4.5,
+     "dashSpeed": 9,
+     "telegraphKey": "tele_flash"
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "slag_imp",
+   "name": "Slag Imp",
+   "description": "A dripping imp that flings molten slag.",
+   "spriteKey": "enemy_slag_imp",
+   "contactDamage": 1,
+   "health": 10.6,
+   "radius": 0.4,
+   "tags": [
+    "ranged",
+    "forge"
+   ],
+   "retreatBelowHealth": 0.3,
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.9,
+    "preferredDistance": 5
+   },
+   "attacks": [
+    {
+     "id": "shot",
+     "kind": "Projectile",
+     "pattern": "Aimed",
+     "count": 1,
+     "projectileSpeed": 6.99,
+     "cooldown": 1.86,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "maxRange": 9,
+     "telegraphKey": "tele_windup"
+    }
+   ],
+   "statusImmunities": [
+    "burn",
+    "scorch"
+   ]
+  },
+  {
+   "id": "anvil_golem",
+   "name": "Anvil Golem",
+   "description": "Slams the ground hard enough to ring.",
+   "spriteKey": "enemy_anvil_golem",
+   "contactDamage": 1,
+   "health": 21.2,
+   "radius": 0.55,
+   "knockbackResistance": 0.8,
+   "tags": [
+    "melee",
+    "heavy",
+    "forge"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.5
+   },
+   "attacks": [
+    {
+     "id": "slam",
+     "kind": "Slam",
+     "cooldown": 2.98,
+     "telegraph": 0.8,
+     "recovery": 0.6,
+     "maxRange": 2.0,
+     "radius": 1.8,
+     "damage": 1,
+     "telegraphKey": "tele_stomp"
+    }
+   ],
+   "statusImmunities": [
+    "burn",
+    "scorch"
+   ]
+  },
+  {
+   "id": "bellows_bat",
+   "name": "Bellows Bat",
+   "description": "A leather bat that gusts sparks.",
+   "spriteKey": "enemy_bellows_bat",
+   "contactDamage": 1,
+   "health": 7.1,
+   "radius": 0.3,
+   "tags": [
+    "flying",
+    "forge"
+   ],
+   "movement": {
+    "kind": "Orbit",
+    "speed": 3.0,
+    "preferredDistance": 2.5,
+    "flying": true
+   },
+   "attacks": [
+    {
+     "id": "swoop",
+     "kind": "Dash",
+     "cooldown": 2.6,
+     "telegraph": 0.45,
+     "duration": 0.35,
+     "recovery": 0.4,
+     "maxRange": 4.5,
+     "dashSpeed": 9,
+     "telegraphKey": "tele_flash"
+    }
+   ],
+   "statusImmunities": [
+    "burn",
+    "scorch"
+   ]
+  },
+  {
+   "id": "cinder_hound",
+   "name": "Cinder Hound",
+   "description": "A hound of coals, all teeth and heat.",
+   "spriteKey": "enemy_cinder_hound",
+   "contactDamage": 1,
+   "health": 7.1,
+   "radius": 0.32,
+   "tags": [
+    "melee",
+    "fast",
+    "forge"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 2.9
+   },
+   "statusImmunities": [
+    "burn",
+    "scorch"
+   ]
+  },
+  {
+   "id": "forge_turret",
+   "name": "Forge Turret",
+   "description": "A furnace mouth that coughs fire in rings.",
+   "spriteKey": "enemy_forge_turret",
+   "contactDamage": 1,
+   "health": 16.5,
+   "radius": 0.45,
+   "knockbackResistance": 1.0,
+   "tags": [
+    "ranged",
+    "stationary",
+    "forge"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "ring",
+     "kind": "Projectile",
+     "pattern": "Ring",
+     "count": 6,
+     "projectileSpeed": 4.84,
+     "cooldown": 2.79,
+     "telegraph": 0.6,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false,
+     "telegraphKey": "tele_pulse"
+    }
+   ],
+   "statusImmunities": [
+    "burn",
+    "scorch"
+   ]
+  },
+  {
+   "id": "magma_wader",
+   "name": "Magma Wader",
+   "description": "Leaves burning slag where it walks.",
+   "spriteKey": "enemy_magma_wader",
+   "contactDamage": 1,
+   "health": 13.0,
+   "radius": 0.42,
+   "tags": [
+    "hazard",
+    "forge"
+   ],
+   "movement": {
+    "kind": "Wander",
+    "speed": 1.8
+   },
+   "attacks": [
+    {
+     "id": "puddle",
+     "kind": "Hazard",
+     "cooldown": 2.79,
+     "telegraph": 0.4,
+     "recovery": 0.3,
+     "requiresLineOfSight": false,
+     "radius": 1.0,
+     "hazardId": "fire",
+     "duration": 4,
+     "damage": 1
+    }
+   ],
+   "statusImmunities": [
+    "burn",
+    "scorch"
+   ]
+  },
+  {
+   "id": "powder_monk",
+   "name": "Powder Monk",
+   "description": "Runs at you lit and laughing.",
+   "spriteKey": "enemy_powder_monk",
+   "contactDamage": 1,
+   "health": 8.3,
+   "radius": 0.38,
+   "tags": [
+    "melee",
+    "explosive",
+    "forge"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 2.3
+   },
+   "attacks": [
+    {
+     "id": "burst",
+     "kind": "Explode",
+     "cooldown": 0.93,
+     "telegraph": 0.8,
+     "maxRange": 1.3,
+     "radius": 1.6,
+     "damage": 2,
+     "telegraphKey": "tele_fuse"
+    }
+   ],
+   "statusImmunities": [
+    "burn",
+    "scorch"
+   ]
+  },
+  {
+   "id": "smelter",
+   "name": "Smelter",
+   "description": "Splits into molten droplets.",
+   "spriteKey": "enemy_smelter",
+   "contactDamage": 1,
+   "health": 18.9,
+   "radius": 0.55,
+   "tags": [
+    "melee",
+    "splitter",
+    "forge"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.5
+   },
+   "onDeath": [
+    {
+     "kind": "Split",
+     "enemyId": "slag_imp",
+     "count": 2
+    }
+   ],
+   "statusImmunities": [
+    "burn",
+    "scorch"
+   ]
+  },
+  {
+   "id": "rime_walker",
+   "name": "Rime Walker",
+   "description": "A frozen corpse that walks the halls.",
+   "spriteKey": "enemy_rime_walker",
+   "contactDamage": 1,
+   "health": 12.4,
+   "radius": 0.42,
+   "tags": [
+    "melee",
+    "frost"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.9
+   },
+   "statusImmunities": [
+    "chill",
+    "freeze"
+   ]
+  },
+  {
+   "id": "icicle_turret",
+   "name": "Icicle Turret",
+   "description": "A crystal that sheds icicles in a cross.",
+   "spriteKey": "enemy_icicle_turret",
+   "contactDamage": 1,
+   "health": 14.9,
+   "radius": 0.45,
+   "knockbackResistance": 0.9,
+   "tags": [
+    "ranged",
+    "stationary",
+    "frost"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "cross",
+     "kind": "Projectile",
+     "pattern": "Cross",
+     "count": 1,
+     "projectileSpeed": 5.5,
+     "cooldown": 2.36,
+     "telegraph": 0.55,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    },
+    {
+     "id": "xcross",
+     "kind": "Projectile",
+     "pattern": "X",
+     "count": 1,
+     "projectileSpeed": 5.5,
+     "cooldown": 2.36,
+     "telegraph": 0.55,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    }
+   ],
+   "statusImmunities": [
+    "chill",
+    "freeze"
+   ]
+  },
+  {
+   "id": "snow_wisp",
+   "name": "Snow Wisp",
+   "description": "Drifting cold light that spits sleet.",
+   "spriteKey": "enemy_snow_wisp",
+   "contactDamage": 1,
+   "health": 9.9,
+   "radius": 0.35,
+   "tags": [
+    "flying",
+    "ranged",
+    "frost"
+   ],
+   "movement": {
+    "kind": "Wander",
+    "speed": 1.6,
+    "flying": true
+   },
+   "attacks": [
+    {
+     "id": "spit",
+     "kind": "Projectile",
+     "pattern": "Aimed",
+     "count": 1,
+     "projectileSpeed": 5.5,
+     "cooldown": 2.18,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    }
+   ],
+   "statusImmunities": [
+    "chill",
+    "freeze"
+   ]
+  },
+  {
+   "id": "glacier_brute",
+   "name": "Glacier Brute",
+   "description": "A wall of ice that shoulders forward.",
+   "spriteKey": "enemy_glacier_brute",
+   "contactDamage": 1,
+   "health": 27.3,
+   "radius": 0.6,
+   "knockbackResistance": 0.7,
+   "tags": [
+    "melee",
+    "heavy",
+    "frost"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.3
+   },
+   "attacks": [
+    {
+     "id": "charge",
+     "kind": "Dash",
+     "cooldown": 3.27,
+     "telegraph": 0.7,
+     "duration": 0.5,
+     "recovery": 0.7,
+     "minRange": 2,
+     "dashSpeed": 9,
+     "telegraphKey": "tele_stomp"
+    }
+   ],
+   "statusImmunities": [
+    "chill",
+    "freeze"
+   ]
+  },
+  {
+   "id": "frost_hopper",
+   "name": "Frost Hopper",
+   "description": "Hops on frozen legs and shatters.",
+   "spriteKey": "enemy_frost_hopper",
+   "contactDamage": 1,
+   "health": 12.4,
+   "radius": 0.4,
+   "tags": [
+    "melee",
+    "frost"
+   ],
+   "movement": {
+    "kind": "Hop",
+    "speed": 2.4,
+    "pauseTime": 0.7,
+    "hopDistance": 2.2
+   },
+   "onDeath": [
+    {
+     "kind": "ProjectileRing",
+     "count": 4,
+     "projectileSpeed": 4,
+     "damage": 1
+    }
+   ],
+   "statusImmunities": [
+    "chill",
+    "freeze"
+   ]
+  },
+  {
+   "id": "hoarfrost_witch",
+   "name": "Hoarfrost Witch",
+   "description": "Calls rime walkers from the drifts.",
+   "spriteKey": "enemy_hoarfrost_witch",
+   "contactDamage": 1,
+   "health": 18.6,
+   "radius": 0.48,
+   "tags": [
+    "summoner",
+    "frost"
+   ],
+   "retreatBelowHealth": 0.4,
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.4,
+    "preferredDistance": 6
+   },
+   "attacks": [
+    {
+     "id": "call",
+     "kind": "Summon",
+     "cooldown": 4.09,
+     "telegraph": 0.7,
+     "recovery": 0.5,
+     "requiresLineOfSight": false,
+     "summonId": "rime_walker",
+     "summonCount": 2,
+     "maxAlive": 4,
+     "telegraphKey": "tele_pulse"
+    }
+   ],
+   "statusImmunities": [
+    "chill",
+    "freeze"
+   ]
+  },
+  {
+   "id": "shard_skater",
+   "name": "Shard Skater",
+   "description": "Skates sideways, firing bursts of shards.",
+   "spriteKey": "enemy_shard_skater",
+   "contactDamage": 1,
+   "health": 11.2,
+   "radius": 0.38,
+   "tags": [
+    "ranged",
+    "frost"
+   ],
+   "movement": {
+    "kind": "Strafe",
+    "speed": 2.4,
+    "preferredDistance": 4
+   },
+   "attacks": [
+    {
+     "id": "burst",
+     "kind": "Projectile",
+     "pattern": "Aimed",
+     "count": 1,
+     "projectileSpeed": 7.7,
+     "cooldown": 2.36,
+     "telegraph": 0.4,
+     "recovery": 0.35,
+     "damage": 1,
+     "duration": 0.5,
+     "waves": 3
+    }
+   ],
+   "statusImmunities": [
+    "chill",
+    "freeze"
+   ]
+  },
+  {
+   "id": "blizzard_eye",
+   "name": "Blizzard Eye",
+   "description": "A spinning eye of wind and snow.",
+   "spriteKey": "enemy_blizzard_eye",
+   "contactDamage": 1,
+   "health": 19.8,
+   "radius": 0.5,
+   "knockbackResistance": 0.9,
+   "tags": [
+    "ranged",
+    "frost"
+   ],
+   "movement": {
+    "kind": "Wander",
+    "speed": 1.0
+   },
+   "attacks": [
+    {
+     "id": "spiral",
+     "kind": "Projectile",
+     "pattern": "Spiral",
+     "count": 2,
+     "projectileSpeed": 4.4,
+     "cooldown": 4.09,
+     "telegraph": 0.7,
+     "recovery": 0.35,
+     "damage": 1,
+     "duration": 1.6,
+     "waves": 8,
+     "spiralStep": 20,
+     "requiresLineOfSight": false
+    }
+   ],
+   "statusImmunities": [
+    "chill",
+    "freeze"
+   ]
+  },
+  {
+   "id": "thorn_crawler",
+   "name": "Thorn Crawler",
+   "description": "A creeping knot of thorns.",
+   "spriteKey": "enemy_thorn_crawler",
+   "contactDamage": 1,
+   "health": 13.0,
+   "radius": 0.42,
+   "tags": [
+    "melee",
+    "garden"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.9
+   },
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "pod_spitter",
+   "name": "Pod Spitter",
+   "description": "A pod plant that spits seeds in a fan.",
+   "spriteKey": "enemy_pod_spitter",
+   "contactDamage": 1,
+   "health": 14.3,
+   "radius": 0.42,
+   "tags": [
+    "ranged",
+    "garden"
+   ],
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.7,
+    "preferredDistance": 4.5
+   },
+   "attacks": [
+    {
+     "id": "fan",
+     "kind": "Projectile",
+     "pattern": "Spread",
+     "count": 3,
+     "projectileSpeed": 6.19,
+     "cooldown": 2.22,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "spread": 18,
+     "maxRange": 9,
+     "telegraphKey": "tele_windup"
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "moth_wraith",
+   "name": "Moth Wraith",
+   "description": "A moth the size of a dog, swooping.",
+   "spriteKey": "enemy_moth_wraith",
+   "contactDamage": 1,
+   "health": 7.8,
+   "radius": 0.3,
+   "tags": [
+    "flying",
+    "garden"
+   ],
+   "movement": {
+    "kind": "Orbit",
+    "speed": 3.0,
+    "preferredDistance": 2.5,
+    "flying": true
+   },
+   "attacks": [
+    {
+     "id": "swoop",
+     "kind": "Dash",
+     "cooldown": 2.49,
+     "telegraph": 0.45,
+     "duration": 0.35,
+     "recovery": 0.4,
+     "maxRange": 4.5,
+     "dashSpeed": 9,
+     "telegraphKey": "tele_flash"
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "root_burrower",
+   "name": "Root Burrower",
+   "description": "Moves under the soil and bursts out.",
+   "spriteKey": "enemy_root_burrower",
+   "contactDamage": 1,
+   "health": 15.6,
+   "radius": 0.42,
+   "tags": [
+    "burrow",
+    "garden"
+   ],
+   "movement": {
+    "kind": "Burrow",
+    "speed": 2.0,
+    "pauseTime": 1.2
+   },
+   "attacks": [
+    {
+     "id": "surface_ring",
+     "kind": "Projectile",
+     "pattern": "Ring",
+     "count": 8,
+     "projectileSpeed": 4.5,
+     "cooldown": 2.84,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "bloom_turret",
+   "name": "Bloom Turret",
+   "description": "A flower that blooms into a ring of petals.",
+   "spriteKey": "enemy_bloom_turret",
+   "contactDamage": 1,
+   "health": 18.2,
+   "radius": 0.45,
+   "knockbackResistance": 1.0,
+   "tags": [
+    "ranged",
+    "stationary",
+    "garden"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "ring",
+     "kind": "Projectile",
+     "pattern": "Ring",
+     "count": 6,
+     "projectileSpeed": 5.06,
+     "cooldown": 2.67,
+     "telegraph": 0.6,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false,
+     "telegraphKey": "tele_pulse"
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "seed_mother",
+   "name": "Seed Mother",
+   "description": "Sows thorn crawlers.",
+   "spriteKey": "enemy_seed_mother",
+   "contactDamage": 1,
+   "health": 19.5,
+   "radius": 0.48,
+   "tags": [
+    "summoner",
+    "garden"
+   ],
+   "retreatBelowHealth": 0.4,
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.4,
+    "preferredDistance": 6
+   },
+   "attacks": [
+    {
+     "id": "call",
+     "kind": "Summon",
+     "cooldown": 4.0,
+     "telegraph": 0.7,
+     "recovery": 0.5,
+     "requiresLineOfSight": false,
+     "summonId": "thorn_crawler",
+     "summonCount": 2,
+     "maxAlive": 4,
+     "telegraphKey": "tele_pulse"
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "mushroom_bloat",
+   "name": "Mushroom Bloat",
+   "description": "Pops into spores and smaller caps.",
+   "spriteKey": "enemy_mushroom_bloat",
+   "contactDamage": 1,
+   "health": 20.8,
+   "radius": 0.55,
+   "tags": [
+    "melee",
+    "splitter",
+    "garden"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.5
+   },
+   "onDeath": [
+    {
+     "kind": "Split",
+     "enemyId": "thorn_crawler",
+     "count": 2
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "vine_lasher",
+   "name": "Vine Lasher",
+   "description": "Stands still and lashes a beam of vines.",
+   "spriteKey": "enemy_vine_lasher",
+   "contactDamage": 1,
+   "health": 16.9,
+   "radius": 0.45,
+   "knockbackResistance": 0.9,
+   "tags": [
+    "ranged",
+    "stationary",
+    "garden"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "beam",
+     "kind": "Beam",
+     "cooldown": 3.56,
+     "telegraph": 1.0,
+     "duration": 1.2,
+     "recovery": 0.6,
+     "maxRange": 12,
+     "damage": 1,
+     "telegraphKey": "tele_beam"
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "bell_bat",
+   "name": "Bell Bat",
+   "description": "A bat that rings when it dives.",
+   "spriteKey": "enemy_bell_bat",
+   "contactDamage": 1,
+   "health": 8.2,
+   "radius": 0.3,
+   "tags": [
+    "flying",
+    "belfry"
+   ],
+   "movement": {
+    "kind": "Orbit",
+    "speed": 3.0,
+    "preferredDistance": 2.5,
+    "flying": true
+   },
+   "attacks": [
+    {
+     "id": "swoop",
+     "kind": "Dash",
+     "cooldown": 2.43,
+     "telegraph": 0.45,
+     "duration": 0.35,
+     "recovery": 0.4,
+     "maxRange": 4.5,
+     "dashSpeed": 9,
+     "telegraphKey": "tele_flash"
+    }
+   ],
+   "statusImmunities": [
+    "shock"
+   ]
+  },
+  {
+   "id": "spark_sprite",
+   "name": "Spark Sprite",
+   "description": "Blinks about and fires crackling shots.",
+   "spriteKey": "enemy_spark_sprite",
+   "contactDamage": 1,
+   "health": 12.2,
+   "radius": 0.4,
+   "tags": [
+    "ranged",
+    "teleport",
+    "belfry"
+   ],
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.5,
+    "preferredDistance": 5
+   },
+   "attacks": [
+    {
+     "id": "blink",
+     "kind": "Teleport",
+     "cooldown": 3.04,
+     "telegraph": 0.5,
+     "recovery": 0.2,
+     "requiresLineOfSight": false
+    },
+    {
+     "id": "volley",
+     "kind": "Projectile",
+     "pattern": "Spread",
+     "count": 4,
+     "projectileSpeed": 5.75,
+     "cooldown": 2.17,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "spread": 22
+    }
+   ],
+   "statusImmunities": [
+    "shock"
+   ]
+  },
+  {
+   "id": "rope_hanger",
+   "name": "Rope Hanger",
+   "description": "Swings sideways, firing bursts.",
+   "spriteKey": "enemy_rope_hanger",
+   "contactDamage": 1,
+   "health": 12.2,
+   "radius": 0.38,
+   "tags": [
+    "ranged",
+    "belfry"
+   ],
+   "movement": {
+    "kind": "Strafe",
+    "speed": 2.4,
+    "preferredDistance": 4
+   },
+   "attacks": [
+    {
+     "id": "burst",
+     "kind": "Projectile",
+     "pattern": "Aimed",
+     "count": 1,
+     "projectileSpeed": 8.05,
+     "cooldown": 2.26,
+     "telegraph": 0.4,
+     "recovery": 0.35,
+     "damage": 1,
+     "duration": 0.5,
+     "waves": 3
+    }
+   ],
+   "statusImmunities": [
+    "shock"
+   ]
+  },
+  {
+   "id": "chime_turret",
+   "name": "Chime Turret",
+   "description": "A bell that tolls rings of sound.",
+   "spriteKey": "enemy_chime_turret",
+   "contactDamage": 1,
+   "health": 19.0,
+   "radius": 0.45,
+   "knockbackResistance": 1.0,
+   "tags": [
+    "ranged",
+    "stationary",
+    "belfry"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "ring",
+     "kind": "Projectile",
+     "pattern": "Ring",
+     "count": 6,
+     "projectileSpeed": 5.17,
+     "cooldown": 2.61,
+     "telegraph": 0.6,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false,
+     "telegraphKey": "tele_pulse"
+    }
+   ],
+   "statusImmunities": [
+    "shock"
+   ]
+  },
+  {
+   "id": "rafter_runner",
+   "name": "Rafter Runner",
+   "description": "A gaunt thing that sprints at you.",
+   "spriteKey": "enemy_rafter_runner",
+   "contactDamage": 1,
+   "health": 8.2,
+   "radius": 0.32,
+   "tags": [
+    "melee",
+    "fast",
+    "belfry"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 2.9
+   },
+   "statusImmunities": [
+    "shock"
+   ]
+  },
+  {
+   "id": "lightning_eye",
+   "name": "Lightning Eye",
+   "description": "A glass eye that fires a bolt beam.",
+   "spriteKey": "enemy_lightning_eye",
+   "contactDamage": 1,
+   "health": 17.7,
+   "radius": 0.45,
+   "knockbackResistance": 0.9,
+   "tags": [
+    "ranged",
+    "stationary",
+    "belfry"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "beam",
+     "kind": "Beam",
+     "cooldown": 3.48,
+     "telegraph": 1.0,
+     "duration": 1.2,
+     "recovery": 0.6,
+     "maxRange": 12,
+     "damage": 1,
+     "telegraphKey": "tele_beam"
+    }
+   ],
+   "statusImmunities": [
+    "shock"
+   ]
+  },
+  {
+   "id": "thunder_monk",
+   "name": "Thunder Monk",
+   "description": "Slams the floor with a sparking staff.",
+   "spriteKey": "enemy_thunder_monk",
+   "contactDamage": 1,
+   "health": 24.5,
+   "radius": 0.55,
+   "knockbackResistance": 0.8,
+   "tags": [
+    "melee",
+    "heavy",
+    "belfry"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.5
+   },
+   "attacks": [
+    {
+     "id": "slam",
+     "kind": "Slam",
+     "cooldown": 2.78,
+     "telegraph": 0.8,
+     "recovery": 0.6,
+     "maxRange": 2.0,
+     "radius": 1.8,
+     "damage": 1,
+     "telegraphKey": "tele_stomp"
+    }
+   ],
+   "statusImmunities": [
+    "shock"
+   ]
+  },
+  {
+   "id": "storm_crow",
+   "name": "Storm Crow",
+   "description": "Patrols the beams, dropping walls of shot.",
+   "spriteKey": "enemy_storm_crow",
+   "contactDamage": 1,
+   "health": 19.0,
+   "radius": 0.45,
+   "tags": [
+    "ranged",
+    "belfry"
+   ],
+   "movement": {
+    "kind": "Patrol",
+    "speed": 1.8
+   },
+   "attacks": [
+    {
+     "id": "wall",
+     "kind": "Projectile",
+     "pattern": "Wall",
+     "count": 5,
+     "projectileSpeed": 4.37,
+     "cooldown": 3.3,
+     "telegraph": 0.7,
+     "recovery": 0.35,
+     "damage": 1,
+     "spread": 10
+    }
+   ],
+   "statusImmunities": [
+    "shock"
+   ]
+  },
+  {
+   "id": "drowned_pilgrim",
+   "name": "Drowned Pilgrim",
+   "description": "A soaked pilgrim still walking.",
+   "spriteKey": "enemy_drowned_pilgrim",
+   "contactDamage": 1,
+   "health": 14.2,
+   "radius": 0.42,
+   "tags": [
+    "melee",
+    "chapel"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.9
+   }
+  },
+  {
+   "id": "eel_swimmer",
+   "name": "Eel Swimmer",
+   "description": "Darts under water and surfaces.",
+   "spriteKey": "enemy_eel_swimmer",
+   "contactDamage": 1,
+   "health": 17.0,
+   "radius": 0.42,
+   "tags": [
+    "burrow",
+    "chapel"
+   ],
+   "movement": {
+    "kind": "Burrow",
+    "speed": 2.0,
+    "pauseTime": 1.2
+   },
+   "attacks": [
+    {
+     "id": "surface_ring",
+     "kind": "Projectile",
+     "pattern": "Ring",
+     "count": 9,
+     "projectileSpeed": 4.7,
+     "cooldown": 2.72,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    }
+   ]
+  },
+  {
+   "id": "chapel_gargoyle",
+   "name": "Chapel Gargoyle",
+   "description": "Stone that spits water in a cross.",
+   "spriteKey": "enemy_chapel_gargoyle",
+   "contactDamage": 1,
+   "health": 17.0,
+   "radius": 0.45,
+   "knockbackResistance": 0.9,
+   "tags": [
+    "ranged",
+    "stationary",
+    "chapel"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "cross",
+     "kind": "Projectile",
+     "pattern": "Cross",
+     "count": 1,
+     "projectileSpeed": 5.88,
+     "cooldown": 2.21,
+     "telegraph": 0.55,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    },
+    {
+     "id": "xcross",
+     "kind": "Projectile",
+     "pattern": "X",
+     "count": 1,
+     "projectileSpeed": 5.88,
+     "cooldown": 2.21,
+     "telegraph": 0.55,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    }
+   ]
+  },
+  {
+   "id": "tide_priest",
+   "name": "Tide Priest",
+   "description": "Calls drowned pilgrims to mass.",
+   "spriteKey": "enemy_tide_priest",
+   "contactDamage": 1,
+   "health": 21.3,
+   "radius": 0.48,
+   "tags": [
+    "summoner",
+    "chapel"
+   ],
+   "retreatBelowHealth": 0.4,
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.4,
+    "preferredDistance": 6
+   },
+   "attacks": [
+    {
+     "id": "call",
+     "kind": "Summon",
+     "cooldown": 3.83,
+     "telegraph": 0.7,
+     "recovery": 0.5,
+     "requiresLineOfSight": false,
+     "summonId": "drowned_pilgrim",
+     "summonCount": 2,
+     "maxAlive": 4,
+     "telegraphKey": "tele_pulse"
+    }
+   ]
+  },
+  {
+   "id": "bubble_fish",
+   "name": "Bubble Fish",
+   "description": "Floats about, spitting bubbles.",
+   "spriteKey": "enemy_bubble_fish",
+   "contactDamage": 1,
+   "health": 11.4,
+   "radius": 0.35,
+   "tags": [
+    "flying",
+    "ranged",
+    "chapel"
+   ],
+   "movement": {
+    "kind": "Wander",
+    "speed": 1.6,
+    "flying": true
+   },
+   "attacks": [
+    {
+     "id": "spit",
+     "kind": "Projectile",
+     "pattern": "Aimed",
+     "count": 1,
+     "projectileSpeed": 5.88,
+     "cooldown": 2.04,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    }
+   ]
+  },
+  {
+   "id": "barnacle_brute",
+   "name": "Barnacle Brute",
+   "description": "Crusted and slow, but it charges.",
+   "spriteKey": "enemy_barnacle_brute",
+   "contactDamage": 1,
+   "health": 31.2,
+   "radius": 0.6,
+   "knockbackResistance": 0.7,
+   "tags": [
+    "melee",
+    "heavy",
+    "chapel"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.3
+   },
+   "attacks": [
+    {
+     "id": "charge",
+     "kind": "Dash",
+     "cooldown": 3.06,
+     "telegraph": 0.7,
+     "duration": 0.5,
+     "recovery": 0.7,
+     "minRange": 2,
+     "dashSpeed": 9,
+     "telegraphKey": "tele_stomp"
+    }
+   ]
+  },
+  {
+   "id": "hymn_swirl",
+   "name": "Hymn Swirl",
+   "description": "A whirlpool of drowned hymns.",
+   "spriteKey": "enemy_hymn_swirl",
+   "contactDamage": 1,
+   "health": 22.7,
+   "radius": 0.5,
+   "knockbackResistance": 0.9,
+   "tags": [
+    "ranged",
+    "chapel"
+   ],
+   "movement": {
+    "kind": "Wander",
+    "speed": 1.0
+   },
+   "attacks": [
+    {
+     "id": "spiral",
+     "kind": "Projectile",
+     "pattern": "Spiral",
+     "count": 2,
+     "projectileSpeed": 4.7,
+     "cooldown": 3.83,
+     "telegraph": 0.7,
+     "recovery": 0.35,
+     "damage": 1,
+     "duration": 1.6,
+     "waves": 8,
+     "spiralStep": 20,
+     "requiresLineOfSight": false
+    }
+   ]
+  },
+  {
+   "id": "bloated_deacon",
+   "name": "Bloated Deacon",
+   "description": "Bursts into pilgrims when popped.",
+   "spriteKey": "enemy_bloated_deacon",
+   "contactDamage": 1,
+   "health": 22.7,
+   "radius": 0.55,
+   "tags": [
+    "melee",
+    "splitter",
+    "chapel"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.5
+   },
+   "onDeath": [
+    {
+     "kind": "Split",
+     "enemyId": "drowned_pilgrim",
+     "count": 2
+    }
+   ]
+  },
+  {
+   "id": "orchard_scarecrow",
+   "name": "Orchard Scarecrow",
+   "description": "A scarecrow that throws spreading seeds.",
+   "spriteKey": "enemy_orchard_scarecrow",
+   "contactDamage": 1,
+   "health": 16.3,
+   "radius": 0.42,
+   "tags": [
+    "ranged",
+    "orchard"
+   ],
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.7,
+    "preferredDistance": 4.5
+   },
+   "attacks": [
+    {
+     "id": "fan",
+     "kind": "Projectile",
+     "pattern": "Spread",
+     "count": 4,
+     "projectileSpeed": 6.6,
+     "cooldown": 2.08,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "spread": 18,
+     "maxRange": 9,
+     "telegraphKey": "tele_windup"
+    }
+   ]
+  },
+  {
+   "id": "harvest_runner",
+   "name": "Harvest Runner",
+   "description": "A thin thing that sprints between the trees.",
+   "spriteKey": "enemy_harvest_runner",
+   "contactDamage": 1,
+   "health": 8.9,
+   "radius": 0.32,
+   "tags": [
+    "melee",
+    "fast",
+    "orchard"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 2.9
+   }
+  },
+  {
+   "id": "rot_apple",
+   "name": "Rot Apple",
+   "description": "A fallen fruit that bursts when it lands.",
+   "spriteKey": "enemy_rot_apple",
+   "contactDamage": 1,
+   "health": 14.8,
+   "radius": 0.4,
+   "tags": [
+    "melee",
+    "orchard"
+   ],
+   "movement": {
+    "kind": "Hop",
+    "speed": 2.4,
+    "pauseTime": 0.7,
+    "hopDistance": 2.2
+   },
+   "onDeath": [
+    {
+     "kind": "ProjectileRing",
+     "count": 4,
+     "projectileSpeed": 4,
+     "damage": 1
+    }
+   ]
+  },
+  {
+   "id": "bone_tree",
+   "name": "Bone Tree",
+   "description": "A tree of bones shedding a ring of thorns.",
+   "spriteKey": "enemy_bone_tree",
+   "contactDamage": 1,
+   "health": 20.7,
+   "radius": 0.45,
+   "knockbackResistance": 1.0,
+   "tags": [
+    "ranged",
+    "stationary",
+    "orchard"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "ring",
+     "kind": "Projectile",
+     "pattern": "Ring",
+     "count": 7,
+     "projectileSpeed": 5.4,
+     "cooldown": 2.5,
+     "telegraph": 0.6,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false,
+     "telegraphKey": "tele_pulse"
+    }
+   ]
+  },
+  {
+   "id": "crow_reaper",
+   "name": "Crow Reaper",
+   "description": "Swoops with a sickle beak.",
+   "spriteKey": "enemy_crow_reaper",
+   "contactDamage": 1,
+   "health": 8.9,
+   "radius": 0.3,
+   "tags": [
+    "flying",
+    "orchard"
+   ],
+   "movement": {
+    "kind": "Orbit",
+    "speed": 3.0,
+    "preferredDistance": 2.5,
+    "flying": true
+   },
+   "attacks": [
+    {
+     "id": "swoop",
+     "kind": "Dash",
+     "cooldown": 2.33,
+     "telegraph": 0.45,
+     "duration": 0.35,
+     "recovery": 0.4,
+     "maxRange": 4.5,
+     "dashSpeed": 9,
+     "telegraphKey": "tele_flash"
+    }
+   ]
+  },
+  {
+   "id": "root_digger",
+   "name": "Root Digger",
+   "description": "Digs under the orchard and bursts up.",
+   "spriteKey": "enemy_root_digger",
+   "contactDamage": 1,
+   "health": 17.8,
+   "radius": 0.42,
+   "tags": [
+    "burrow",
+    "orchard"
+   ],
+   "movement": {
+    "kind": "Burrow",
+    "speed": 2.0,
+    "pauseTime": 1.2
+   },
+   "attacks": [
+    {
+     "id": "surface_ring",
+     "kind": "Projectile",
+     "pattern": "Ring",
+     "count": 9,
+     "projectileSpeed": 4.8,
+     "cooldown": 2.67,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    }
+   ]
+  },
+  {
+   "id": "husk_farmer",
+   "name": "Husk Farmer",
+   "description": "Calls rot apples from the branches.",
+   "spriteKey": "enemy_husk_farmer",
+   "contactDamage": 1,
+   "health": 22.2,
+   "radius": 0.48,
+   "tags": [
+    "summoner",
+    "orchard"
+   ],
+   "retreatBelowHealth": 0.4,
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.4,
+    "preferredDistance": 6
+   },
+   "attacks": [
+    {
+     "id": "call",
+     "kind": "Summon",
+     "cooldown": 3.75,
+     "telegraph": 0.7,
+     "recovery": 0.5,
+     "requiresLineOfSight": false,
+     "summonId": "rot_apple",
+     "summonCount": 2,
+     "maxAlive": 4,
+     "telegraphKey": "tele_pulse"
+    }
+   ]
+  },
+  {
+   "id": "thresher",
+   "name": "Thresher",
+   "description": "Slams the earth with a flail of bone.",
+   "spriteKey": "enemy_thresher",
+   "contactDamage": 2,
+   "health": 26.6,
+   "radius": 0.55,
+   "knockbackResistance": 0.8,
+   "tags": [
+    "melee",
+    "heavy",
+    "orchard"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.5
+   },
+   "attacks": [
+    {
+     "id": "slam",
+     "kind": "Slam",
+     "cooldown": 2.67,
+     "telegraph": 0.8,
+     "recovery": 0.6,
+     "maxRange": 2.0,
+     "radius": 1.8,
+     "damage": 1,
+     "telegraphKey": "tele_stomp"
+    }
+   ]
+  },
+  {
+   "id": "drone_wasp",
+   "name": "Drone Wasp",
+   "description": "A buzzing wasp that dives in.",
+   "spriteKey": "enemy_drone_wasp",
+   "contactDamage": 1,
+   "health": 9.2,
+   "radius": 0.3,
+   "tags": [
+    "flying",
+    "hive"
+   ],
+   "movement": {
+    "kind": "Orbit",
+    "speed": 3.0,
+    "preferredDistance": 2.5,
+    "flying": true
+   },
+   "attacks": [
+    {
+     "id": "swoop",
+     "kind": "Dash",
+     "cooldown": 2.29,
+     "telegraph": 0.45,
+     "duration": 0.35,
+     "recovery": 0.4,
+     "maxRange": 4.5,
+     "dashSpeed": 9,
+     "telegraphKey": "tele_flash"
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "larva_crawler",
+   "name": "Larva Crawler",
+   "description": "A soft grub that chases warmth.",
+   "spriteKey": "enemy_larva_crawler",
+   "contactDamage": 1,
+   "health": 15.4,
+   "radius": 0.42,
+   "tags": [
+    "melee",
+    "hive"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.9
+   },
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "honey_spitter",
+   "name": "Honey Spitter",
+   "description": "Spits sticky honey from afar.",
+   "spriteKey": "enemy_honey_spitter",
+   "contactDamage": 1,
+   "health": 13.9,
+   "radius": 0.4,
+   "tags": [
+    "ranged",
+    "hive"
+   ],
+   "retreatBelowHealth": 0.3,
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.9,
+    "preferredDistance": 5
+   },
+   "attacks": [
+    {
+     "id": "shot",
+     "kind": "Projectile",
+     "pattern": "Aimed",
+     "count": 1,
+     "projectileSpeed": 7.96,
+     "cooldown": 1.63,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "maxRange": 9,
+     "telegraphKey": "tele_windup"
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "brood_nurse",
+   "name": "Brood Nurse",
+   "description": "Tends larvae and releases them.",
+   "spriteKey": "enemy_brood_nurse",
+   "contactDamage": 1,
+   "health": 23.1,
+   "radius": 0.48,
+   "tags": [
+    "summoner",
+    "hive"
+   ],
+   "retreatBelowHealth": 0.4,
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.4,
+    "preferredDistance": 6
+   },
+   "attacks": [
+    {
+     "id": "call",
+     "kind": "Summon",
+     "cooldown": 3.67,
+     "telegraph": 0.7,
+     "recovery": 0.5,
+     "requiresLineOfSight": false,
+     "summonId": "larva_crawler",
+     "summonCount": 2,
+     "maxAlive": 4,
+     "telegraphKey": "tele_pulse"
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "comb_turret",
+   "name": "Comb Turret",
+   "description": "A wax comb spraying stingers in a ring.",
+   "spriteKey": "enemy_comb_turret",
+   "contactDamage": 1,
+   "health": 21.6,
+   "radius": 0.45,
+   "knockbackResistance": 1.0,
+   "tags": [
+    "ranged",
+    "stationary",
+    "hive"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "ring",
+     "kind": "Projectile",
+     "pattern": "Ring",
+     "count": 7,
+     "projectileSpeed": 5.51,
+     "cooldown": 2.45,
+     "telegraph": 0.6,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false,
+     "telegraphKey": "tele_pulse"
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "sting_strafer",
+   "name": "Sting Strafer",
+   "description": "Darts side to side, loosing stingers.",
+   "spriteKey": "enemy_sting_strafer",
+   "contactDamage": 1,
+   "health": 13.9,
+   "radius": 0.38,
+   "tags": [
+    "ranged",
+    "hive"
+   ],
+   "movement": {
+    "kind": "Strafe",
+    "speed": 2.4,
+    "preferredDistance": 4
+   },
+   "attacks": [
+    {
+     "id": "burst",
+     "kind": "Projectile",
+     "pattern": "Aimed",
+     "count": 1,
+     "projectileSpeed": 8.58,
+     "cooldown": 2.12,
+     "telegraph": 0.4,
+     "recovery": 0.35,
+     "damage": 1,
+     "duration": 0.5,
+     "waves": 3
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "royal_jelly",
+   "name": "Royal Jelly",
+   "description": "A wobbling mass that splits apart.",
+   "spriteKey": "enemy_royal_jelly",
+   "contactDamage": 1,
+   "health": 24.6,
+   "radius": 0.55,
+   "tags": [
+    "melee",
+    "splitter",
+    "hive"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.5
+   },
+   "onDeath": [
+    {
+     "kind": "Split",
+     "enemyId": "larva_crawler",
+     "count": 2
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "hive_bomber",
+   "name": "Hive Bomber",
+   "description": "A fat bee packed with venom that bursts.",
+   "spriteKey": "enemy_hive_bomber",
+   "contactDamage": 1,
+   "health": 10.8,
+   "radius": 0.38,
+   "tags": [
+    "melee",
+    "explosive",
+    "hive"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 2.3
+   },
+   "attacks": [
+    {
+     "id": "burst",
+     "kind": "Explode",
+     "cooldown": 0.82,
+     "telegraph": 0.8,
+     "maxRange": 1.3,
+     "radius": 1.6,
+     "damage": 2,
+     "telegraphKey": "tele_fuse"
+    }
+   ],
+   "statusImmunities": [
+    "poison"
+   ]
+  },
+  {
+   "id": "shard_sentry",
+   "name": "Shard Sentry",
+   "description": "A glass statue firing beams of light.",
+   "spriteKey": "enemy_shard_sentry",
+   "contactDamage": 1,
+   "health": 20.8,
+   "radius": 0.45,
+   "knockbackResistance": 0.9,
+   "tags": [
+    "ranged",
+    "stationary",
+    "glass"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "beam",
+     "kind": "Beam",
+     "cooldown": 3.2,
+     "telegraph": 1.0,
+     "duration": 1.2,
+     "recovery": 0.6,
+     "maxRange": 12,
+     "damage": 1,
+     "telegraphKey": "tele_beam"
+    }
+   ]
+  },
+  {
+   "id": "prism_wisp",
+   "name": "Prism Wisp",
+   "description": "Blinks between mirrors, firing splinters.",
+   "spriteKey": "enemy_prism_wisp",
+   "contactDamage": 1,
+   "health": 14.4,
+   "radius": 0.4,
+   "tags": [
+    "ranged",
+    "teleport",
+    "glass"
+   ],
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.5,
+    "preferredDistance": 5
+   },
+   "attacks": [
+    {
+     "id": "blink",
+     "kind": "Teleport",
+     "cooldown": 2.8,
+     "telegraph": 0.5,
+     "recovery": 0.2,
+     "requiresLineOfSight": false
+    },
+    {
+     "id": "volley",
+     "kind": "Projectile",
+     "pattern": "Spread",
+     "count": 5,
+     "projectileSpeed": 6.25,
+     "cooldown": 2.0,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "spread": 22
+    }
+   ]
+  },
+  {
+   "id": "mirror_runner",
+   "name": "Mirror Runner",
+   "description": "Your reflection running the wrong way.",
+   "spriteKey": "enemy_mirror_runner",
+   "contactDamage": 1,
+   "health": 9.6,
+   "radius": 0.32,
+   "tags": [
+    "melee",
+    "fast",
+    "glass"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 2.9
+   }
+  },
+  {
+   "id": "glass_golem",
+   "name": "Glass Golem",
+   "description": "Heavy and sharp; it charges.",
+   "spriteKey": "enemy_glass_golem",
+   "contactDamage": 2,
+   "health": 35.2,
+   "radius": 0.6,
+   "knockbackResistance": 0.7,
+   "tags": [
+    "melee",
+    "heavy",
+    "glass"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.3
+   },
+   "attacks": [
+    {
+     "id": "charge",
+     "kind": "Dash",
+     "cooldown": 2.88,
+     "telegraph": 0.7,
+     "duration": 0.5,
+     "recovery": 0.7,
+     "minRange": 2,
+     "dashSpeed": 9,
+     "telegraphKey": "tele_stomp"
+    }
+   ]
+  },
+  {
+   "id": "splinter_turret",
+   "name": "Splinter Turret",
+   "description": "Sheds glass in a cross.",
+   "spriteKey": "enemy_splinter_turret",
+   "contactDamage": 1,
+   "health": 19.2,
+   "radius": 0.45,
+   "knockbackResistance": 0.9,
+   "tags": [
+    "ranged",
+    "stationary",
+    "glass"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "cross",
+     "kind": "Projectile",
+     "pattern": "Cross",
+     "count": 1,
+     "projectileSpeed": 6.25,
+     "cooldown": 2.08,
+     "telegraph": 0.55,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    },
+    {
+     "id": "xcross",
+     "kind": "Projectile",
+     "pattern": "X",
+     "count": 1,
+     "projectileSpeed": 6.25,
+     "cooldown": 2.08,
+     "telegraph": 0.55,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    }
+   ]
+  },
+  {
+   "id": "refraction",
+   "name": "Refraction",
+   "description": "A spinning shard that spirals light.",
+   "spriteKey": "enemy_refraction",
+   "contactDamage": 1,
+   "health": 25.6,
+   "radius": 0.5,
+   "knockbackResistance": 0.9,
+   "tags": [
+    "ranged",
+    "glass"
+   ],
+   "movement": {
+    "kind": "Wander",
+    "speed": 1.0
+   },
+   "attacks": [
+    {
+     "id": "spiral",
+     "kind": "Projectile",
+     "pattern": "Spiral",
+     "count": 2,
+     "projectileSpeed": 5.0,
+     "cooldown": 3.6,
+     "telegraph": 0.7,
+     "recovery": 0.35,
+     "damage": 1,
+     "duration": 1.6,
+     "waves": 8,
+     "spiralStep": 20,
+     "requiresLineOfSight": false
+    }
+   ]
+  },
+  {
+   "id": "pane_walker",
+   "name": "Pane Walker",
+   "description": "Patrols the halls and fires walls of glass.",
+   "spriteKey": "enemy_pane_walker",
+   "contactDamage": 1,
+   "health": 22.4,
+   "radius": 0.45,
+   "tags": [
+    "ranged",
+    "glass"
+   ],
+   "movement": {
+    "kind": "Patrol",
+    "speed": 1.8
+   },
+   "attacks": [
+    {
+     "id": "wall",
+     "kind": "Projectile",
+     "pattern": "Wall",
+     "count": 6,
+     "projectileSpeed": 4.75,
+     "cooldown": 3.04,
+     "telegraph": 0.7,
+     "recovery": 0.35,
+     "damage": 1,
+     "spread": 10
+    }
+   ]
+  },
+  {
+   "id": "shatterling",
+   "name": "Shatterling",
+   "description": "Breaks into smaller shards.",
+   "spriteKey": "enemy_shatterling",
+   "contactDamage": 1,
+   "health": 25.6,
+   "radius": 0.55,
+   "tags": [
+    "melee",
+    "splitter",
+    "glass"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.5
+   },
+   "onDeath": [
+    {
+     "kind": "Split",
+     "enemyId": "mirror_runner",
+     "count": 2
+    }
+   ]
+  },
+  {
+   "id": "shade_stalker",
+   "name": "Shade Stalker",
+   "description": "A shadow that chases fast and silent.",
+   "spriteKey": "enemy_shade_stalker",
+   "contactDamage": 1,
+   "health": 10.0,
+   "radius": 0.32,
+   "tags": [
+    "melee",
+    "fast",
+    "void"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 2.9
+   },
+   "statusImmunities": [
+    "dread"
+   ]
+  },
+  {
+   "id": "void_eye",
+   "name": "Void Eye",
+   "description": "Stares, and fires a beam of nothing.",
+   "spriteKey": "enemy_void_eye",
+   "contactDamage": 1,
+   "health": 21.6,
+   "radius": 0.45,
+   "knockbackResistance": 0.9,
+   "tags": [
+    "ranged",
+    "stationary",
+    "void"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "beam",
+     "kind": "Beam",
+     "cooldown": 3.14,
+     "telegraph": 1.0,
+     "duration": 1.2,
+     "recovery": 0.6,
+     "maxRange": 12,
+     "damage": 1,
+     "telegraphKey": "tele_beam"
+    }
+   ],
+   "statusImmunities": [
+    "dread"
+   ]
+  },
+  {
+   "id": "gloom_wisp",
+   "name": "Gloom Wisp",
+   "description": "Drifts about, dripping darkness.",
+   "spriteKey": "enemy_gloom_wisp",
+   "contactDamage": 1,
+   "health": 13.3,
+   "radius": 0.35,
+   "tags": [
+    "flying",
+    "ranged",
+    "void"
+   ],
+   "movement": {
+    "kind": "Wander",
+    "speed": 1.6,
+    "flying": true
+   },
+   "attacks": [
+    {
+     "id": "spit",
+     "kind": "Projectile",
+     "pattern": "Aimed",
+     "count": 1,
+     "projectileSpeed": 6.38,
+     "cooldown": 1.88,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    }
+   ],
+   "statusImmunities": [
+    "dread"
+   ]
+  },
+  {
+   "id": "hollow_priest",
+   "name": "Hollow Priest",
+   "description": "Calls shade stalkers from the dark.",
+   "spriteKey": "enemy_hollow_priest",
+   "contactDamage": 1,
+   "health": 24.9,
+   "radius": 0.48,
+   "tags": [
+    "summoner",
+    "void"
+   ],
+   "retreatBelowHealth": 0.4,
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.4,
+    "preferredDistance": 6
+   },
+   "attacks": [
+    {
+     "id": "call",
+     "kind": "Summon",
+     "cooldown": 3.53,
+     "telegraph": 0.7,
+     "recovery": 0.5,
+     "requiresLineOfSight": false,
+     "summonId": "shade_stalker",
+     "summonCount": 2,
+     "maxAlive": 4,
+     "telegraphKey": "tele_pulse"
+    }
+   ],
+   "statusImmunities": [
+    "dread"
+   ]
+  },
+  {
+   "id": "null_blinker",
+   "name": "Null Blinker",
+   "description": "Steps through shadows to shoot.",
+   "spriteKey": "enemy_null_blinker",
+   "contactDamage": 1,
+   "health": 14.9,
+   "radius": 0.4,
+   "tags": [
+    "ranged",
+    "teleport",
+    "void"
+   ],
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.5,
+    "preferredDistance": 5
+   },
+   "attacks": [
+    {
+     "id": "blink",
+     "kind": "Teleport",
+     "cooldown": 2.75,
+     "telegraph": 0.5,
+     "recovery": 0.2,
+     "requiresLineOfSight": false
+    },
+    {
+     "id": "volley",
+     "kind": "Projectile",
+     "pattern": "Spread",
+     "count": 5,
+     "projectileSpeed": 6.38,
+     "cooldown": 1.96,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "spread": 22
+    }
+   ],
+   "statusImmunities": [
+    "dread"
+   ]
+  },
+  {
+   "id": "abyss_turret",
+   "name": "Abyss Turret",
+   "description": "A dark hole that exhales a ring of void.",
+   "spriteKey": "enemy_abyss_turret",
+   "contactDamage": 1,
+   "health": 23.2,
+   "radius": 0.45,
+   "knockbackResistance": 1.0,
+   "tags": [
+    "ranged",
+    "stationary",
+    "void"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "ring",
+     "kind": "Projectile",
+     "pattern": "Ring",
+     "count": 7,
+     "projectileSpeed": 5.74,
+     "cooldown": 2.35,
+     "telegraph": 0.6,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false,
+     "telegraphKey": "tele_pulse"
+    }
+   ],
+   "statusImmunities": [
+    "dread"
+   ]
+  },
+  {
+   "id": "umbral_brute",
+   "name": "Umbral Brute",
+   "description": "A shadow given weight. It charges.",
+   "spriteKey": "enemy_umbral_brute",
+   "contactDamage": 2,
+   "health": 36.5,
+   "radius": 0.6,
+   "knockbackResistance": 0.7,
+   "tags": [
+    "melee",
+    "heavy",
+    "void"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.3
+   },
+   "attacks": [
+    {
+     "id": "charge",
+     "kind": "Dash",
+     "cooldown": 2.82,
+     "telegraph": 0.7,
+     "duration": 0.5,
+     "recovery": 0.7,
+     "minRange": 2,
+     "dashSpeed": 9,
+     "telegraphKey": "tele_stomp"
+    }
+   ],
+   "statusImmunities": [
+    "dread"
+   ]
+  },
+  {
+   "id": "rift_spiral",
+   "name": "Rift Spiral",
+   "description": "A spinning tear in the air.",
+   "spriteKey": "enemy_rift_spiral",
+   "contactDamage": 1,
+   "health": 26.6,
+   "radius": 0.5,
+   "knockbackResistance": 0.9,
+   "tags": [
+    "ranged",
+    "void"
+   ],
+   "movement": {
+    "kind": "Wander",
+    "speed": 1.0
+   },
+   "attacks": [
+    {
+     "id": "spiral",
+     "kind": "Projectile",
+     "pattern": "Spiral",
+     "count": 2,
+     "projectileSpeed": 5.1,
+     "cooldown": 3.53,
+     "telegraph": 0.7,
+     "recovery": 0.35,
+     "damage": 1,
+     "duration": 1.6,
+     "waves": 8,
+     "spiralStep": 20,
+     "requiresLineOfSight": false
+    }
+   ],
+   "statusImmunities": [
+    "dread"
+   ]
+  },
+  {
+   "id": "ash_knight",
+   "name": "Ash Knight",
+   "description": "A burnt knight that still guards the throne.",
+   "spriteKey": "enemy_ash_knight",
+   "contactDamage": 2,
+   "health": 37.8,
+   "radius": 0.6,
+   "knockbackResistance": 0.7,
+   "tags": [
+    "melee",
+    "heavy",
+    "throne"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.3
+   },
+   "attacks": [
+    {
+     "id": "charge",
+     "kind": "Dash",
+     "cooldown": 2.77,
+     "telegraph": 0.7,
+     "duration": 0.5,
+     "recovery": 0.7,
+     "minRange": 2,
+     "dashSpeed": 9,
+     "telegraphKey": "tele_stomp"
+    }
+   ],
+   "statusImmunities": [
+    "burn",
+    "scorch"
+   ]
+  },
+  {
+   "id": "ember_herald",
+   "name": "Ember Herald",
+   "description": "Sprays fans of fire.",
+   "spriteKey": "enemy_ember_herald",
+   "contactDamage": 1,
+   "health": 18.9,
+   "radius": 0.42,
+   "tags": [
+    "ranged",
+    "throne"
+   ],
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.7,
+    "preferredDistance": 4.5
+   },
+   "attacks": [
+    {
+     "id": "fan",
+     "kind": "Projectile",
+     "pattern": "Spread",
+     "count": 4,
+     "projectileSpeed": 7.15,
+     "cooldown": 1.92,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "spread": 18,
+     "maxRange": 9,
+     "telegraphKey": "tele_windup"
+    }
+   ],
+   "statusImmunities": [
+    "burn",
+    "scorch"
+   ]
+  },
+  {
+   "id": "pyre_bat",
+   "name": "Pyre Bat",
+   "description": "A burning bat that swoops.",
+   "spriteKey": "enemy_pyre_bat",
+   "contactDamage": 1,
+   "health": 10.3,
+   "radius": 0.3,
+   "tags": [
+    "flying",
+    "throne"
+   ],
+   "movement": {
+    "kind": "Orbit",
+    "speed": 3.0,
+    "preferredDistance": 2.5,
+    "flying": true
+   },
+   "attacks": [
+    {
+     "id": "swoop",
+     "kind": "Dash",
+     "cooldown": 2.15,
+     "telegraph": 0.45,
+     "duration": 0.35,
+     "recovery": 0.4,
+     "maxRange": 4.5,
+     "dashSpeed": 9,
+     "telegraphKey": "tele_flash"
+    }
+   ],
+   "statusImmunities": [
+    "burn",
+    "scorch"
+   ]
+  },
+  {
+   "id": "brand_turret",
+   "name": "Brand Turret",
+   "description": "A brazier that throws fire in a cross.",
+   "spriteKey": "enemy_brand_turret",
+   "contactDamage": 1,
+   "health": 20.6,
+   "radius": 0.45,
+   "knockbackResistance": 0.9,
+   "tags": [
+    "ranged",
+    "stationary",
+    "throne"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "cross",
+     "kind": "Projectile",
+     "pattern": "Cross",
+     "count": 1,
+     "projectileSpeed": 6.5,
+     "cooldown": 2.0,
+     "telegraph": 0.55,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    },
+    {
+     "id": "xcross",
+     "kind": "Projectile",
+     "pattern": "X",
+     "count": 1,
+     "projectileSpeed": 6.5,
+     "cooldown": 2.0,
+     "telegraph": 0.55,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    }
+   ],
+   "statusImmunities": [
+    "burn",
+    "scorch"
+   ]
+  },
+  {
+   "id": "throne_zealot",
+   "name": "Throne Zealot",
+   "description": "Runs at you and explodes in devotion.",
+   "spriteKey": "enemy_throne_zealot",
+   "contactDamage": 1,
+   "health": 12.0,
+   "radius": 0.38,
+   "tags": [
+    "melee",
+    "explosive",
+    "throne"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 2.3
+   },
+   "attacks": [
+    {
+     "id": "burst",
+     "kind": "Explode",
+     "cooldown": 0.77,
+     "telegraph": 0.8,
+     "maxRange": 1.3,
+     "radius": 1.6,
+     "damage": 2,
+     "telegraphKey": "tele_fuse"
+    }
+   ],
+   "statusImmunities": [
+    "burn",
+    "scorch"
+   ]
+  },
+  {
+   "id": "cinder_monk",
+   "name": "Cinder Monk",
+   "description": "Burns the floor wherever it walks.",
+   "spriteKey": "enemy_cinder_monk",
+   "contactDamage": 1,
+   "health": 18.9,
+   "radius": 0.42,
+   "tags": [
+    "hazard",
+    "throne"
+   ],
+   "movement": {
+    "kind": "Wander",
+    "speed": 1.8
+   },
+   "attacks": [
+    {
+     "id": "puddle",
+     "kind": "Hazard",
+     "cooldown": 2.31,
+     "telegraph": 0.4,
+     "recovery": 0.3,
+     "requiresLineOfSight": false,
+     "radius": 1.0,
+     "hazardId": "fire",
+     "duration": 4,
+     "damage": 1
+    }
+   ],
+   "statusImmunities": [
+    "burn",
+    "scorch"
+   ]
+  },
+  {
+   "id": "flame_dancer",
+   "name": "Flame Dancer",
+   "description": "Spins a spiral of embers.",
+   "spriteKey": "enemy_flame_dancer",
+   "contactDamage": 1,
+   "health": 27.5,
+   "radius": 0.5,
+   "knockbackResistance": 0.9,
+   "tags": [
+    "ranged",
+    "throne"
+   ],
+   "movement": {
+    "kind": "Wander",
+    "speed": 1.0
+   },
+   "attacks": [
+    {
+     "id": "spiral",
+     "kind": "Projectile",
+     "pattern": "Spiral",
+     "count": 2,
+     "projectileSpeed": 5.2,
+     "cooldown": 3.46,
+     "telegraph": 0.7,
+     "recovery": 0.35,
+     "damage": 1,
+     "duration": 1.6,
+     "waves": 8,
+     "spiralStep": 20,
+     "requiresLineOfSight": false
+    }
+   ],
+   "statusImmunities": [
+    "burn",
+    "scorch"
+   ]
+  },
+  {
+   "id": "phoenix_chick",
+   "name": "Phoenix Chick",
+   "description": "A small burning bird that bursts into embers.",
+   "spriteKey": "enemy_phoenix_chick",
+   "contactDamage": 1,
+   "health": 17.2,
+   "radius": 0.4,
+   "tags": [
+    "melee",
+    "throne"
+   ],
+   "movement": {
+    "kind": "Hop",
+    "speed": 2.4,
+    "pauseTime": 0.7,
+    "hopDistance": 2.2
+   },
+   "onDeath": [
+    {
+     "kind": "ProjectileRing",
+     "count": 4,
+     "projectileSpeed": 4,
+     "damage": 1
+    }
+   ],
+   "statusImmunities": [
+    "burn",
+    "scorch"
+   ]
+  },
+  {
+   "id": "vein_crawler",
+   "name": "Vein Crawler",
+   "description": "A pulsing worm that chases.",
+   "spriteKey": "enemy_vein_crawler",
+   "contactDamage": 1,
+   "health": 17.8,
+   "radius": 0.42,
+   "tags": [
+    "melee",
+    "heart"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.9
+   }
+  },
+  {
+   "id": "clot_hopper",
+   "name": "Clot Hopper",
+   "description": "Hops and bursts into clots.",
+   "spriteKey": "enemy_clot_hopper",
+   "contactDamage": 1,
+   "health": 17.8,
+   "radius": 0.4,
+   "tags": [
+    "melee",
+    "heart"
+   ],
+   "movement": {
+    "kind": "Hop",
+    "speed": 2.4,
+    "pauseTime": 0.7,
+    "hopDistance": 2.2
+   },
+   "onDeath": [
+    {
+     "kind": "ProjectileRing",
+     "count": 4,
+     "projectileSpeed": 4,
+     "damage": 1
+    }
+   ]
+  },
+  {
+   "id": "artery_turret",
+   "name": "Artery Turret",
+   "description": "A throbbing vessel spurting rings.",
+   "spriteKey": "enemy_artery_turret",
+   "contactDamage": 1,
+   "health": 24.9,
+   "radius": 0.45,
+   "knockbackResistance": 1.0,
+   "tags": [
+    "ranged",
+    "stationary",
+    "heart"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "ring",
+     "kind": "Projectile",
+     "pattern": "Ring",
+     "count": 7,
+     "projectileSpeed": 5.96,
+     "cooldown": 2.26,
+     "telegraph": 0.6,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false,
+     "telegraphKey": "tele_pulse"
+    }
+   ]
+  },
+  {
+   "id": "flesh_brute",
+   "name": "Flesh Brute",
+   "description": "A lump of muscle that charges.",
+   "spriteKey": "enemy_flesh_brute",
+   "contactDamage": 2,
+   "health": 39.2,
+   "radius": 0.6,
+   "knockbackResistance": 0.7,
+   "tags": [
+    "melee",
+    "heavy",
+    "heart"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.3
+   },
+   "attacks": [
+    {
+     "id": "charge",
+     "kind": "Dash",
+     "cooldown": 2.72,
+     "telegraph": 0.7,
+     "duration": 0.5,
+     "recovery": 0.7,
+     "minRange": 2,
+     "dashSpeed": 9,
+     "telegraphKey": "tele_stomp"
+    }
+   ]
+  },
+  {
+   "id": "bile_spitter",
+   "name": "Bile Spitter",
+   "description": "Spits from far off.",
+   "spriteKey": "enemy_bile_spitter",
+   "contactDamage": 1,
+   "health": 16.0,
+   "radius": 0.4,
+   "tags": [
+    "ranged",
+    "heart"
+   ],
+   "retreatBelowHealth": 0.3,
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.9,
+    "preferredDistance": 5
+   },
+   "attacks": [
+    {
+     "id": "shot",
+     "kind": "Projectile",
+     "pattern": "Aimed",
+     "count": 1,
+     "projectileSpeed": 8.61,
+     "cooldown": 1.51,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "maxRange": 9,
+     "telegraphKey": "tele_windup"
+    }
+   ]
+  },
+  {
+   "id": "heart_burrower",
+   "name": "Heart Burrower",
+   "description": "Tunnels through flesh and surfaces.",
+   "spriteKey": "enemy_heart_burrower",
+   "contactDamage": 1,
+   "health": 21.4,
+   "radius": 0.42,
+   "tags": [
+    "burrow",
+    "heart"
+   ],
+   "movement": {
+    "kind": "Burrow",
+    "speed": 2.0,
+    "pauseTime": 1.2
+   },
+   "attacks": [
+    {
+     "id": "surface_ring",
+     "kind": "Projectile",
+     "pattern": "Ring",
+     "count": 9,
+     "projectileSpeed": 5.3,
+     "cooldown": 2.42,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false
+    }
+   ]
+  },
+  {
+   "id": "pulse_mother",
+   "name": "Pulse Mother",
+   "description": "Births vein crawlers.",
+   "spriteKey": "enemy_pulse_mother",
+   "contactDamage": 1,
+   "health": 26.7,
+   "radius": 0.48,
+   "tags": [
+    "summoner",
+    "heart"
+   ],
+   "retreatBelowHealth": 0.4,
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.4,
+    "preferredDistance": 6
+   },
+   "attacks": [
+    {
+     "id": "call",
+     "kind": "Summon",
+     "cooldown": 3.4,
+     "telegraph": 0.7,
+     "recovery": 0.5,
+     "requiresLineOfSight": false,
+     "summonId": "vein_crawler",
+     "summonCount": 2,
+     "maxAlive": 4,
+     "telegraphKey": "tele_pulse"
+    }
+   ]
+  },
+  {
+   "id": "throb_slammer",
+   "name": "Throb Slammer",
+   "description": "Slams with every heartbeat.",
+   "spriteKey": "enemy_throb_slammer",
+   "contactDamage": 2,
+   "health": 32.0,
+   "radius": 0.55,
+   "knockbackResistance": 0.8,
+   "tags": [
+    "melee",
+    "heavy",
+    "heart"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.5
+   },
+   "attacks": [
+    {
+     "id": "slam",
+     "kind": "Slam",
+     "cooldown": 2.42,
+     "telegraph": 0.8,
+     "recovery": 0.6,
+     "maxRange": 2.0,
+     "radius": 1.8,
+     "damage": 1,
+     "telegraphKey": "tele_stomp"
+    }
+   ]
+  },
+  {
+   "id": "final_husk",
+   "name": "Final Husk",
+   "description": "The last of the walking shells.",
+   "spriteKey": "enemy_final_husk",
+   "contactDamage": 1,
+   "health": 18.4,
+   "radius": 0.42,
+   "tags": [
+    "melee",
+    "last"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.9
+   },
+   "statusImmunities": [
+    "dread"
+   ]
+  },
+  {
+   "id": "echo_runner",
+   "name": "Echo Runner",
+   "description": "A memory of every runner before.",
+   "spriteKey": "enemy_echo_runner",
+   "contactDamage": 1,
+   "health": 11.0,
+   "radius": 0.32,
+   "tags": [
+    "melee",
+    "fast",
+    "last"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 2.9
+   },
+   "statusImmunities": [
+    "dread"
+   ]
+  },
+  {
+   "id": "end_eye",
+   "name": "End Eye",
+   "description": "An eye at the end of all things, beaming.",
+   "spriteKey": "enemy_end_eye",
+   "contactDamage": 1,
+   "health": 23.9,
+   "radius": 0.45,
+   "knockbackResistance": 0.9,
+   "tags": [
+    "ranged",
+    "stationary",
+    "last"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "beam",
+     "kind": "Beam",
+     "cooldown": 2.96,
+     "telegraph": 1.0,
+     "duration": 1.2,
+     "recovery": 0.6,
+     "maxRange": 12,
+     "damage": 1,
+     "telegraphKey": "tele_beam"
+    }
+   ],
+   "statusImmunities": [
+    "dread"
+   ]
+  },
+  {
+   "id": "last_choir",
+   "name": "Last Choir",
+   "description": "Sings rings of sorrow.",
+   "spriteKey": "enemy_last_choir",
+   "contactDamage": 1,
+   "health": 25.8,
+   "radius": 0.45,
+   "knockbackResistance": 1.0,
+   "tags": [
+    "ranged",
+    "stationary",
+    "last"
+   ],
+   "movement": {
+    "kind": "Idle",
+    "speed": 0
+   },
+   "attacks": [
+    {
+     "id": "ring",
+     "kind": "Projectile",
+     "pattern": "Ring",
+     "count": 7,
+     "projectileSpeed": 6.08,
+     "cooldown": 2.22,
+     "telegraph": 0.6,
+     "recovery": 0.35,
+     "damage": 1,
+     "requiresLineOfSight": false,
+     "telegraphKey": "tele_pulse"
+    }
+   ],
+   "statusImmunities": [
+    "dread"
+   ]
+  },
+  {
+   "id": "hollow_herald",
+   "name": "Hollow Herald",
+   "description": "Blinks and sprays shards.",
+   "spriteKey": "enemy_hollow_herald",
+   "contactDamage": 1,
+   "health": 16.6,
+   "radius": 0.4,
+   "tags": [
+    "ranged",
+    "teleport",
+    "last"
+   ],
+   "movement": {
+    "kind": "KeepDistance",
+    "speed": 1.5,
+    "preferredDistance": 5
+   },
+   "attacks": [
+    {
+     "id": "blink",
+     "kind": "Teleport",
+     "cooldown": 2.59,
+     "telegraph": 0.5,
+     "recovery": 0.2,
+     "requiresLineOfSight": false
+    },
+    {
+     "id": "volley",
+     "kind": "Projectile",
+     "pattern": "Spread",
+     "count": 5,
+     "projectileSpeed": 6.75,
+     "cooldown": 1.85,
+     "telegraph": 0.5,
+     "recovery": 0.35,
+     "damage": 1,
+     "spread": 22
+    }
+   ],
+   "statusImmunities": [
+    "dread"
+   ]
+  },
+  {
+   "id": "terminus_brute",
+   "name": "Terminus Brute",
+   "description": "Charges like the end of the world.",
+   "spriteKey": "enemy_terminus_brute",
+   "contactDamage": 2,
+   "health": 40.5,
+   "radius": 0.6,
+   "knockbackResistance": 0.7,
+   "tags": [
+    "melee",
+    "heavy",
+    "last"
+   ],
+   "movement": {
+    "kind": "Chase",
+    "speed": 1.3
+   },
+   "attacks": [
+    {
+     "id": "charge",
+     "kind": "Dash",
+     "cooldown": 2.67,
+     "telegraph": 0.7,
+     "duration": 0.5,
+     "recovery": 0.7,
+     "minRange": 2,
+     "dashSpeed": 9,
+     "telegraphKey": "tele_stomp"
+    }
+   ],
+   "statusImmunities": [
+    "dread"
+   ]
+  },
+  {
+   "id": "fading_spiral",
+   "name": "Fading Spiral",
+   "description": "A spiral of the last light.",
+   "spriteKey": "enemy_fading_spiral",
+   "contactDamage": 1,
+   "health": 29.4,
+   "radius": 0.5,
+   "knockbackResistance": 0.9,
+   "tags": [
+    "ranged",
+    "last"
+   ],
+   "movement": {
+    "kind": "Wander",
+    "speed": 1.0
+   },
+   "attacks": [
+    {
+     "id": "spiral",
+     "kind": "Projectile",
+     "pattern": "Spiral",
+     "count": 2,
+     "projectileSpeed": 5.4,
+     "cooldown": 3.33,
+     "telegraph": 0.7,
+     "recovery": 0.35,
+     "damage": 1,
+     "duration": 1.6,
+     "waves": 8,
+     "spiralStep": 20,
+     "requiresLineOfSight": false
+    }
+   ],
+   "statusImmunities": [
+    "dread"
+   ]
+  },
+  {
+   "id": "ender_wall",
+   "name": "Ender Wall",
+   "description": "Patrols the last halls, firing walls of shot.",
+   "spriteKey": "enemy_ender_wall",
+   "contactDamage": 1,
+   "health": 25.8,
+   "radius": 0.45,
+   "tags": [
+    "ranged",
+    "last"
+   ],
+   "movement": {
+    "kind": "Patrol",
+    "speed": 1.8
+   },
+   "attacks": [
+    {
+     "id": "wall",
+     "kind": "Projectile",
+     "pattern": "Wall",
+     "count": 6,
+     "projectileSpeed": 5.13,
+     "cooldown": 2.81,
+     "telegraph": 0.7,
+     "recovery": 0.35,
+     "damage": 1,
+     "spread": 10
+    }
+   ],
+   "statusImmunities": [
+    "dread"
+   ]
+  }
+ ],
+ "bosses": [
+  {
+   "id": "osseous_matron",
+   "name": "The Osseous Matron",
+   "title": "Mother of the Stacked Dead",
+   "tier": "Early",
+   "description": "Ruler of the Sunken Ossuary.",
+   "musicKey": "music_boss_early",
+   "introKey": "intro_osseous_matron",
+   "rewardPool": "boss",
+   "body": {
+    "id": "osseous_matron_body",
+    "spriteKey": "boss_osseous_matron",
+    "health": 240,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.0,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "ossuary"
+    ],
+    "movement": {
+     "kind": "Chase",
+     "speed": 1.36
+    }
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "osseous_matron_fan",
+       "kind": "Projectile",
+       "pattern": "Spread",
+       "count": 5,
+       "projectileSpeed": 5.2,
+       "cooldown": 2.4,
+       "telegraph": 0.6,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 15,
+       "weight": 2
+      },
+      {
+       "id": "osseous_matron_charge",
+       "kind": "Dash",
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "duration": 0.6,
+       "recovery": 0.8,
+       "minRange": 2,
+       "dashSpeed": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "osseous_matron_phase2",
+     "movement": {
+      "kind": "KeepDistance",
+      "speed": 1.7600000000000002,
+      "preferredDistance": 4.5
+     },
+     "attacks": [
+      {
+       "id": "osseous_matron_ring",
+       "kind": "Projectile",
+       "pattern": "Ring",
+       "count": 10,
+       "projectileSpeed": 4.2,
+       "cooldown": 3.2,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "osseous_matron_call",
+       "kind": "Summon",
+       "cooldown": 7,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "rib_crawler",
+       "summonCount": 2,
+       "maxAlive": 3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hollow_sexton",
+   "name": "The Hollow Sexton",
+   "title": "Who Buries the Buriers",
+   "tier": "Early",
+   "description": "Ruler of the Sunken Ossuary.",
+   "musicKey": "music_boss_early",
+   "introKey": "intro_hollow_sexton",
+   "rewardPool": "boss",
+   "body": {
+    "id": "hollow_sexton_body",
+    "spriteKey": "boss_hollow_sexton",
+    "health": 255,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.1,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "ossuary",
+     "flying"
+    ],
+    "movement": {
+     "kind": "Wander",
+     "speed": 1.36,
+     "flying": true
+    }
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "hollow_sexton_cross",
+       "kind": "Projectile",
+       "pattern": "Cross",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "hollow_sexton_xcross",
+       "kind": "Projectile",
+       "pattern": "X",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "hollow_sexton_phase2",
+     "movement": {
+      "kind": "Orbit",
+      "speed": 1.7600000000000002,
+      "preferredDistance": 4.5,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "hollow_sexton_beam",
+       "kind": "Beam",
+       "cooldown": 4.5,
+       "telegraph": 1.0,
+       "duration": 1.4,
+       "recovery": 0.6,
+       "maxRange": 14,
+       "damage": 1,
+       "weight": 2
+      },
+      {
+       "id": "hollow_sexton_blink",
+       "kind": "Teleport",
+       "cooldown": 5,
+       "telegraph": 0.5,
+       "recovery": 0.2,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "hollow_sexton_wall",
+       "kind": "Projectile",
+       "pattern": "Wall",
+       "count": 7,
+       "projectileSpeed": 4.0,
+       "cooldown": 3.5,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 10
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "knucklebone_king",
+   "name": "Knucklebone King",
+   "title": "Lair of the Sunken Ossuary",
+   "tier": "Miniboss",
+   "description": "A lair-dweller of the Sunken Ossuary.",
+   "rewardPool": "treasure",
+   "body": {
+    "id": "knucklebone_king_body",
+    "spriteKey": "miniboss_knucklebone_king",
+    "health": 96,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 0.8,
+    "knockbackResistance": 0.85,
+    "isBoss": true,
+    "tags": [
+     "miniboss",
+     "ossuary"
+    ],
+    "movement": {
+     "kind": "Hop",
+     "speed": 2.0,
+     "pauseTime": 0.8,
+     "hopDistance": 2.5
+    },
+    "attacks": [
+     {
+      "id": "knucklebone_king_ring",
+      "kind": "Projectile",
+      "pattern": "Ring",
+      "count": 8,
+      "projectileSpeed": 4.5,
+      "cooldown": 3.0,
+      "telegraph": 0.6,
+      "recovery": 0.35,
+      "damage": 1,
+      "requiresLineOfSight": false
+     },
+     {
+      "id": "knucklebone_king_charge",
+      "kind": "Dash",
+      "cooldown": 4,
+      "telegraph": 0.75,
+      "duration": 0.5,
+      "recovery": 0.7,
+      "minRange": 2.5,
+      "dashSpeed": 11
+     }
+    ],
+    "onDeath": [
+     {
+      "kind": "SpawnEnemies",
+      "enemyId": "rib_crawler",
+      "count": 2
+     }
+    ]
+   },
+   "phases": []
+  },
+  {
+   "id": "the_drowned_mother",
+   "name": "The Drowned Mother",
+   "title": "Queen of the Black Water",
+   "tier": "Early",
+   "description": "Ruler of the Mire Hollows.",
+   "musicKey": "music_boss_early",
+   "introKey": "intro_the_drowned_mother",
+   "rewardPool": "boss",
+   "body": {
+    "id": "the_drowned_mother_body",
+    "spriteKey": "boss_the_drowned_mother",
+    "health": 260,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.0,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "mire"
+    ],
+    "movement": {
+     "kind": "Chase",
+     "speed": 1.3900000000000001
+    },
+    "statusImmunities": [
+     "poison"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "the_drowned_mother_fan",
+       "kind": "Projectile",
+       "pattern": "Spread",
+       "count": 5,
+       "projectileSpeed": 5.2,
+       "cooldown": 2.4,
+       "telegraph": 0.6,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 15,
+       "weight": 2
+      },
+      {
+       "id": "the_drowned_mother_charge",
+       "kind": "Dash",
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "duration": 0.6,
+       "recovery": 0.8,
+       "minRange": 2,
+       "dashSpeed": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "the_drowned_mother_phase2",
+     "movement": {
+      "kind": "KeepDistance",
+      "speed": 1.79,
+      "preferredDistance": 4.5
+     },
+     "attacks": [
+      {
+       "id": "the_drowned_mother_ring",
+       "kind": "Projectile",
+       "pattern": "Ring",
+       "count": 11,
+       "projectileSpeed": 4.2,
+       "cooldown": 3.2,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_drowned_mother_call",
+       "kind": "Summon",
+       "cooldown": 7,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "bog_leech",
+       "summonCount": 2,
+       "maxAlive": 3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gutmaw",
+   "name": "Gutmaw",
+   "title": "The Bottomless Bog",
+   "tier": "Early",
+   "description": "Ruler of the Mire Hollows.",
+   "musicKey": "music_boss_early",
+   "introKey": "intro_gutmaw",
+   "rewardPool": "boss",
+   "body": {
+    "id": "gutmaw_body",
+    "spriteKey": "boss_gutmaw",
+    "health": 275,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.1,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "mire",
+     "flying"
+    ],
+    "movement": {
+     "kind": "Wander",
+     "speed": 1.3900000000000001,
+     "flying": true
+    },
+    "statusImmunities": [
+     "poison"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "gutmaw_cross",
+       "kind": "Projectile",
+       "pattern": "Cross",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "gutmaw_xcross",
+       "kind": "Projectile",
+       "pattern": "X",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "gutmaw_phase2",
+     "movement": {
+      "kind": "Orbit",
+      "speed": 1.79,
+      "preferredDistance": 4.5,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "gutmaw_beam",
+       "kind": "Beam",
+       "cooldown": 4.5,
+       "telegraph": 1.0,
+       "duration": 1.4,
+       "recovery": 0.6,
+       "maxRange": 14,
+       "damage": 1,
+       "weight": 2
+      },
+      {
+       "id": "gutmaw_blink",
+       "kind": "Teleport",
+       "cooldown": 5,
+       "telegraph": 0.5,
+       "recovery": 0.2,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "gutmaw_wall",
+       "kind": "Projectile",
+       "pattern": "Wall",
+       "count": 7,
+       "projectileSpeed": 4.0,
+       "cooldown": 3.5,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 10
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "swamp_hag",
+   "name": "Swamp Hag",
+   "title": "Lair of the Mire Hollows",
+   "tier": "Miniboss",
+   "description": "A lair-dweller of the Mire Hollows.",
+   "rewardPool": "treasure",
+   "body": {
+    "id": "swamp_hag_body",
+    "spriteKey": "miniboss_swamp_hag",
+    "health": 104,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 0.8,
+    "knockbackResistance": 0.85,
+    "isBoss": true,
+    "tags": [
+     "miniboss",
+     "mire"
+    ],
+    "movement": {
+     "kind": "Hop",
+     "speed": 2.0,
+     "pauseTime": 0.8,
+     "hopDistance": 2.5
+    },
+    "attacks": [
+     {
+      "id": "swamp_hag_ring",
+      "kind": "Projectile",
+      "pattern": "Ring",
+      "count": 8,
+      "projectileSpeed": 4.5,
+      "cooldown": 3.0,
+      "telegraph": 0.6,
+      "recovery": 0.35,
+      "damage": 1,
+      "requiresLineOfSight": false
+     },
+     {
+      "id": "swamp_hag_charge",
+      "kind": "Dash",
+      "cooldown": 4,
+      "telegraph": 0.75,
+      "duration": 0.5,
+      "recovery": 0.7,
+      "minRange": 2.5,
+      "dashSpeed": 11
+     }
+    ],
+    "onDeath": [
+     {
+      "kind": "SpawnEnemies",
+      "enemyId": "bog_leech",
+      "count": 2
+     }
+    ],
+    "statusImmunities": [
+     "poison"
+    ]
+   },
+   "phases": []
+  },
+  {
+   "id": "the_ironmonger",
+   "name": "The Ironmonger",
+   "title": "Hammer of the Deep Forge",
+   "tier": "Early",
+   "description": "Ruler of the Ember Forge.",
+   "musicKey": "music_boss_early",
+   "introKey": "intro_the_ironmonger",
+   "rewardPool": "boss",
+   "body": {
+    "id": "the_ironmonger_body",
+    "spriteKey": "boss_the_ironmonger",
+    "health": 280,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.0,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "forge"
+    ],
+    "movement": {
+     "kind": "Chase",
+     "speed": 1.42
+    },
+    "statusImmunities": [
+     "burn",
+     "scorch"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "the_ironmonger_fan",
+       "kind": "Projectile",
+       "pattern": "Spread",
+       "count": 5,
+       "projectileSpeed": 5.2,
+       "cooldown": 2.4,
+       "telegraph": 0.6,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 15,
+       "weight": 2
+      },
+      {
+       "id": "the_ironmonger_charge",
+       "kind": "Dash",
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "duration": 0.6,
+       "recovery": 0.8,
+       "minRange": 2,
+       "dashSpeed": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "the_ironmonger_phase2",
+     "movement": {
+      "kind": "KeepDistance",
+      "speed": 1.8199999999999998,
+      "preferredDistance": 4.5
+     },
+     "attacks": [
+      {
+       "id": "the_ironmonger_ring",
+       "kind": "Projectile",
+       "pattern": "Ring",
+       "count": 11,
+       "projectileSpeed": 4.2,
+       "cooldown": 3.2,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_ironmonger_call",
+       "kind": "Summon",
+       "cooldown": 7,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "slag_imp",
+       "summonCount": 2,
+       "maxAlive": 3
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "the_ironmonger_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 1.92
+     },
+     "attacks": [
+      {
+       "id": "the_ironmonger_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 3,
+       "projectileSpeed": 4.4,
+       "cooldown": 4.0,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.0,
+       "waves": 10,
+       "spiralStep": 17,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_ironmonger_burst",
+       "kind": "Projectile",
+       "pattern": "RandomBurst",
+       "count": 6,
+       "projectileSpeed": 5.4,
+       "cooldown": 2.2,
+       "telegraph": 0.5,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 35
+      },
+      {
+       "id": "the_ironmonger_slam",
+       "kind": "Slam",
+       "cooldown": 5,
+       "telegraph": 0.9,
+       "recovery": 0.7,
+       "maxRange": 3,
+       "radius": 2.6,
+       "damage": 2,
+       "minDifficulty": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "crucible",
+   "name": "Crucible",
+   "title": "The Living Furnace",
+   "tier": "Early",
+   "description": "Ruler of the Ember Forge.",
+   "musicKey": "music_boss_early",
+   "introKey": "intro_crucible",
+   "rewardPool": "boss",
+   "body": {
+    "id": "crucible_body",
+    "spriteKey": "boss_crucible",
+    "health": 295,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.1,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "forge",
+     "flying"
+    ],
+    "movement": {
+     "kind": "Wander",
+     "speed": 1.42,
+     "flying": true
+    },
+    "statusImmunities": [
+     "burn",
+     "scorch"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "crucible_cross",
+       "kind": "Projectile",
+       "pattern": "Cross",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "crucible_xcross",
+       "kind": "Projectile",
+       "pattern": "X",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "crucible_phase2",
+     "movement": {
+      "kind": "Orbit",
+      "speed": 1.8199999999999998,
+      "preferredDistance": 4.5,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "crucible_beam",
+       "kind": "Beam",
+       "cooldown": 4.5,
+       "telegraph": 1.0,
+       "duration": 1.4,
+       "recovery": 0.6,
+       "maxRange": 14,
+       "damage": 1,
+       "weight": 2
+      },
+      {
+       "id": "crucible_blink",
+       "kind": "Teleport",
+       "cooldown": 5,
+       "telegraph": 0.5,
+       "recovery": 0.2,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "crucible_wall",
+       "kind": "Projectile",
+       "pattern": "Wall",
+       "count": 7,
+       "projectileSpeed": 4.0,
+       "cooldown": 3.5,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "crucible_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 1.92,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "crucible_double_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 4,
+       "projectileSpeed": 4.2,
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.4,
+       "waves": 12,
+       "spiralStep": 13,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "crucible_hazard",
+       "kind": "Hazard",
+       "cooldown": 4,
+       "telegraph": 0.6,
+       "recovery": 0.4,
+       "requiresLineOfSight": false,
+       "radius": 1.6,
+       "hazardId": "fire",
+       "duration": 5,
+       "damage": 1
+      },
+      {
+       "id": "crucible_call",
+       "kind": "Summon",
+       "cooldown": 8,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "slag_imp",
+       "summonCount": 1,
+       "maxAlive": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bellows_giant",
+   "name": "Bellows Giant",
+   "title": "Lair of the Ember Forge",
+   "tier": "Miniboss",
+   "description": "A lair-dweller of the Ember Forge.",
+   "rewardPool": "treasure",
+   "body": {
+    "id": "bellows_giant_body",
+    "spriteKey": "miniboss_bellows_giant",
+    "health": 112,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 0.8,
+    "knockbackResistance": 0.85,
+    "isBoss": true,
+    "tags": [
+     "miniboss",
+     "forge"
+    ],
+    "movement": {
+     "kind": "Hop",
+     "speed": 2.0,
+     "pauseTime": 0.8,
+     "hopDistance": 2.5
+    },
+    "attacks": [
+     {
+      "id": "bellows_giant_ring",
+      "kind": "Projectile",
+      "pattern": "Ring",
+      "count": 8,
+      "projectileSpeed": 4.5,
+      "cooldown": 3.0,
+      "telegraph": 0.6,
+      "recovery": 0.35,
+      "damage": 1,
+      "requiresLineOfSight": false
+     },
+     {
+      "id": "bellows_giant_charge",
+      "kind": "Dash",
+      "cooldown": 4,
+      "telegraph": 0.75,
+      "duration": 0.5,
+      "recovery": 0.7,
+      "minRange": 2.5,
+      "dashSpeed": 11
+     }
+    ],
+    "onDeath": [
+     {
+      "kind": "SpawnEnemies",
+      "enemyId": "slag_imp",
+      "count": 2
+     }
+    ],
+    "statusImmunities": [
+     "burn",
+     "scorch"
+    ]
+   },
+   "phases": []
+  },
+  {
+   "id": "the_winter_widow",
+   "name": "The Winter Widow",
+   "title": "She Who Waits in Snow",
+   "tier": "Early",
+   "description": "Ruler of the Frost Catacomb.",
+   "musicKey": "music_boss_early",
+   "introKey": "intro_the_winter_widow",
+   "rewardPool": "boss",
+   "body": {
+    "id": "the_winter_widow_body",
+    "spriteKey": "boss_the_winter_widow",
+    "health": 300,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.0,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "frost"
+    ],
+    "movement": {
+     "kind": "Chase",
+     "speed": 1.45
+    },
+    "statusImmunities": [
+     "chill",
+     "freeze"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "the_winter_widow_fan",
+       "kind": "Projectile",
+       "pattern": "Spread",
+       "count": 5,
+       "projectileSpeed": 5.2,
+       "cooldown": 2.4,
+       "telegraph": 0.6,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 15,
+       "weight": 2
+      },
+      {
+       "id": "the_winter_widow_charge",
+       "kind": "Dash",
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "duration": 0.6,
+       "recovery": 0.8,
+       "minRange": 2,
+       "dashSpeed": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "the_winter_widow_phase2",
+     "movement": {
+      "kind": "KeepDistance",
+      "speed": 1.85,
+      "preferredDistance": 4.5
+     },
+     "attacks": [
+      {
+       "id": "the_winter_widow_ring",
+       "kind": "Projectile",
+       "pattern": "Ring",
+       "count": 11,
+       "projectileSpeed": 4.2,
+       "cooldown": 3.2,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_winter_widow_call",
+       "kind": "Summon",
+       "cooldown": 7,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "rime_walker",
+       "summonCount": 2,
+       "maxAlive": 3
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "the_winter_widow_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 1.95
+     },
+     "attacks": [
+      {
+       "id": "the_winter_widow_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 3,
+       "projectileSpeed": 4.4,
+       "cooldown": 4.0,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.0,
+       "waves": 10,
+       "spiralStep": 17,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_winter_widow_burst",
+       "kind": "Projectile",
+       "pattern": "RandomBurst",
+       "count": 6,
+       "projectileSpeed": 5.4,
+       "cooldown": 2.2,
+       "telegraph": 0.5,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 35
+      },
+      {
+       "id": "the_winter_widow_slam",
+       "kind": "Slam",
+       "cooldown": 5,
+       "telegraph": 0.9,
+       "recovery": 0.7,
+       "maxRange": 3,
+       "radius": 2.6,
+       "damage": 2,
+       "minDifficulty": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "permafrost",
+   "name": "Permafrost",
+   "title": "The Frozen Choir",
+   "tier": "Early",
+   "description": "Ruler of the Frost Catacomb.",
+   "musicKey": "music_boss_early",
+   "introKey": "intro_permafrost",
+   "rewardPool": "boss",
+   "body": {
+    "id": "permafrost_body",
+    "spriteKey": "boss_permafrost",
+    "health": 315,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.1,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "frost",
+     "flying"
+    ],
+    "movement": {
+     "kind": "Wander",
+     "speed": 1.45,
+     "flying": true
+    },
+    "statusImmunities": [
+     "chill",
+     "freeze"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "permafrost_cross",
+       "kind": "Projectile",
+       "pattern": "Cross",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "permafrost_xcross",
+       "kind": "Projectile",
+       "pattern": "X",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "permafrost_phase2",
+     "movement": {
+      "kind": "Orbit",
+      "speed": 1.85,
+      "preferredDistance": 4.5,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "permafrost_beam",
+       "kind": "Beam",
+       "cooldown": 4.5,
+       "telegraph": 1.0,
+       "duration": 1.4,
+       "recovery": 0.6,
+       "maxRange": 14,
+       "damage": 1,
+       "weight": 2
+      },
+      {
+       "id": "permafrost_blink",
+       "kind": "Teleport",
+       "cooldown": 5,
+       "telegraph": 0.5,
+       "recovery": 0.2,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "permafrost_wall",
+       "kind": "Projectile",
+       "pattern": "Wall",
+       "count": 7,
+       "projectileSpeed": 4.0,
+       "cooldown": 3.5,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "permafrost_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 1.95,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "permafrost_double_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 4,
+       "projectileSpeed": 4.2,
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.4,
+       "waves": 12,
+       "spiralStep": 13,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "permafrost_hazard",
+       "kind": "Hazard",
+       "cooldown": 4,
+       "telegraph": 0.6,
+       "recovery": 0.4,
+       "requiresLineOfSight": false,
+       "radius": 1.6,
+       "hazardId": "spikes",
+       "duration": 5,
+       "damage": 1
+      },
+      {
+       "id": "permafrost_call",
+       "kind": "Summon",
+       "cooldown": 8,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "snow_wisp",
+       "summonCount": 1,
+       "maxAlive": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "yeti_bones",
+   "name": "Yeti Bones",
+   "title": "Lair of the Frost Catacomb",
+   "tier": "Miniboss",
+   "description": "A lair-dweller of the Frost Catacomb.",
+   "rewardPool": "treasure",
+   "body": {
+    "id": "yeti_bones_body",
+    "spriteKey": "miniboss_yeti_bones",
+    "health": 120,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 0.8,
+    "knockbackResistance": 0.85,
+    "isBoss": true,
+    "tags": [
+     "miniboss",
+     "frost"
+    ],
+    "movement": {
+     "kind": "Hop",
+     "speed": 2.0,
+     "pauseTime": 0.8,
+     "hopDistance": 2.5
+    },
+    "attacks": [
+     {
+      "id": "yeti_bones_ring",
+      "kind": "Projectile",
+      "pattern": "Ring",
+      "count": 8,
+      "projectileSpeed": 4.5,
+      "cooldown": 3.0,
+      "telegraph": 0.6,
+      "recovery": 0.35,
+      "damage": 1,
+      "requiresLineOfSight": false
+     },
+     {
+      "id": "yeti_bones_charge",
+      "kind": "Dash",
+      "cooldown": 4,
+      "telegraph": 0.75,
+      "duration": 0.5,
+      "recovery": 0.7,
+      "minRange": 2.5,
+      "dashSpeed": 11
+     }
+    ],
+    "onDeath": [
+     {
+      "kind": "SpawnEnemies",
+      "enemyId": "rime_walker",
+      "count": 2
+     }
+    ],
+    "statusImmunities": [
+     "chill",
+     "freeze"
+    ]
+   },
+   "phases": []
+  },
+  {
+   "id": "the_gardener",
+   "name": "The Gardener",
+   "title": "Pruner of the Living",
+   "tier": "Mid",
+   "description": "Ruler of the Gloam Gardens.",
+   "musicKey": "music_boss_mid",
+   "introKey": "intro_the_gardener",
+   "rewardPool": "boss",
+   "body": {
+    "id": "the_gardener_body",
+    "spriteKey": "boss_the_gardener",
+    "health": 320,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.0,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "garden"
+    ],
+    "movement": {
+     "kind": "Chase",
+     "speed": 1.48
+    },
+    "statusImmunities": [
+     "poison"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "the_gardener_fan",
+       "kind": "Projectile",
+       "pattern": "Spread",
+       "count": 5,
+       "projectileSpeed": 5.2,
+       "cooldown": 2.4,
+       "telegraph": 0.6,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 15,
+       "weight": 2
+      },
+      {
+       "id": "the_gardener_charge",
+       "kind": "Dash",
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "duration": 0.6,
+       "recovery": 0.8,
+       "minRange": 2,
+       "dashSpeed": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "the_gardener_phase2",
+     "movement": {
+      "kind": "KeepDistance",
+      "speed": 1.88,
+      "preferredDistance": 4.5
+     },
+     "attacks": [
+      {
+       "id": "the_gardener_ring",
+       "kind": "Projectile",
+       "pattern": "Ring",
+       "count": 12,
+       "projectileSpeed": 4.2,
+       "cooldown": 3.2,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_gardener_call",
+       "kind": "Summon",
+       "cooldown": 7,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "thorn_crawler",
+       "summonCount": 2,
+       "maxAlive": 3
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "the_gardener_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 1.98
+     },
+     "attacks": [
+      {
+       "id": "the_gardener_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 3,
+       "projectileSpeed": 4.4,
+       "cooldown": 4.0,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.0,
+       "waves": 10,
+       "spiralStep": 17,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_gardener_burst",
+       "kind": "Projectile",
+       "pattern": "RandomBurst",
+       "count": 6,
+       "projectileSpeed": 5.4,
+       "cooldown": 2.2,
+       "telegraph": 0.5,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 35
+      },
+      {
+       "id": "the_gardener_slam",
+       "kind": "Slam",
+       "cooldown": 5,
+       "telegraph": 0.9,
+       "recovery": 0.7,
+       "maxRange": 3,
+       "radius": 2.6,
+       "damage": 2,
+       "minDifficulty": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rotbloom",
+   "name": "Rotbloom",
+   "title": "The Corpse Flower",
+   "tier": "Mid",
+   "description": "Ruler of the Gloam Gardens.",
+   "musicKey": "music_boss_mid",
+   "introKey": "intro_rotbloom",
+   "rewardPool": "boss",
+   "body": {
+    "id": "rotbloom_body",
+    "spriteKey": "boss_rotbloom",
+    "health": 335,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.1,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "garden",
+     "flying"
+    ],
+    "movement": {
+     "kind": "Wander",
+     "speed": 1.48,
+     "flying": true
+    },
+    "statusImmunities": [
+     "poison"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "rotbloom_cross",
+       "kind": "Projectile",
+       "pattern": "Cross",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "rotbloom_xcross",
+       "kind": "Projectile",
+       "pattern": "X",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "rotbloom_phase2",
+     "movement": {
+      "kind": "Orbit",
+      "speed": 1.88,
+      "preferredDistance": 4.5,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "rotbloom_beam",
+       "kind": "Beam",
+       "cooldown": 4.5,
+       "telegraph": 1.0,
+       "duration": 1.4,
+       "recovery": 0.6,
+       "maxRange": 14,
+       "damage": 1,
+       "weight": 2
+      },
+      {
+       "id": "rotbloom_blink",
+       "kind": "Teleport",
+       "cooldown": 5,
+       "telegraph": 0.5,
+       "recovery": 0.2,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "rotbloom_wall",
+       "kind": "Projectile",
+       "pattern": "Wall",
+       "count": 7,
+       "projectileSpeed": 4.0,
+       "cooldown": 3.5,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "rotbloom_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 1.98,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "rotbloom_double_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 4,
+       "projectileSpeed": 4.2,
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.4,
+       "waves": 12,
+       "spiralStep": 13,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "rotbloom_hazard",
+       "kind": "Hazard",
+       "cooldown": 4,
+       "telegraph": 0.6,
+       "recovery": 0.4,
+       "requiresLineOfSight": false,
+       "radius": 1.6,
+       "hazardId": "acid",
+       "duration": 5,
+       "damage": 1
+      },
+      {
+       "id": "rotbloom_call",
+       "kind": "Summon",
+       "cooldown": 8,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "pod_spitter",
+       "summonCount": 1,
+       "maxAlive": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hedge_beast",
+   "name": "Hedge Beast",
+   "title": "Lair of the Gloam Gardens",
+   "tier": "Miniboss",
+   "description": "A lair-dweller of the Gloam Gardens.",
+   "rewardPool": "treasure",
+   "body": {
+    "id": "hedge_beast_body",
+    "spriteKey": "miniboss_hedge_beast",
+    "health": 128,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 0.8,
+    "knockbackResistance": 0.85,
+    "isBoss": true,
+    "tags": [
+     "miniboss",
+     "garden"
+    ],
+    "movement": {
+     "kind": "Hop",
+     "speed": 2.0,
+     "pauseTime": 0.8,
+     "hopDistance": 2.5
+    },
+    "attacks": [
+     {
+      "id": "hedge_beast_ring",
+      "kind": "Projectile",
+      "pattern": "Ring",
+      "count": 8,
+      "projectileSpeed": 4.5,
+      "cooldown": 3.0,
+      "telegraph": 0.6,
+      "recovery": 0.35,
+      "damage": 1,
+      "requiresLineOfSight": false
+     },
+     {
+      "id": "hedge_beast_charge",
+      "kind": "Dash",
+      "cooldown": 4,
+      "telegraph": 0.75,
+      "duration": 0.5,
+      "recovery": 0.7,
+      "minRange": 2.5,
+      "dashSpeed": 11
+     }
+    ],
+    "onDeath": [
+     {
+      "kind": "SpawnEnemies",
+      "enemyId": "thorn_crawler",
+      "count": 2
+     }
+    ],
+    "statusImmunities": [
+     "poison"
+    ]
+   },
+   "phases": []
+  },
+  {
+   "id": "the_bellringer",
+   "name": "The Bellringer",
+   "title": "Toll of the Last Hour",
+   "tier": "Mid",
+   "description": "Ruler of the Storm Belfry.",
+   "musicKey": "music_boss_mid",
+   "introKey": "intro_the_bellringer",
+   "rewardPool": "boss",
+   "body": {
+    "id": "the_bellringer_body",
+    "spriteKey": "boss_the_bellringer",
+    "health": 340,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.0,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "belfry"
+    ],
+    "movement": {
+     "kind": "Chase",
+     "speed": 1.51
+    },
+    "statusImmunities": [
+     "shock"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "the_bellringer_fan",
+       "kind": "Projectile",
+       "pattern": "Spread",
+       "count": 5,
+       "projectileSpeed": 5.2,
+       "cooldown": 2.4,
+       "telegraph": 0.6,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 15,
+       "weight": 2
+      },
+      {
+       "id": "the_bellringer_charge",
+       "kind": "Dash",
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "duration": 0.6,
+       "recovery": 0.8,
+       "minRange": 2,
+       "dashSpeed": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "the_bellringer_phase2",
+     "movement": {
+      "kind": "KeepDistance",
+      "speed": 1.9100000000000001,
+      "preferredDistance": 4.5
+     },
+     "attacks": [
+      {
+       "id": "the_bellringer_ring",
+       "kind": "Projectile",
+       "pattern": "Ring",
+       "count": 12,
+       "projectileSpeed": 4.2,
+       "cooldown": 3.2,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_bellringer_call",
+       "kind": "Summon",
+       "cooldown": 7,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "bell_bat",
+       "summonCount": 2,
+       "maxAlive": 3
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "the_bellringer_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.01
+     },
+     "attacks": [
+      {
+       "id": "the_bellringer_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 3,
+       "projectileSpeed": 4.4,
+       "cooldown": 4.0,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.0,
+       "waves": 10,
+       "spiralStep": 17,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_bellringer_burst",
+       "kind": "Projectile",
+       "pattern": "RandomBurst",
+       "count": 6,
+       "projectileSpeed": 5.4,
+       "cooldown": 2.2,
+       "telegraph": 0.5,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 35
+      },
+      {
+       "id": "the_bellringer_slam",
+       "kind": "Slam",
+       "cooldown": 5,
+       "telegraph": 0.9,
+       "recovery": 0.7,
+       "maxRange": 3,
+       "radius": 2.6,
+       "damage": 2,
+       "minDifficulty": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tempest",
+   "name": "Tempest",
+   "title": "The Caged Storm",
+   "tier": "Mid",
+   "description": "Ruler of the Storm Belfry.",
+   "musicKey": "music_boss_mid",
+   "introKey": "intro_tempest",
+   "rewardPool": "boss",
+   "body": {
+    "id": "tempest_body",
+    "spriteKey": "boss_tempest",
+    "health": 355,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.1,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "belfry",
+     "flying"
+    ],
+    "movement": {
+     "kind": "Wander",
+     "speed": 1.51,
+     "flying": true
+    },
+    "statusImmunities": [
+     "shock"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "tempest_cross",
+       "kind": "Projectile",
+       "pattern": "Cross",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "tempest_xcross",
+       "kind": "Projectile",
+       "pattern": "X",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "tempest_phase2",
+     "movement": {
+      "kind": "Orbit",
+      "speed": 1.9100000000000001,
+      "preferredDistance": 4.5,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "tempest_beam",
+       "kind": "Beam",
+       "cooldown": 4.5,
+       "telegraph": 1.0,
+       "duration": 1.4,
+       "recovery": 0.6,
+       "maxRange": 14,
+       "damage": 1,
+       "weight": 2
+      },
+      {
+       "id": "tempest_blink",
+       "kind": "Teleport",
+       "cooldown": 5,
+       "telegraph": 0.5,
+       "recovery": 0.2,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "tempest_wall",
+       "kind": "Projectile",
+       "pattern": "Wall",
+       "count": 7,
+       "projectileSpeed": 4.0,
+       "cooldown": 3.5,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "tempest_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.01,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "tempest_double_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 4,
+       "projectileSpeed": 4.2,
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.4,
+       "waves": 12,
+       "spiralStep": 13,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "tempest_hazard",
+       "kind": "Hazard",
+       "cooldown": 4,
+       "telegraph": 0.6,
+       "recovery": 0.4,
+       "requiresLineOfSight": false,
+       "radius": 1.6,
+       "hazardId": "spikes",
+       "duration": 5,
+       "damage": 1
+      },
+      {
+       "id": "tempest_call",
+       "kind": "Summon",
+       "cooldown": 8,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "spark_sprite",
+       "summonCount": 1,
+       "maxAlive": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "great_clapper",
+   "name": "Great Clapper",
+   "title": "Lair of the Storm Belfry",
+   "tier": "Miniboss",
+   "description": "A lair-dweller of the Storm Belfry.",
+   "rewardPool": "treasure",
+   "body": {
+    "id": "great_clapper_body",
+    "spriteKey": "miniboss_great_clapper",
+    "health": 136,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 0.8,
+    "knockbackResistance": 0.85,
+    "isBoss": true,
+    "tags": [
+     "miniboss",
+     "belfry"
+    ],
+    "movement": {
+     "kind": "Hop",
+     "speed": 2.0,
+     "pauseTime": 0.8,
+     "hopDistance": 2.5
+    },
+    "attacks": [
+     {
+      "id": "great_clapper_ring",
+      "kind": "Projectile",
+      "pattern": "Ring",
+      "count": 8,
+      "projectileSpeed": 4.5,
+      "cooldown": 3.0,
+      "telegraph": 0.6,
+      "recovery": 0.35,
+      "damage": 1,
+      "requiresLineOfSight": false
+     },
+     {
+      "id": "great_clapper_charge",
+      "kind": "Dash",
+      "cooldown": 4,
+      "telegraph": 0.75,
+      "duration": 0.5,
+      "recovery": 0.7,
+      "minRange": 2.5,
+      "dashSpeed": 11
+     }
+    ],
+    "onDeath": [
+     {
+      "kind": "SpawnEnemies",
+      "enemyId": "bell_bat",
+      "count": 2
+     }
+    ],
+    "statusImmunities": [
+     "shock"
+    ]
+   },
+   "phases": []
+  },
+  {
+   "id": "the_abbess_below",
+   "name": "The Abbess Below",
+   "title": "Keeper of the Flooded Nave",
+   "tier": "Mid",
+   "description": "Ruler of the Drowned Chapel.",
+   "musicKey": "music_boss_mid",
+   "introKey": "intro_the_abbess_below",
+   "rewardPool": "boss",
+   "body": {
+    "id": "the_abbess_below_body",
+    "spriteKey": "boss_the_abbess_below",
+    "health": 360,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.0,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "chapel"
+    ],
+    "movement": {
+     "kind": "Chase",
+     "speed": 1.54
+    }
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "the_abbess_below_fan",
+       "kind": "Projectile",
+       "pattern": "Spread",
+       "count": 5,
+       "projectileSpeed": 5.2,
+       "cooldown": 2.4,
+       "telegraph": 0.6,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 15,
+       "weight": 2
+      },
+      {
+       "id": "the_abbess_below_charge",
+       "kind": "Dash",
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "duration": 0.6,
+       "recovery": 0.8,
+       "minRange": 2,
+       "dashSpeed": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "the_abbess_below_phase2",
+     "movement": {
+      "kind": "KeepDistance",
+      "speed": 1.94,
+      "preferredDistance": 4.5
+     },
+     "attacks": [
+      {
+       "id": "the_abbess_below_ring",
+       "kind": "Projectile",
+       "pattern": "Ring",
+       "count": 12,
+       "projectileSpeed": 4.2,
+       "cooldown": 3.2,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_abbess_below_call",
+       "kind": "Summon",
+       "cooldown": 7,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "drowned_pilgrim",
+       "summonCount": 2,
+       "maxAlive": 3
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "the_abbess_below_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.04
+     },
+     "attacks": [
+      {
+       "id": "the_abbess_below_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 3,
+       "projectileSpeed": 4.4,
+       "cooldown": 4.0,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.0,
+       "waves": 10,
+       "spiralStep": 17,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_abbess_below_burst",
+       "kind": "Projectile",
+       "pattern": "RandomBurst",
+       "count": 6,
+       "projectileSpeed": 5.4,
+       "cooldown": 2.2,
+       "telegraph": 0.5,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 35
+      },
+      {
+       "id": "the_abbess_below_slam",
+       "kind": "Slam",
+       "cooldown": 5,
+       "telegraph": 0.9,
+       "recovery": 0.7,
+       "maxRange": 3,
+       "radius": 2.6,
+       "damage": 2,
+       "minDifficulty": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "leviathan_font",
+   "name": "Leviathan Font",
+   "title": "The Font That Drinks",
+   "tier": "Mid",
+   "description": "Ruler of the Drowned Chapel.",
+   "musicKey": "music_boss_mid",
+   "introKey": "intro_leviathan_font",
+   "rewardPool": "boss",
+   "body": {
+    "id": "leviathan_font_body",
+    "spriteKey": "boss_leviathan_font",
+    "health": 375,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.1,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "chapel",
+     "flying"
+    ],
+    "movement": {
+     "kind": "Wander",
+     "speed": 1.54,
+     "flying": true
+    }
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "leviathan_font_cross",
+       "kind": "Projectile",
+       "pattern": "Cross",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "leviathan_font_xcross",
+       "kind": "Projectile",
+       "pattern": "X",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "leviathan_font_phase2",
+     "movement": {
+      "kind": "Orbit",
+      "speed": 1.94,
+      "preferredDistance": 4.5,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "leviathan_font_beam",
+       "kind": "Beam",
+       "cooldown": 4.5,
+       "telegraph": 1.0,
+       "duration": 1.4,
+       "recovery": 0.6,
+       "maxRange": 14,
+       "damage": 1,
+       "weight": 2
+      },
+      {
+       "id": "leviathan_font_blink",
+       "kind": "Teleport",
+       "cooldown": 5,
+       "telegraph": 0.5,
+       "recovery": 0.2,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "leviathan_font_wall",
+       "kind": "Projectile",
+       "pattern": "Wall",
+       "count": 7,
+       "projectileSpeed": 4.0,
+       "cooldown": 3.5,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "leviathan_font_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.04,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "leviathan_font_double_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 4,
+       "projectileSpeed": 4.2,
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.4,
+       "waves": 12,
+       "spiralStep": 13,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "leviathan_font_hazard",
+       "kind": "Hazard",
+       "cooldown": 4,
+       "telegraph": 0.6,
+       "recovery": 0.4,
+       "requiresLineOfSight": false,
+       "radius": 1.6,
+       "hazardId": "acid",
+       "duration": 5,
+       "damage": 1
+      },
+      {
+       "id": "leviathan_font_call",
+       "kind": "Summon",
+       "cooldown": 8,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "bubble_fish",
+       "summonCount": 1,
+       "maxAlive": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "choir_eel",
+   "name": "Choir Eel",
+   "title": "Lair of the Drowned Chapel",
+   "tier": "Miniboss",
+   "description": "A lair-dweller of the Drowned Chapel.",
+   "rewardPool": "treasure",
+   "body": {
+    "id": "choir_eel_body",
+    "spriteKey": "miniboss_choir_eel",
+    "health": 144,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 0.8,
+    "knockbackResistance": 0.85,
+    "isBoss": true,
+    "tags": [
+     "miniboss",
+     "chapel"
+    ],
+    "movement": {
+     "kind": "Hop",
+     "speed": 2.0,
+     "pauseTime": 0.8,
+     "hopDistance": 2.5
+    },
+    "attacks": [
+     {
+      "id": "choir_eel_ring",
+      "kind": "Projectile",
+      "pattern": "Ring",
+      "count": 8,
+      "projectileSpeed": 4.5,
+      "cooldown": 3.0,
+      "telegraph": 0.6,
+      "recovery": 0.35,
+      "damage": 1,
+      "requiresLineOfSight": false
+     },
+     {
+      "id": "choir_eel_charge",
+      "kind": "Dash",
+      "cooldown": 4,
+      "telegraph": 0.75,
+      "duration": 0.5,
+      "recovery": 0.7,
+      "minRange": 2.5,
+      "dashSpeed": 11
+     }
+    ],
+    "onDeath": [
+     {
+      "kind": "SpawnEnemies",
+      "enemyId": "drowned_pilgrim",
+      "count": 2
+     }
+    ]
+   },
+   "phases": []
+  },
+  {
+   "id": "the_harvester",
+   "name": "The Harvester",
+   "title": "Reaper of the Pale Crop",
+   "tier": "Mid",
+   "description": "Ruler of the Bone Orchard.",
+   "musicKey": "music_boss_mid",
+   "introKey": "intro_the_harvester",
+   "rewardPool": "boss",
+   "body": {
+    "id": "the_harvester_body",
+    "spriteKey": "boss_the_harvester",
+    "health": 380,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.0,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "orchard"
+    ],
+    "movement": {
+     "kind": "Chase",
+     "speed": 1.57
+    }
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "the_harvester_fan",
+       "kind": "Projectile",
+       "pattern": "Spread",
+       "count": 5,
+       "projectileSpeed": 5.2,
+       "cooldown": 2.4,
+       "telegraph": 0.6,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 15,
+       "weight": 2
+      },
+      {
+       "id": "the_harvester_charge",
+       "kind": "Dash",
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "duration": 0.6,
+       "recovery": 0.8,
+       "minRange": 2,
+       "dashSpeed": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "the_harvester_phase2",
+     "movement": {
+      "kind": "KeepDistance",
+      "speed": 1.9700000000000002,
+      "preferredDistance": 4.5
+     },
+     "attacks": [
+      {
+       "id": "the_harvester_ring",
+       "kind": "Projectile",
+       "pattern": "Ring",
+       "count": 13,
+       "projectileSpeed": 4.2,
+       "cooldown": 3.2,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_harvester_call",
+       "kind": "Summon",
+       "cooldown": 7,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "orchard_scarecrow",
+       "summonCount": 2,
+       "maxAlive": 3
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "the_harvester_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.0700000000000003
+     },
+     "attacks": [
+      {
+       "id": "the_harvester_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 3,
+       "projectileSpeed": 4.4,
+       "cooldown": 4.0,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.0,
+       "waves": 10,
+       "spiralStep": 17,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_harvester_burst",
+       "kind": "Projectile",
+       "pattern": "RandomBurst",
+       "count": 6,
+       "projectileSpeed": 5.4,
+       "cooldown": 2.2,
+       "telegraph": 0.5,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 35
+      },
+      {
+       "id": "the_harvester_slam",
+       "kind": "Slam",
+       "cooldown": 5,
+       "telegraph": 0.9,
+       "recovery": 0.7,
+       "maxRange": 3,
+       "radius": 2.6,
+       "damage": 2,
+       "minDifficulty": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mother_bough",
+   "name": "Mother Bough",
+   "title": "The Hanging Tree",
+   "tier": "Mid",
+   "description": "Ruler of the Bone Orchard.",
+   "musicKey": "music_boss_mid",
+   "introKey": "intro_mother_bough",
+   "rewardPool": "boss",
+   "body": {
+    "id": "mother_bough_body",
+    "spriteKey": "boss_mother_bough",
+    "health": 395,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.1,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "orchard",
+     "flying"
+    ],
+    "movement": {
+     "kind": "Wander",
+     "speed": 1.57,
+     "flying": true
+    }
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "mother_bough_cross",
+       "kind": "Projectile",
+       "pattern": "Cross",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "mother_bough_xcross",
+       "kind": "Projectile",
+       "pattern": "X",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "mother_bough_phase2",
+     "movement": {
+      "kind": "Orbit",
+      "speed": 1.9700000000000002,
+      "preferredDistance": 4.5,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "mother_bough_beam",
+       "kind": "Beam",
+       "cooldown": 4.5,
+       "telegraph": 1.0,
+       "duration": 1.4,
+       "recovery": 0.6,
+       "maxRange": 14,
+       "damage": 1,
+       "weight": 2
+      },
+      {
+       "id": "mother_bough_blink",
+       "kind": "Teleport",
+       "cooldown": 5,
+       "telegraph": 0.5,
+       "recovery": 0.2,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "mother_bough_wall",
+       "kind": "Projectile",
+       "pattern": "Wall",
+       "count": 7,
+       "projectileSpeed": 4.0,
+       "cooldown": 3.5,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "mother_bough_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.0700000000000003,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "mother_bough_double_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 4,
+       "projectileSpeed": 4.2,
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.4,
+       "waves": 12,
+       "spiralStep": 13,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "mother_bough_hazard",
+       "kind": "Hazard",
+       "cooldown": 4,
+       "telegraph": 0.6,
+       "recovery": 0.4,
+       "requiresLineOfSight": false,
+       "radius": 1.6,
+       "hazardId": "spikes",
+       "duration": 5,
+       "damage": 1
+      },
+      {
+       "id": "mother_bough_call",
+       "kind": "Summon",
+       "cooldown": 8,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "orchard_scarecrow",
+       "summonCount": 1,
+       "maxAlive": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "scarecrow_lord",
+   "name": "Scarecrow Lord",
+   "title": "Lair of the Bone Orchard",
+   "tier": "Miniboss",
+   "description": "A lair-dweller of the Bone Orchard.",
+   "rewardPool": "treasure",
+   "body": {
+    "id": "scarecrow_lord_body",
+    "spriteKey": "miniboss_scarecrow_lord",
+    "health": 152,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 0.8,
+    "knockbackResistance": 0.85,
+    "isBoss": true,
+    "tags": [
+     "miniboss",
+     "orchard"
+    ],
+    "movement": {
+     "kind": "Hop",
+     "speed": 2.0,
+     "pauseTime": 0.8,
+     "hopDistance": 2.5
+    },
+    "attacks": [
+     {
+      "id": "scarecrow_lord_ring",
+      "kind": "Projectile",
+      "pattern": "Ring",
+      "count": 8,
+      "projectileSpeed": 4.5,
+      "cooldown": 3.0,
+      "telegraph": 0.6,
+      "recovery": 0.35,
+      "damage": 1,
+      "requiresLineOfSight": false
+     },
+     {
+      "id": "scarecrow_lord_charge",
+      "kind": "Dash",
+      "cooldown": 4,
+      "telegraph": 0.75,
+      "duration": 0.5,
+      "recovery": 0.7,
+      "minRange": 2.5,
+      "dashSpeed": 11
+     }
+    ],
+    "onDeath": [
+     {
+      "kind": "SpawnEnemies",
+      "enemyId": "orchard_scarecrow",
+      "count": 2
+     }
+    ]
+   },
+   "phases": []
+  },
+  {
+   "id": "the_hive_queen",
+   "name": "The Hive Queen",
+   "title": "Mother of the Thousand",
+   "tier": "Mid",
+   "description": "Ruler of the Hive Depths.",
+   "musicKey": "music_boss_mid",
+   "introKey": "intro_the_hive_queen",
+   "rewardPool": "boss",
+   "body": {
+    "id": "the_hive_queen_body",
+    "spriteKey": "boss_the_hive_queen",
+    "health": 400,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.0,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "hive"
+    ],
+    "movement": {
+     "kind": "Chase",
+     "speed": 1.6
+    },
+    "statusImmunities": [
+     "poison"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "the_hive_queen_fan",
+       "kind": "Projectile",
+       "pattern": "Spread",
+       "count": 5,
+       "projectileSpeed": 5.2,
+       "cooldown": 2.4,
+       "telegraph": 0.6,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 15,
+       "weight": 2
+      },
+      {
+       "id": "the_hive_queen_charge",
+       "kind": "Dash",
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "duration": 0.6,
+       "recovery": 0.8,
+       "minRange": 2,
+       "dashSpeed": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "the_hive_queen_phase2",
+     "movement": {
+      "kind": "KeepDistance",
+      "speed": 2.0,
+      "preferredDistance": 4.5
+     },
+     "attacks": [
+      {
+       "id": "the_hive_queen_ring",
+       "kind": "Projectile",
+       "pattern": "Ring",
+       "count": 13,
+       "projectileSpeed": 4.2,
+       "cooldown": 3.2,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_hive_queen_call",
+       "kind": "Summon",
+       "cooldown": 7,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "drone_wasp",
+       "summonCount": 2,
+       "maxAlive": 3
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "the_hive_queen_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.1
+     },
+     "attacks": [
+      {
+       "id": "the_hive_queen_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 3,
+       "projectileSpeed": 4.4,
+       "cooldown": 4.0,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.0,
+       "waves": 10,
+       "spiralStep": 17,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_hive_queen_burst",
+       "kind": "Projectile",
+       "pattern": "RandomBurst",
+       "count": 6,
+       "projectileSpeed": 5.4,
+       "cooldown": 2.2,
+       "telegraph": 0.5,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 35
+      },
+      {
+       "id": "the_hive_queen_slam",
+       "kind": "Slam",
+       "cooldown": 5,
+       "telegraph": 0.9,
+       "recovery": 0.7,
+       "maxRange": 3,
+       "radius": 2.6,
+       "damage": 2,
+       "minDifficulty": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "swarm_engine",
+   "name": "Swarm Engine",
+   "title": "The Humming Machine",
+   "tier": "Mid",
+   "description": "Ruler of the Hive Depths.",
+   "musicKey": "music_boss_mid",
+   "introKey": "intro_swarm_engine",
+   "rewardPool": "boss",
+   "body": {
+    "id": "swarm_engine_body",
+    "spriteKey": "boss_swarm_engine",
+    "health": 415,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.1,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "hive",
+     "flying"
+    ],
+    "movement": {
+     "kind": "Wander",
+     "speed": 1.6,
+     "flying": true
+    },
+    "statusImmunities": [
+     "poison"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "swarm_engine_cross",
+       "kind": "Projectile",
+       "pattern": "Cross",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "swarm_engine_xcross",
+       "kind": "Projectile",
+       "pattern": "X",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "swarm_engine_phase2",
+     "movement": {
+      "kind": "Orbit",
+      "speed": 2.0,
+      "preferredDistance": 4.5,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "swarm_engine_beam",
+       "kind": "Beam",
+       "cooldown": 4.5,
+       "telegraph": 1.0,
+       "duration": 1.4,
+       "recovery": 0.6,
+       "maxRange": 14,
+       "damage": 1,
+       "weight": 2
+      },
+      {
+       "id": "swarm_engine_blink",
+       "kind": "Teleport",
+       "cooldown": 5,
+       "telegraph": 0.5,
+       "recovery": 0.2,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "swarm_engine_wall",
+       "kind": "Projectile",
+       "pattern": "Wall",
+       "count": 7,
+       "projectileSpeed": 4.0,
+       "cooldown": 3.5,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "swarm_engine_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.1,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "swarm_engine_double_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 4,
+       "projectileSpeed": 4.2,
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.4,
+       "waves": 12,
+       "spiralStep": 13,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "swarm_engine_hazard",
+       "kind": "Hazard",
+       "cooldown": 4,
+       "telegraph": 0.6,
+       "recovery": 0.4,
+       "requiresLineOfSight": false,
+       "radius": 1.6,
+       "hazardId": "acid",
+       "duration": 5,
+       "damage": 1
+      },
+      {
+       "id": "swarm_engine_call",
+       "kind": "Summon",
+       "cooldown": 8,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "honey_spitter",
+       "summonCount": 1,
+       "maxAlive": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wax_knight",
+   "name": "Wax Knight",
+   "title": "Lair of the Hive Depths",
+   "tier": "Miniboss",
+   "description": "A lair-dweller of the Hive Depths.",
+   "rewardPool": "treasure",
+   "body": {
+    "id": "wax_knight_body",
+    "spriteKey": "miniboss_wax_knight",
+    "health": 160,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 0.8,
+    "knockbackResistance": 0.85,
+    "isBoss": true,
+    "tags": [
+     "miniboss",
+     "hive"
+    ],
+    "movement": {
+     "kind": "Hop",
+     "speed": 2.0,
+     "pauseTime": 0.8,
+     "hopDistance": 2.5
+    },
+    "attacks": [
+     {
+      "id": "wax_knight_ring",
+      "kind": "Projectile",
+      "pattern": "Ring",
+      "count": 8,
+      "projectileSpeed": 4.5,
+      "cooldown": 3.0,
+      "telegraph": 0.6,
+      "recovery": 0.35,
+      "damage": 1,
+      "requiresLineOfSight": false
+     },
+     {
+      "id": "wax_knight_charge",
+      "kind": "Dash",
+      "cooldown": 4,
+      "telegraph": 0.75,
+      "duration": 0.5,
+      "recovery": 0.7,
+      "minRange": 2.5,
+      "dashSpeed": 11
+     }
+    ],
+    "onDeath": [
+     {
+      "kind": "SpawnEnemies",
+      "enemyId": "drone_wasp",
+      "count": 2
+     }
+    ],
+    "statusImmunities": [
+     "poison"
+    ]
+   },
+   "phases": []
+  },
+  {
+   "id": "the_glazier",
+   "name": "The Glazier",
+   "title": "Maker of the Maze",
+   "tier": "Late",
+   "description": "Ruler of the Glass Labyrinth.",
+   "musicKey": "music_boss_late",
+   "introKey": "intro_the_glazier",
+   "rewardPool": "boss",
+   "body": {
+    "id": "the_glazier_body",
+    "spriteKey": "boss_the_glazier",
+    "health": 420,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.0,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "glass"
+    ],
+    "movement": {
+     "kind": "Chase",
+     "speed": 1.63
+    }
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "the_glazier_fan",
+       "kind": "Projectile",
+       "pattern": "Spread",
+       "count": 5,
+       "projectileSpeed": 5.2,
+       "cooldown": 2.4,
+       "telegraph": 0.6,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 15,
+       "weight": 2
+      },
+      {
+       "id": "the_glazier_charge",
+       "kind": "Dash",
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "duration": 0.6,
+       "recovery": 0.8,
+       "minRange": 2,
+       "dashSpeed": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "the_glazier_phase2",
+     "movement": {
+      "kind": "KeepDistance",
+      "speed": 2.03,
+      "preferredDistance": 4.5
+     },
+     "attacks": [
+      {
+       "id": "the_glazier_ring",
+       "kind": "Projectile",
+       "pattern": "Ring",
+       "count": 13,
+       "projectileSpeed": 4.2,
+       "cooldown": 3.2,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_glazier_call",
+       "kind": "Summon",
+       "cooldown": 7,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "shard_sentry",
+       "summonCount": 2,
+       "maxAlive": 3
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "the_glazier_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.13
+     },
+     "attacks": [
+      {
+       "id": "the_glazier_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 3,
+       "projectileSpeed": 4.4,
+       "cooldown": 4.0,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.0,
+       "waves": 10,
+       "spiralStep": 17,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_glazier_burst",
+       "kind": "Projectile",
+       "pattern": "RandomBurst",
+       "count": 6,
+       "projectileSpeed": 5.4,
+       "cooldown": 2.2,
+       "telegraph": 0.5,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 35
+      },
+      {
+       "id": "the_glazier_slam",
+       "kind": "Slam",
+       "cooldown": 5,
+       "telegraph": 0.9,
+       "recovery": 0.7,
+       "maxRange": 3,
+       "radius": 2.6,
+       "damage": 2,
+       "minDifficulty": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "kaleidos",
+   "name": "Kaleidos",
+   "title": "The Thousand Reflections",
+   "tier": "Late",
+   "description": "Ruler of the Glass Labyrinth.",
+   "musicKey": "music_boss_late",
+   "introKey": "intro_kaleidos",
+   "rewardPool": "boss",
+   "body": {
+    "id": "kaleidos_body",
+    "spriteKey": "boss_kaleidos",
+    "health": 435,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.1,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "glass",
+     "flying"
+    ],
+    "movement": {
+     "kind": "Wander",
+     "speed": 1.63,
+     "flying": true
+    }
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "kaleidos_cross",
+       "kind": "Projectile",
+       "pattern": "Cross",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "kaleidos_xcross",
+       "kind": "Projectile",
+       "pattern": "X",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "kaleidos_phase2",
+     "movement": {
+      "kind": "Orbit",
+      "speed": 2.03,
+      "preferredDistance": 4.5,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "kaleidos_beam",
+       "kind": "Beam",
+       "cooldown": 4.5,
+       "telegraph": 1.0,
+       "duration": 1.4,
+       "recovery": 0.6,
+       "maxRange": 14,
+       "damage": 1,
+       "weight": 2
+      },
+      {
+       "id": "kaleidos_blink",
+       "kind": "Teleport",
+       "cooldown": 5,
+       "telegraph": 0.5,
+       "recovery": 0.2,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "kaleidos_wall",
+       "kind": "Projectile",
+       "pattern": "Wall",
+       "count": 7,
+       "projectileSpeed": 4.0,
+       "cooldown": 3.5,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "kaleidos_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.13,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "kaleidos_double_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 4,
+       "projectileSpeed": 4.2,
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.4,
+       "waves": 12,
+       "spiralStep": 13,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "kaleidos_hazard",
+       "kind": "Hazard",
+       "cooldown": 4,
+       "telegraph": 0.6,
+       "recovery": 0.4,
+       "requiresLineOfSight": false,
+       "radius": 1.6,
+       "hazardId": "spikes",
+       "duration": 5,
+       "damage": 1
+      },
+      {
+       "id": "kaleidos_call",
+       "kind": "Summon",
+       "cooldown": 8,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "prism_wisp",
+       "summonCount": 1,
+       "maxAlive": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mirror_knight",
+   "name": "Mirror Knight",
+   "title": "Lair of the Glass Labyrinth",
+   "tier": "Miniboss",
+   "description": "A lair-dweller of the Glass Labyrinth.",
+   "rewardPool": "treasure",
+   "body": {
+    "id": "mirror_knight_body",
+    "spriteKey": "miniboss_mirror_knight",
+    "health": 168,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 0.8,
+    "knockbackResistance": 0.85,
+    "isBoss": true,
+    "tags": [
+     "miniboss",
+     "glass"
+    ],
+    "movement": {
+     "kind": "Hop",
+     "speed": 2.0,
+     "pauseTime": 0.8,
+     "hopDistance": 2.5
+    },
+    "attacks": [
+     {
+      "id": "mirror_knight_ring",
+      "kind": "Projectile",
+      "pattern": "Ring",
+      "count": 8,
+      "projectileSpeed": 4.5,
+      "cooldown": 3.0,
+      "telegraph": 0.6,
+      "recovery": 0.35,
+      "damage": 1,
+      "requiresLineOfSight": false
+     },
+     {
+      "id": "mirror_knight_charge",
+      "kind": "Dash",
+      "cooldown": 4,
+      "telegraph": 0.75,
+      "duration": 0.5,
+      "recovery": 0.7,
+      "minRange": 2.5,
+      "dashSpeed": 11
+     }
+    ],
+    "onDeath": [
+     {
+      "kind": "SpawnEnemies",
+      "enemyId": "shard_sentry",
+      "count": 2
+     }
+    ]
+   },
+   "phases": []
+  },
+  {
+   "id": "the_umbral_regent",
+   "name": "The Umbral Regent",
+   "title": "Crown of the Dark",
+   "tier": "Late",
+   "description": "Ruler of the Umbral Vault.",
+   "musicKey": "music_boss_late",
+   "introKey": "intro_the_umbral_regent",
+   "rewardPool": "boss",
+   "body": {
+    "id": "the_umbral_regent_body",
+    "spriteKey": "boss_the_umbral_regent",
+    "health": 440,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.0,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "void"
+    ],
+    "movement": {
+     "kind": "Chase",
+     "speed": 1.6600000000000001
+    },
+    "statusImmunities": [
+     "dread"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "the_umbral_regent_fan",
+       "kind": "Projectile",
+       "pattern": "Spread",
+       "count": 5,
+       "projectileSpeed": 5.2,
+       "cooldown": 2.4,
+       "telegraph": 0.6,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 15,
+       "weight": 2
+      },
+      {
+       "id": "the_umbral_regent_charge",
+       "kind": "Dash",
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "duration": 0.6,
+       "recovery": 0.8,
+       "minRange": 2,
+       "dashSpeed": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "the_umbral_regent_phase2",
+     "movement": {
+      "kind": "KeepDistance",
+      "speed": 2.06,
+      "preferredDistance": 4.5
+     },
+     "attacks": [
+      {
+       "id": "the_umbral_regent_ring",
+       "kind": "Projectile",
+       "pattern": "Ring",
+       "count": 14,
+       "projectileSpeed": 4.2,
+       "cooldown": 3.2,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_umbral_regent_call",
+       "kind": "Summon",
+       "cooldown": 7,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "shade_stalker",
+       "summonCount": 2,
+       "maxAlive": 3
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "the_umbral_regent_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.16
+     },
+     "attacks": [
+      {
+       "id": "the_umbral_regent_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 3,
+       "projectileSpeed": 4.4,
+       "cooldown": 4.0,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.0,
+       "waves": 10,
+       "spiralStep": 17,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_umbral_regent_burst",
+       "kind": "Projectile",
+       "pattern": "RandomBurst",
+       "count": 6,
+       "projectileSpeed": 5.4,
+       "cooldown": 2.2,
+       "telegraph": 0.5,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 35
+      },
+      {
+       "id": "the_umbral_regent_slam",
+       "kind": "Slam",
+       "cooldown": 5,
+       "telegraph": 0.9,
+       "recovery": 0.7,
+       "maxRange": 3,
+       "radius": 2.6,
+       "damage": 2,
+       "minDifficulty": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "maw_of_nothing",
+   "name": "Maw of Nothing",
+   "title": "The Hungry Absence",
+   "tier": "Late",
+   "description": "Ruler of the Umbral Vault.",
+   "musicKey": "music_boss_late",
+   "introKey": "intro_maw_of_nothing",
+   "rewardPool": "boss",
+   "body": {
+    "id": "maw_of_nothing_body",
+    "spriteKey": "boss_maw_of_nothing",
+    "health": 455,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.1,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "void",
+     "flying"
+    ],
+    "movement": {
+     "kind": "Wander",
+     "speed": 1.6600000000000001,
+     "flying": true
+    },
+    "statusImmunities": [
+     "dread"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "maw_of_nothing_cross",
+       "kind": "Projectile",
+       "pattern": "Cross",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "maw_of_nothing_xcross",
+       "kind": "Projectile",
+       "pattern": "X",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "maw_of_nothing_phase2",
+     "movement": {
+      "kind": "Orbit",
+      "speed": 2.06,
+      "preferredDistance": 4.5,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "maw_of_nothing_beam",
+       "kind": "Beam",
+       "cooldown": 4.5,
+       "telegraph": 1.0,
+       "duration": 1.4,
+       "recovery": 0.6,
+       "maxRange": 14,
+       "damage": 1,
+       "weight": 2
+      },
+      {
+       "id": "maw_of_nothing_blink",
+       "kind": "Teleport",
+       "cooldown": 5,
+       "telegraph": 0.5,
+       "recovery": 0.2,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "maw_of_nothing_wall",
+       "kind": "Projectile",
+       "pattern": "Wall",
+       "count": 7,
+       "projectileSpeed": 4.0,
+       "cooldown": 3.5,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "maw_of_nothing_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.16,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "maw_of_nothing_double_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 4,
+       "projectileSpeed": 4.2,
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.4,
+       "waves": 12,
+       "spiralStep": 13,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "maw_of_nothing_hazard",
+       "kind": "Hazard",
+       "cooldown": 4,
+       "telegraph": 0.6,
+       "recovery": 0.4,
+       "requiresLineOfSight": false,
+       "radius": 1.6,
+       "hazardId": "acid",
+       "duration": 5,
+       "damage": 1
+      },
+      {
+       "id": "maw_of_nothing_call",
+       "kind": "Summon",
+       "cooldown": 8,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "gloom_wisp",
+       "summonCount": 1,
+       "maxAlive": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "vault_warden",
+   "name": "Vault Warden",
+   "title": "Lair of the Umbral Vault",
+   "tier": "Miniboss",
+   "description": "A lair-dweller of the Umbral Vault.",
+   "rewardPool": "treasure",
+   "body": {
+    "id": "vault_warden_body",
+    "spriteKey": "miniboss_vault_warden",
+    "health": 176,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 0.8,
+    "knockbackResistance": 0.85,
+    "isBoss": true,
+    "tags": [
+     "miniboss",
+     "void"
+    ],
+    "movement": {
+     "kind": "Hop",
+     "speed": 2.0,
+     "pauseTime": 0.8,
+     "hopDistance": 2.5
+    },
+    "attacks": [
+     {
+      "id": "vault_warden_ring",
+      "kind": "Projectile",
+      "pattern": "Ring",
+      "count": 8,
+      "projectileSpeed": 4.5,
+      "cooldown": 3.0,
+      "telegraph": 0.6,
+      "recovery": 0.35,
+      "damage": 1,
+      "requiresLineOfSight": false
+     },
+     {
+      "id": "vault_warden_charge",
+      "kind": "Dash",
+      "cooldown": 4,
+      "telegraph": 0.75,
+      "duration": 0.5,
+      "recovery": 0.7,
+      "minRange": 2.5,
+      "dashSpeed": 11
+     }
+    ],
+    "onDeath": [
+     {
+      "kind": "SpawnEnemies",
+      "enemyId": "shade_stalker",
+      "count": 2
+     }
+    ],
+    "statusImmunities": [
+     "dread"
+    ]
+   },
+   "phases": []
+  },
+  {
+   "id": "the_ash_king",
+   "name": "The Ash King",
+   "title": "Who Burns on the Throne",
+   "tier": "Late",
+   "description": "Ruler of the Cinder Throne.",
+   "musicKey": "music_boss_late",
+   "introKey": "intro_the_ash_king",
+   "rewardPool": "boss",
+   "body": {
+    "id": "the_ash_king_body",
+    "spriteKey": "boss_the_ash_king",
+    "health": 460,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.0,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "throne"
+    ],
+    "movement": {
+     "kind": "Chase",
+     "speed": 1.69
+    },
+    "statusImmunities": [
+     "burn",
+     "scorch"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "the_ash_king_fan",
+       "kind": "Projectile",
+       "pattern": "Spread",
+       "count": 5,
+       "projectileSpeed": 5.2,
+       "cooldown": 2.4,
+       "telegraph": 0.6,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 15,
+       "weight": 2
+      },
+      {
+       "id": "the_ash_king_charge",
+       "kind": "Dash",
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "duration": 0.6,
+       "recovery": 0.8,
+       "minRange": 2,
+       "dashSpeed": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "the_ash_king_phase2",
+     "movement": {
+      "kind": "KeepDistance",
+      "speed": 2.09,
+      "preferredDistance": 4.5
+     },
+     "attacks": [
+      {
+       "id": "the_ash_king_ring",
+       "kind": "Projectile",
+       "pattern": "Ring",
+       "count": 14,
+       "projectileSpeed": 4.2,
+       "cooldown": 3.2,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_ash_king_call",
+       "kind": "Summon",
+       "cooldown": 7,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "ash_knight",
+       "summonCount": 2,
+       "maxAlive": 3
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "the_ash_king_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.19
+     },
+     "attacks": [
+      {
+       "id": "the_ash_king_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 3,
+       "projectileSpeed": 4.4,
+       "cooldown": 4.0,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.0,
+       "waves": 10,
+       "spiralStep": 17,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_ash_king_burst",
+       "kind": "Projectile",
+       "pattern": "RandomBurst",
+       "count": 6,
+       "projectileSpeed": 5.4,
+       "cooldown": 2.2,
+       "telegraph": 0.5,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 35
+      },
+      {
+       "id": "the_ash_king_slam",
+       "kind": "Slam",
+       "cooldown": 5,
+       "telegraph": 0.9,
+       "recovery": 0.7,
+       "maxRange": 3,
+       "radius": 2.6,
+       "damage": 2,
+       "minDifficulty": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pyroclasm",
+   "name": "Pyroclasm",
+   "title": "The Erupting Court",
+   "tier": "Late",
+   "description": "Ruler of the Cinder Throne.",
+   "musicKey": "music_boss_late",
+   "introKey": "intro_pyroclasm",
+   "rewardPool": "boss",
+   "body": {
+    "id": "pyroclasm_body",
+    "spriteKey": "boss_pyroclasm",
+    "health": 475,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.1,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "throne",
+     "flying"
+    ],
+    "movement": {
+     "kind": "Wander",
+     "speed": 1.69,
+     "flying": true
+    },
+    "statusImmunities": [
+     "burn",
+     "scorch"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "pyroclasm_cross",
+       "kind": "Projectile",
+       "pattern": "Cross",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "pyroclasm_xcross",
+       "kind": "Projectile",
+       "pattern": "X",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "pyroclasm_phase2",
+     "movement": {
+      "kind": "Orbit",
+      "speed": 2.09,
+      "preferredDistance": 4.5,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "pyroclasm_beam",
+       "kind": "Beam",
+       "cooldown": 4.5,
+       "telegraph": 1.0,
+       "duration": 1.4,
+       "recovery": 0.6,
+       "maxRange": 14,
+       "damage": 1,
+       "weight": 2
+      },
+      {
+       "id": "pyroclasm_blink",
+       "kind": "Teleport",
+       "cooldown": 5,
+       "telegraph": 0.5,
+       "recovery": 0.2,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "pyroclasm_wall",
+       "kind": "Projectile",
+       "pattern": "Wall",
+       "count": 7,
+       "projectileSpeed": 4.0,
+       "cooldown": 3.5,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "pyroclasm_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.19,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "pyroclasm_double_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 4,
+       "projectileSpeed": 4.2,
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.4,
+       "waves": 12,
+       "spiralStep": 13,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "pyroclasm_hazard",
+       "kind": "Hazard",
+       "cooldown": 4,
+       "telegraph": 0.6,
+       "recovery": 0.4,
+       "requiresLineOfSight": false,
+       "radius": 1.6,
+       "hazardId": "fire",
+       "duration": 5,
+       "damage": 1
+      },
+      {
+       "id": "pyroclasm_call",
+       "kind": "Summon",
+       "cooldown": 8,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "ember_herald",
+       "summonCount": 1,
+       "maxAlive": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "throne_guard",
+   "name": "Throne Guard",
+   "title": "Lair of the Cinder Throne",
+   "tier": "Miniboss",
+   "description": "A lair-dweller of the Cinder Throne.",
+   "rewardPool": "treasure",
+   "body": {
+    "id": "throne_guard_body",
+    "spriteKey": "miniboss_throne_guard",
+    "health": 184,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 0.8,
+    "knockbackResistance": 0.85,
+    "isBoss": true,
+    "tags": [
+     "miniboss",
+     "throne"
+    ],
+    "movement": {
+     "kind": "Hop",
+     "speed": 2.0,
+     "pauseTime": 0.8,
+     "hopDistance": 2.5
+    },
+    "attacks": [
+     {
+      "id": "throne_guard_ring",
+      "kind": "Projectile",
+      "pattern": "Ring",
+      "count": 8,
+      "projectileSpeed": 4.5,
+      "cooldown": 3.0,
+      "telegraph": 0.6,
+      "recovery": 0.35,
+      "damage": 1,
+      "requiresLineOfSight": false
+     },
+     {
+      "id": "throne_guard_charge",
+      "kind": "Dash",
+      "cooldown": 4,
+      "telegraph": 0.75,
+      "duration": 0.5,
+      "recovery": 0.7,
+      "minRange": 2.5,
+      "dashSpeed": 11
+     }
+    ],
+    "onDeath": [
+     {
+      "kind": "SpawnEnemies",
+      "enemyId": "ash_knight",
+      "count": 2
+     }
+    ],
+    "statusImmunities": [
+     "burn",
+     "scorch"
+    ]
+   },
+   "phases": []
+  },
+  {
+   "id": "the_beating_dark",
+   "name": "The Beating Dark",
+   "title": "Heart of the Hollow",
+   "tier": "Late",
+   "description": "Ruler of the Hollow Heart.",
+   "musicKey": "music_boss_late",
+   "introKey": "intro_the_beating_dark",
+   "rewardPool": "boss",
+   "body": {
+    "id": "the_beating_dark_body",
+    "spriteKey": "boss_the_beating_dark",
+    "health": 480,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.0,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "heart"
+    ],
+    "movement": {
+     "kind": "Chase",
+     "speed": 1.72
+    }
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "the_beating_dark_fan",
+       "kind": "Projectile",
+       "pattern": "Spread",
+       "count": 5,
+       "projectileSpeed": 5.2,
+       "cooldown": 2.4,
+       "telegraph": 0.6,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 15,
+       "weight": 2
+      },
+      {
+       "id": "the_beating_dark_charge",
+       "kind": "Dash",
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "duration": 0.6,
+       "recovery": 0.8,
+       "minRange": 2,
+       "dashSpeed": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "the_beating_dark_phase2",
+     "movement": {
+      "kind": "KeepDistance",
+      "speed": 2.12,
+      "preferredDistance": 4.5
+     },
+     "attacks": [
+      {
+       "id": "the_beating_dark_ring",
+       "kind": "Projectile",
+       "pattern": "Ring",
+       "count": 14,
+       "projectileSpeed": 4.2,
+       "cooldown": 3.2,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_beating_dark_call",
+       "kind": "Summon",
+       "cooldown": 7,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "vein_crawler",
+       "summonCount": 2,
+       "maxAlive": 3
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "the_beating_dark_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.2199999999999998
+     },
+     "attacks": [
+      {
+       "id": "the_beating_dark_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 3,
+       "projectileSpeed": 4.4,
+       "cooldown": 4.0,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.0,
+       "waves": 10,
+       "spiralStep": 17,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_beating_dark_burst",
+       "kind": "Projectile",
+       "pattern": "RandomBurst",
+       "count": 6,
+       "projectileSpeed": 5.4,
+       "cooldown": 2.2,
+       "telegraph": 0.5,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 35
+      },
+      {
+       "id": "the_beating_dark_slam",
+       "kind": "Slam",
+       "cooldown": 5,
+       "telegraph": 0.9,
+       "recovery": 0.7,
+       "maxRange": 3,
+       "radius": 2.6,
+       "damage": 2,
+       "minDifficulty": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "twin_ventricle",
+   "name": "Twin Ventricle",
+   "title": "The Two That Pump",
+   "tier": "Late",
+   "description": "Ruler of the Hollow Heart.",
+   "musicKey": "music_boss_late",
+   "introKey": "intro_twin_ventricle",
+   "rewardPool": "boss",
+   "body": {
+    "id": "twin_ventricle_body",
+    "spriteKey": "boss_twin_ventricle",
+    "health": 495,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.1,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "heart",
+     "flying"
+    ],
+    "movement": {
+     "kind": "Wander",
+     "speed": 1.72,
+     "flying": true
+    }
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "twin_ventricle_cross",
+       "kind": "Projectile",
+       "pattern": "Cross",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "twin_ventricle_xcross",
+       "kind": "Projectile",
+       "pattern": "X",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "twin_ventricle_phase2",
+     "movement": {
+      "kind": "Orbit",
+      "speed": 2.12,
+      "preferredDistance": 4.5,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "twin_ventricle_beam",
+       "kind": "Beam",
+       "cooldown": 4.5,
+       "telegraph": 1.0,
+       "duration": 1.4,
+       "recovery": 0.6,
+       "maxRange": 14,
+       "damage": 1,
+       "weight": 2
+      },
+      {
+       "id": "twin_ventricle_blink",
+       "kind": "Teleport",
+       "cooldown": 5,
+       "telegraph": 0.5,
+       "recovery": 0.2,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "twin_ventricle_wall",
+       "kind": "Projectile",
+       "pattern": "Wall",
+       "count": 7,
+       "projectileSpeed": 4.0,
+       "cooldown": 3.5,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "twin_ventricle_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.2199999999999998,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "twin_ventricle_double_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 4,
+       "projectileSpeed": 4.2,
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.4,
+       "waves": 12,
+       "spiralStep": 13,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "twin_ventricle_hazard",
+       "kind": "Hazard",
+       "cooldown": 4,
+       "telegraph": 0.6,
+       "recovery": 0.4,
+       "requiresLineOfSight": false,
+       "radius": 1.6,
+       "hazardId": "acid",
+       "duration": 5,
+       "damage": 1
+      },
+      {
+       "id": "twin_ventricle_call",
+       "kind": "Summon",
+       "cooldown": 8,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "bile_spitter",
+       "summonCount": 1,
+       "maxAlive": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "organ_warden",
+   "name": "Organ Warden",
+   "title": "Lair of the Hollow Heart",
+   "tier": "Miniboss",
+   "description": "A lair-dweller of the Hollow Heart.",
+   "rewardPool": "treasure",
+   "body": {
+    "id": "organ_warden_body",
+    "spriteKey": "miniboss_organ_warden",
+    "health": 192,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 0.8,
+    "knockbackResistance": 0.85,
+    "isBoss": true,
+    "tags": [
+     "miniboss",
+     "heart"
+    ],
+    "movement": {
+     "kind": "Hop",
+     "speed": 2.0,
+     "pauseTime": 0.8,
+     "hopDistance": 2.5
+    },
+    "attacks": [
+     {
+      "id": "organ_warden_ring",
+      "kind": "Projectile",
+      "pattern": "Ring",
+      "count": 8,
+      "projectileSpeed": 4.5,
+      "cooldown": 3.0,
+      "telegraph": 0.6,
+      "recovery": 0.35,
+      "damage": 1,
+      "requiresLineOfSight": false
+     },
+     {
+      "id": "organ_warden_charge",
+      "kind": "Dash",
+      "cooldown": 4,
+      "telegraph": 0.75,
+      "duration": 0.5,
+      "recovery": 0.7,
+      "minRange": 2.5,
+      "dashSpeed": 11
+     }
+    ],
+    "onDeath": [
+     {
+      "kind": "SpawnEnemies",
+      "enemyId": "vein_crawler",
+      "count": 2
+     }
+    ]
+   },
+   "phases": []
+  },
+  {
+   "id": "the_hollow_one",
+   "name": "The Hollow One",
+   "title": "First and Last",
+   "tier": "Final",
+   "description": "Ruler of the The Last Hollow.",
+   "musicKey": "music_boss_final",
+   "introKey": "intro_the_hollow_one",
+   "rewardPool": "boss",
+   "body": {
+    "id": "the_hollow_one_body",
+    "spriteKey": "boss_the_hollow_one",
+    "health": 500,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.0,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "last"
+    ],
+    "movement": {
+     "kind": "Chase",
+     "speed": 1.75
+    },
+    "statusImmunities": [
+     "dread"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "the_hollow_one_fan",
+       "kind": "Projectile",
+       "pattern": "Spread",
+       "count": 5,
+       "projectileSpeed": 5.2,
+       "cooldown": 2.4,
+       "telegraph": 0.6,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 15,
+       "weight": 2
+      },
+      {
+       "id": "the_hollow_one_charge",
+       "kind": "Dash",
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "duration": 0.6,
+       "recovery": 0.8,
+       "minRange": 2,
+       "dashSpeed": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "the_hollow_one_phase2",
+     "movement": {
+      "kind": "KeepDistance",
+      "speed": 2.15,
+      "preferredDistance": 4.5
+     },
+     "attacks": [
+      {
+       "id": "the_hollow_one_ring",
+       "kind": "Projectile",
+       "pattern": "Ring",
+       "count": 15,
+       "projectileSpeed": 4.2,
+       "cooldown": 3.2,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_hollow_one_call",
+       "kind": "Summon",
+       "cooldown": 7,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "final_husk",
+       "summonCount": 2,
+       "maxAlive": 3
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "the_hollow_one_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.25
+     },
+     "attacks": [
+      {
+       "id": "the_hollow_one_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 3,
+       "projectileSpeed": 4.4,
+       "cooldown": 4.0,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.0,
+       "waves": 10,
+       "spiralStep": 17,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_hollow_one_burst",
+       "kind": "Projectile",
+       "pattern": "RandomBurst",
+       "count": 6,
+       "projectileSpeed": 5.4,
+       "cooldown": 2.2,
+       "telegraph": 0.5,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 35
+      },
+      {
+       "id": "the_hollow_one_slam",
+       "kind": "Slam",
+       "cooldown": 5,
+       "telegraph": 0.9,
+       "recovery": 0.7,
+       "maxRange": 3,
+       "radius": 2.6,
+       "damage": 2,
+       "minDifficulty": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "the_unmade",
+   "name": "The Unmade",
+   "title": "What Waits Beyond",
+   "tier": "Final",
+   "description": "Ruler of the The Last Hollow.",
+   "musicKey": "music_boss_final",
+   "introKey": "intro_the_unmade",
+   "rewardPool": "boss",
+   "body": {
+    "id": "the_unmade_body",
+    "spriteKey": "boss_the_unmade",
+    "health": 515,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 1.1,
+    "knockbackResistance": 0.95,
+    "isBoss": true,
+    "tags": [
+     "boss",
+     "last",
+     "flying"
+    ],
+    "movement": {
+     "kind": "Wander",
+     "speed": 1.75,
+     "flying": true
+    },
+    "statusImmunities": [
+     "dread"
+    ]
+   },
+   "phases": [
+    {
+     "healthAtOrBelow": 1.0,
+     "invulnerableOnEnter": 0,
+     "attacks": [
+      {
+       "id": "the_unmade_cross",
+       "kind": "Projectile",
+       "pattern": "Cross",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "the_unmade_xcross",
+       "kind": "Projectile",
+       "pattern": "X",
+       "count": 1,
+       "projectileSpeed": 5.0,
+       "cooldown": 2.4,
+       "telegraph": 0.55,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 0.9,
+       "waves": 3,
+       "requiresLineOfSight": false
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.6,
+     "invulnerableOnEnter": 1.0,
+     "transitionKey": "the_unmade_phase2",
+     "movement": {
+      "kind": "Orbit",
+      "speed": 2.15,
+      "preferredDistance": 4.5,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "the_unmade_beam",
+       "kind": "Beam",
+       "cooldown": 4.5,
+       "telegraph": 1.0,
+       "duration": 1.4,
+       "recovery": 0.6,
+       "maxRange": 14,
+       "damage": 1,
+       "weight": 2
+      },
+      {
+       "id": "the_unmade_blink",
+       "kind": "Teleport",
+       "cooldown": 5,
+       "telegraph": 0.5,
+       "recovery": 0.2,
+       "requiresLineOfSight": false
+      },
+      {
+       "id": "the_unmade_wall",
+       "kind": "Projectile",
+       "pattern": "Wall",
+       "count": 7,
+       "projectileSpeed": 4.0,
+       "cooldown": 3.5,
+       "telegraph": 0.7,
+       "recovery": 0.35,
+       "damage": 1,
+       "spread": 10
+      }
+     ]
+    },
+    {
+     "healthAtOrBelow": 0.3,
+     "invulnerableOnEnter": 1.2,
+     "transitionKey": "the_unmade_phase3",
+     "movement": {
+      "kind": "Chase",
+      "speed": 2.25,
+      "flying": true
+     },
+     "attacks": [
+      {
+       "id": "the_unmade_double_spiral",
+       "kind": "Projectile",
+       "pattern": "Spiral",
+       "count": 4,
+       "projectileSpeed": 4.2,
+       "cooldown": 4.5,
+       "telegraph": 0.8,
+       "recovery": 0.35,
+       "damage": 1,
+       "duration": 2.4,
+       "waves": 12,
+       "spiralStep": 13,
+       "requiresLineOfSight": false,
+       "weight": 2
+      },
+      {
+       "id": "the_unmade_hazard",
+       "kind": "Hazard",
+       "cooldown": 4,
+       "telegraph": 0.6,
+       "recovery": 0.4,
+       "requiresLineOfSight": false,
+       "radius": 1.6,
+       "hazardId": "fire",
+       "duration": 5,
+       "damage": 1
+      },
+      {
+       "id": "the_unmade_call",
+       "kind": "Summon",
+       "cooldown": 8,
+       "telegraph": 0.9,
+       "recovery": 0.6,
+       "requiresLineOfSight": false,
+       "summonId": "hollow_herald",
+       "summonCount": 1,
+       "maxAlive": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "last_warden",
+   "name": "Last Warden",
+   "title": "Lair of the The Last Hollow",
+   "tier": "Miniboss",
+   "description": "A lair-dweller of the The Last Hollow.",
+   "rewardPool": "treasure",
+   "body": {
+    "id": "last_warden_body",
+    "spriteKey": "miniboss_last_warden",
+    "health": 200,
+    "healthPerFloor": 0.1,
+    "contactDamage": 1,
+    "radius": 0.8,
+    "knockbackResistance": 0.85,
+    "isBoss": true,
+    "tags": [
+     "miniboss",
+     "last"
+    ],
+    "movement": {
+     "kind": "Hop",
+     "speed": 2.0,
+     "pauseTime": 0.8,
+     "hopDistance": 2.5
+    },
+    "attacks": [
+     {
+      "id": "last_warden_ring",
+      "kind": "Projectile",
+      "pattern": "Ring",
+      "count": 8,
+      "projectileSpeed": 4.5,
+      "cooldown": 3.0,
+      "telegraph": 0.6,
+      "recovery": 0.35,
+      "damage": 1,
+      "requiresLineOfSight": false
+     },
+     {
+      "id": "last_warden_charge",
+      "kind": "Dash",
+      "cooldown": 4,
+      "telegraph": 0.75,
+      "duration": 0.5,
+      "recovery": 0.7,
+      "minRange": 2.5,
+      "dashSpeed": 11
+     }
+    ],
+    "onDeath": [
+     {
+      "kind": "SpawnEnemies",
+      "enemyId": "final_husk",
+      "count": 2
+     }
+    ],
+    "statusImmunities": [
+     "dread"
+    ]
+   },
+   "phases": []
+  }
+ ]
+}

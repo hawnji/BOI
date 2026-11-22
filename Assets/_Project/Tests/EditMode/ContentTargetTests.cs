@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Hollowcrawl.Combat;
 using Hollowcrawl.Input;
 using Hollowcrawl.ProcGen;
 using Hollowcrawl.Rng;
@@ -69,6 +70,72 @@ namespace Hollowcrawl.Tests
                     for (int i = 0; i < 60 && run.State == RunState.Playing; i++) run.Step(new PlayerInputFrame { BombPressed = i == 0, Aim = new Vec2(0f, 1f), FireHeld = true });
                 }
                 catch (Exception ex) { Assert.Fail(item.Id + ": " + ex); }
+            }
+        }
+    
+        [Test]
+        public void EnemyBossAndFloorTargetsAreMet()
+        {
+            var db = TestContent.Database;
+            Assert.That(db.Enemies.Values.Count(e => !e.IsBoss), Is.GreaterThanOrEqualTo(120));
+            Assert.That(db.Bosses.Values.Count(b => b.Tier != Enemies.BossTier.Miniboss), Is.GreaterThanOrEqualTo(30));
+            Assert.That(db.Bosses.Values.Count(b => b.Tier == Enemies.BossTier.Miniboss), Is.GreaterThanOrEqualTo(15));
+            Assert.That(db.Floors.Count, Is.GreaterThanOrEqualTo(15));
+            Assert.That(db.RoomTemplates.Count, Is.GreaterThanOrEqualTo(250));
+        }
+
+        /// <summary>Every enemy is spawned awake next to a firing player and fought for a few seconds.</summary>
+        [Test]
+        public void EveryEnemyFightsHeadless()
+        {
+            var library = new RoomTemplateLibrary();
+            library.AddRange(TestContent.Database.RoomTemplates);
+            var fire = new PlayerInputFrame { Aim = new Vec2(1f, 0f), FireHeld = true };
+            foreach (var def in TestContent.Database.Enemies.Values.Where(e => !e.IsBoss).OrderBy(e => e.Id, StringComparer.Ordinal))
+            {
+                var run = new RunSimulation(new RunSetup { Seed = new RunSeed(9), StartingContainers = 12 }, TestContent.Database, library, EffectRegistry.CreateDefault());
+                run.Player.Position = new Vec2(3f, 4.5f);
+                try
+                {
+                    var e = run.CurrentRoom.SpawnEnemy(def.Id, new Vec2(9f, 4.5f), false);
+                    Assert.That(e, Is.Not.Null, def.Id);
+                    e.Brain.Activate();
+                    for (int i = 0; i < 360 && run.State == RunState.Playing; i++) run.Step(fire);
+                }
+                catch (Exception ex) { Assert.Fail(def.Id + ": " + ex); }
+            }
+        }
+
+        /// <summary>Every floor generates, every room can be entered, and its boss can be fought and beaten.</summary>
+        [Test]
+        public void EveryFloorGeneratesAndItsBossFights()
+        {
+            var library = new RoomTemplateLibrary();
+            library.AddRange(TestContent.Database.RoomTemplates);
+            foreach (var floor in TestContent.Database.Floors.Values.OrderBy(f => f.Depth))
+            {
+                var setup = new RunSetup { Seed = new RunSeed(1234), StartingContainers = 12 };
+                setup.FloorSequence.Add(floor.Id);
+                var run = new RunSimulation(setup, TestContent.Database, library, EffectRegistry.CreateDefault());
+                try
+                {
+                    Assert.That(run.Floor.Id, Is.EqualTo(floor.Id));
+                    foreach (var node in run.Layout.Rooms) { run.DebugEnterRoom(node.Index); run.Step(default); }
+                    var themed = run.Layout.Rooms.Count(n => n.TemplateId != null && TestContent.Database.RoomTemplates.Any(t => t.Id == n.TemplateId && t.Themes.Contains(floor.Theme)));
+                    Assert.That(themed, Is.GreaterThan(0), floor.Id + " uses at least one room themed for it");
+                    run.DebugEnterRoom(run.Layout.BossRoom);
+                    var boss = run.CurrentRoom.Enemies.FirstOrDefault(e => e.IsBoss);
+                    Assert.That(boss, Is.Not.Null, floor.Id + " boss");
+                    var fire = new PlayerInputFrame { Aim = new Vec2(1f, 0f), FireHeld = true };
+                    for (int i = 0; i < 1200 && run.State == RunState.Playing && !boss.Removed; i++)
+                    {
+                        if (i % 120 == 0 && !boss.Removed) run.CurrentRoom.DamageEnemy(boss, boss.MaxHealth * 0.25f, DamageType.Physical, false, default, 0f, null, 0, false);
+                        run.Step(fire);
+                    }
+                    Assert.That(boss.Removed, Is.True, floor.Id + " boss can be beaten");
+                    Assert.That(run.State, Is.EqualTo(RunState.Playing), floor.Id + " player survived with 12 containers");
+                }
+                catch (Exception ex) { Assert.Fail(floor.Id + ": " + ex); }
             }
         }
     }
