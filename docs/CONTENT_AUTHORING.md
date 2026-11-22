@@ -147,3 +147,24 @@ ordinary `effects` attached as a curse for the floor (so `curse:<id>` conditions
 points, damage never lethal), Hex (`contentId`), Consumable (`contentId` or random), Stat (`effect`: a passive
 effect kept for the run), Enemies (`contentId`, `count`; relocks the room). `message` is shown to the player.
 Health costs are refused if they would take the last half point.
+
+## Characters, achievements and challenges (`Content/Progression/*.json`)
+
+**characters** (listed in menus in file order): `id`, `name`, `title`, `description`, `trait`, `spriteKey`,
+`unlockId` + `unlockHint` (omit for starting characters), `containers`, `ward`, `umbral`, `noContainers` (container
+gains become Umbral), `coins`, `bombs`, `keys`, `consumableSlots`, `trinketSlots`, `startingItems`,
+`startingConsumable`, `effects` (permanent character effects, e.g. `{ "effect": "stat", "stat": "Damage", "value": -0.3 }`).
+
+**achievements**: `id`, `name`, `description`, `hidden`, `trigger`, `key`, `target`, `unlocks`. Triggers: Counter
+(`key` = runs, wins, deaths, kills, bosses, items, floors, secrets, bombs, coins, challenges, streak, or an open
+counter such as shrines_used, consumables_used, rooms_cleared), BossDefeated, WinWithCharacter, ReachFloor,
+Transformation, ChallengeComplete, DiscoverItems, DiscoverSynergies, RunCondition (`key` = flawless, no_items, speed,
+ascetic, hard, nightmare), AllCharacterWins. Every `unlockId` used anywhere must be granted by an achievement or a
+challenge `rewardUnlock` (validator error otherwise).
+
+**challenges**: `id`, `name`, `description`, `unlockId`, `characterId`, `startingItems`, `difficultyId`,
+`floorCount`, `goal` (DefeatFinalBoss | ReachFloor + `goalFloor`), `noTreasureRooms`, `noShops`, `noHealthPickups`,
+`hexChance`, `forcedHex`, `startingCoins/Bombs/Keys`, `effects`, `rewardUnlock`.
+
+Practice runs record nothing. Custom-seed runs record statistics only. Daily runs use the date's seed, the Wanderer
+and ignore personal unlocks so everyone plays the same run.

@@ -37,6 +37,35 @@ namespace Hollowcrawl.Simulation
         public int FloorCount;
         public bool IsDaily;
         public Func<string, bool> IsUnlocked = _ => true;
+
+        // character traits
+        public List<EffectSpec> CharacterEffects = new List<EffectSpec>();
+        public bool NoContainers;
+        public int ConsumableSlots = 1;
+        public int TrinketSlots = 1;
+        public string StartingConsumable;
+
+        // mode / challenge rules
+        public Progression.GameMode Mode = Progression.GameMode.Standard;
+        public string ChallengeId;
+        public bool NoTreasureRooms, NoShops, NoHealthPickups;
+        /// <summary>&gt;= 0 overrides the difficulty's hex chance.</summary>
+        public float HexChanceOverride = -1f;
+        public string ForcedHex;
+        /// <summary>&gt; 0: reaching this floor (1-based) wins the run.</summary>
+        public int GoalFloor;
+        public List<EffectSpec> ChallengeEffects = new List<EffectSpec>();
+    }
+
+    /// <summary>What happened during a run, for statistics, achievements and the run summary screen.</summary>
+    public sealed class RunStats
+    {
+        public int Kills, BossKills, ItemsCollected, CoinsCollected, BombsUsed, SecretsFound, ShrinesUsed, ConsumablesUsed;
+        public int DamageTakenHalves, FloorsCompleted, RoomsCleared;
+        public readonly List<string> BossesDefeated = new List<string>();
+        public readonly List<string> Items = new List<string>();
+        public readonly HashSet<string> Transformations = new HashSet<string>(StringComparer.Ordinal);
+        public readonly HashSet<string> EnemiesSeen = new HashSet<string>(StringComparer.Ordinal);
     }
 
     /// <summary>
@@ -68,6 +97,7 @@ namespace Hollowcrawl.Simulation
         public string DeathCause { get; private set; }
 
         public readonly List<CompanionActor> Companions = new List<CompanionActor>();
+        public RunStats Stats { get; } = new RunStats();
 
         public event Action<RoomSimulation> RoomChanged;
         public event Action<int> FloorChanged;
@@ -112,6 +142,10 @@ namespace Hollowcrawl.Simulation
                 CharacterId = Setup.CharacterId,
             };
             Engine.SetCombos(Content.Synergies.Values, Content.Transformations.Values);
+            Engine.TrinketCapacity = Math.Max(1, Setup.TrinketSlots);
+            if (Setup.CharacterEffects.Count > 0) Engine.AttachSource(Setup, Setup.CharacterId, EffectSourceKind.Character, Setup.CharacterEffects);
+            if (Setup.ChallengeEffects.Count > 0) Engine.AttachSource(Setup.ChallengeEffects, Setup.ChallengeId ?? "challenge", EffectSourceKind.Character, Setup.ChallengeEffects);
+            if (Setup.NoContainers) { health.SetContainers(0, false); _lastMaxHealthStat = stats[StatId.MaxHealth]; }
             health.Died += OnPlayerDied;
 
             Player = new PlayerActor(new MovementTuning()) { Id = _ids.Next() };
@@ -128,8 +162,18 @@ namespace Hollowcrawl.Simulation
             foreach (var id in Setup.StartingItems)
                 if (Content.Items.TryGetValue(id, out var item)) { _pools.MarkOffered(id); Engine.AddItem(item); }
 
+            ConsumableCapacity = Math.Max(1, Setup.ConsumableSlots);
+            if (Setup.StartingConsumable != null && Content.Consumables.ContainsKey(Setup.StartingConsumable)) ConsumableSlots.Add(Setup.StartingConsumable);
+
+            // statistics hooks (after starting items so they don't count)
+            Engine.ItemAdded += o => { Stats.ItemsCollected++; Stats.Items.Add(o.Id); };
+            Engine.TransformationTriggered += t => Stats.Transformations.Add(t.Id);
+            resources.Changed += (kind, oldValue, newValue) => { if (kind == ResourceKind.Coins && newValue > oldValue) Stats.CoinsCollected += newValue - oldValue; };
+
             StartFloor(0);
         }
+
+        private float _lastMaxHealthStat;
 
         // ================================================================== loop
 
@@ -154,8 +198,20 @@ namespace Hollowcrawl.Simulation
         private void SyncPlayerFromItems()
         {
             var h = Engine.Health;
-            int target = (int)Math.Round(Engine.Stats[StatId.MaxHealth]);
-            if (target != h.Containers) h.SetContainers(target, target > h.Containers);
+            if (Setup.NoContainers)
+            {
+                // container gains become Umbral; the character never holds Vigor
+                float stat = Engine.Stats[StatId.MaxHealth];
+                int gained = (int)Math.Round(stat - _lastMaxHealthStat);
+                if (gained > 0) h.AddUmbral(gained * 2);
+                _lastMaxHealthStat = stat;
+                if (h.Containers != 0) h.SetContainers(0, false);
+            }
+            else
+            {
+                int target = (int)Math.Round(Engine.Stats[StatId.MaxHealth]);
+                if (target != h.Containers) h.SetContainers(target, target > h.Containers);
+            }
             Player.Flying = Engine.CountHeldWithTag("flight") > 0;
         }
 
@@ -163,7 +219,8 @@ namespace Hollowcrawl.Simulation
 
         private void StartFloor(int index)
         {
-            if (index >= TotalFloors) { End(RunState.Won); return; }
+            if (index > 0) Stats.FloorsCompleted++;
+            if (index >= TotalFloors || (Setup.GoalFloor > 0 && index + 1 >= Setup.GoalFloor && index > 0)) { End(RunState.Won); return; }
             CurrentRoom?.OnPlayerLeft();
             FloorIndex = index;
             Floor = _sequence[Math.Min(index, _sequence.Count - 1)];
@@ -204,6 +261,8 @@ namespace Hollowcrawl.Simulation
             RefreshDoors();
             sim.PlacePlayer(Player, sim.NearestOpen(playerPosition));
             if (firstVisit) Populate(sim, runtime);
+            if (firstVisit && (runtime.Node.Type == RoomType.Secret || runtime.Node.Type == RoomType.HiddenVault)) Stats.SecretsFound++;
+            foreach (var e in sim.Enemies) Stats.EnemiesSeen.Add(e.Boss?.Id ?? e.Definition.Id);
             Engine.InCombat = !runtime.Cleared;
             RefreshDoors();
             Events.Add(new SimEvent { Kind = SimEventKind.RoomEntered, Value = index, Key = runtime.Node.Type.ToString(), Flag = firstVisit });
@@ -226,6 +285,9 @@ namespace Hollowcrawl.Simulation
             var slots = template != null ? template.FindTiles(TileCodes.Interact) : new List<(int x, int y)>();
             switch (node.Type)
             {
+                case RoomType.Treasure when Setup.NoTreasureRooms:
+                case RoomType.Shop when Setup.NoShops:
+                    break;
                 case RoomType.Treasure:
                     PlacePedestal(sim, slots.Count > 0 ? grid.TileCenter(slots[0].x, slots[0].y) : grid.Center, "treasure");
                     break;
@@ -281,6 +343,13 @@ namespace Hollowcrawl.Simulation
         /// <summary>Maps generator/drop pickup names to kinds this build can grant (consumables only when content defines some).</summary>
         private PickupKind ResolvePickupKind(string kind)
         {
+            var k = ResolvePickupKindRaw(kind);
+            if (Setup.NoHealthPickups && (k == PickupKind.VigorHalf || k == PickupKind.VigorFull)) return PickupKind.Coin;
+            return k;
+        }
+
+        private PickupKind ResolvePickupKindRaw(string kind)
+        {
             if (kind == null || kind == "random")
             {
                 var k = _drops.RollProp(_dropRng, null) ?? PickupKind.Coin;
@@ -316,6 +385,7 @@ namespace Hollowcrawl.Simulation
         private void OnRoomCleared(RoomRuntime runtime)
         {
             RoomsCleared++;
+            Stats.RoomsCleared++;
             var sim = CurrentRoom;
             var node = runtime.Node;
             Engine.NotifyRoomCleared(new RoomContext { RoomType = node.Type.ToString(), RoomIndex = node.Index, FirstVisit = true, TookDamage = runtime.TookDamageHere });
@@ -528,7 +598,9 @@ namespace Hollowcrawl.Simulation
         public void OnEnemyKilled(EnemyActor enemy)
         {
             EnemiesKilled++;
-            if (enemy.IsBoss && enemy.Boss.Tier != BossTier.Miniboss) BossesKilled++;
+            Stats.Kills++;
+            if (enemy.IsBoss && enemy.Boss.Tier != BossTier.Miniboss) { BossesKilled++; Stats.BossKills++; }
+            if (enemy.IsBoss) Stats.BossesDefeated.Add(enemy.Boss.Id);
             if (enemy.IsBoss || enemy.Definition.LootMultiplier <= 0f) return;
             var drop = _drops.RollEnemyDrop(_dropRng, Engine, enemy.Elite);
             if (drop.HasValue && CurrentRoom != null) CurrentRoom.SpawnPickupActor(ResolvePickupKind(drop.Value.ToString()), enemy.Position);
@@ -537,6 +609,7 @@ namespace Hollowcrawl.Simulation
         public void OnPlayerDamaged(int halvesLost)
         {
             FloorState.Current.TookDamageHere = true;
+            Stats.DamageTakenHalves += halvesLost;
             if (Engine.Health.IsDead) DeathCause = DeathCause ?? "damage";
         }
 
@@ -556,7 +629,7 @@ namespace Hollowcrawl.Simulation
 
         public void OnExitReached(ExitActor exit)
         {
-            if (exit.IsVictory) End(RunState.Won);
+            if (exit.IsVictory) { Stats.FloorsCompleted++; End(RunState.Won); }
             else _pendingNextFloor = true;
         }
 
@@ -571,5 +644,7 @@ namespace Hollowcrawl.Simulation
         public void TeleportPlayer(TeleportTarget target) => _pendingTeleport = target;
 
         public void RevealMap(bool includeSecrets) => FloorState.RevealMap(includeSecrets);
+
+        public void OnBombPlaced() => Stats.BombsUsed++;
     }
 }

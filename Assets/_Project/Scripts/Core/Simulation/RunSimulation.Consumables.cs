@@ -94,6 +94,7 @@ namespace Hollowcrawl.Simulation
             if (ConsumableSlots.Count == 0) return false;
             var id = ConsumableSlots[0];
             ConsumableSlots.RemoveAt(0);
+            Stats.ConsumablesUsed++;
             if (!Content.Consumables.TryGetValue(id, out var def)) return false;
             if (!_consumableOwners.TryGetValue(id, out var owner)) _consumableOwners[id] = owner = new object();
             bool wasKnown = def.Kind != ConsumableKind.Draught || IdentifiedDraughts.Contains(id);
@@ -110,10 +111,16 @@ namespace Hollowcrawl.Simulation
         private FloorDefinition PrepareHex(FloorDefinition floor, int index)
         {
             if (ActiveHex != null) { Engine.DetachSource(ActiveHex); ActiveHex = null; }
-            if (index == 0 || Content.Hexes.Count == 0 || !_hexRng.Chance(Setup.Difficulty.CurseChance)) return floor;
-            var picker = new WeightedPicker<HexDefinition>();
-            foreach (var h in Content.Hexes.Values.OrderBy(h => h.Id, StringComparer.Ordinal)) if (h.MinFloor <= index) picker.Add(h, h.Weight);
-            if (!picker.TryPick(_hexRng, out var hex)) return floor;
+            HexDefinition hex = null;
+            if (Setup.ForcedHex != null) Content.Hexes.TryGetValue(Setup.ForcedHex, out hex);
+            if (hex == null)
+            {
+                float chance = Setup.HexChanceOverride >= 0f ? Setup.HexChanceOverride : Setup.Difficulty.CurseChance;
+                if (index == 0 || Content.Hexes.Count == 0 || !_hexRng.Chance(chance)) return floor;
+                var picker = new WeightedPicker<HexDefinition>();
+                foreach (var h in Content.Hexes.Values.OrderBy(h => h.Id, StringComparer.Ordinal)) if (h.MinFloor <= index) picker.Add(h, h.Weight);
+                if (!picker.TryPick(_hexRng, out hex)) return floor;
+            }
             ApplyHex(hex);
             if (hex.FloorSizeMultiplier <= 1f) return floor;
             var bigger = floor.Clone();
@@ -151,6 +158,7 @@ namespace Hollowcrawl.Simulation
             var o = shrine.Option;
             if (!PayShrineCost(o)) { Events.Add(new SimEvent { Kind = SimEventKind.PurchaseFailed, ActorId = shrine.Id, Position = shrine.Position, Value = o.Amount, Key = o.Cost.ToString() }); return; }
             shrine.Uses++;
+            Stats.ShrinesUsed++;
             var picker = new WeightedPicker<ShrineOutcome>();
             for (int i = 0; i < o.Outcomes.Count; i++)
                 picker.Add(o.Outcomes[i], o.Outcomes[i].Weight + (i == 0 ? o.FirstOutcomeWeightPerUse * (shrine.Uses - 1) : 0f));

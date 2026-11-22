@@ -69,9 +69,7 @@ namespace Hollowcrawl.Presentation
                 GUI.color = Color.white;
             }
 
-            if (Director.Paused) Panel(w, "Paused", "Press Pause to resume");
-            else if (run.State == RunState.Won) Panel(w, "Victory", $"Floors {run.FloorIndex + 1}  Rooms cleared {run.RoomsCleared}  Kills {run.EnemiesKilled}\nPress Interact to start a new run");
-            else if (run.State == RunState.Lost) Panel(w, "You fell", $"Floor {run.FloorIndex + 1}  Rooms cleared {run.RoomsCleared}  Kills {run.EnemiesKilled}  Time {run.RunTime:0}s\nPress Interact to start a new run");
+            if (Director.Paused) Panel(w, "Paused", "Pause: resume    Bomb: give up this run");
         }
 
         private void DrawHealth(RunSimulation run, float x, float y)

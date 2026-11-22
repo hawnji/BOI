@@ -2,6 +2,7 @@ using System;
 using Hollowcrawl.Bootstrap;
 using Hollowcrawl.Input;
 using Hollowcrawl.Items;
+using Hollowcrawl.Progression;
 using Hollowcrawl.Rng;
 using Hollowcrawl.Simulation;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace Hollowcrawl.Presentation
     /// <summary>
     /// Runs a <see cref="RunSimulation"/> on a fixed 60 Hz step and presents it: room texture, pooled actor
     /// sprites, camera, feedback cues and the HUD. Contains no gameplay rules (ADR-009).
-    /// If a scene has no RunDirector, one is created after bootstrap so pressing Play starts a run.
+    /// If a scene has no RunDirector, one is created after bootstrap so pressing Play opens the front end.
     /// </summary>
     public sealed class RunDirector : MonoBehaviour
     {
@@ -62,13 +63,25 @@ namespace Hollowcrawl.Presentation
             if (GameServices.PlayerInput is UnityPlayerInputSource src) { src.AimCamera = _camera; src.AimOrigin = _aimOrigin; }
             _hud = gameObject.AddComponent<HudOverlay>();
             _hud.Director = this;
-            StartNewRun(RunSeed.FromEntropy());
+            _frontEnd = gameObject.AddComponent<FrontEnd>();
+            _frontEnd.Director = this;
         }
 
-        public void StartNewRun(RunSeed seed)
+        private FrontEnd _frontEnd;
+        private bool _recorded;
+
+        public void ReturnToMenu()
         {
-            var setup = new RunSetup { Seed = seed };
-            SeedCode = seed.ToCode();
+            Run = null;
+            GameServices.CurrentRunEngine = null;
+            _views.Clear();
+            if (_darkness != null) _darkness.enabled = false;
+        }
+
+        public void StartRun(RunSetup setup)
+        {
+            SeedCode = setup.Seed.ToCode();
+            _recorded = false;
             Run = new RunSimulation(setup, GameServices.Content, GameServices.Rooms, GameServices.Effects, GameServices.Conditions);
             GameServices.CurrentRunEngine = Run.Engine;
             Run.RoomChanged += _ => _roomDirty = true;
@@ -90,7 +103,8 @@ namespace Hollowcrawl.Presentation
             Latch(ref frame);
 
             if (frame.PausePressed && Run.State == RunState.Playing) Paused = !Paused;
-            if (Run.State != RunState.Playing && (frame.InteractPressed || frame.PausePressed)) { StartNewRun(RunSeed.FromEntropy()); return; }
+            if (Paused && frame.BombPressed) { Run.Engine.Health.TakeDamage(999, 0f, null, ignoreInvulnerability: true); Paused = false; } // "give up" from the pause screen
+            if (Run.State != RunState.Playing && !_recorded) FinishRun();
 
             if (!Paused && Run.State == RunState.Playing)
             {
@@ -109,6 +123,16 @@ namespace Hollowcrawl.Presentation
             UpdateDarkness();
             if (Run.Player != null) _aimOrigin.localPosition = new Vector3(Run.Player.Position.X, Run.Player.Position.Y, 0f);
             UpdateCamera();
+        }
+
+        private void FinishRun()
+        {
+            _recorded = true;
+            var result = GameServices.Profile != null
+                ? ProgressionService.RecordRun(GameServices.Profile, GameServices.Content, Run, DateTime.UtcNow)
+                : new ProgressionResult();
+            GameServices.SaveProfile();
+            _frontEnd.ShowSummary(result);
         }
 
         /// <summary>Held inputs track the latest frame; one-frame presses stick until a simulation step consumes them.</summary>

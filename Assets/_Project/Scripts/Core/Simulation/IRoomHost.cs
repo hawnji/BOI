@@ -31,6 +31,7 @@ namespace Hollowcrawl.Simulation
         void RevealMap(bool includeSecrets);
         /// <summary>The player touched a shrine option whose cooldown has elapsed.</summary>
         void UseShrine(ShrineActor shrine);
+        void OnBombPlaced();
     }
 
     /// <summary>Hands out run-unique actor ids.</summary>

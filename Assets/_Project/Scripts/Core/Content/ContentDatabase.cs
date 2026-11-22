@@ -20,6 +20,9 @@ namespace Hollowcrawl.Content
         public List<Consumables.ConsumableDefinition> Consumables;
         public List<Consumables.HexDefinition> Hexes;
         public List<Consumables.ShrineDefinition> Shrines;
+        public List<Progression.CharacterDefinition> Characters;
+        public List<Progression.AchievementDefinition> Achievements;
+        public List<Progression.ChallengeDefinition> Challenges;
     }
 
     /// <summary>
@@ -39,6 +42,11 @@ namespace Hollowcrawl.Content
         public readonly Dictionary<string, Consumables.ConsumableDefinition> Consumables = new Dictionary<string, Consumables.ConsumableDefinition>(StringComparer.Ordinal);
         public readonly Dictionary<string, Consumables.HexDefinition> Hexes = new Dictionary<string, Consumables.HexDefinition>(StringComparer.Ordinal);
         public readonly Dictionary<string, Consumables.ShrineDefinition> Shrines = new Dictionary<string, Consumables.ShrineDefinition>(StringComparer.Ordinal);
+        public readonly Dictionary<string, Progression.CharacterDefinition> Characters = new Dictionary<string, Progression.CharacterDefinition>(StringComparer.Ordinal);
+        public readonly Dictionary<string, Progression.AchievementDefinition> Achievements = new Dictionary<string, Progression.AchievementDefinition>(StringComparer.Ordinal);
+        public readonly Dictionary<string, Progression.ChallengeDefinition> Challenges = new Dictionary<string, Progression.ChallengeDefinition>(StringComparer.Ordinal);
+        /// <summary>Content order of characters as authored (menus list them in this order).</summary>
+        public readonly List<string> CharacterOrder = new List<string>();
         public readonly List<RoomTemplate> RoomTemplates = new List<RoomTemplate>();
         public readonly List<string> LoadErrors = new List<string>();
 
@@ -58,6 +66,10 @@ namespace Hollowcrawl.Content
             AddAll(sourceName, file.Consumables, Consumables, x => x.Id);
             AddAll(sourceName, file.Hexes, Hexes, x => x.Id);
             AddAll(sourceName, file.Shrines, Shrines, x => x.Id);
+            AddAll(sourceName, file.Characters, Characters, x => x.Id);
+            if (file.Characters != null) foreach (var c in file.Characters) if (c?.Id != null && !CharacterOrder.Contains(c.Id)) CharacterOrder.Add(c.Id);
+            AddAll(sourceName, file.Achievements, Achievements, x => x.Id);
+            AddAll(sourceName, file.Challenges, Challenges, x => x.Id);
             if (file.Rooms != null) RoomTemplates.AddRange(file.Rooms);
         }
 
@@ -190,7 +202,56 @@ namespace Hollowcrawl.Content
                     }
                 }
             }
+            ValidateProgression(db, effects, conditions, r);
             return r;
+        }
+
+        private static void ValidateProgression(ContentDatabase db, EffectRegistry effects, ConditionRegistry conditions, ValidationReport r)
+        {
+            // every unlock id referenced by content must be granted by some achievement (or be a challenge reward)
+            var granted = new HashSet<string>(StringComparer.Ordinal);
+            foreach (var a in db.Achievements.Values) foreach (var u in a.Unlocks) granted.Add(u);
+            foreach (var ch in db.Challenges.Values) if (ch.RewardUnlock != null) granted.Add(ch.RewardUnlock);
+            void NeedsGrant(string unlockId, string who) { if (unlockId != null && !granted.Contains(unlockId)) r.Error($"{who}: unlock '{unlockId}' is never granted."); }
+
+            foreach (var c in db.Characters.Values)
+            {
+                string id = "character " + c.Id;
+                if (string.IsNullOrWhiteSpace(c.Name) || string.IsNullOrWhiteSpace(c.Description)) r.Error($"{id}: missing name or description.");
+                if (!c.NoContainers && c.Containers < 1) r.Error($"{id}: needs at least one container (or noContainers).");
+                if (c.NoContainers && c.Umbral + c.Ward <= 0) r.Error($"{id}: a character without containers needs Umbral or Ward to start.");
+                foreach (var it in c.StartingItems) if (!db.Items.ContainsKey(it)) r.Error($"{id}: unknown starting item '{it}'.");
+                if (c.StartingConsumable != null && !db.Consumables.ContainsKey(c.StartingConsumable)) r.Error($"{id}: unknown consumable '{c.StartingConsumable}'.");
+                CheckEffects(c.Effects, id, effects, conditions, db, r);
+                NeedsGrant(c.UnlockId, id);
+            }
+            foreach (var a in db.Achievements.Values)
+            {
+                string id = "achievement " + a.Id;
+                if (string.IsNullOrWhiteSpace(a.Name) || string.IsNullOrWhiteSpace(a.Description)) r.Error($"{id}: missing name or description.");
+                if (a.Target < 1) r.Error($"{id}: target must be >= 1.");
+                switch (a.Trigger)
+                {
+                    case Progression.AchievementTrigger.BossDefeated: if (a.Key == null || !db.Bosses.ContainsKey(a.Key)) r.Error($"{id}: unknown boss '{a.Key}'."); break;
+                    case Progression.AchievementTrigger.WinWithCharacter: if (a.Key == null || !db.Characters.ContainsKey(a.Key)) r.Error($"{id}: unknown character '{a.Key}'."); break;
+                    case Progression.AchievementTrigger.Transformation: if (a.Key == null || !db.Transformations.ContainsKey(a.Key)) r.Error($"{id}: unknown transformation '{a.Key}'."); break;
+                    case Progression.AchievementTrigger.ChallengeComplete: if (a.Key == null || !db.Challenges.ContainsKey(a.Key)) r.Error($"{id}: unknown challenge '{a.Key}'."); break;
+                    case Progression.AchievementTrigger.Counter:
+                    case Progression.AchievementTrigger.RunCondition: if (string.IsNullOrEmpty(a.Key)) r.Error($"{id}: needs a key."); break;
+                }
+            }
+            foreach (var ch in db.Challenges.Values)
+            {
+                string id = "challenge " + ch.Id;
+                if (string.IsNullOrWhiteSpace(ch.Name) || string.IsNullOrWhiteSpace(ch.Description)) r.Error($"{id}: missing name or description.");
+                if (!db.Characters.ContainsKey(ch.CharacterId)) r.Error($"{id}: unknown character '{ch.CharacterId}'.");
+                foreach (var it in ch.StartingItems) if (!db.Items.ContainsKey(it)) r.Error($"{id}: unknown starting item '{it}'.");
+                if (ch.ForcedHex != null && !db.Hexes.ContainsKey(ch.ForcedHex)) r.Error($"{id}: unknown hex '{ch.ForcedHex}'.");
+                if (ch.Goal == Progression.ChallengeGoal.ReachFloor && ch.GoalFloor < 1) r.Error($"{id}: goalFloor must be >= 1.");
+                CheckEffects(ch.Effects, id, effects, conditions, db, r);
+                NeedsGrant(ch.UnlockId, id);
+            }
+            foreach (var item in db.Items.Values) if (item.UnlockId != null && db.Achievements.Count > 0) NeedsGrant(item.UnlockId, "item " + item.Id);
         }
 
         private static void CheckEnemy(Enemies.EnemyDefinition e, string id, ContentDatabase db, ValidationReport r)

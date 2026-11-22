@@ -250,7 +250,7 @@ namespace Hollowcrawl.Simulation
                     Emit(new SimEvent { Kind = SimEventKind.ActiveUsed, ActorId = p.Id, Position = p.Position, Key = Engine.ActiveItem?.Id });
             }
 
-            if (input.BombPressed && Engine.Resources.TrySpend(ResourceKind.Bombs, 1)) PlaceBomb(p.Position, true);
+            if (input.BombPressed && Engine.Resources.TrySpend(ResourceKind.Bombs, 1)) { PlaceBomb(p.Position, true); _host.OnBombPlaced(); }
 
             // floor hazards
             if (!p.Flying && Grid.CircleOverlapsKind(p.Position, p.Radius * 0.6f, TileKind.Spikes)) HurtPlayer(1, DamageType.Physical, p.Position);

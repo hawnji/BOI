@@ -9,7 +9,7 @@ namespace Hollowcrawl.Input
     /// The active device switches to whichever device was used last, so mouse aim and stick aim
     /// never fight each other.
     /// </summary>
-    public sealed class UnityPlayerInputSource : IPlayerInputSource
+    public sealed class UnityPlayerInputSource : IPlayerInputSource, IMenuInputSource
     {
         private readonly InputActionMap _map;
         private readonly InputAction _move, _aimPoint, _aimStick, _fire, _active, _bomb, _consumable, _swap, _drop, _interact, _mapView, _pause;
@@ -35,10 +35,28 @@ namespace Hollowcrawl.Input
             _interact = _map.FindAction("Interact", true);
             _mapView = _map.FindAction("Map", true);
             _pause = _map.FindAction("Pause", true);
+            _ui = asset.FindActionMap(GameInputActions.UiMap, true);
+            _navigate = _ui.FindAction("Navigate", true);
+            _submit = _ui.FindAction("Submit", true);
+            _cancel = _ui.FindAction("Cancel", true);
+            _tabLeft = _ui.FindAction("TabLeft", true);
+            _tabRight = _ui.FindAction("TabRight", true);
         }
 
-        public void Enable() => _map.Enable();
-        public void Disable() => _map.Disable();
+        private readonly InputActionMap _ui;
+        private readonly InputAction _navigate, _submit, _cancel, _tabLeft, _tabRight;
+
+        public void Enable() { _map.Enable(); _ui.Enable(); }
+        public void Disable() { _map.Disable(); _ui.Disable(); }
+
+        public MenuInputFrame ReadMenuFrame() => new MenuInputFrame
+        {
+            Navigate = _navigate.ReadValue<Vector2>().ToCoreVec(),
+            Submit = _submit.WasPressedThisFrame(),
+            Cancel = _cancel.WasPressedThisFrame(),
+            TabLeft = _tabLeft.WasPressedThisFrame(),
+            TabRight = _tabRight.WasPressedThisFrame(),
+        };
 
         public PlayerInputFrame ReadFrame()
         {

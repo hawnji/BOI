@@ -15,14 +15,14 @@ Last updated: 2026-11-22.
 
 | Phase | Status | Notes |
 |---|---|---|
-| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 128 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
+| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 141 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
 | 2 Core player gameplay | In progress | Full gameplay loop runs headless (ADR-009): movement, shooting, enemies, bombs, pickups, doors, rooms, floors, boss exit; unit-tested incl. determinism and random-play soak. Unity presentation layer written (placeholder art, IMGUI HUD), not yet compiled in Unity. |
 | 3 Combat and interaction foundations | In progress | Pure parts exist and are unit-tested: damage info, status controller, health pool, enemy AI brain, attack patterns, difficulty scaling. Unity enemy components not started. |
 | 4 Item interaction engine | In progress | Engine core done early (spec: "design early"). Remaining: integration with real projectiles/companions/enemies, in-game debug overlay. |
 | 5 Procedural generation | In progress | Generator core done early. Remaining: full template library (250), room instantiation in Unity, editor template editor. |
 | 6 Enemies and bosses | In progress | Boss phase controller and data format implemented and unit-tested; 2 bosses + 1 miniboss authored. Unity boss arenas, health bar and intros not started. |
 | 7 Content expansion | Not started | |
-| 8 Progression and game modes | Not started | Save models for unlocks/achievements/marks/stats exist. |
+| 8 Progression and game modes | In progress | Characters, achievements, unlocks, completion marks, challenges, daily/practice/custom modes, run recording into the profile: implemented and unit-tested. Placeholder IMGUI front end (controller-navigable) type-checked only. Endings not started. |
 | 9 Art and presentation | Not started | |
 | 10 Integration completion | Not started | |
 | 11 QA and balancing | Not started | |
@@ -81,9 +81,9 @@ Last updated: 2026-11-22.
 | Pickups, bombs, consumables (sigils + unidentified draughts with per-run colours, slots, swap) | Implemented (unit-tested in Core; Unity drawing type-checked only) | `Core/Consumables`, `RunSimulation.Consumables.cs` |
 | Floor hexes (curses), shrine events | Implemented (unit-tested) | 5 hexes (map hide, larger floor, veiled pedestals, darkness, stat), 4 shrines with costs/outcomes/ambush; room modifiers not started |
 | Difficulty system | In progress | Story/Normal/Hard/Nightmare presets drive enemy scaling, attack gating, damage bonus and hex chance; no selection UI yet |
-| Game modes (standard, challenge, daily, practice, custom) | Not started | Daily seed function exists |
-| Unlocks, achievements, completion marks, endings, statistics UI | Not started | Save models exist |
-| UI (menus, HUD, minimap, settings, inventory) | Not started | |
+| Game modes (standard, challenge, daily, practice, custom) | Implemented (unit-tested) | `Progression/RunSetupFactory.cs`; practice records nothing, custom records statistics only, daily keeps best score per date |
+| Unlocks, achievements, completion marks, statistics | Implemented (unit-tested) | `Progression/ProgressionService.cs`; statistics/achievement screens are placeholder IMGUI; endings not started |
+| UI (menus, HUD, minimap, settings, inventory) | In progress | Placeholder IMGUI title/mode/character/challenge/stats/summary screens and HUD with minimap (type-checked only); menu navigation logic unit-tested; settings and inventory screens not started; final uGUI not started |
 | Audio (music, SFX, mixing) | Not started | |
 | Art, animation, lighting, VFX | Not started | |
 | Object pooling | Implemented (type-checked only) | Actor sprites pooled by id (`ActorViews`); simulation actors are plain objects |
@@ -96,7 +96,7 @@ count only if they are distinct, functional content.
 
 | Category | Target | Current | Status |
 |---|---:|---:|---|
-| Playable characters | 12 | 0 | Not started |
+| Playable characters | 12 | 12 | Implemented (data + rules; no sprites) |
 | Collectible items (total) | 300 | 21 | In progress |
 | Consumables (sigils + draughts) | - | 14 | In progress |
 | Floor hexes | - | 5 | In progress |
@@ -112,7 +112,7 @@ count only if they are distinct, functional content.
 | Transformations | 12 | 2 | In progress |
 | Companions | 30 | 0 | Not started (ids referenced: wisp, bone_sparrow, drone_mite) |
 | Challenges | 30 | 0 | Not started |
-| Achievements | 100 | 0 | Not started |
+| Achievements | 100 | 63 | In progress |
 | Synergies (no minimum set) | - | 4 | In progress |
 | Status effects | - | 8 | In progress |
 

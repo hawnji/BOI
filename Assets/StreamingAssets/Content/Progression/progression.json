@@ -1,0 +1,906 @@
+{
+ "characters": [
+  {
+   "id": "wanderer",
+   "name": "The Wanderer",
+   "title": "Of No Fixed Road",
+   "description": "A traveller who came down into the crypts with nothing but resolve.",
+   "trait": "Balanced. A good first descent.",
+   "containers": 3,
+   "bombs": 1
+  },
+  {
+   "id": "ashwright",
+   "name": "Ashwright",
+   "title": "The Kindler",
+   "description": "A furnace-keeper who learned to throw fire before learning to walk.",
+   "trait": "Starts with Ember Sigil and a Ward shell; weaker base damage.",
+   "containers": 2,
+   "ward": 2,
+   "bombs": 1,
+   "startingItems": [
+    "ember_sigil"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "value": -0.3
+    }
+   ],
+   "unlockId": "char_ashwright",
+   "unlockHint": "Defeat the Pyre Warden."
+  },
+  {
+   "id": "thornmaid",
+   "name": "The Thornmaid",
+   "title": "Bramble-Born",
+   "description": "Grown in the hedge-graves above the crypt. Every wound she takes bites back.",
+   "trait": "Starts with Thorn Mantle; long range, slow feet.",
+   "containers": 3,
+   "bombs": 1,
+   "startingItems": [
+    "thorn_mantle"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Range",
+     "value": 1.0
+    },
+    {
+     "effect": "stat",
+     "stat": "MoveSpeed",
+     "value": -0.1
+    }
+   ],
+   "unlockId": "char_thornmaid",
+   "unlockHint": "Defeat 300 enemies."
+  },
+  {
+   "id": "hollow_saint",
+   "name": "The Hollow Saint",
+   "title": "Faith Without Flesh",
+   "description": "A relic that walked out of its reliquary. It has no blood to lose.",
+   "trait": "No Vigor containers: lives on Umbral alone. Container gains become Umbral. Hits hard.",
+   "noContainers": true,
+   "umbral": 6,
+   "bombs": 1,
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "value": 0.6
+    }
+   ],
+   "unlockId": "char_hollow_saint",
+   "unlockHint": "Win 3 runs."
+  },
+  {
+   "id": "tinker",
+   "name": "The Tinker",
+   "title": "Keeper of Fuses",
+   "description": "A sapper who mapped the crypt by blowing holes in it.",
+   "trait": "Starts with Sapper Satchel, extra bombs and a key.",
+   "containers": 2,
+   "bombs": 5,
+   "keys": 1,
+   "startingItems": [
+    "sapper_satchel"
+   ],
+   "unlockId": "char_tinker",
+   "unlockHint": "Use 40 bombs."
+  },
+  {
+   "id": "gambler",
+   "name": "The Gilded Gambler",
+   "title": "Owes Everyone",
+   "description": "Came down to settle a debt with something that lives below.",
+   "trait": "High luck, a purse of coins and the Gambler's Knuckle; fragile.",
+   "containers": 2,
+   "coins": 10,
+   "bombs": 1,
+   "startingItems": [
+    "gambler_knuckle"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Luck",
+     "value": 2
+    }
+   ],
+   "unlockId": "char_gambler",
+   "unlockHint": "Collect 300 coins."
+  },
+  {
+   "id": "bellwarden",
+   "name": "The Bellwarden",
+   "title": "Ringer of the Last Hour",
+   "description": "A temple guard who carried the great bell down alone.",
+   "trait": "Starts with the Storm Bell; sturdy but slow to shoot.",
+   "containers": 4,
+   "bombs": 1,
+   "startingItems": [
+    "storm_bell"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "MoveSpeed",
+     "value": -0.15
+    },
+    {
+     "effect": "stat",
+     "stat": "FireRate",
+     "value": -0.3
+    }
+   ],
+   "unlockId": "char_bellwarden",
+   "unlockHint": "Defeat the Grave Choir."
+  },
+  {
+   "id": "moth_seer",
+   "name": "The Moth Seer",
+   "title": "Who Reads the Dark",
+   "description": "Blind, guided by the moths that nest in her hood.",
+   "trait": "Seeking shots, long range, two consumable slots; low damage.",
+   "containers": 2,
+   "ward": 2,
+   "bombs": 1,
+   "startingItems": [
+    "seeker_moth"
+   ],
+   "consumableSlots": 2,
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Range",
+     "value": 2.0
+    },
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "value": -0.4
+    }
+   ],
+   "unlockId": "char_moth_seer",
+   "unlockHint": "Use 15 shrines."
+  },
+  {
+   "id": "beastcaller",
+   "name": "The Beastcaller",
+   "title": "Never Alone",
+   "description": "Walks with a wisp and a bone bird and lets them do the fighting.",
+   "trait": "Starts with two companions; weak shots of their own.",
+   "containers": 3,
+   "bombs": 1,
+   "startingItems": [
+    "lantern_wisp",
+    "bone_sparrow"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "value": -0.5
+    }
+   ],
+   "unlockId": "char_beastcaller",
+   "unlockHint": "Become Hivekin."
+  },
+  {
+   "id": "quickling",
+   "name": "The Quickling",
+   "title": "Gone Before the Echo",
+   "description": "A thief who has never once been caught standing still.",
+   "trait": "Very fast and fast-firing, but feather-light shots and few hearts.",
+   "containers": 2,
+   "bombs": 1,
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "MoveSpeed",
+     "value": 0.3
+    },
+    {
+     "effect": "stat",
+     "stat": "FireRate",
+     "value": 0.6
+    },
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "value": -0.7
+    }
+   ],
+   "unlockId": "char_quickling",
+   "unlockHint": "Win a run in under 20 minutes."
+  },
+  {
+   "id": "lanternbearer",
+   "name": "The Lanternbearer",
+   "title": "Keeper of the Low Light",
+   "description": "A healer who goes into the dark to bring others back out.",
+   "trait": "Starts with the Mending Lantern and a Hearth Sigil.",
+   "containers": 3,
+   "bombs": 1,
+   "startingItems": [
+    "mending_lantern"
+   ],
+   "startingConsumable": "sigil_hearth",
+   "unlockId": "char_lanternbearer",
+   "unlockHint": "Clear 200 rooms."
+  },
+  {
+   "id": "the_unmade",
+   "name": "The Unmade",
+   "title": "What the Crypt Spat Out",
+   "description": "Something that died down here and refused to stay that way.",
+   "trait": "No containers, Umbral and Ward only; an extra shot and two trinket slots.",
+   "noContainers": true,
+   "umbral": 4,
+   "ward": 2,
+   "bombs": 2,
+   "trinketSlots": 2,
+   "startingItems": [
+    "echo_chamber"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "value": 0.3
+    },
+    {
+     "effect": "stat",
+     "stat": "MoveSpeed",
+     "value": 0.1
+    }
+   ],
+   "unlockId": "char_unmade",
+   "unlockHint": "Win 10 runs."
+  }
+ ],
+ "challenges": [
+  {
+   "id": "ch_glass_road",
+   "name": "The Glass Road",
+   "description": "Start with the Glass Fang. No hearts will ever drop.",
+   "characterId": "wanderer",
+   "startingItems": [
+    "glass_fang"
+   ],
+   "noHealthPickups": true
+  },
+  {
+   "id": "ch_demolition",
+   "name": "Demolition Rite",
+   "description": "Thirty bombs and a satchel, but your shots are feeble and shops are shut.",
+   "characterId": "tinker",
+   "startingBombs": 30,
+   "noShops": true,
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "value": -1.0
+    }
+   ]
+  },
+  {
+   "id": "ch_paupers_march",
+   "name": "Pauper's March",
+   "description": "No shops, no treasure rooms. Make do.",
+   "characterId": "wanderer",
+   "noShops": true,
+   "noTreasureRooms": true,
+   "startingCoins": 0
+  },
+  {
+   "id": "ch_dark_descent",
+   "name": "Dark Descent",
+   "description": "Every floor is under the Hex of Gloom.",
+   "characterId": "wanderer",
+   "forcedHex": "hex_gloom",
+   "unlockId": "challenge_dark_descent"
+  },
+  {
+   "id": "ch_swarm_mother",
+   "name": "Swarm Mother",
+   "description": "Your companions are strong. You are not.",
+   "characterId": "beastcaller",
+   "startingItems": [
+    "kin_bond"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "Damage",
+     "value": -1.5
+    }
+   ],
+   "unlockId": "challenge_swarm_mother"
+  },
+  {
+   "id": "ch_nightmare_walk",
+   "name": "Nightmare Walk",
+   "description": "The crypt at its cruellest.",
+   "characterId": "wanderer",
+   "difficultyId": "nightmare",
+   "unlockId": "challenge_nightmare_walk"
+  },
+  {
+   "id": "ch_frail_vessel",
+   "name": "Frail Vessel",
+   "description": "The Hollow Saint, with no Ward to spare and every hex unleashed.",
+   "characterId": "hollow_saint",
+   "hexChance": 1.0,
+   "unlockId": "challenge_frail_vessel"
+  },
+  {
+   "id": "ch_cinder_trial",
+   "name": "Cinder Trial",
+   "description": "Fire-shot from the first room, but the flames make you slow.",
+   "characterId": "ashwright",
+   "startingItems": [
+    "cinder_flask"
+   ],
+   "effects": [
+    {
+     "effect": "stat",
+     "stat": "MoveSpeed",
+     "value": -0.2
+    }
+   ],
+   "unlockId": "challenge_cinder_trial"
+  }
+ ],
+ "achievements": [
+  {
+   "id": "first_steps",
+   "name": "First Steps",
+   "description": "Finish your first run, win or lose.",
+   "trigger": "Counter",
+   "target": 1,
+   "key": "runs"
+  },
+  {
+   "id": "seasoned",
+   "name": "Seasoned",
+   "description": "Finish 10 runs.",
+   "trigger": "Counter",
+   "target": 10,
+   "key": "runs"
+  },
+  {
+   "id": "veteran",
+   "name": "Veteran",
+   "description": "Finish 50 runs.",
+   "trigger": "Counter",
+   "target": 50,
+   "key": "runs"
+  },
+  {
+   "id": "first_light",
+   "name": "First Light",
+   "description": "Win a run.",
+   "trigger": "Counter",
+   "target": 1,
+   "key": "wins"
+  },
+  {
+   "id": "thrice_returned",
+   "name": "Thrice Returned",
+   "description": "Win 3 runs.",
+   "trigger": "Counter",
+   "target": 3,
+   "key": "wins",
+   "unlocks": [
+    "char_hollow_saint"
+   ]
+  },
+  {
+   "id": "tenfold",
+   "name": "Tenfold",
+   "description": "Win 10 runs.",
+   "trigger": "Counter",
+   "target": 10,
+   "key": "wins",
+   "unlocks": [
+    "char_unmade"
+   ]
+  },
+  {
+   "id": "unbroken",
+   "name": "Unbroken",
+   "description": "Win 3 runs in a row.",
+   "trigger": "Counter",
+   "target": 3,
+   "key": "streak"
+  },
+  {
+   "id": "kills_50",
+   "name": "Culler",
+   "description": "Defeat 50 enemies.",
+   "trigger": "Counter",
+   "target": 50,
+   "key": "kills"
+  },
+  {
+   "id": "kills_300",
+   "name": "Reaper",
+   "description": "Defeat 300 enemies.",
+   "trigger": "Counter",
+   "target": 300,
+   "key": "kills",
+   "unlocks": [
+    "char_thornmaid"
+   ]
+  },
+  {
+   "id": "kills_1000",
+   "name": "Scourge",
+   "description": "Defeat 1000 enemies.",
+   "trigger": "Counter",
+   "target": 1000,
+   "key": "kills"
+  },
+  {
+   "id": "kills_5000",
+   "name": "Extinction",
+   "description": "Defeat 5000 enemies.",
+   "trigger": "Counter",
+   "target": 5000,
+   "key": "kills"
+  },
+  {
+   "id": "ashes_to_ashes",
+   "name": "Ashes to Ashes",
+   "description": "Defeat the Pyre Warden.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "pyre_warden",
+   "unlocks": [
+    "char_ashwright"
+   ]
+  },
+  {
+   "id": "silence_the_choir",
+   "name": "Silence the Choir",
+   "description": "Defeat the Grave Choir.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "grave_choir",
+   "unlocks": [
+    "char_bellwarden"
+   ]
+  },
+  {
+   "id": "bone_breaker",
+   "name": "Bone Breaker",
+   "description": "Defeat the Ossuary Brute.",
+   "trigger": "BossDefeated",
+   "target": 1,
+   "key": "ossuary_brute"
+  },
+  {
+   "id": "warden_x5",
+   "name": "Old Acquaintance",
+   "description": "Defeat the Pyre Warden 5 times.",
+   "trigger": "BossDefeated",
+   "target": 5,
+   "key": "pyre_warden"
+  },
+  {
+   "id": "choir_x5",
+   "name": "Encore",
+   "description": "Defeat the Grave Choir 5 times.",
+   "trigger": "BossDefeated",
+   "target": 5,
+   "key": "grave_choir"
+  },
+  {
+   "id": "bosses_10",
+   "name": "Giant Slayer",
+   "description": "Defeat 10 bosses.",
+   "trigger": "Counter",
+   "target": 10,
+   "key": "bosses"
+  },
+  {
+   "id": "bosses_50",
+   "name": "Titan's Bane",
+   "description": "Defeat 50 bosses.",
+   "trigger": "Counter",
+   "target": 50,
+   "key": "bosses"
+  },
+  {
+   "id": "fuse_lit",
+   "name": "Fuse Lit",
+   "description": "Use 40 bombs.",
+   "trigger": "Counter",
+   "target": 40,
+   "key": "bombs",
+   "unlocks": [
+    "char_tinker"
+   ]
+  },
+  {
+   "id": "fuse_master",
+   "name": "Fuse Master",
+   "description": "Use 250 bombs.",
+   "trigger": "Counter",
+   "target": 250,
+   "key": "bombs"
+  },
+  {
+   "id": "coin_purse",
+   "name": "Coin Purse",
+   "description": "Collect 300 coins.",
+   "trigger": "Counter",
+   "target": 300,
+   "key": "coins",
+   "unlocks": [
+    "char_gambler"
+   ]
+  },
+  {
+   "id": "hoarder",
+   "name": "Hoarder",
+   "description": "Collect 2000 coins.",
+   "trigger": "Counter",
+   "target": 2000,
+   "key": "coins"
+  },
+  {
+   "id": "devout",
+   "name": "Devout",
+   "description": "Use 15 shrines.",
+   "trigger": "Counter",
+   "target": 15,
+   "key": "shrines_used",
+   "unlocks": [
+    "char_moth_seer",
+    "challenge_dark_descent"
+   ]
+  },
+  {
+   "id": "pilgrim",
+   "name": "Pilgrim",
+   "description": "Use 60 shrines.",
+   "trigger": "Counter",
+   "target": 60,
+   "key": "shrines_used"
+  },
+  {
+   "id": "taster",
+   "name": "Taster",
+   "description": "Use 20 consumables.",
+   "trigger": "Counter",
+   "target": 20,
+   "key": "consumables_used"
+  },
+  {
+   "id": "alchemist",
+   "name": "Alchemist",
+   "description": "Use 100 consumables.",
+   "trigger": "Counter",
+   "target": 100,
+   "key": "consumables_used"
+  },
+  {
+   "id": "room_sweeper",
+   "name": "Room Sweeper",
+   "description": "Clear 200 rooms.",
+   "trigger": "Counter",
+   "target": 200,
+   "key": "rooms_cleared",
+   "unlocks": [
+    "char_lanternbearer"
+   ]
+  },
+  {
+   "id": "room_sweeper_2",
+   "name": "Crypt Janitor",
+   "description": "Clear 1000 rooms.",
+   "trigger": "Counter",
+   "target": 1000,
+   "key": "rooms_cleared"
+  },
+  {
+   "id": "secret_keeper",
+   "name": "Secret Keeper",
+   "description": "Find 10 secret rooms.",
+   "trigger": "Counter",
+   "target": 10,
+   "key": "secrets"
+  },
+  {
+   "id": "secret_master",
+   "name": "Nothing Hidden",
+   "description": "Find 50 secret rooms.",
+   "trigger": "Counter",
+   "target": 50,
+   "key": "secrets"
+  },
+  {
+   "id": "collector_10",
+   "name": "Collector",
+   "description": "Discover 10 different items.",
+   "trigger": "DiscoverItems",
+   "target": 10
+  },
+  {
+   "id": "collector_all",
+   "name": "Curator",
+   "description": "Discover 21 different items.",
+   "trigger": "DiscoverItems",
+   "target": 21
+  },
+  {
+   "id": "synergist",
+   "name": "Synergist",
+   "description": "Discover 2 synergies.",
+   "trigger": "DiscoverSynergies",
+   "target": 2
+  },
+  {
+   "id": "synergist_all",
+   "name": "Grand Synergist",
+   "description": "Discover 4 synergies.",
+   "trigger": "DiscoverSynergies",
+   "target": 4
+  },
+  {
+   "id": "ashen_herald",
+   "name": "Ashen Herald",
+   "description": "Become the Ashen Herald.",
+   "trigger": "Transformation",
+   "target": 1,
+   "key": "ashen_herald",
+   "unlocks": [
+    "challenge_cinder_trial"
+   ]
+  },
+  {
+   "id": "hivekin",
+   "name": "Hivekin",
+   "description": "Become Hivekin.",
+   "trigger": "Transformation",
+   "target": 1,
+   "key": "hivekin",
+   "unlocks": [
+    "char_beastcaller",
+    "challenge_swarm_mother"
+   ]
+  },
+  {
+   "id": "untouched",
+   "name": "Untouched",
+   "description": "Win a run without taking damage.",
+   "trigger": "RunCondition",
+   "target": 1,
+   "key": "flawless",
+   "hidden": true
+  },
+  {
+   "id": "empty_handed",
+   "name": "Empty Handed",
+   "description": "Win a run without picking up an item.",
+   "trigger": "RunCondition",
+   "target": 1,
+   "key": "no_items",
+   "hidden": true
+  },
+  {
+   "id": "swift_end",
+   "name": "Swift End",
+   "description": "Win a run in under 20 minutes.",
+   "trigger": "RunCondition",
+   "target": 1,
+   "key": "speed",
+   "unlocks": [
+    "char_quickling"
+   ]
+  },
+  {
+   "id": "ascetic",
+   "name": "Ascetic",
+   "description": "Win without using a shrine or consumable.",
+   "trigger": "RunCondition",
+   "target": 1,
+   "key": "ascetic"
+  },
+  {
+   "id": "hard_won",
+   "name": "Hard Won",
+   "description": "Win on Hard or Nightmare.",
+   "trigger": "RunCondition",
+   "target": 1,
+   "key": "hard",
+   "unlocks": [
+    "challenge_nightmare_walk"
+   ]
+  },
+  {
+   "id": "nightmare_won",
+   "name": "Dreamless",
+   "description": "Win on Nightmare.",
+   "trigger": "RunCondition",
+   "target": 1,
+   "key": "nightmare",
+   "unlocks": [
+    "challenge_frail_vessel"
+   ]
+  },
+  {
+   "id": "win_wanderer",
+   "name": "The Wanderer Prevails",
+   "description": "Win a run as The Wanderer.",
+   "trigger": "WinWithCharacter",
+   "target": 1,
+   "key": "wanderer"
+  },
+  {
+   "id": "win_ashwright",
+   "name": "Ashwright Prevails",
+   "description": "Win a run as Ashwright.",
+   "trigger": "WinWithCharacter",
+   "target": 1,
+   "key": "ashwright"
+  },
+  {
+   "id": "win_thornmaid",
+   "name": "The Thornmaid Prevails",
+   "description": "Win a run as The Thornmaid.",
+   "trigger": "WinWithCharacter",
+   "target": 1,
+   "key": "thornmaid"
+  },
+  {
+   "id": "win_hollow_saint",
+   "name": "The Hollow Saint Prevails",
+   "description": "Win a run as The Hollow Saint.",
+   "trigger": "WinWithCharacter",
+   "target": 1,
+   "key": "hollow_saint"
+  },
+  {
+   "id": "win_tinker",
+   "name": "The Tinker Prevails",
+   "description": "Win a run as The Tinker.",
+   "trigger": "WinWithCharacter",
+   "target": 1,
+   "key": "tinker"
+  },
+  {
+   "id": "win_gambler",
+   "name": "The Gilded Gambler Prevails",
+   "description": "Win a run as The Gilded Gambler.",
+   "trigger": "WinWithCharacter",
+   "target": 1,
+   "key": "gambler"
+  },
+  {
+   "id": "win_bellwarden",
+   "name": "The Bellwarden Prevails",
+   "description": "Win a run as The Bellwarden.",
+   "trigger": "WinWithCharacter",
+   "target": 1,
+   "key": "bellwarden"
+  },
+  {
+   "id": "win_moth_seer",
+   "name": "The Moth Seer Prevails",
+   "description": "Win a run as The Moth Seer.",
+   "trigger": "WinWithCharacter",
+   "target": 1,
+   "key": "moth_seer"
+  },
+  {
+   "id": "win_beastcaller",
+   "name": "The Beastcaller Prevails",
+   "description": "Win a run as The Beastcaller.",
+   "trigger": "WinWithCharacter",
+   "target": 1,
+   "key": "beastcaller"
+  },
+  {
+   "id": "win_quickling",
+   "name": "The Quickling Prevails",
+   "description": "Win a run as The Quickling.",
+   "trigger": "WinWithCharacter",
+   "target": 1,
+   "key": "quickling"
+  },
+  {
+   "id": "win_lanternbearer",
+   "name": "The Lanternbearer Prevails",
+   "description": "Win a run as The Lanternbearer.",
+   "trigger": "WinWithCharacter",
+   "target": 1,
+   "key": "lanternbearer"
+  },
+  {
+   "id": "win_the_unmade",
+   "name": "The Unmade Prevails",
+   "description": "Win a run as The Unmade.",
+   "trigger": "WinWithCharacter",
+   "target": 1,
+   "key": "the_unmade"
+  },
+  {
+   "id": "done_ch_glass_road",
+   "name": "The Glass Road",
+   "description": "Complete the The Glass Road challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_glass_road"
+  },
+  {
+   "id": "done_ch_demolition",
+   "name": "Demolition Rite",
+   "description": "Complete the Demolition Rite challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_demolition"
+  },
+  {
+   "id": "done_ch_paupers_march",
+   "name": "Pauper's March",
+   "description": "Complete the Pauper's March challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_paupers_march"
+  },
+  {
+   "id": "done_ch_dark_descent",
+   "name": "Dark Descent",
+   "description": "Complete the Dark Descent challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_dark_descent"
+  },
+  {
+   "id": "done_ch_swarm_mother",
+   "name": "Swarm Mother",
+   "description": "Complete the Swarm Mother challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_swarm_mother"
+  },
+  {
+   "id": "done_ch_nightmare_walk",
+   "name": "Nightmare Walk",
+   "description": "Complete the Nightmare Walk challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_nightmare_walk"
+  },
+  {
+   "id": "done_ch_frail_vessel",
+   "name": "Frail Vessel",
+   "description": "Complete the Frail Vessel challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_frail_vessel"
+  },
+  {
+   "id": "done_ch_cinder_trial",
+   "name": "Cinder Trial",
+   "description": "Complete the Cinder Trial challenge.",
+   "trigger": "ChallengeComplete",
+   "target": 1,
+   "key": "ch_cinder_trial"
+  },
+  {
+   "id": "every_face",
+   "name": "Every Face",
+   "description": "Win with every character.",
+   "trigger": "AllCharacterWins",
+   "target": 1
+  }
+ ]
+}
