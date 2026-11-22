@@ -15,8 +15,8 @@ Last updated: 2026-11-22.
 
 | Phase | Status | Notes |
 |---|---|---|
-| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 58 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
-| 2 Core player gameplay | Not started | |
+| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 79 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
+| 2 Core player gameplay | In progress | Engine-free movement model, fire controller, projectile simulation and room/door state machine implemented and unit-tested. Unity player/projectile/room scene code not started. |
 | 3 Combat and interaction foundations | Not started | Pure parts already exist (damage info, status controller, health pool). |
 | 4 Item interaction engine | In progress | Engine core done early (spec: "design early"). Remaining: integration with real projectiles/companions/enemies, in-game debug overlay. |
 | 5 Procedural generation | In progress | Generator core done early. Remaining: full template library (250), room instantiation in Unity, editor template editor. |
@@ -65,7 +65,11 @@ Last updated: 2026-11-22.
 | Editor: synergy debugger (live + sandbox) | Implemented | type-checked only |
 | Editor: room template editor | Not started | Templates are text; previewer shows them |
 | Platform services abstraction | Implemented | |
-| Player movement, shooting, camera, door transitions | Not started | Phase 2 |
+| Movement model (8-dir/analog, accel/decel, turn boost, knockback, roots, input locks, surfaces) | Implemented (unit-tested) | `Core/Movement` |
+| Fire controller (fire rate, charge shots, volley spread) | Implemented (unit-tested) | `Core/Combat/FireController.cs` |
+| Projectile simulation (homing, accel, wavy, boomerang, lobbed, range, pierce, bounce, spectral, split, chain, explode) | Implemented (unit-tested) | `Core/Combat/ProjectileSimulation.cs` |
+| Floor/room state (combat door locks, keys, secret reveal, challenge/curse doors, map reveal) | Implemented (unit-tested) | `Core/Rooms/RoomState.cs` |
+| Player controller, projectile objects, camera, room instantiation, door transitions (Unity) | Not started | Phase 2 Unity side |
 | Enemy framework and AI | Not started | Phase 3 |
 | Bosses / minibosses | Not started | Phase 6 |
 | Pickups, bombs, consumables, economy/shops | Not started | Data hooks exist (drop chance, shop price, bomb spec) |
