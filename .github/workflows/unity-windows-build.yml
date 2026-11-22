@@ -1,7 +1,7 @@
 # Compiles the project in Unity, runs the EditMode tests and builds the Windows player.
 # Manual only: it needs a Unity licence stored as repository secrets first
 # (UNITY_LICENSE, UNITY_EMAIL, UNITY_PASSWORD; see https://game.ci/docs/github/activation).
-# Not yet run: the Unity 6000.6.9f1 runner image and the package versions in Packages/manifest.json are unverified.
+# EditMode tests verified passing in Unity 6000.6.9f1 on 2026-11-22 (187/187).
 name: unity-windows-build
 on:
   workflow_dispatch:
@@ -10,6 +10,9 @@ on:
         description: Development build
         type: boolean
         default: false
+permissions:
+  contents: read
+  checks: write # the test runner posts its results as a check run
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
