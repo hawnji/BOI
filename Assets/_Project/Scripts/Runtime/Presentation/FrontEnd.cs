@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Hollowcrawl.Bootstrap;
 using Hollowcrawl.Input;
+using Hollowcrawl.Menus;
 using Hollowcrawl.Progression;
 using Hollowcrawl.Rng;
 using Hollowcrawl.Simulation;
@@ -17,7 +18,7 @@ namespace Hollowcrawl.Presentation
     /// </summary>
     public sealed class FrontEnd : MonoBehaviour
     {
-        public enum Screen { Title, CharacterSelect, Challenges, Stats, Summary, Hidden }
+        public enum Screen { Title, CharacterSelect, Challenges, Stats, Summary, Hidden, Settings, Controls, Pause, Inventory }
 
         public RunDirector Director;
         public Screen Current = Screen.Title;
@@ -31,11 +32,23 @@ namespace Hollowcrawl.Presentation
         private Vector2 _scroll;
 
         private static readonly string[] Difficulties = { "story", "normal", "hard", "nightmare" };
-        private static readonly string[] TitleEntries = { "New Run", "Daily Descent", "Challenges", "Practice (no progress)", "Custom Seed", "Statistics", "Quit" };
+        private static readonly string[] TitleEntries = { "New Run", "Daily Descent", "Challenges", "Practice (no progress)", "Custom Seed", "Statistics", "Settings", "Quit" };
+        private static readonly string[] PauseEntries = { "Resume", "Inventory", "Settings", "Give up this run" };
+        private static readonly GameAction[] RebindableActions =
+            { GameAction.Fire, GameAction.ActiveItem, GameAction.Bomb, GameAction.Consumable, GameAction.SwapConsumable, GameAction.DropTrinket, GameAction.Interact, GameAction.Map, GameAction.Pause };
+
+        /// <summary>Frame of the last screen change, so one key press is never handled twice (menu + pause toggle).</summary>
+        public int LastScreenChangeFrame { get; private set; } = -1;
+        private Screen _settingsReturn = Screen.Title;
+        private int _controlsDevice; // 0 keyboard/mouse, 1 gamepad
+        private bool _rebinding;
+        private bool _settingsDirty;
 
         private void Update()
         {
-            if (Current == Screen.Hidden) return;
+            if (Current == Screen.Hidden && Director != null && Director.Paused) Go(Screen.Pause);
+            if ((Current == Screen.Pause || Current == Screen.Inventory || (Current == Screen.Settings && _settingsReturn == Screen.Pause)) && Director != null && !Director.Paused) Go(Screen.Hidden);
+            if (Current == Screen.Hidden || _rebinding) return;
             var src = GameServices.PlayerInput as IMenuInputSource;
             var cmd = src != null ? _nav.Update(src.ReadMenuFrame(), Time.unscaledDeltaTime) : MenuCommand.None;
             if (cmd != MenuCommand.None) Handle(cmd);
@@ -92,6 +105,88 @@ namespace Hollowcrawl.Presentation
                 case Screen.Summary:
                     if (cmd == MenuCommand.Submit || cmd == MenuCommand.Cancel) { Director.ReturnToMenu(); Go(Screen.Title); }
                     break;
+                case Screen.Pause:
+                    if (cmd == MenuCommand.Cancel) Director.Resume();
+                    else if (cmd == MenuCommand.Submit) ChoosePause(_index);
+                    else _index = MenuNavigator.Step(_index, PauseEntries.Length, cmd);
+                    break;
+                case Screen.Inventory:
+                    if (cmd == MenuCommand.Cancel || cmd == MenuCommand.Submit) Go(Screen.Pause, 1);
+                    else if (cmd == MenuCommand.Up) _scroll.y = Mathf.Max(0f, _scroll.y - 40f);
+                    else if (cmd == MenuCommand.Down) _scroll.y += 40f;
+                    break;
+                case Screen.Settings:
+                    HandleSettings(cmd);
+                    break;
+                case Screen.Controls:
+                    HandleControls(cmd);
+                    break;
+            }
+        }
+
+        private void ChoosePause(int i)
+        {
+            switch (i)
+            {
+                case 0: Director.Resume(); break;
+                case 1: Go(Screen.Inventory); break;
+                case 2: OpenSettings(Screen.Pause); break;
+                case 3: Director.GiveUp(); Go(Screen.Hidden); break;
+            }
+        }
+
+        private void OpenSettings(Screen returnTo) { _settingsReturn = returnTo; _settingsDirty = false; Go(Screen.Settings); }
+
+        private void HandleSettings(MenuCommand cmd)
+        {
+            var settings = GameServices.Settings;
+            var entries = SettingsMenu.Entries;
+            if (settings == null) { Go(_settingsReturn); return; }
+            var e = entries[Mathf.Clamp(_index, 0, entries.Count - 1)];
+            switch (cmd)
+            {
+                case MenuCommand.Cancel:
+                    if (_settingsDirty) GameServices.SaveSettings();
+                    Go(_settingsReturn, _settingsReturn == Screen.Pause ? 2 : TitleEntries.Length - 2);
+                    break;
+                case MenuCommand.Left:
+                case MenuCommand.Right:
+                    if (SettingsMenu.Adjust(settings, e, cmd == MenuCommand.Right ? 1 : -1)) { _settingsDirty = true; Bootstrap.SettingsApplier.Apply(settings); }
+                    break;
+                case MenuCommand.Submit:
+                    if (e.Id == SettingsMenu.ControlsAction) Go(Screen.Controls);
+                    else if (e.Id == SettingsMenu.ResetAction) { SettingsMenu.ResetToDefaults(settings); _settingsDirty = true; Bootstrap.SettingsApplier.Apply(settings); }
+                    else if (SettingsMenu.Adjust(settings, e, 1)) { _settingsDirty = true; Bootstrap.SettingsApplier.Apply(settings); }
+                    break;
+                default:
+                    _index = MenuNavigator.Step(_index, entries.Count, cmd);
+                    break;
+            }
+        }
+
+        private void HandleControls(MenuCommand cmd)
+        {
+            var rebinder = GameServices.Rebinder;
+            int rows = RebindableActions.Length + 1; // + "reset bindings"
+            switch (cmd)
+            {
+                case MenuCommand.Cancel: Go(Screen.Settings, SettingsMenu.Entries.Count - 2); break;
+                case MenuCommand.Left:
+                case MenuCommand.Right:
+                case MenuCommand.TabLeft:
+                case MenuCommand.TabRight:
+                    _controlsDevice = 1 - _controlsDevice; break;
+                case MenuCommand.Submit:
+                    if (rebinder == null) break;
+                    if (_index == RebindableActions.Length) { rebinder.ResetAll(); _settingsDirty = true; GameServices.SaveSettings(); break; }
+                    _rebinding = true;
+                    rebinder.StartRebind(RebindableActions[_index], _controlsDevice == 0 ? InputDeviceKind.KeyboardMouse : InputDeviceKind.Gamepad, ok =>
+                    {
+                        _rebinding = false;
+                        if (ok) GameServices.SaveSettings();
+                    });
+                    break;
+                default: _index = MenuNavigator.Step(_index, rows, cmd); break;
             }
         }
 
@@ -105,13 +200,14 @@ namespace Hollowcrawl.Presentation
                 case 3: _pendingMode = GameMode.Practice; Go(Screen.CharacterSelect); break;
                 case 4: _pendingMode = GameMode.Custom; Go(Screen.CharacterSelect); break;
                 case 5: Go(Screen.Stats); break;
-                case 6: GameServices.SaveProfile(); Application.Quit(); break;
+                case 6: OpenSettings(Screen.Title); break;
+                case 7: GameServices.SaveProfile(); Application.Quit(); break;
             }
         }
 
         private void Launch(RunSetup setup) { Go(Screen.Hidden); Director.StartRun(setup); }
 
-        public void Go(Screen s) { Current = s; _index = 0; _scroll = Vector2.zero; }
+        public void Go(Screen s, int index = 0) { Current = s; _index = index; _scroll = Vector2.zero; LastScreenChangeFrame = Time.frameCount; }
 
         public void ShowSummary(ProgressionResult result) { LastResult = result; Go(Screen.Summary); }
 
@@ -144,7 +240,89 @@ namespace Hollowcrawl.Presentation
                 case Screen.Challenges: DrawChallenges(w); break;
                 case Screen.Stats: DrawStats(w); break;
                 case Screen.Summary: DrawSummary(w); break;
+                case Screen.Pause: DrawPause(w); break;
+                case Screen.Inventory: DrawInventory(w); break;
+                case Screen.Settings: DrawSettings(w); break;
+                case Screen.Controls: DrawControls(w); break;
             }
+        }
+
+        private void DrawPause(float w)
+        {
+            GUI.Label(new Rect(0, 110, w, 60), "<b>Paused</b>", _title);
+            for (int i = 0; i < PauseEntries.Length; i++)
+                if (Entry(new Rect(w * 0.5f - 200f, 220f + i * 46f, 400f, 40f), PauseEntries[i], i == _index)) { _index = i; ChoosePause(i); }
+            GUI.Label(new Rect(0, 650, w, 30), "<color=#999999>Back / Pause: resume</color>", _small);
+        }
+
+        private void DrawInventory(float w)
+        {
+            GUI.Label(new Rect(0, 30, w, 50), "<b>Inventory</b>", _title);
+            var sections = InventoryView.Build(Director.Run);
+            float colW = Mathf.Min(560f, w * 0.45f);
+            var left = new Rect(w * 0.5f - colW - 10f, 100f, colW, 560f);
+            var right = new Rect(w * 0.5f + 10f, 100f, colW, 560f);
+            float yl = 0f, yr = 0f;
+            foreach (var sec in sections)
+            {
+                bool onLeft = sec.Title == "Stats" || sec.Title == "Active" || sec.Title == "This floor" || sec.Title == "Consumables";
+                var col = onLeft ? left : right;
+                ref float y = ref (onLeft ? ref yl : ref yr);
+                float sy = y - (onLeft ? 0f : _scroll.y);
+                if (sy > -30f && sy < col.height) GUI.Label(new Rect(col.x, col.y + sy, col.width, 26), "<b><color=#ffd36b>" + sec.Title + "</color></b>", _small);
+                y += 28f;
+                foreach (var row in sec.Rows)
+                {
+                    sy = y - (onLeft ? 0f : _scroll.y);
+                    if (sy > -30f && sy < col.height)
+                        GUI.Label(new Rect(col.x, col.y + sy, col.width, 40), "<b>" + row.Name + "</b>" + (string.IsNullOrEmpty(row.Detail) ? "" : "  <color=#bbbbbb>" + row.Detail + "</color>"), _small);
+                    y += string.IsNullOrEmpty(row.Detail) || row.Detail.Length < 50 ? 22f : 38f;
+                }
+                y += 10f;
+            }
+            GUI.Label(new Rect(0, 670, w, 30), "<color=#999999>Up/Down: scroll items    Back: return</color>", _small);
+        }
+
+        private void DrawSettings(float w)
+        {
+            GUI.Label(new Rect(0, 24, w, 50), "<b>Settings</b>", _title);
+            var settings = GameServices.Settings;
+            if (settings == null) return;
+            var entries = SettingsMenu.Entries;
+            float rowH = 26f, top = 90f;
+            int visible = 21, first = Mathf.Clamp(_index - visible / 2, 0, Mathf.Max(0, entries.Count - visible));
+            string section = null;
+            float y = top;
+            for (int i = first; i < Mathf.Min(entries.Count, first + visible); i++)
+            {
+                var e = entries[i];
+                if (e.Section != section) { section = e.Section; GUI.Label(new Rect(w * 0.5f - 300f, y, 600f, rowH), "<color=#888888>" + section + "</color>", _small); y += rowH; }
+                string label = i == _index ? "<color=#ffd36b>" + e.Label + "</color>" : e.Label;
+                string value = e.Kind == SettingKind.Action ? "" : "< " + SettingsMenu.Display(settings, e) + " >";
+                if (GUI.Button(new Rect(w * 0.5f - 300f, y, 400f, rowH), label, _small)) { _index = i; HandleSettings(MenuCommand.Submit); }
+                if (GUI.Button(new Rect(w * 0.5f + 100f, y, 200f, rowH), i == _index ? "<color=#ffd36b>" + value + "</color>" : value, _small)) { _index = i; HandleSettings(MenuCommand.Right); }
+                y += rowH;
+            }
+            GUI.Label(new Rect(0, 680, w, 30), "<color=#999999>Left/Right: change    Confirm: open/toggle    Back: save and return</color>", _small);
+        }
+
+        private void DrawControls(float w)
+        {
+            GUI.Label(new Rect(0, 30, w, 50), "<b>Controls</b>", _title);
+            var rebinder = GameServices.Rebinder;
+            var device = _controlsDevice == 0 ? InputDeviceKind.KeyboardMouse : InputDeviceKind.Gamepad;
+            GUI.Label(new Rect(0, 90, w, 30), (_controlsDevice == 0 ? "<color=#ffd36b>Keyboard and mouse</color>   Controller" : "Keyboard and mouse   <color=#ffd36b>Controller</color>") + "   <color=#999999>(Left/Right to switch)</color>", _small);
+            for (int i = 0; i <= RebindableActions.Length; i++)
+            {
+                float y = 130f + i * 34f;
+                bool sel = i == _index;
+                string label = i == RebindableActions.Length ? "Reset all bindings" : RebindableActions[i].ToString();
+                string bind = i == RebindableActions.Length || rebinder == null ? "" : rebinder.GetBindingDisplay(RebindableActions[i], device);
+                if (sel && _rebinding) bind = "<color=#ff9060>press a button...</color>";
+                string text = (sel ? "<color=#ffd36b>" : "") + label + (sel ? "</color>" : "") + (bind.Length > 0 ? "    " + bind : "");
+                if (GUI.Button(new Rect(w * 0.5f - 300f, y, 600f, 30f), text, _small) && !_rebinding) { _index = i; HandleControls(MenuCommand.Submit); }
+            }
+            GUI.Label(new Rect(0, 660, w, 30), "<color=#999999>Confirm: rebind    Back: return</color>", _small);
         }
 
         private bool Entry(Rect r, string text, bool selected, bool enabled = true)

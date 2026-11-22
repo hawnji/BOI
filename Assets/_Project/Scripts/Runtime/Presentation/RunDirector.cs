@@ -70,6 +70,22 @@ namespace Hollowcrawl.Presentation
         private FrontEnd _frontEnd;
         private bool _recorded;
 
+        public void Resume()
+        {
+            Paused = false;
+            _accumulator = 0f;
+            ClearPressed(ref _latched);
+        }
+
+        /// <summary>Ends the current run as a loss (from the pause menu).</summary>
+        public void GiveUp()
+        {
+            if (Run == null || Run.State != RunState.Playing) return;
+            Run.Engine.Health.TakeDamage(999, 0f, null, ignoreInvulnerability: true);
+            Run.Step(default);
+            Paused = false;
+        }
+
         public void ReturnToMenu()
         {
             Run = null;
@@ -102,8 +118,12 @@ namespace Hollowcrawl.Presentation
             }
             Latch(ref frame);
 
-            if (frame.PausePressed && Run.State == RunState.Playing) Paused = !Paused;
-            if (Paused && frame.BombPressed) { Run.Engine.Health.TakeDamage(999, 0f, null, ignoreInvulnerability: true); Paused = false; } // "give up" from the pause screen
+            // Pause opens the pause menu; the menu (FrontEnd) resumes. Pause pressed again at the menu root also resumes.
+            if (frame.PausePressed && Run.State == RunState.Playing)
+            {
+                if (!Paused) Paused = true;
+                else if (_frontEnd.Current == FrontEnd.Screen.Pause && _frontEnd.LastScreenChangeFrame != Time.frameCount) Resume();
+            }
             if (Run.State != RunState.Playing && !_recorded) FinishRun();
 
             if (!Paused && Run.State == RunState.Playing)

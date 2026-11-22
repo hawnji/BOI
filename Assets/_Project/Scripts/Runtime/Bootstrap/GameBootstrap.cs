@@ -95,6 +95,7 @@ namespace Hollowcrawl.Bootstrap
             GameServices.Rebinder = rebinder;
             GameServices.IsReady = true;
 
+            Menus.SettingsMenu.Clamp(settings);
             SettingsApplier.Apply(settings);
             Debug.Log($"[Hollowcrawl] Ready on {platform.PlatformName}: {content.Items.Count} items, {rooms.Count} room templates, {content.Floors.Count} floors.");
         }

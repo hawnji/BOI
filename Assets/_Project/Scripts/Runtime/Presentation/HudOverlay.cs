@@ -70,7 +70,6 @@ namespace Hollowcrawl.Presentation
                 GUI.color = Color.white;
             }
 
-            if (Director.Paused) Panel(w, "Paused", "Pause: resume    Bomb: give up this run");
         }
 
         private void DrawHealth(RunSimulation run, float x, float y)
