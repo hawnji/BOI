@@ -4,7 +4,7 @@ An original top-down, room-based roguelike for Windows PC, built in **Unity 6000
 Fully offline, single-player, keyboard/mouse and controller. All names, characters, items, rooms, art and
 audio are original; the game borrows only the *genre structure* of classic room-based roguelikes.
 
-> **Status: Phase 1 (project foundation) in progress.** There is no playable build yet. See
+> **Status: Phase 1 (project foundation) in progress.** The project compiles in Unity 6000.6.9f1, passes its tests there and builds for Windows, but the build has not been launched or play-tested yet. See
 > [`docs/DEVELOPMENT_CHECKLIST.md`](docs/DEVELOPMENT_CHECKLIST.md) for the honest status of every system and content category.
 
 ## Repository layout
@@ -57,7 +57,7 @@ so engine-free code that builds here should build in Unity.
 
 ## Building for Windows
 
-Not yet verified: no build has been produced, because the project has not been opened in Unity yet.
+Verified 2026-11-22: the GitHub workflow below compiled the project, passed all EditMode tests in Unity and produced `Hollowcrawl.exe`. The built game has not been launched or play-tested yet.
 
 - In the editor: **Hollowcrawl > Build > Windows (x64)** writes `Builds/Windows/Hollowcrawl.exe`.
 - From the command line:

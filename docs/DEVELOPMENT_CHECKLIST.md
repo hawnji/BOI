@@ -5,9 +5,11 @@ Status values (from the master spec): **Not started**, **In progress**, **Implem
 - *Implemented* = the code exists and works in isolation. "(unit-tested)" means it is covered by passing headless NUnit tests.
 - *Integrated* = wired into real gameplay in Unity scenes.
 - *Tested* = verified in play (the dedicated QA phase), *Complete* = done including polish.
-- Nothing is marked Integrated, Tested or Complete until it has been run in the Unity editor. **As of the last update
-  the Unity editor has not been available to the development environment**, so no Unity-side code has been compiled
-  by Unity or run.
+- Nothing is marked Integrated, Tested or Complete until it has been run in the Unity editor.
+- **Unity verification (2026-11-22, GitHub Actions run 45060989560):** the whole project (Core, Runtime, Editor, tests)
+  compiles in Unity 6000.6.9f1, all 187 EditMode tests pass inside Unity, and the Windows x64 player builds
+  (`Hollowcrawl.exe`, "Build Finished, Result: Success"). **Nobody has launched the built game or played it yet**, so
+  Unity-side screens, input, drawing and audio are compiled but not run. "compiled in Unity" below means exactly that.
 
 Last updated: 2026-11-22.
 
@@ -15,14 +17,14 @@ Last updated: 2026-11-22.
 
 | Phase | Status | Notes |
 |---|---|---|
-| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 186 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
-| 2 Core player gameplay | In progress | Full gameplay loop runs headless (ADR-009): movement, shooting, enemies, bombs, pickups, doors, rooms, floors, boss exit; unit-tested incl. determinism and random-play soak. Unity presentation layer written (placeholder art, IMGUI HUD), not yet compiled in Unity. |
+| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 187 tests headless and in Unity; whole project compiles in Unity 6000.6.9f1 and builds for Windows. Pending: launch and play the build, URP 2D renderer assets. |
+| 2 Core player gameplay | In progress | Full gameplay loop runs headless (ADR-009): movement, shooting, enemies, bombs, pickups, doors, rooms, floors, boss exit; unit-tested incl. determinism and random-play soak. Unity presentation layer written (placeholder art, IMGUI HUD), compiled in Unity, not yet run. |
 | 3 Combat and interaction foundations | In progress | Pure parts exist and are unit-tested: damage info, status controller, health pool, enemy AI brain, attack patterns, difficulty scaling. Unity enemy components not started. |
 | 4 Item interaction engine | In progress | Engine core done early (spec: "design early"). Remaining: integration with real projectiles/companions/enemies, in-game debug overlay. |
 | 5 Procedural generation | In progress | Generator core done early. Remaining: full template library (250), room instantiation in Unity, editor template editor. |
 | 6 Enemies and bosses | In progress | Boss phase controller and data format implemented and unit-tested; 2 bosses + 1 miniboss authored. Unity boss arenas, health bar and intros not started. |
 | 7 Content expansion | Not started | |
-| 8 Progression and game modes | In progress | Characters, achievements, unlocks, completion marks, challenges, daily/practice/custom modes, run recording into the profile: implemented and unit-tested. Placeholder IMGUI front end (controller-navigable) type-checked only. 8 data-driven endings (final boss, character, flawless, nightmare, challenge) resolved and recorded headless; shown on the summary screen (type-checked only). |
+| 8 Progression and game modes | In progress | Characters, achievements, unlocks, completion marks, challenges, daily/practice/custom modes, run recording into the profile: implemented and unit-tested. Placeholder IMGUI front end (controller-navigable) compiled in Unity, not run. 8 data-driven endings (final boss, character, flawless, nightmare, challenge) resolved and recorded headless; shown on the summary screen (compiled in Unity, not run). |
 | 9 Art and presentation | Not started | |
 | 10 Integration completion | Not started | |
 | 11 QA and balancing | Not started | |
@@ -33,10 +35,10 @@ Last updated: 2026-11-22.
 | System | Status | Location / notes |
 |---|---|---|
 | Unity project version pin 6000.6.9f1 | Implemented | `ProjectSettings/ProjectVersion.txt` |
-| Package manifest (URP, Input System, 2D, Newtonsoft, Test Framework) | In progress | Versions unverified without the editor (ADR-008) |
+| Package manifest (URP, Input System, 2D, Newtonsoft, Test Framework) | Implemented (verified in Unity) | Resolves and compiles in Unity 6000.6.9f1: Input System 1.20.1 (1.14 did not compile), 2D Animation removed (unused, did not compile) |
 | URP 2D renderer + pipeline assets | Not started | Must be created in the editor (Universal 2D template or Create > Rendering > URP 2D) |
 | Folder structure, assemblies, conventions | Implemented | `docs/CONVENTIONS.md` |
-| Bootstrap and service hub | Implemented | `Runtime/Bootstrap`; type-checked against stubs only |
+| Bootstrap and service hub | Implemented | `Runtime/Bootstrap`; compiled in Unity, not run |
 | Event bus | Implemented (unit-tested) | duplicate/recursion/exception guards |
 | Seeded RNG, run seeds, daily seed | Implemented (unit-tested) | `Core/Rng` |
 | Stat system (additive, percent, multiplicative, caps, floors/ceilings, overrides, conditional, dynamic) | Implemented (unit-tested) | `Core/Stats` |
@@ -54,15 +56,15 @@ Last updated: 2026-11-22.
 | Encounter population (budget, compositions, elites, bosses) | Implemented (unit-tested) | Pool ids are validated against enemy/boss definitions |
 | Floor validator | Implemented (unit-tested) | |
 | Save system (envelope, checksum, backups, recovery, migration, schema guard) | Implemented (unit-tested) | |
-| Desktop file storage (atomic writes) | Implemented | type-checked only |
-| Settings model (audio, graphics, accessibility, input) | Implemented (MenuModelTests) | Settings, controls/rebinding, pause and inventory screens added as placeholder IMGUI (type-checked only, not run in Unity). `Core/Menus/SettingsMenu.cs` and `InventoryView.cs` hold the logic |
+| Desktop file storage (atomic writes) | Implemented | compiled in Unity, not run |
+| Settings model (audio, graphics, accessibility, input) | Implemented (MenuModelTests) | Settings, controls/rebinding, pause and inventory screens added as placeholder IMGUI (compiled in Unity, not run). `Core/Menus/SettingsMenu.cs` and `InventoryView.cs` hold the logic |
 | Input abstraction + shoot modes | Implemented (unit-tested) | |
-| Input System bindings (KB/M + gamepad), last-used device | Implemented | type-checked only |
-| Rebinding + persistence | Implemented | type-checked only; UI not started |
+| Input System bindings (KB/M + gamepad), last-used device | Implemented | compiled in Unity, not run |
+| Rebinding + persistence | Implemented | compiled in Unity, not run; UI not started |
 | Content loading + cross-validation | Implemented (unit-tested) | |
-| Editor: content validation menu | Implemented | type-checked only |
-| Editor: floor previewer + batch seed tester | Implemented | type-checked only |
-| Editor: synergy debugger (live + sandbox) | Implemented | type-checked only |
+| Editor: content validation menu | Implemented | compiled in Unity, not run |
+| Editor: floor previewer + batch seed tester | Implemented | compiled in Unity, not run |
+| Editor: synergy debugger (live + sandbox) | Implemented | compiled in Unity, not run |
 | Editor: room template editor | Not started | Templates are text; previewer shows them |
 | Platform services abstraction | Implemented | |
 | Movement model (8-dir/analog, accel/decel, turn boost, knockback, roots, input locks, surfaces) | Implemented (unit-tested) | `Core/Movement` |
@@ -71,25 +73,25 @@ Last updated: 2026-11-22.
 | Floor/room state (combat door locks, keys, secret reveal, challenge/curse doors, map reveal) | Implemented (unit-tested) | `Core/Rooms/RoomState.cs` |
 | Room simulation (tile collision, player move/fire/bomb/active, enemy AI execution, shots, explosions, destructible tiles, hazards, pickups, doorways) | Implemented (unit-tested) | `Core/Simulation/RoomSimulation.cs`, ADR-009 |
 | Run simulation (floor sequence, transitions, room population, treasure/shop/secret/healing/reward rooms, clear rewards, boss exit, victory/defeat, teleports, companions) | Implemented (unit-tested) | `Core/Simulation/RunSimulation.cs`; consumables granted when content defines them |
-| Unity presentation (room texture, pooled actor sprites, camera follow + shake, placeholder art/audio hooks, IMGUI HUD with health/resources/active/minimap/boss bar/pause/run end, auto-start run) | Implemented (type-checked only) | `Runtime/Presentation`; not compiled or run in Unity |
+| Unity presentation (room texture, pooled actor sprites, camera follow + shake, placeholder art/audio hooks, IMGUI HUD with health/resources/active/minimap/boss bar/pause/run end, auto-start run) | Implemented (compiled in Unity, not run) | `Runtime/Presentation`; compiled in Unity, not run |
 | Player controller, projectile objects, camera, room instantiation, door transitions (Unity) | Not started | Phase 2 Unity side |
 | Enemy framework and AI (data-driven movement/attacks, telegraphs, cooldowns, waves, dash, summon caps, retreat, aggro, difficulty gating, deterministic) | Implemented (unit-tested) | `Core/Enemies`; Unity enemy component not started |
 | Bosses / minibosses (ordered phase transitions, transition invulnerability, on-enter actions) | Implemented (unit-tested) | `Core/Enemies/BossController.cs` |
 | Item pools (seeded, rarity/quality/luck weighted, unlock-aware, no repeats per run) | Implemented (unit-tested) | `Core/Economy/ItemPools.cs` |
 | Shop inventory generation, pricing, discounts, purchases | Implemented (unit-tested) | `Core/Economy/ShopInventory.cs`; shop room/UI not started |
 | Drop tables (room clear, enemy, prop, chest; luck and item modifiers) | Implemented (unit-tested) | `Core/Economy/DropTables.cs` |
-| Pickups, bombs, consumables (sigils + unidentified draughts with per-run colours, slots, swap) | Implemented (unit-tested in Core; Unity drawing type-checked only) | `Core/Consumables`, `RunSimulation.Consumables.cs` |
+| Pickups, bombs, consumables (sigils + unidentified draughts with per-run colours, slots, swap) | Implemented (unit-tested in Core; Unity drawing compiled in Unity, not run) | `Core/Consumables`, `RunSimulation.Consumables.cs` |
 | Floor hexes (curses), shrine events | Implemented (unit-tested) | 5 hexes (map hide, larger floor, veiled pedestals, darkness, stat), 4 shrines with costs/outcomes/ambush |
-| Room modifiers (elite guard, frenzy, iron hide, swarming, volatile, mending, darkness, giants, bounty, glass ranks) | Implemented (headless-tested, RoomModifierTests) | Rolled per combat room from the difficulty's chance (+1% per floor), deterministic per seed; HUD popup and darkness hook type-checked only |
+| Room modifiers (elite guard, frenzy, iron hide, swarming, volatile, mending, darkness, giants, bounty, glass ranks) | Implemented (headless-tested, RoomModifierTests) | Rolled per combat room from the difficulty's chance (+1% per floor), deterministic per seed; HUD popup and darkness hook compiled in Unity, not run |
 | Difficulty system | In progress | Story/Normal/Hard/Nightmare presets drive enemy scaling, attack gating, damage bonus and hex chance; no selection UI yet |
 | Game modes (standard, challenge, daily, practice, custom) | Implemented (unit-tested) | `Progression/RunSetupFactory.cs`; practice records nothing, custom records statistics only, daily keeps best score per date |
 | Unlocks, achievements, completion marks, statistics | Implemented (unit-tested) | `Progression/ProgressionService.cs`; statistics/achievement screens are placeholder IMGUI; endings implemented (ProgressionTests) |
-| UI (menus, HUD, minimap, settings, inventory) | In progress | Placeholder IMGUI title/mode/character/challenge/stats/summary screens and HUD with minimap (type-checked only); menu navigation logic unit-tested; settings and inventory screens not started; final uGUI not started |
-| Audio (music, SFX, mixing) | Implemented, no audio assets yet | Core `MusicDirector` (menu/floor/boss/victory/defeat tracks, pause duck) and `SfxLimiter` are unit-tested; `Runtime/Audio/AudioService` (16 pooled voices, crossfading music, volume buses, UI sounds, mute when unfocused) is type-checked only. Every clip is missing, so the game is silent until audio files are added |
+| UI (menus, HUD, minimap, settings, inventory) | In progress | Placeholder IMGUI title/mode/character/challenge/stats/summary screens and HUD with minimap (compiled in Unity, not run); menu navigation logic unit-tested; settings and inventory screens not started; final uGUI not started |
+| Audio (music, SFX, mixing) | Implemented, no audio assets yet | Core `MusicDirector` (menu/floor/boss/victory/defeat tracks, pause duck) and `SfxLimiter` are unit-tested; `Runtime/Audio/AudioService` (16 pooled voices, crossfading music, volume buses, UI sounds, mute when unfocused) is compiled in Unity, not run. Every clip is missing, so the game is silent until audio files are added |
 | Art and audio hooks + asset manifest | Implemented | Sprites `Resources/Sprites/<key>`, themed tiles `Resources/Tiles/<theme>/<kind>`, item icons over pedestals, audio `Resources/Audio/<key>`. `docs/ASSET_MANIFEST.md` lists all 785 sprite keys and every audio key (generated). No final art or audio exists |
 | Art, animation, lighting, VFX | Not started | |
-| Object pooling | Implemented (type-checked only) | Actor sprites pooled by id (`ActorViews`); simulation actors are plain objects |
-| Windows build | Build pipeline written, never run | `Editor/BuildScript.cs` (menu Hollowcrawl > Build, and `-executeMethod Hollowcrawl.EditorTools.BuildScript.BuildWindowsCI`) creates the boot scene if missing and builds `Hollowcrawl.exe`. `.github/workflows/unity-windows-build.yml` runs Unity EditMode tests and the Windows build on demand once Unity licence secrets are added. No build has been produced yet |
+| Object pooling | Implemented (compiled in Unity, not run) | Actor sprites pooled by id (`ActorViews`); simulation actors are plain objects |
+| Windows build | Implemented (builds in CI) | `Editor/BuildScript.cs` (menu Hollowcrawl > Build, and `-executeMethod Hollowcrawl.EditorTools.BuildScript.BuildWindowsCI`). `.github/workflows/unity-windows-build.yml` (manual) runs the Unity EditMode tests then builds; first successful build 2026-11-22, downloadable as the `Hollowcrawl-Windows` artifact of the run. Not yet launched or played |
 
 ## Content production checklist
 
@@ -127,7 +129,7 @@ count only if they are distinct, functional content.
 | Item engine <-> enemies (hit/kill events) | Done headless (DamageEnemy/Kill notify the engine; tested). Unity side not verified |
 | Item engine <-> companions | Done headless (CompanionTests). Unity side not verified |
 | Item engine <-> bombs / pickups / shops | Done headless (SimulationTests). Unity side not verified |
-| Floor generator <-> room instantiation / transitions | Done headless (doors, floors, exits tested). Unity drawing type-checked only |
+| Floor generator <-> room instantiation / transitions | Done headless (doors, floors, exits tested). Unity drawing compiled in Unity, not run |
 | Saves <-> progression / achievements | Done headless (ProgressionTests). Unity file IO not verified |
-| Input <-> UI navigation | MenuNavigator tested headless; Unity input bindings type-checked only |
-| Event bus <-> HUD / audio | SimEvents drained by RunDirector/HUD; type-checked only, not run in Unity |
+| Input <-> UI navigation | MenuNavigator tested headless; Unity input bindings compiled in Unity, not run |
+| Event bus <-> HUD / audio | SimEvents drained by RunDirector/HUD; compiled in Unity, not run |
