@@ -70,9 +70,12 @@ namespace Hollowcrawl.Presentation
         private FrontEnd _frontEnd;
         private bool _recorded;
 
+        private int _resumedFrame = -1;
+
         public void Resume()
         {
             Paused = false;
+            _resumedFrame = Time.frameCount;
             _accumulator = 0f;
             ClearPressed(ref _latched);
         }
@@ -135,12 +138,9 @@ namespace Hollowcrawl.Presentation
             }
             Latch(ref frame);
 
-            // Pause opens the pause menu; the menu (FrontEnd) resumes. Pause pressed again at the menu root also resumes.
-            if (frame.PausePressed && Run.State == RunState.Playing)
-            {
-                if (!Paused) Paused = true;
-                else if (_frontEnd.Current == FrontEnd.Screen.Pause && _frontEnd.LastScreenChangeFrame != Time.frameCount) Resume();
-            }
+            // Pause only opens the pause menu. Closing it is the menu's job (FrontEnd), so the same key press
+            // (Esc is both Pause and menu Back) can never open and close it in one go.
+            if (frame.PausePressed && Run.State == RunState.Playing && !Paused && _resumedFrame != Time.frameCount) Paused = true;
             if (Run.State != RunState.Playing && !_recorded) FinishRun();
 
             if (!Paused && Run.State == RunState.Playing)

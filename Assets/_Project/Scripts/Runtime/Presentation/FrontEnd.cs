@@ -49,6 +49,8 @@ namespace Hollowcrawl.Presentation
             if (Current == Screen.Hidden && Director != null && Director.Paused) Go(Screen.Pause);
             if ((Current == Screen.Pause || Current == Screen.Inventory || (Current == Screen.Settings && _settingsReturn == Screen.Pause)) && Director != null && !Director.Paused) Go(Screen.Hidden);
             if (Current == Screen.Hidden || _rebinding) return;
+            // Ignore the key press that opened this screen (Esc both pauses the game and means Back in menus).
+            if (LastScreenChangeFrame == Time.frameCount) return;
             var src = GameServices.PlayerInput as IMenuInputSource;
             var cmd = src != null ? _nav.Update(src.ReadMenuFrame(), Time.unscaledDeltaTime) : MenuCommand.None;
             if (cmd != MenuCommand.None)
@@ -332,14 +334,26 @@ namespace Hollowcrawl.Presentation
             var settings = GameServices.Settings;
             if (settings == null) return;
             var entries = SettingsMenu.Entries;
-            float rowH = 26f, top = 90f;
-            int visible = 21, first = Mathf.Clamp(_index - visible / 2, 0, Mathf.Max(0, entries.Count - visible));
+            // Lay out section headers and entries as one list of lines, then show the window of lines that
+            // fits on screen and keeps the selected entry visible (the list scrolls with the selection).
+            var lines = new List<int>(); // >= 0: entry index, < 0: header for entry (-i - 1)
             string section = null;
-            float y = top;
-            for (int i = first; i < Mathf.Min(entries.Count, first + visible); i++)
+            for (int i = 0; i < entries.Count; i++)
             {
+                if (entries[i].Section != section) { section = entries[i].Section; lines.Add(-i - 1); }
+                lines.Add(i);
+            }
+            const float rowH = 26f, top = 90f, bottom = 650f;
+            int fit = Mathf.FloorToInt((bottom - top) / rowH);
+            int selLine = Mathf.Max(0, lines.IndexOf(Mathf.Clamp(_index, 0, entries.Count - 1)));
+            int first = Mathf.Clamp(selLine - fit / 2, 0, Mathf.Max(0, lines.Count - fit));
+            float y = top;
+            for (int li = first; li < Mathf.Min(lines.Count, first + fit); li++)
+            {
+                int code = lines[li];
+                if (code < 0) { GUI.Label(new Rect(w * 0.5f - 300f, y, 600f, rowH), "<color=#888888>" + entries[-code - 1].Section + "</color>", _small); y += rowH; continue; }
+                int i = code;
                 var e = entries[i];
-                if (e.Section != section) { section = e.Section; GUI.Label(new Rect(w * 0.5f - 300f, y, 600f, rowH), "<color=#888888>" + section + "</color>", _small); y += rowH; }
                 string label = i == _index ? "<color=#ffd36b>" + e.Label + "</color>" : e.Label;
                 if (GUI.Button(new Rect(w * 0.5f - 300f, y, 400f, rowH), label, _small)) { _index = i; HandleSettings(MenuCommand.Submit); }
                 if (e.Kind != SettingKind.Action)
@@ -352,7 +366,16 @@ namespace Hollowcrawl.Presentation
                 }
                 y += rowH;
             }
-            GUI.Label(new Rect(0, 680, w, 30), "<color=#999999>Left/Right or < >: change    Confirm: open/toggle    Back: save and return</color>", _small);
+            if (first > 0) GUI.Label(new Rect(w * 0.5f + 310f, top, 40f, rowH), "<color=#999999>^</color>", _small);
+            if (first + fit < lines.Count) GUI.Label(new Rect(w * 0.5f + 310f, bottom - rowH, 40f, rowH), "<color=#999999>v</color>", _small);
+            // Mouse wheel moves the selection, which scrolls the list.
+            var ev = Event.current;
+            if (ev.type == EventType.ScrollWheel && ev.delta.y != 0f)
+            {
+                _index = Mathf.Clamp(_index + (ev.delta.y > 0f ? 1 : -1), 0, entries.Count - 1);
+                ev.Use();
+            }
+            GUI.Label(new Rect(0, 664, w, 30), "<color=#999999>Left/Right or < >: change    Confirm: open/toggle    Back: save and return</color>", _small);
         }
 
         private void DrawControls(float w)
