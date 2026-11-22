@@ -120,7 +120,7 @@ namespace Hollowcrawl.Tests
             for (uint seed = 1; seed <= 8; seed++)
             {
                 var plain = NewRun(seed, s => { s.Difficulty.CurseChance = 0f; s.FloorCount = 2; });
-                var hexed = NewRun(seed, s => { s.Difficulty.CurseChance = 1f; s.FloorCount = 2; });
+                var hexed = NewRun(seed, s => { s.Difficulty.CurseChance = 1f; s.ForcedHex = "hex_labyrinth"; s.FloorCount = 2; });
                 // force floor 2 by beating floor 1's boss quickly
                 foreach (var run in new[] { plain, hexed })
                 {
@@ -131,11 +131,10 @@ namespace Hollowcrawl.Tests
                     run.Step(default); run.Step(default);
                 }
                 Assert.That(plain.FloorIndex, Is.EqualTo(1));
-                if (hexed.ActiveHex?.Id != "hex_labyrinth") continue;
+                Assert.That(hexed.ActiveHex?.Id, Is.EqualTo("hex_labyrinth"));
                 normal += plain.Layout.Rooms.Count;
                 big += hexed.Layout.Rooms.Count;
             }
-            if (big == 0) Assert.Inconclusive("labyrinth never rolled");
             Assert.That(big, Is.GreaterThan(normal));
         }
 
