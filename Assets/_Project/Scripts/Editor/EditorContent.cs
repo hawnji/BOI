@@ -44,6 +44,15 @@ namespace Hollowcrawl.EditorTools
                       $"{report.Errors.Count} errors, {report.Warnings.Count} warnings.");
         }
 
+        [MenuItem("Hollowcrawl/Export Asset Manifest", priority = 2)]
+        public static void ExportAssetManifest()
+        {
+            var db = Load(out _, out _);
+            var path = System.IO.Path.Combine(System.IO.Directory.GetParent(Application.dataPath).FullName, "docs", "ASSET_MANIFEST.md");
+            System.IO.File.WriteAllText(path, AssetManifest.ToMarkdown(AssetManifest.Build(db)));
+            Debug.Log("[Content] Asset manifest written to " + path);
+        }
+
         [MenuItem("Hollowcrawl/Open Save Folder", priority = 50)]
         public static void OpenSaveFolder()
         {

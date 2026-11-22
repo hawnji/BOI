@@ -15,7 +15,7 @@ Last updated: 2026-11-22.
 
 | Phase | Status | Notes |
 |---|---|---|
-| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 181 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
+| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 186 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
 | 2 Core player gameplay | In progress | Full gameplay loop runs headless (ADR-009): movement, shooting, enemies, bombs, pickups, doors, rooms, floors, boss exit; unit-tested incl. determinism and random-play soak. Unity presentation layer written (placeholder art, IMGUI HUD), not yet compiled in Unity. |
 | 3 Combat and interaction foundations | In progress | Pure parts exist and are unit-tested: damage info, status controller, health pool, enemy AI brain, attack patterns, difficulty scaling. Unity enemy components not started. |
 | 4 Item interaction engine | In progress | Engine core done early (spec: "design early"). Remaining: integration with real projectiles/companions/enemies, in-game debug overlay. |
@@ -85,7 +85,8 @@ Last updated: 2026-11-22.
 | Game modes (standard, challenge, daily, practice, custom) | Implemented (unit-tested) | `Progression/RunSetupFactory.cs`; practice records nothing, custom records statistics only, daily keeps best score per date |
 | Unlocks, achievements, completion marks, statistics | Implemented (unit-tested) | `Progression/ProgressionService.cs`; statistics/achievement screens are placeholder IMGUI; endings implemented (ProgressionTests) |
 | UI (menus, HUD, minimap, settings, inventory) | In progress | Placeholder IMGUI title/mode/character/challenge/stats/summary screens and HUD with minimap (type-checked only); menu navigation logic unit-tested; settings and inventory screens not started; final uGUI not started |
-| Audio (music, SFX, mixing) | Not started | |
+| Audio (music, SFX, mixing) | Implemented, no audio assets yet | Core `MusicDirector` (menu/floor/boss/victory/defeat tracks, pause duck) and `SfxLimiter` are unit-tested; `Runtime/Audio/AudioService` (16 pooled voices, crossfading music, volume buses, UI sounds, mute when unfocused) is type-checked only. Every clip is missing, so the game is silent until audio files are added |
+| Art and audio hooks + asset manifest | Implemented | Sprites `Resources/Sprites/<key>`, themed tiles `Resources/Tiles/<theme>/<kind>`, item icons over pedestals, audio `Resources/Audio/<key>`. `docs/ASSET_MANIFEST.md` lists all 785 sprite keys and every audio key (generated). No final art or audio exists |
 | Art, animation, lighting, VFX | Not started | |
 | Object pooling | Implemented (type-checked only) | Actor sprites pooled by id (`ActorViews`); simulation actors are plain objects |
 | Windows build | Not started | |

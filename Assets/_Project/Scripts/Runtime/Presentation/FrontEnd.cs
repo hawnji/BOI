@@ -51,7 +51,11 @@ namespace Hollowcrawl.Presentation
             if (Current == Screen.Hidden || _rebinding) return;
             var src = GameServices.PlayerInput as IMenuInputSource;
             var cmd = src != null ? _nav.Update(src.ReadMenuFrame(), Time.unscaledDeltaTime) : MenuCommand.None;
-            if (cmd != MenuCommand.None) Handle(cmd);
+            if (cmd != MenuCommand.None)
+            {
+                AudioService.Ensure().PlayUi(cmd == MenuCommand.Submit ? "ui_select" : cmd == MenuCommand.Cancel ? "ui_back" : "ui_move");
+                Handle(cmd);
+            }
         }
 
         private void Handle(MenuCommand cmd)

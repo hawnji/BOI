@@ -15,6 +15,39 @@ namespace Hollowcrawl.Presentation
         private RoomGrid _grid;
         public string Theme = "crypt";
 
+        // Art hook: a 16x16 readable texture at Resources/Tiles/<theme>/<kind> (or Resources/Tiles/<kind>) replaces the
+        // generated colour for that tile kind. Kinds are TileKind names in lower case (floor, rock, wall, door_open...).
+        private static readonly System.Collections.Generic.Dictionary<string, Color32[]> TileArt = new System.Collections.Generic.Dictionary<string, Color32[]>();
+
+        public static string TileKey(TileKind k)
+        {
+            switch (k)
+            {
+                case TileKind.MarkedRock: return "marked_rock";
+                case TileKind.DoorOpen: return "door_open";
+                case TileKind.DoorClosed: return "door_closed";
+                default: return k.ToString().ToLowerInvariant();
+            }
+        }
+
+        private Color32[] ArtFor(TileKind k)
+        {
+            string key = Theme + "/" + TileKey(k);
+            if (TileArt.TryGetValue(key, out var px)) return px;
+            px = Load("Tiles/" + key) ?? Load("Tiles/" + TileKey(k));
+            TileArt[key] = px;
+            return px;
+        }
+
+        private static Color32[] Load(string path)
+        {
+            var tex = Resources.Load<Texture2D>(path);
+            if (tex == null) return null;
+            if (tex.width != PixelsPerTile || tex.height != PixelsPerTile) { Debug.LogWarning($"[Art] {path} must be {PixelsPerTile}x{PixelsPerTile}."); return null; }
+            try { return tex.GetPixels32(); }
+            catch (UnityException) { Debug.LogWarning($"[Art] {path} needs Read/Write enabled in its import settings."); return null; }
+        }
+
         public static RoomRenderer Create(Transform parent)
         {
             var go = new GameObject("Room");
@@ -51,11 +84,12 @@ namespace Hollowcrawl.Presentation
                     var kind = _grid.Get(x, row);
                     int ty = _grid.Height - row; // texture rows grow upward; +1 border offset already in (H - row)
                     int tx = x + 1;
+                    var art = ArtFor(kind);
                     for (int py = 0; py < PixelsPerTile; py++)
                         for (int pxl = 0; pxl < PixelsPerTile; pxl++)
                         {
                             bool edge = pxl == 0 || py == 0;
-                            var c = TileColor(kind, (x + row) & 1, edge, pxl, py);
+                            var c = art != null ? art[py * PixelsPerTile + pxl] : TileColor(kind, (x + row) & 1, edge, pxl, py);
                             px[(ty * PixelsPerTile + py) * w * PixelsPerTile + tx * PixelsPerTile + pxl] = c;
                         }
                 }

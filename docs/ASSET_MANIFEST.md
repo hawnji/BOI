@@ -1,0 +1,872 @@
+# Asset manifest
+
+Generated from content by `AssetManifest` (menu Hollowcrawl > Export Asset Manifest, or the
+`HOLLOWCRAWL_WRITE_MANIFEST=1 dotnet test Tests/CoreTests --filter AssetManifest` test). Do not edit by hand.
+
+Drop files at these paths; anything missing falls back to a generated shape or silence:
+
+- Sprites: `Assets/Resources/Sprites/<key>.png` (pivot centre, 16 pixels per unit).
+- Tiles: `Assets/Resources/Tiles/<theme>/<kind>.png` or `Assets/Resources/Tiles/<kind>.png`, 16x16, Read/Write enabled.
+- Audio: `Assets/Resources/Audio/<key>.ogg` (music loops; effects one-shot).
+
+## Tiles (13 kinds x 15 themes)
+
+Kinds: floor, rock, block, pit, spikes, prop, marked_rock, fire, water, explosive, wall, door_open, door_closed.
+
+Themes: belfry, chapel, crypt, forge, frost, garden, glass, heart, hive, last, mire, orchard, ossuary, throne, void.
+
+## Sprites (785)
+
+| Key | Used for |
+|---|---|
+| `achievement_alchemist` | achievement icon |
+| `achievement_ascetic` | achievement icon |
+| `achievement_ashen_herald` | achievement icon |
+| `achievement_ashes_to_ashes` | achievement icon |
+| `achievement_become_bulwark` | achievement icon |
+| `achievement_become_goldtongue` | achievement icon |
+| `achievement_become_huntmaster` | achievement icon |
+| `achievement_become_ossuary_saint` | achievement icon |
+| `achievement_become_plaguebearer` | achievement icon |
+| `achievement_become_powderkin` | achievement icon |
+| `achievement_become_rimeborn` | achievement icon |
+| `achievement_become_stormcaller` | achievement icon |
+| `achievement_become_swarmlord` | achievement icon |
+| `achievement_become_verdant` | achievement icon |
+| `achievement_bone_breaker` | achievement icon |
+| `achievement_bosses_10` | achievement icon |
+| `achievement_bosses_50` | achievement icon |
+| `achievement_choir_x5` | achievement icon |
+| `achievement_coin_purse` | achievement icon |
+| `achievement_collector_10` | achievement icon |
+| `achievement_collector_all` | achievement icon |
+| `achievement_devout` | achievement icon |
+| `achievement_done_ch_ash_crown` | achievement icon |
+| `achievement_done_ch_bell_toll` | achievement icon |
+| `achievement_done_ch_blindfold` | achievement icon |
+| `achievement_done_ch_bomb_squad` | achievement icon |
+| `achievement_done_ch_cinder_trial` | achievement icon |
+| `achievement_done_ch_dark_descent` | achievement icon |
+| `achievement_done_ch_demolition` | achievement icon |
+| `achievement_done_ch_flooded_faith` | achievement icon |
+| `achievement_done_ch_forge_born` | achievement icon |
+| `achievement_done_ch_frail_vessel` | achievement icon |
+| `achievement_done_ch_frailty` | achievement icon |
+| `achievement_done_ch_glass_cannon` | achievement icon |
+| `achievement_done_ch_glass_road` | achievement icon |
+| `achievement_done_ch_green_thumb` | achievement icon |
+| `achievement_done_ch_harvest_moon` | achievement icon |
+| `achievement_done_ch_heartless` | achievement icon |
+| `achievement_done_ch_iron_will` | achievement icon |
+| `achievement_done_ch_last_light` | achievement icon |
+| `achievement_done_ch_lights_out` | achievement icon |
+| `achievement_done_ch_long_winter` | achievement icon |
+| `achievement_done_ch_marsh_crossing` | achievement icon |
+| `achievement_done_ch_maze_runner` | achievement icon |
+| `achievement_done_ch_menagerie` | achievement icon |
+| `achievement_done_ch_nightmare_walk` | achievement icon |
+| `achievement_done_ch_one_shot` | achievement icon |
+| `achievement_done_ch_pauper_prince` | achievement icon |
+| `achievement_done_ch_paupers_march` | achievement icon |
+| `achievement_done_ch_queen_swarm` | achievement icon |
+| `achievement_done_ch_speedrun` | achievement icon |
+| `achievement_done_ch_swarm_mother` | achievement icon |
+| `achievement_empty_handed` | achievement icon |
+| `achievement_every_ending` | achievement icon |
+| `achievement_every_face` | achievement icon |
+| `achievement_first_light` | achievement icon |
+| `achievement_first_steps` | achievement icon |
+| `achievement_fuse_lit` | achievement icon |
+| `achievement_fuse_master` | achievement icon |
+| `achievement_hard_won` | achievement icon |
+| `achievement_hivekin` | achievement icon |
+| `achievement_hoarder` | achievement icon |
+| `achievement_kills_1000` | achievement icon |
+| `achievement_kills_300` | achievement icon |
+| `achievement_kills_50` | achievement icon |
+| `achievement_kills_5000` | achievement icon |
+| `achievement_nightmare_won` | achievement icon |
+| `achievement_pilgrim` | achievement icon |
+| `achievement_reach_floor_10` | achievement icon |
+| `achievement_reach_floor_15` | achievement icon |
+| `achievement_reach_floor_5` | achievement icon |
+| `achievement_room_sweeper` | achievement icon |
+| `achievement_room_sweeper_2` | achievement icon |
+| `achievement_seasoned` | achievement icon |
+| `achievement_secret_keeper` | achievement icon |
+| `achievement_secret_master` | achievement icon |
+| `achievement_see_ending_dawn` | achievement icon |
+| `achievement_see_ending_last_door` | achievement icon |
+| `achievement_see_ending_made_whole` | achievement icon |
+| `achievement_see_ending_nightmare` | achievement icon |
+| `achievement_see_ending_saints_rest` | achievement icon |
+| `achievement_see_ending_trial` | achievement icon |
+| `achievement_see_ending_untouched` | achievement icon |
+| `achievement_see_ending_unwritten` | achievement icon |
+| `achievement_silence_the_choir` | achievement icon |
+| `achievement_slay_osseous_matron` | achievement icon |
+| `achievement_slay_the_abbess_below` | achievement icon |
+| `achievement_slay_the_ash_king` | achievement icon |
+| `achievement_slay_the_beating_dark` | achievement icon |
+| `achievement_slay_the_bellringer` | achievement icon |
+| `achievement_slay_the_drowned_mother` | achievement icon |
+| `achievement_slay_the_gardener` | achievement icon |
+| `achievement_slay_the_glazier` | achievement icon |
+| `achievement_slay_the_harvester` | achievement icon |
+| `achievement_slay_the_hive_queen` | achievement icon |
+| `achievement_slay_the_hollow_one` | achievement icon |
+| `achievement_slay_the_ironmonger` | achievement icon |
+| `achievement_slay_the_umbral_regent` | achievement icon |
+| `achievement_slay_the_unformed` | achievement icon |
+| `achievement_slay_the_winter_widow` | achievement icon |
+| `achievement_swift_end` | achievement icon |
+| `achievement_synergist` | achievement icon |
+| `achievement_synergist_all` | achievement icon |
+| `achievement_taster` | achievement icon |
+| `achievement_tenfold` | achievement icon |
+| `achievement_thrice_returned` | achievement icon |
+| `achievement_unbroken` | achievement icon |
+| `achievement_untouched` | achievement icon |
+| `achievement_veteran` | achievement icon |
+| `achievement_warden_x5` | achievement icon |
+| `achievement_win_ashwright` | achievement icon |
+| `achievement_win_beastcaller` | achievement icon |
+| `achievement_win_bellwarden` | achievement icon |
+| `achievement_win_gambler` | achievement icon |
+| `achievement_win_hollow_saint` | achievement icon |
+| `achievement_win_lanternbearer` | achievement icon |
+| `achievement_win_moth_seer` | achievement icon |
+| `achievement_win_quickling` | achievement icon |
+| `achievement_win_the_unmade` | achievement icon |
+| `achievement_win_thornmaid` | achievement icon |
+| `achievement_win_tinker` | achievement icon |
+| `achievement_win_wanderer` | achievement icon |
+| `bomb` | built-in |
+| `bomb_companion` | built-in |
+| `boss_crucible` | boss: Crucible |
+| `boss_grave_choir` | boss: The Grave Choir |
+| `boss_gutmaw` | boss: Gutmaw |
+| `boss_hollow_sexton` | boss: The Hollow Sexton |
+| `boss_kaleidos` | boss: Kaleidos |
+| `boss_leviathan_font` | boss: Leviathan Font |
+| `boss_maw_of_nothing` | boss: Maw of Nothing |
+| `boss_mother_bough` | boss: Mother Bough |
+| `boss_osseous_matron` | boss: The Osseous Matron |
+| `boss_permafrost` | boss: Permafrost |
+| `boss_pyre_warden` | boss: The Pyre Warden |
+| `boss_pyroclasm` | boss: Pyroclasm |
+| `boss_rotbloom` | boss: Rotbloom |
+| `boss_swarm_engine` | boss: Swarm Engine |
+| `boss_tempest` | boss: Tempest |
+| `boss_the_abbess_below` | boss: The Abbess Below |
+| `boss_the_ash_king` | boss: The Ash King |
+| `boss_the_beating_dark` | boss: The Beating Dark |
+| `boss_the_bellringer` | boss: The Bellringer |
+| `boss_the_drowned_mother` | boss: The Drowned Mother |
+| `boss_the_gardener` | boss: The Gardener |
+| `boss_the_glazier` | boss: The Glazier |
+| `boss_the_harvester` | boss: The Harvester |
+| `boss_the_hive_queen` | boss: The Hive Queen |
+| `boss_the_hollow_one` | boss: The Hollow One |
+| `boss_the_ironmonger` | boss: The Ironmonger |
+| `boss_the_umbral_regent` | boss: The Umbral Regent |
+| `boss_the_unformed` | boss: The Unformed |
+| `boss_the_winter_widow` | boss: The Winter Widow |
+| `boss_twin_ventricle` | boss: Twin Ventricle |
+| `character_ashwright` | character: Ashwright |
+| `character_beastcaller` | character: The Beastcaller |
+| `character_bellwarden` | character: The Bellwarden |
+| `character_gambler` | character: The Gilded Gambler |
+| `character_hollow_saint` | character: The Hollow Saint |
+| `character_lanternbearer` | character: The Lanternbearer |
+| `character_moth_seer` | character: The Moth Seer |
+| `character_quickling` | character: The Quickling |
+| `character_the_unmade` | character: The Unmade |
+| `character_thornmaid` | character: The Thornmaid |
+| `character_tinker` | character: The Tinker |
+| `character_wanderer` | character: The Wanderer |
+| `companion_ash_halo` | companion: Ash Halo |
+| `companion_blight_toad` | companion: Blight Toad |
+| `companion_bone_sparrow` | companion: Bone Sparrow |
+| `companion_bramble_hound` | companion: Bramble Hound |
+| `companion_cinder_kit` | companion: Cinder Kit |
+| `companion_coin_mole` | companion: Coin Mole |
+| `companion_cold_shield` | companion: Cold Shield |
+| `companion_dread_puppet` | companion: Dread Puppet |
+| `companion_drone_mite` | companion: Drone Mite |
+| `companion_echo_shade` | companion: Echo Shade |
+| `companion_ember_moon` | companion: Ember Moon |
+| `companion_frost_moth` | companion: Frost Moth |
+| `companion_fuse_beetle` | companion: Fuse Beetle |
+| `companion_gnaw_rat` | companion: Gnaw Rat |
+| `companion_grave_stone` | companion: Grave Stone |
+| `companion_heart_moth` | companion: Heart Moth |
+| `companion_key_wisp` | companion: Key Wisp |
+| `companion_lantern_eye` | companion: Lantern Eye |
+| `companion_magpie` | companion: Magpie |
+| `companion_mirror_shard` | companion: Mirror Shard |
+| `companion_powder_crow` | companion: Powder Crow |
+| `companion_powder_sprite` | companion: Powder Sprite |
+| `companion_rot_leech` | companion: Rot Leech |
+| `companion_sack_goblin` | companion: Sack Goblin |
+| `companion_spite_imp` | companion: Spite Imp |
+| `companion_static_wren` | companion: Static Wren |
+| `companion_thorn_ring` | companion: Thorn Ring |
+| `companion_twin_husk` | companion: Twin Husk |
+| `companion_ward_knight` | companion: Ward Knight |
+| `companion_wisp` | companion: Wisp |
+| `crucible_phase2` | boss phase transition |
+| `crucible_phase3` | boss phase transition |
+| `ending_dawn` | ending art: Dawn Above |
+| `ending_last_door` | ending art: The Last Door |
+| `ending_made_whole` | ending art: Made Whole |
+| `ending_nightmare` | ending art: Through the Nightmare |
+| `ending_saints_rest` | ending art: Saint's Rest |
+| `ending_trial` | ending art: Trial's End |
+| `ending_untouched` | ending art: Untouched |
+| `ending_unwritten` | ending art: Unwritten |
+| `enemy_abyss_turret` | enemy: Abyss Turret |
+| `enemy_anvil_golem` | enemy: Anvil Golem |
+| `enemy_artery_turret` | enemy: Artery Turret |
+| `enemy_ash_bat` | enemy: Ash Bat |
+| `enemy_ash_knight` | enemy: Ash Knight |
+| `enemy_barnacle_brute` | enemy: Barnacle Brute |
+| `enemy_bell_bat` | enemy: Bell Bat |
+| `enemy_bellows_bat` | enemy: Bellows Bat |
+| `enemy_bile_spitter` | enemy: Bile Spitter |
+| `enemy_blizzard_eye` | enemy: Blizzard Eye |
+| `enemy_bloat_fly` | enemy: Bloat Fly |
+| `enemy_bloated_deacon` | enemy: Bloated Deacon |
+| `enemy_bloom_turret` | enemy: Bloom Turret |
+| `enemy_bog_leech` | enemy: Bog Leech |
+| `enemy_bone_reliquary` | enemy: Bone Reliquary |
+| `enemy_bone_thrower` | enemy: Bone Thrower |
+| `enemy_bone_tree` | enemy: Bone Tree |
+| `enemy_brand_turret` | enemy: Brand Turret |
+| `enemy_brood_nurse` | enemy: Brood Nurse |
+| `enemy_bubble_fish` | enemy: Bubble Fish |
+| `enemy_chapel_gargoyle` | enemy: Chapel Gargoyle |
+| `enemy_chime_turret` | enemy: Chime Turret |
+| `enemy_cinder_hound` | enemy: Cinder Hound |
+| `enemy_cinder_imp` | enemy: Cinder Imp |
+| `enemy_cinder_monk` | enemy: Cinder Monk |
+| `enemy_clot_hopper` | enemy: Clot Hopper |
+| `enemy_comb_turret` | enemy: Comb Turret |
+| `enemy_crow_reaper` | enemy: Crow Reaper |
+| `enemy_crypt_bellows` | enemy: Crypt Bellows |
+| `enemy_crypt_lantern` | enemy: Crypt Lantern |
+| `enemy_drone_wasp` | enemy: Drone Wasp |
+| `enemy_drowned_pilgrim` | enemy: Drowned Pilgrim |
+| `enemy_echo_runner` | enemy: Echo Runner |
+| `enemy_eel_swimmer` | enemy: Eel Swimmer |
+| `enemy_ember_herald` | enemy: Ember Herald |
+| `enemy_ember_mote` | enemy: Ember Mote |
+| `enemy_end_eye` | enemy: End Eye |
+| `enemy_ender_wall` | enemy: Ender Wall |
+| `enemy_fading_spiral` | enemy: Fading Spiral |
+| `enemy_final_husk` | enemy: Final Husk |
+| `enemy_flame_dancer` | enemy: Flame Dancer |
+| `enemy_flesh_brute` | enemy: Flesh Brute |
+| `enemy_forge_turret` | enemy: Forge Turret |
+| `enemy_frost_hopper` | enemy: Frost Hopper |
+| `enemy_glacier_brute` | enemy: Glacier Brute |
+| `enemy_glass_golem` | enemy: Glass Golem |
+| `enemy_gloom_wisp` | enemy: Gloom Wisp |
+| `enemy_harvest_runner` | enemy: Harvest Runner |
+| `enemy_heart_burrower` | enemy: Heart Burrower |
+| `enemy_hive_bomber` | enemy: Hive Bomber |
+| `enemy_hoarfrost_witch` | enemy: Hoarfrost Witch |
+| `enemy_hollow_herald` | enemy: Hollow Herald |
+| `enemy_hollow_priest` | enemy: Hollow Priest |
+| `enemy_honey_spitter` | enemy: Honey Spitter |
+| `enemy_husk_crawler` | enemy: Husk Crawler |
+| `enemy_husk_farmer` | enemy: Husk Farmer |
+| `enemy_husk_shambler` | enemy: Husk Shambler |
+| `enemy_hymn_swirl` | enemy: Hymn Swirl |
+| `enemy_icicle_turret` | enemy: Icicle Turret |
+| `enemy_knuckle_hopper` | enemy: Knuckle Hopper |
+| `enemy_larva_crawler` | enemy: Larva Crawler |
+| `enemy_last_choir` | enemy: Last Choir |
+| `enemy_lightning_eye` | enemy: Lightning Eye |
+| `enemy_magma_wader` | enemy: Magma Wader |
+| `enemy_marrow_brute` | enemy: Marrow Brute |
+| `enemy_mire_burrower` | enemy: Mire Burrower |
+| `enemy_mire_toad` | enemy: Mire Toad |
+| `enemy_mirror_runner` | enemy: Mirror Runner |
+| `enemy_mote_swarm` | enemy: Mote Swarm |
+| `enemy_moth_wraith` | enemy: Moth Wraith |
+| `enemy_mushroom_bloat` | enemy: Mushroom Bloat |
+| `enemy_null_blinker` | enemy: Null Blinker |
+| `enemy_orchard_scarecrow` | enemy: Orchard Scarecrow |
+| `enemy_ossuary_acolyte` | enemy: Ossuary Acolyte |
+| `enemy_pane_walker` | enemy: Pane Walker |
+| `enemy_phoenix_chick` | enemy: Phoenix Chick |
+| `enemy_pod_spitter` | enemy: Pod Spitter |
+| `enemy_powder_monk` | enemy: Powder Monk |
+| `enemy_prism_wisp` | enemy: Prism Wisp |
+| `enemy_pulse_mother` | enemy: Pulse Mother |
+| `enemy_pyre_bat` | enemy: Pyre Bat |
+| `enemy_rafter_runner` | enemy: Rafter Runner |
+| `enemy_reed_spitter` | enemy: Reed Spitter |
+| `enemy_refraction` | enemy: Refraction |
+| `enemy_rib_crawler` | enemy: Rib Crawler |
+| `enemy_rift_spiral` | enemy: Rift Spiral |
+| `enemy_rime_walker` | enemy: Rime Walker |
+| `enemy_root_burrower` | enemy: Root Burrower |
+| `enemy_root_digger` | enemy: Root Digger |
+| `enemy_rope_hanger` | enemy: Rope Hanger |
+| `enemy_rot_apple` | enemy: Rot Apple |
+| `enemy_rot_wader` | enemy: Rot Wader |
+| `enemy_royal_jelly` | enemy: Royal Jelly |
+| `enemy_seed_mother` | enemy: Seed Mother |
+| `enemy_shade_stalker` | enemy: Shade Stalker |
+| `enemy_shard_sentry` | enemy: Shard Sentry |
+| `enemy_shard_skater` | enemy: Shard Skater |
+| `enemy_shatterling` | enemy: Shatterling |
+| `enemy_skull_lantern` | enemy: Skull Lantern |
+| `enemy_slag_imp` | enemy: Slag Imp |
+| `enemy_sludge_mound` | enemy: Sludge Mound |
+| `enemy_smelter` | enemy: Smelter |
+| `enemy_snow_wisp` | enemy: Snow Wisp |
+| `enemy_spark_sprite` | enemy: Spark Sprite |
+| `enemy_splinter_turret` | enemy: Splinter Turret |
+| `enemy_spore_puff` | enemy: Spore Puff |
+| `enemy_sting_strafer` | enemy: Sting Strafer |
+| `enemy_storm_crow` | enemy: Storm Crow |
+| `enemy_terminus_brute` | enemy: Terminus Brute |
+| `enemy_thorn_crawler` | enemy: Thorn Crawler |
+| `enemy_thresher` | enemy: Thresher |
+| `enemy_throb_slammer` | enemy: Throb Slammer |
+| `enemy_throne_zealot` | enemy: Throne Zealot |
+| `enemy_thunder_monk` | enemy: Thunder Monk |
+| `enemy_tide_priest` | enemy: Tide Priest |
+| `enemy_umbral_brute` | enemy: Umbral Brute |
+| `enemy_vein_crawler` | enemy: Vein Crawler |
+| `enemy_vertebra_snake` | enemy: Vertebra Snake |
+| `enemy_vine_lasher` | enemy: Vine Lasher |
+| `enemy_void_eye` | enemy: Void Eye |
+| `exit_trapdoor` | built-in |
+| `exit_victory` | built-in |
+| `grave_choir_crack` | boss phase transition |
+| `grave_choir_shatter` | boss phase transition |
+| `gutmaw_phase2` | boss phase transition |
+| `hazard_acid` | hazard |
+| `hazard_fire` | hazard |
+| `hazard_spikes` | hazard |
+| `hex_hex_frailty` | hex icon: Hex of Frailty |
+| `hex_hex_gloom` | hex icon: Hex of Gloom |
+| `hex_hex_labyrinth` | hex icon: Hex of the Labyrinth |
+| `hex_hex_shroud` | hex icon: Hex of the Shroud |
+| `hex_hex_veil` | hex icon: Hex of the Veil |
+| `hollow_sexton_phase2` | boss phase transition |
+| `intro_crucible` | boss intro card |
+| `intro_grave_choir` | boss intro card |
+| `intro_gutmaw` | boss intro card |
+| `intro_hollow_sexton` | boss intro card |
+| `intro_kaleidos` | boss intro card |
+| `intro_leviathan_font` | boss intro card |
+| `intro_maw_of_nothing` | boss intro card |
+| `intro_mother_bough` | boss intro card |
+| `intro_osseous_matron` | boss intro card |
+| `intro_permafrost` | boss intro card |
+| `intro_pyre_warden` | boss intro card |
+| `intro_pyroclasm` | boss intro card |
+| `intro_rotbloom` | boss intro card |
+| `intro_swarm_engine` | boss intro card |
+| `intro_tempest` | boss intro card |
+| `intro_the_abbess_below` | boss intro card |
+| `intro_the_ash_king` | boss intro card |
+| `intro_the_beating_dark` | boss intro card |
+| `intro_the_bellringer` | boss intro card |
+| `intro_the_drowned_mother` | boss intro card |
+| `intro_the_gardener` | boss intro card |
+| `intro_the_glazier` | boss intro card |
+| `intro_the_harvester` | boss intro card |
+| `intro_the_hive_queen` | boss intro card |
+| `intro_the_hollow_one` | boss intro card |
+| `intro_the_ironmonger` | boss intro card |
+| `intro_the_umbral_regent` | boss intro card |
+| `intro_the_unformed` | boss intro card |
+| `intro_the_winter_widow` | boss intro card |
+| `intro_twin_ventricle` | boss intro card |
+| `item_allowance` | item icon: Allowance |
+| `item_anvil_charm` | item icon: Anvil Charm |
+| `item_asbestos_cloak` | item icon: Ashcloth Cloak |
+| `item_ash_halo` | item icon: Ash Halo |
+| `item_ashen_bread` | item icon: Ashen Bread |
+| `item_assassins_glove` | item icon: Assassin's Glove |
+| `item_bait_bucket` | item icon: Bait Bucket |
+| `item_bargain_slip` | item icon: Bargain Slip |
+| `item_bark_skin` | item icon: Bark Skin |
+| `item_battery_heart` | item icon: Battery Heart |
+| `item_battery_shard` | item icon: Battery Shard |
+| `item_battle_tonic` | item icon: Battle Tonic |
+| `item_bent_nail` | item icon: Bent Nail |
+| `item_big_powder` | item icon: Big Powder |
+| `item_black_honey` | item icon: Black Honey |
+| `item_blast_visor` | item icon: Blast Visor |
+| `item_blasting_cap` | item icon: Blasting Cap |
+| `item_blessed_rag` | item icon: Blessed Rag |
+| `item_bloated_tick` | item icon: Bloated Tick |
+| `item_blood_jar` | item icon: Blood Jar |
+| `item_blood_offering` | item icon: Blood Offering |
+| `item_blood_quill` | item icon: Blood Quill |
+| `item_bomb_bag` | item icon: Bomb Bag |
+| `item_bone_flute` | item icon: Bone Flute |
+| `item_bone_rattle` | item icon: Bone Rattle |
+| `item_bone_sparrow` | item icon: Bone Sparrow |
+| `item_bonfire_horn` | item icon: Bonfire Horn |
+| `item_boss_tooth` | item icon: Boss Tooth |
+| `item_bramble_hound` | item icon: Bramble Hound |
+| `item_bramble_tip` | item icon: Bramble Tip |
+| `item_brass_tally` | item icon: Brass Tally |
+| `item_brazier_crown` | item icon: Brazier Crown |
+| `item_broken_halo` | item icon: Broken Halo |
+| `item_burning_book` | item icon: Burning Book |
+| `item_burnt_hymnal` | item icon: Burnt Hymnal |
+| `item_candle_stub` | item icon: Candle Stub |
+| `item_chill_aura_charm` | item icon: Cold Charm |
+| `item_chipped_tooth` | item icon: Chipped Tooth |
+| `item_cinder_crown` | item icon: Cinder Crown |
+| `item_cinder_flask` | item icon: Cinder Flask |
+| `item_clay_amulet` | item icon: Clay Amulet |
+| `item_cluster_charge` | item icon: Cluster Charge |
+| `item_coal_den` | item icon: Coal Den |
+| `item_coiled_spring` | item icon: Coiled Spring |
+| `item_coin_mole` | item icon: Coin Mole |
+| `item_coin_press` | item icon: Coin Press |
+| `item_cold_shield` | item icon: Cold Shield |
+| `item_collectors_eye` | item icon: Collector's Eye |
+| `item_comet_tail` | item icon: Comet Tail |
+| `item_copper_bell` | item icon: Copper Bell |
+| `item_cornered_rat` | item icon: Cornered Rat |
+| `item_cracked_whetstone` | item icon: Cracked Whetstone |
+| `item_crescent_blade` | item icon: Crescent Blade |
+| `item_crow_bone` | item icon: Crow Bone |
+| `item_crow_feather` | item icon: Crow Feather |
+| `item_dawn_prism` | item icon: Dawn Prism |
+| `item_deep_pockets` | item icon: Deep Pockets |
+| `item_demolition_glove` | item icon: Demolition Glove |
+| `item_dented_cup` | item icon: Dented Cup |
+| `item_doom_drum` | item icon: Doom Drum |
+| `item_doorstop` | item icon: Doorstop |
+| `item_dowsing_rod` | item icon: Dowsing Rod |
+| `item_drawn_bow` | item icon: Drawn Bow |
+| `item_dread_lantern` | item icon: Dread Lantern |
+| `item_dread_puppet` | item icon: Dread Puppet |
+| `item_echo_chamber` | item icon: Echo Chamber |
+| `item_echo_shade` | item icon: Echo Shade |
+| `item_ember_chip` | item icon: Ember Chip |
+| `item_ember_corpse` | item icon: Pyre Ash |
+| `item_ember_heart` | item icon: Ember Heart |
+| `item_ember_moon` | item icon: Ember Moon |
+| `item_ember_sigil` | item icon: Ember Sigil |
+| `item_ember_tithe` | item icon: Ember Tithe |
+| `item_executioner_mark` | item icon: Executioner's Mark |
+| `item_fan_of_knives` | item icon: Fan of Knives |
+| `item_fat_purse` | item icon: Fat Purse |
+| `item_fat_wick` | item icon: Fat Wick |
+| `item_fear_tooth` | item icon: Fear Tooth |
+| `item_feeding_bowl` | item icon: Feeding Bowl |
+| `item_field_kit` | item icon: Field Kit |
+| `item_firecracker` | item icon: Firecracker |
+| `item_four_leaf_ash` | item icon: Four-Leaf Ash |
+| `item_frenzy_drum` | item icon: Frenzy Drum |
+| `item_frenzy_mask` | item icon: Frenzy Mask |
+| `item_frost_aura` | item icon: Winter Shroud |
+| `item_frost_bloom` | item icon: Frost Bloom |
+| `item_frost_chip` | item icon: Frost Chip |
+| `item_frost_heart` | item icon: Frost Heart |
+| `item_frost_rune` | item icon: Frost Rune |
+| `item_frozen_tear` | item icon: Frozen Tear |
+| `item_fuse_beetle` | item icon: Fuse Beetle |
+| `item_fuse_beetle_shell` | item icon: Beetle Shell |
+| `item_fuse_charm` | item icon: Fuse Charm |
+| `item_gambler_knuckle` | item icon: Gambler's Knuckle |
+| `item_ghost_lance` | item icon: Ghost Lance |
+| `item_glacier_core` | item icon: Glacier Core |
+| `item_glass_fang` | item icon: Glass Fang |
+| `item_glass_marble` | item icon: Glass Marble |
+| `item_glue_drop` | item icon: Glue Drop |
+| `item_gnaw_rat` | item icon: Gnaw Rat |
+| `item_grave_stone` | item icon: Grave Stone |
+| `item_greedy_tooth` | item icon: Greedy Tooth |
+| `item_growth_tonic` | item icon: Growth Tonic |
+| `item_grudge_stone` | item icon: Grudge Stone |
+| `item_guardian_feather` | item icon: Guardian Feather |
+| `item_guardian_seal` | item icon: Guardian Seal |
+| `item_gum_boots` | item icon: Gum Boots |
+| `item_haggler_tongue` | item icon: Haggler's Tongue |
+| `item_hangmans_coin` | item icon: Hangman's Coin |
+| `item_hasty_tonic` | item icon: Hasty Tonic |
+| `item_healers_herb` | item icon: Healer's Herb |
+| `item_healing_salve` | item icon: Healing Salve |
+| `item_heart_locket` | item icon: Heart Locket |
+| `item_heart_moth` | item icon: Heart Moth |
+| `item_heartroot` | item icon: Heartroot |
+| `item_hex_doll` | item icon: Hex Doll |
+| `item_hive_mind` | item icon: Hive Mind |
+| `item_hoarfrost_vial` | item icon: Hoarfrost Vial |
+| `item_hollow_boots` | item icon: Hollow Boots |
+| `item_holy_bell` | item icon: Holy Bell |
+| `item_holy_water` | item icon: Holy Water |
+| `item_homeward_stone` | item icon: Homeward Stone |
+| `item_hound_nose` | item icon: Hound's Nose |
+| `item_hunters_hood` | item icon: Hunter's Hood |
+| `item_hunters_trophy` | item icon: Hunter's Trophy |
+| `item_hunters_whistle` | item icon: Hunter's Whistle |
+| `item_hurling_arm` | item icon: Hurling Arm |
+| `item_iron_draught` | item icon: Iron Draught |
+| `item_iron_heart` | item icon: Iron Heart |
+| `item_iron_knuckles` | item icon: Iron Knuckles |
+| `item_jailer_ring` | item icon: Jailer's Ring |
+| `item_key_ring` | item icon: Key Ring |
+| `item_key_wisp` | item icon: Key Wisp |
+| `item_keymakers_finger` | item icon: Keymaker's Finger |
+| `item_kin_bond` | item icon: Kin Bond |
+| `item_kindling_bundle` | item icon: Kindling Bundle |
+| `item_lantern_socket` | item icon: Lantern Socket |
+| `item_lantern_wisp` | item icon: Lantern Wisp |
+| `item_last_breath` | item icon: Last Breath |
+| `item_lead_lining` | item icon: Lead Lining |
+| `item_leech_jar` | item icon: Leech Jar |
+| `item_lens_chip` | item icon: Lens Chip |
+| `item_lightning_rod` | item icon: Lightning Rod |
+| `item_loaded_die` | item icon: Loaded Die |
+| `item_lodestone_eye` | item icon: Lodestone Eye |
+| `item_long_flinch` | item icon: Long Flinch |
+| `item_long_sight` | item icon: Long Sight |
+| `item_loose_spring` | item icon: Loose Spring |
+| `item_lost_key` | item icon: Lost Key |
+| `item_lucky_button` | item icon: Lucky Button |
+| `item_lucky_coin_flip` | item icon: Lucky Flip |
+| `item_lucky_pouch` | item icon: Lucky Pouch |
+| `item_lucky_scar` | item icon: Lucky Scar |
+| `item_magnifying_lens` | item icon: Magnifying Lens |
+| `item_magpie` | item icon: Magpie |
+| `item_marrow_stew` | item icon: Marrow Stew |
+| `item_mending_lantern` | item icon: Mending Lantern |
+| `item_merchants_seal` | item icon: Merchant's Seal |
+| `item_miners_lamp` | item icon: Miner's Lamp |
+| `item_mirror_shard` | item icon: Mirror Shard |
+| `item_miser_coin` | item icon: Miser's Coin |
+| `item_misers_ledger` | item icon: Miser's Ledger |
+| `item_mite_hive` | item icon: Mite Hive |
+| `item_mortar_shell` | item icon: Mortar Shell |
+| `item_moss_bandage` | item icon: Moss Bandage |
+| `item_nail_bomb` | item icon: Nail Bomb |
+| `item_napalm_jar` | item icon: Napalm Jar |
+| `item_needle_cluster` | item icon: Needle Cluster |
+| `item_needle_quill` | item icon: Needle Quill |
+| `item_nettle_sap` | item icon: Nettle Sap |
+| `item_night_ink` | item icon: Night Ink |
+| `item_nightmare_mask` | item icon: Nightmare Mask |
+| `item_old_wallet` | item icon: Old Wallet |
+| `item_orbit_stone` | item icon: Orbit Stone |
+| `item_ossuary_key` | item icon: Ossuary Key |
+| `item_owl_eye` | item icon: Owl Eye |
+| `item_pack_leader` | item icon: Pack Leader |
+| `item_pebble_pouch` | item icon: Pebble Pouch |
+| `item_penny_charm` | item icon: Penny Charm |
+| `item_perfect_ledger` | item icon: Perfect Ledger |
+| `item_pestle` | item icon: Pestle |
+| `item_pet_collar` | item icon: Pet Collar |
+| `item_pewter_ring` | item icon: Pewter Ring |
+| `item_pilgrim_staff` | item icon: Pilgrim's Staff |
+| `item_pilgrims_compass` | item icon: Pilgrim's Compass |
+| `item_plague_censer` | item icon: Plague Censer |
+| `item_plague_rattle` | item icon: Plague Rattle |
+| `item_pocket_lint` | item icon: Pocket Lint |
+| `item_powder_corpse` | item icon: Powder Corpse |
+| `item_powder_crow` | item icon: Powder Crow |
+| `item_powder_heart` | item icon: Powder Heart |
+| `item_powder_keg` | item icon: Powder Keg |
+| `item_powder_pinch` | item icon: Powder Pinch |
+| `item_powder_shot` | item icon: Powder Shot |
+| `item_powder_sprite` | item icon: Powder Sprite |
+| `item_powder_vest` | item icon: Powder Vest |
+| `item_prayer_bead` | item icon: Prayer Bead |
+| `item_puffball` | item icon: Puffball |
+| `item_quartermaster` | item icon: Quartermaster |
+| `item_quickstep_boots` | item icon: Quickstep Boots |
+| `item_quill_of_haste` | item icon: Quill of Haste |
+| `item_rabbit_bone` | item icon: Rabbit Bone |
+| `item_rattle_drum` | item icon: Rattle Drum |
+| `item_raven_quill` | item icon: Raven Quill |
+| `item_reaper_sickle` | item icon: Reaper's Sickle |
+| `item_ricochet_ring` | item icon: Ricochet Ring |
+| `item_rime_cocoon` | item icon: Rime Cocoon |
+| `item_rime_shard` | item icon: Rime Shard |
+| `item_rot_chip` | item icon: Rot Chip |
+| `item_rot_leech` | item icon: Rot Leech |
+| `item_rot_tooth` | item icon: Rot Tooth |
+| `item_rubber_heel` | item icon: Rubber Heel |
+| `item_rubber_marble` | item icon: Rubber Marble |
+| `item_runners_wrap` | item icon: Runner's Wrap |
+| `item_rusty_trowel` | item icon: Rusty Trowel |
+| `item_sack_goblin` | item icon: Sack Goblin |
+| `item_sacred_salt` | item icon: Sacred Salt |
+| `item_salt_pork` | item icon: Salt Pork |
+| `item_sand_glass` | item icon: Sand Glass |
+| `item_sapper_satchel` | item icon: Sapper Satchel |
+| `item_scale_mail` | item icon: Scale Mail |
+| `item_scattershot` | item icon: Scattershot |
+| `item_scavengers_sack` | item icon: Scavenger's Sack |
+| `item_scrying_bowl` | item icon: Scrying Bowl |
+| `item_second_pocket` | item icon: Second Pocket |
+| `item_seed_pod` | item icon: Seed Pod |
+| `item_seeker_moth` | item icon: Seeker Moth |
+| `item_seeking_fuse` | item icon: Seeking Fuse |
+| `item_sentinel_eye` | item icon: Sentinel's Eye |
+| `item_serpent_coil` | item icon: Serpent Coil |
+| `item_shadow_wine` | item icon: Shadow Wine |
+| `item_sharp_flint` | item icon: Sharp Flint |
+| `item_shatter_glass` | item icon: Shatter Glass |
+| `item_short_fuse` | item icon: Short Fuse |
+| `item_short_wick` | item icon: Short Wick |
+| `item_skeleton_key` | item icon: Skeleton Key |
+| `item_slingers_band` | item icon: Slinger's Band |
+| `item_small_key_charm` | item icon: Key Charm |
+| `item_smoke_pot` | item icon: Smoke Pot |
+| `item_snail_shell` | item icon: Snail Shell |
+| `item_soot_mask` | item icon: Soot Mask |
+| `item_soul_jar` | item icon: Soul Jar |
+| `item_spare_fuse` | item icon: Spare Fuse |
+| `item_spark_chip` | item icon: Spark Chip |
+| `item_spark_jar` | item icon: Spark Jar |
+| `item_sparrow_flock` | item icon: Sparrow Flock |
+| `item_spite_imp` | item icon: Spite Imp |
+| `item_spite_thorns` | item icon: Spite Thorns |
+| `item_splinter` | item icon: Splinter |
+| `item_splinter_bark` | item icon: Splinter Bark |
+| `item_splinter_seed` | item icon: Splinter Seed |
+| `item_spore_sac` | item icon: Spore Sac |
+| `item_star_burst` | item icon: Star Burst |
+| `item_static_plug` | item icon: Static Plug |
+| `item_static_wire` | item icon: Static Wire |
+| `item_stone_bead` | item icon: Stone Bead |
+| `item_storm_bell` | item icon: Storm Bell |
+| `item_storm_heart` | item icon: Storm Heart |
+| `item_sunlight_vial` | item icon: Sunlight Vial |
+| `item_swarm_jar` | item icon: Swarm Jar |
+| `item_tamed_powder` | item icon: Tamed Powder |
+| `item_tar_bombs` | item icon: Tar Bombs |
+| `item_thorn_mantle` | item icon: Thorn Mantle |
+| `item_thorn_ring` | item icon: Thorn Ring |
+| `item_thorn_twig` | item icon: Thorn Twig |
+| `item_thunder_coil` | item icon: Thunder Coil |
+| `item_thunder_drum` | item icon: Thunder Drum |
+| `item_thunder_seed` | item icon: Thunder Seed |
+| `item_thunderhead` | item icon: Thunderhead |
+| `item_tick_charm` | item icon: Tick Charm |
+| `item_tide_shell` | item icon: Tide Shell |
+| `item_tin_spyglass` | item icon: Tin Spyglass |
+| `item_tithe_box` | item icon: Tithe Box |
+| `item_toad_stool` | item icon: Toad Stool |
+| `item_tortoise_shell` | item icon: Tortoise Shell |
+| `item_toxic_chip` | item icon: Toxic Chip |
+| `item_traveler_lamp` | item icon: Traveler's Lamp |
+| `item_treasure_map_scrap` | item icon: Map Scrap |
+| `item_trinket_box` | item icon: Trinket Box |
+| `item_twin_barrel` | item icon: Twin Barrel |
+| `item_twin_husk` | item icon: Twin Husk |
+| `item_vampire_moth` | item icon: Vampire Moth |
+| `item_venom_fang` | item icon: Venom Fang |
+| `item_venom_gland` | item icon: Venom Gland |
+| `item_void_pearl` | item icon: Void Pearl |
+| `item_wanderers_map` | item icon: Wanderer's Map |
+| `item_war_horn` | item icon: War Horn |
+| `item_ward_banner` | item icon: Ward Banner |
+| `item_ward_knight` | item icon: Ward Knight |
+| `item_wardstone` | item icon: Wardstone |
+| `item_weighted_cloak` | item icon: Weighted Cloak |
+| `item_wheel_of_knives` | item icon: Wheel of Knives |
+| `item_whetted_edge` | item icon: Whetted Edge |
+| `item_whetting_ritual` | item icon: Whetting Ritual |
+| `item_widow_pin` | item icon: Widow's Pin |
+| `item_winter_bell` | item icon: Winter Bell |
+| `item_wishing_bone` | item icon: Wishing Bone |
+| `item_worn_buckle` | item icon: Worn Buckle |
+| `item_wounded_pride` | item icon: Wounded Pride |
+| `item_wraith_veil` | item icon: Wraith Veil |
+| `item_wrens_nest` | item icon: Wren's Nest |
+| `kaleidos_phase2` | boss phase transition |
+| `kaleidos_phase3` | boss phase transition |
+| `leviathan_font_phase2` | boss phase transition |
+| `leviathan_font_phase3` | boss phase transition |
+| `maw_of_nothing_phase2` | boss phase transition |
+| `maw_of_nothing_phase3` | boss phase transition |
+| `miniboss_bellows_giant` | miniboss: Bellows Giant |
+| `miniboss_choir_eel` | miniboss: Choir Eel |
+| `miniboss_great_clapper` | miniboss: Great Clapper |
+| `miniboss_hedge_beast` | miniboss: Hedge Beast |
+| `miniboss_knucklebone_king` | miniboss: Knucklebone King |
+| `miniboss_last_warden` | miniboss: Last Warden |
+| `miniboss_mirror_knight` | miniboss: Mirror Knight |
+| `miniboss_organ_warden` | miniboss: Organ Warden |
+| `miniboss_ossuary_brute` | miniboss: Ossuary Brute |
+| `miniboss_scarecrow_lord` | miniboss: Scarecrow Lord |
+| `miniboss_swamp_hag` | miniboss: Swamp Hag |
+| `miniboss_throne_guard` | miniboss: Throne Guard |
+| `miniboss_vault_warden` | miniboss: Vault Warden |
+| `miniboss_wax_knight` | miniboss: Wax Knight |
+| `miniboss_yeti_bones` | miniboss: Yeti Bones |
+| `mod_armor` | room modifier icon: Iron Hide |
+| `mod_bounty` | room modifier icon: Bounty |
+| `mod_dark` | room modifier icon: Darkness |
+| `mod_elite` | room modifier icon: Elite Guard |
+| `mod_frenzy` | room modifier icon: Frenzy |
+| `mod_giant` | room modifier icon: Giants |
+| `mod_glass` | room modifier icon: Glass Ranks |
+| `mod_regen` | room modifier icon: Mending |
+| `mod_swarm` | room modifier icon: Swarming |
+| `mod_volatile` | room modifier icon: Volatile |
+| `mother_bough_phase2` | boss phase transition |
+| `mother_bough_phase3` | boss phase transition |
+| `osseous_matron_phase2` | boss phase transition |
+| `pedestal` | built-in |
+| `permafrost_phase2` | boss phase transition |
+| `permafrost_phase3` | boss phase transition |
+| `pickup_bomb` | built-in |
+| `pickup_coin` | built-in |
+| `pickup_consumable` | built-in |
+| `pickup_ember` | built-in |
+| `pickup_item` | built-in |
+| `pickup_key` | built-in |
+| `pickup_trinket` | built-in |
+| `pickup_umbral` | built-in |
+| `pickup_vigorfull` | built-in |
+| `pickup_vigorhalf` | built-in |
+| `pickup_ward` | built-in |
+| `player` | built-in |
+| `pyre_warden_flare` | boss phase transition |
+| `pyroclasm_phase2` | boss phase transition |
+| `pyroclasm_phase3` | boss phase transition |
+| `rotbloom_phase2` | boss phase transition |
+| `rotbloom_phase3` | boss phase transition |
+| `shot_enemy` | built-in |
+| `shot_player` | built-in |
+| `shrine_shrine_blood_font` | shrine: Blood Font |
+| `shrine_shrine_crossroads` | shrine: Crossroads Cairn |
+| `shrine_shrine_gilded_idol` | shrine: Gilded Idol |
+| `shrine_shrine_reliquary_lock` | shrine: Reliquary Lock |
+| `swarm_engine_phase2` | boss phase transition |
+| `swarm_engine_phase3` | boss phase transition |
+| `synergy:sunlance` | synergy: Sunlance |
+| `tele_beam` | telegraph |
+| `tele_choir` | telegraph |
+| `tele_flash` | telegraph |
+| `tele_fuse` | telegraph |
+| `tele_glow` | telegraph |
+| `tele_pulse` | telegraph |
+| `tele_stomp` | telegraph |
+| `tele_windup` | telegraph |
+| `tempest_phase2` | boss phase transition |
+| `tempest_phase3` | boss phase transition |
+| `the_abbess_below_phase2` | boss phase transition |
+| `the_abbess_below_phase3` | boss phase transition |
+| `the_ash_king_phase2` | boss phase transition |
+| `the_ash_king_phase3` | boss phase transition |
+| `the_beating_dark_phase2` | boss phase transition |
+| `the_beating_dark_phase3` | boss phase transition |
+| `the_bellringer_phase2` | boss phase transition |
+| `the_bellringer_phase3` | boss phase transition |
+| `the_drowned_mother_phase2` | boss phase transition |
+| `the_gardener_phase2` | boss phase transition |
+| `the_gardener_phase3` | boss phase transition |
+| `the_glazier_phase2` | boss phase transition |
+| `the_glazier_phase3` | boss phase transition |
+| `the_harvester_phase2` | boss phase transition |
+| `the_harvester_phase3` | boss phase transition |
+| `the_hive_queen_phase2` | boss phase transition |
+| `the_hive_queen_phase3` | boss phase transition |
+| `the_hollow_one_phase2` | boss phase transition |
+| `the_hollow_one_phase3` | boss phase transition |
+| `the_ironmonger_phase2` | boss phase transition |
+| `the_ironmonger_phase3` | boss phase transition |
+| `the_umbral_regent_phase2` | boss phase transition |
+| `the_umbral_regent_phase3` | boss phase transition |
+| `the_unformed_phase2` | boss phase transition |
+| `the_unformed_phase3` | boss phase transition |
+| `the_winter_widow_phase2` | boss phase transition |
+| `the_winter_widow_phase3` | boss phase transition |
+| `transform:ashen_herald` | transformation: Ashen Herald |
+| `transform:bulwark` | transformation: Bulwark |
+| `transform:goldtongue` | transformation: Goldtongue |
+| `transform:hivekin` | transformation: Hivekin |
+| `transform:huntmaster` | transformation: Huntmaster |
+| `transform:ossuary_saint` | transformation: Ossuary Saint |
+| `transform:plaguebearer` | transformation: Plaguebearer |
+| `transform:powderkin` | transformation: Powderkin |
+| `transform:rimeborn` | transformation: Rimeborn |
+| `transform:stormcaller` | transformation: Stormcaller |
+| `transform:swarmlord` | transformation: Swarmlord |
+| `transform:verdant` | transformation: Verdant |
+| `twin_ventricle_phase2` | boss phase transition |
+| `twin_ventricle_phase3` | boss phase transition |
+
+## Audio (61)
+
+| Key | Used for |
+|---|---|
+| `amb_belfry` | floor ambience: Storm Belfry |
+| `amb_chapel` | floor ambience: Drowned Chapel |
+| `amb_crypt` | floor ambience: Ashen Crypt |
+| `amb_forge` | floor ambience: Ember Forge |
+| `amb_frost` | floor ambience: Frost Catacomb |
+| `amb_garden` | floor ambience: Gloam Gardens |
+| `amb_glass` | floor ambience: Glass Labyrinth |
+| `amb_heart` | floor ambience: Hollow Heart |
+| `amb_hive` | floor ambience: Hive Depths |
+| `amb_last` | floor ambience: The Last Hollow |
+| `amb_mire` | floor ambience: Mire Hollows |
+| `amb_orchard` | floor ambience: Bone Orchard |
+| `amb_ossuary` | floor ambience: Sunken Ossuary |
+| `amb_throne` | floor ambience: Cinder Throne |
+| `amb_void` | floor ambience: Umbral Vault |
+| `music_ashen_crypt` | floor music: Ashen Crypt |
+| `music_bone_orchard` | floor music: Bone Orchard |
+| `music_boss` | built-in |
+| `music_boss_early` | boss music |
+| `music_boss_final` | boss music |
+| `music_boss_late` | boss music |
+| `music_boss_mid` | boss music |
+| `music_cinder_throne` | floor music: Cinder Throne |
+| `music_defeat` | built-in |
+| `music_drowned_chapel` | floor music: Drowned Chapel |
+| `music_ember_forge` | floor music: Ember Forge |
+| `music_ending` | ending music |
+| `music_floor` | built-in |
+| `music_frost_catacomb` | floor music: Frost Catacomb |
+| `music_glass_labyrinth` | floor music: Glass Labyrinth |
+| `music_gloam_gardens` | floor music: Gloam Gardens |
+| `music_hive_depths` | floor music: Hive Depths |
+| `music_hollow_heart` | floor music: Hollow Heart |
+| `music_menu` | built-in |
+| `music_mire_hollows` | floor music: Mire Hollows |
+| `music_storm_belfry` | floor music: Storm Belfry |
+| `music_sunken_ossuary` | floor music: Sunken Ossuary |
+| `music_the_last_hollow` | floor music: The Last Hollow |
+| `music_umbral_vault` | floor music: Umbral Vault |
+| `music_victory` | built-in |
+| `sfx_active` | built-in |
+| `sfx_bat_screech` | enemy attack |
+| `sfx_boss_phase` | built-in |
+| `sfx_consumable` | built-in |
+| `sfx_door` | built-in |
+| `sfx_enemy_death` | built-in |
+| `sfx_explosion` | built-in |
+| `sfx_hex` | built-in |
+| `sfx_hit` | built-in |
+| `sfx_item` | built-in |
+| `sfx_pickup` | built-in |
+| `sfx_player_hurt` | built-in |
+| `sfx_purchase_fail` | built-in |
+| `sfx_room_clear` | built-in |
+| `sfx_room_modifier` | built-in |
+| `sfx_secret` | built-in |
+| `sfx_shot` | built-in |
+| `sfx_shrine` | built-in |
+| `ui_back` | built-in |
+| `ui_move` | built-in |
+| `ui_select` | built-in |

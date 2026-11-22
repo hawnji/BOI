@@ -45,6 +45,7 @@ namespace Hollowcrawl.Presentation
                 {
                     var v = Show(p, 2);
                     if (p.Veiled) v.color = new Color(0.4f, 0.4f, 0.45f);
+                    else if (p.ContentId != null) ShowIcon(p);
                 }
                 foreach (var sh in room.Shrines) Show(sh, 1);
                 foreach (var b in room.Bombs)
@@ -87,6 +88,30 @@ namespace Hollowcrawl.Presentation
             float d = a.Radius * 2f;
             v.transform.localScale = new Vector3(d, d, 1f);
             return v;
+        }
+
+        /// <summary>Item or trinket icon floating over its pedestal (art hook: Resources/Sprites/item_&lt;id&gt; or the item's iconKey).</summary>
+        private void ShowIcon(PickupActor p)
+        {
+            int key = -p.Id - 1; // icons share the view pool with negative ids
+            string iconKey = "item_" + p.ContentId;
+            var content = Bootstrap.GameServices.Content;
+            if (content != null && content.Items.TryGetValue(p.ContentId, out var def) && !string.IsNullOrEmpty(def.IconKey)) iconKey = def.IconKey;
+            _seen.Add(key);
+            if (!_live.TryGetValue(key, out var v))
+            {
+                v = _pool.Count > 0 ? _pool.Pop() : CreateView();
+                v.gameObject.SetActive(true);
+                v.sprite = PlaceholderArt.Get(iconKey, ActorKind.Pickup);
+                v.gameObject.name = "Icon " + iconKey;
+                _live[key] = v;
+            }
+            v.enabled = true;
+            v.sortingOrder = 4;
+            v.color = PlaceholderArt.Tint(iconKey, ActorKind.Pickup);
+            float bob = 0.08f * Mathf.Sin(_blink * 3f + p.Id);
+            v.transform.localPosition = new Vector3(p.Position.X, p.Position.Y + 0.55f + bob, 0f);
+            v.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
         }
 
         private SpriteRenderer CreateView()

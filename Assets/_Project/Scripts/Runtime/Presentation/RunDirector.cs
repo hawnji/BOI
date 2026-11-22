@@ -107,8 +107,25 @@ namespace Hollowcrawl.Presentation
             _accumulator = 0f;
         }
 
+        private void UpdateMusic()
+        {
+            var ctx = new Audio.MusicContext { InMenu = Run == null || _frontEnd.Current == FrontEnd.Screen.Title || _frontEnd.Current == FrontEnd.Screen.CharacterSelect, InRun = Run != null, Paused = Paused };
+            if (Run != null)
+            {
+                ctx.FloorMusicKey = Run.Floor?.MusicKey;
+                ctx.RunWon = Run.State == RunState.Won;
+                ctx.RunLost = Run.State == RunState.Lost;
+                ctx.EndingMusicKey = _frontEnd.LastResult?.Ending?.MusicKey;
+                if (Run.CurrentRoom != null)
+                    foreach (var e in Run.CurrentRoom.Enemies)
+                        if (!e.Removed && e.Boss != null) { ctx.BossMusicKey = e.Boss.MusicKey ?? "music_boss"; break; }
+            }
+            AudioService.Ensure().UpdateMusic(ctx);
+        }
+
         private void Update()
         {
+            UpdateMusic();
             if (Run == null) return;
             var frame = GameServices.PlayerInput != null ? GameServices.PlayerInput.ReadFrame() : default;
             if (GameServices.Settings != null)
@@ -185,7 +202,7 @@ namespace Hollowcrawl.Presentation
                     case SimEventKind.SecretRevealed: _roomDirty = true; break;
                 }
                 _hud.OnSimEvent(e);
-                AudioCues.Play(e);
+                AudioService.Ensure().PlayEvent(e);
             }
             Run.Events.Clear();
         }
@@ -193,7 +210,11 @@ namespace Hollowcrawl.Presentation
         private void RebuildRoom()
         {
             _roomDirty = false;
-            if (Run.CurrentRoom != null) _roomRenderer.Show(Run.CurrentRoom.Grid);
+            if (Run.CurrentRoom != null)
+            {
+                _roomRenderer.Theme = Run.Floor?.Theme ?? "crypt";
+                _roomRenderer.Show(Run.CurrentRoom.Grid);
+            }
         }
 
         /// <summary>Gloom-style hexes: a dark overlay with a clear circle around the player.</summary>
@@ -262,36 +283,4 @@ namespace Hollowcrawl.Presentation
 
     /// <summary>Put on an object in a menu scene to stop a run auto-starting there.</summary>
     public sealed class MainMenuMarker : MonoBehaviour { }
-
-    /// <summary>Plays Resources/Audio/&lt;key&gt; clips for simulation events when they exist (silent placeholders otherwise).</summary>
-    public static class AudioCues
-    {
-        private static readonly System.Collections.Generic.Dictionary<string, AudioClip> Clips = new System.Collections.Generic.Dictionary<string, AudioClip>();
-
-        public static void Play(SimEvent e)
-        {
-            string key = e.AudioKey ?? DefaultKey(e.Kind);
-            if (key == null) return;
-            if (!Clips.TryGetValue(key, out var clip)) Clips[key] = clip = Resources.Load<AudioClip>("Audio/" + key);
-            if (clip != null) AudioSource.PlayClipAtPoint(clip, new Vector3(e.Position.X, e.Position.Y, -5f), GameServices.Settings != null ? GameServices.Settings.SfxVolume : 1f);
-        }
-
-        private static string DefaultKey(SimEventKind k)
-        {
-            switch (k)
-            {
-                case SimEventKind.ShotFired: return "sfx_shot";
-                case SimEventKind.EnemyHit: return "sfx_hit";
-                case SimEventKind.EnemyKilled: return "sfx_enemy_death";
-                case SimEventKind.PlayerHurt: return "sfx_player_hurt";
-                case SimEventKind.Explosion: return "sfx_explosion";
-                case SimEventKind.PickupCollected: return "sfx_pickup";
-                case SimEventKind.ItemCollected: return "sfx_item";
-                case SimEventKind.DoorChanged: return "sfx_door";
-                case SimEventKind.SecretRevealed: return "sfx_secret";
-                case SimEventKind.RoomCleared: return "sfx_room_clear";
-                default: return null;
-            }
-        }
-    }
 }
