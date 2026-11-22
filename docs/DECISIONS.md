@@ -39,3 +39,8 @@ Newest last. Each entry: decision, why, consequences.
 ### ADR-008 Package versions unverified (2026-11-22)
 **Decision**: `Packages/manifest.json` lists plausible versions for 6000.6.9f1; the editor was not available when it was written.
 **Consequences**: first open in Unity may adjust core package versions; this must be committed and noted in the checklist.
+
+### ADR-009 Gameplay runs in a headless simulation; Unity presents it (2026-11-22)
+**Decision**: rooms and runs are simulated in Core (`Core/Simulation`): tile-grid circle collision, player, enemies, shots, bombs, hazards, pickups, doors, rewards, shops and floor progression. Unity reads input into a `PlayerInputFrame`, calls `RunSimulation.Step` on a fixed 60 Hz step, and draws actors by id. Unity physics is not used for gameplay.
+**Why**: the editor is not available to the developer (ADR-008 context), so gameplay must be verifiable by headless tests; it also gives determinism (seeded replays, daily runs), cheap collision for hundreds of shots without per-object physics bodies, and identical behaviour on every platform.
+**Consequences**: the Unity layer is presentation only (sprites, pooling, camera, audio, HUD driven by `SimEvent`s). Anything that changes gameplay belongs in Core and gets a test. Visual-only interpolation may smooth the 60 Hz step.

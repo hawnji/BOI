@@ -123,6 +123,9 @@ namespace Hollowcrawl.Rooms
             RoomCleared?.Invoke(r);
         }
 
+        /// <summary>Marks a room cleared without raising RoomCleared (rooms whose encounter turned out empty).</summary>
+        public void MarkClearedSilently(RoomRuntime room) { room.Cleared = true; room.EnemiesAlive = 0; }
+
         public void TeleportTo(int roomIndex) => Enter(roomIndex);
 
         /// <summary>Reveals every room on the map (map items); secret rooms only when includeSecrets.</summary>
@@ -148,7 +151,6 @@ namespace Hollowcrawl.Rooms
             RoomEntered?.Invoke(room);
         }
 
-        private static void MarkClearedSilently(RoomRuntime r) => r.Cleared = true;
 
         private void SetBothSides(RoomDoor door, DoorState state)
         {
