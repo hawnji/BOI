@@ -193,7 +193,7 @@ namespace Hollowcrawl.Tests
             var e = room.SpawnEnemy("husk_crawler", new Vec2(8f, 4.5f), false);
             Assert.That(e, Is.Not.Null);
             e.Brain.Activate();
-            var aimRight = new PlayerInputFrame { Aim = new Vec2(1f, 0f) };
+            var aimRight = new PlayerInputFrame { Aim = new Vec2(1f, 0f), FireHeld = true };
             for (int i = 0; i < 600 && !e.Removed; i++) run.Step(aimRight);
             Assert.That(e.Removed, Is.True, "5hp crawler should die to 3.5 damage shots");
         }
@@ -370,7 +370,7 @@ namespace Hollowcrawl.Tests
                     var frame = new PlayerInputFrame
                     {
                         Move = new Vec2(input.Range(-1f, 1f), input.Range(-1f, 1f)),
-                        Aim = i % 3 == 0 ? new Vec2(1f, 0f).Rotated(input.Range(0, 4) * 90f) : default,
+                        Aim = new Vec2(1f, 0f).Rotated(input.Range(0, 4) * 90f), FireHeld = i % 3 == 0,
                         BombPressed = i % 400 == 5,
                     };
                     run.Step(frame);
@@ -394,7 +394,7 @@ namespace Hollowcrawl.Tests
                     if (i % 45 == 0) heading = new Vec2(1f, 0f).Rotated(input.Range(0f, 360f));
                     if (i % 900 == 0 && run.CurrentRoom.LivingEnemies > 0) KillAllEnemies(run);
                     var room = run.CurrentRoom;
-                    var frame = new PlayerInputFrame { Move = heading, Aim = new Vec2(0f, 1f).Rotated(i * 7f), BombPressed = i % 700 == 3 };
+                    var frame = new PlayerInputFrame { Move = heading, Aim = new Vec2(0f, 1f).Rotated(i * 7f), FireHeld = true, BombPressed = i % 700 == 3 };
                     run.Step(frame);
                     var p = run.Player.Position;
                     var g = run.CurrentRoom.Grid;

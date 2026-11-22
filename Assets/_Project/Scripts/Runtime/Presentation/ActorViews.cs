@@ -1,0 +1,94 @@
+using System.Collections.Generic;
+using Hollowcrawl.Simulation;
+using UnityEngine;
+
+namespace Hollowcrawl.Presentation
+{
+    /// <summary>
+    /// Mirrors simulation actors as pooled SpriteRenderers keyed by actor id. Views are created, moved and
+    /// recycled every frame from the simulation's lists; nothing here affects gameplay.
+    /// </summary>
+    public sealed class ActorViews
+    {
+        private readonly Transform _root;
+        private readonly Dictionary<int, SpriteRenderer> _live = new Dictionary<int, SpriteRenderer>();
+        private readonly Stack<SpriteRenderer> _pool = new Stack<SpriteRenderer>();
+        private readonly HashSet<int> _seen = new HashSet<int>();
+        private readonly List<int> _stale = new List<int>();
+        private float _blink;
+
+        public ActorViews(Transform root) { _root = root; }
+
+        public void Sync(RoomSimulation room, IReadOnlyList<CompanionActor> companions, float dt)
+        {
+            _seen.Clear();
+            _blink += dt;
+            if (room != null)
+            {
+                if (room.Player != null)
+                {
+                    var health = room.Engine.Health;
+                    bool invuln = health != null && health.InvulnerableTime > 0f;
+                    var v = Show(room.Player, 10);
+                    v.enabled = !invuln || ((int)(_blink * 16f) & 1) == 0;
+                }
+                foreach (var e in room.Enemies)
+                {
+                    var v = Show(e, 5);
+                    if (e.FlashTimer > 0f) v.color = Color.white;
+                    else if (e.LastIntent.State == Enemies.BrainState.Telegraphing) v.color = Color.Lerp(v.color, new Color(1f, 0.3f, 0.2f), 0.5f + 0.5f * Mathf.Sin(_blink * 30f));
+                    v.enabled = !e.LastIntent.Invisible;
+                    if (e.Elite) v.transform.localScale = v.transform.localScale * 1.15f;
+                }
+                foreach (var s in room.Shots) Show(s, s.Team == Combat.Team.Player ? 8 : 9);
+                foreach (var p in room.Pickups) Show(p, 2);
+                foreach (var b in room.Bombs)
+                {
+                    var v = Show(b, 3);
+                    float pulse = 1f + 0.12f * Mathf.Sin(_blink * (10f + 20f / Mathf.Max(0.2f, b.Fuse)));
+                    v.transform.localScale = v.transform.localScale * pulse;
+                }
+                foreach (var h in room.Hazards) Show(h, 0);
+                foreach (var x in room.Exits) Show(x, 1);
+            }
+            if (companions != null) foreach (var c in companions) Show(c, 7);
+
+            _stale.Clear();
+            foreach (var kv in _live) if (!_seen.Contains(kv.Key)) _stale.Add(kv.Key);
+            foreach (var id in _stale) { var v = _live[id]; _live.Remove(id); v.gameObject.SetActive(false); _pool.Push(v); }
+        }
+
+        public void Clear()
+        {
+            foreach (var v in _live.Values) { v.gameObject.SetActive(false); _pool.Push(v); }
+            _live.Clear();
+        }
+
+        private SpriteRenderer Show(Actor a, int order)
+        {
+            _seen.Add(a.Id);
+            if (!_live.TryGetValue(a.Id, out var v))
+            {
+                v = _pool.Count > 0 ? _pool.Pop() : CreateView();
+                v.gameObject.SetActive(true);
+                v.sprite = PlaceholderArt.Get(a.ViewKey, a.Kind);
+                v.gameObject.name = a.Kind + " " + a.ViewKey;
+                _live[a.Id] = v;
+            }
+            v.enabled = true;
+            v.sortingOrder = order;
+            v.color = PlaceholderArt.Tint(a.ViewKey ?? a.Kind.ToString(), a.Kind);
+            v.transform.localPosition = new Vector3(a.Position.X, a.Position.Y, 0f);
+            float d = a.Radius * 2f;
+            v.transform.localScale = new Vector3(d, d, 1f);
+            return v;
+        }
+
+        private SpriteRenderer CreateView()
+        {
+            var go = new GameObject("Actor");
+            go.transform.SetParent(_root, false);
+            return go.AddComponent<SpriteRenderer>();
+        }
+    }
+}

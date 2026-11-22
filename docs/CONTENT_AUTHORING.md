@@ -98,3 +98,34 @@ See `starter_floors.json`: room count range, template difficulty band, enemy bud
 optional `specialRooms` rules (defaults: treasure + shop always, locked from the second floor; others by chance),
 enemy pool (`enemyId`, `cost`, `weight`, `tags`, `maxPerRoom`), boss and miniboss pools, secret chances, elite chance,
 music/ambience keys and hazards.
+
+## Enemies and bosses (`Content/Enemies/*.json`)
+
+Top-level arrays `enemies` and `bosses`. Enums are written by name (`"Chase"`, `"Spread"`).
+
+**Enemy**: `id`, `name`, `description`, `spriteKey`, `health`, `healthPerFloor` (fraction added per floor index),
+`contactDamage` (half points), `radius`, `knockbackResistance` (0..1), `aggroRange`, `thinkInterval`,
+`retreatBelowHealth` (switch to KeepDistance under this health fraction), `tags`, `statusImmunities`,
+`movement`, `attacks`, `onDeath`, `lootMultiplier` (0 = never drops).
+
+**movement**: `kind` (Idle, Wander, Chase, KeepDistance, Orbit, Hop, Strafe, Burrow, Patrol), `speed`,
+`preferredDistance`, `pauseTime`, `hopDistance`, `flying`.
+
+**attack**: `id`, `kind` (Projectile, Dash, Summon, Slam, Explode, Hazard, Teleport, Beam), `weight`, `cooldown`,
+`telegraph` (seconds of warning; the validator warns under 0.15), `duration`, `recovery`, `minRange`, `maxRange`,
+`requiresLineOfSight`, `pattern` (Aimed, Spread, Ring, Spiral, Cross, X, RandomBurst, Wall), `count`, `spread`,
+`projectileSpeed`, `damage`, `waves` (volleys spread over `duration`), `spiralStep`, `dashSpeed`, `radius`,
+`hazardId`, `summonId`/`summonCount`/`maxAlive`, `minDifficulty` (0 story, 1 normal, 2 hard, 3 nightmare),
+`telegraphKey`, `audioKey`. The first use of each attack waits half its cooldown.
+
+**onDeath**: `kind` (Explode, SpawnEnemies, ProjectileRing, Hazard, Split), `enemyId`, `count`, `radius`,
+`damage`, `projectileSpeed`, `hazardId`.
+
+**Boss**: `id`, `name`, `title`, `tier` (Early, Mid, Late, Secret, Optional, Challenge, Final, Miniboss),
+`body` (an enemy definition with `isBoss: true`), `phases`, `rewardPool`, `unlockOnDefeat`, `musicKey`, `introKey`.
+A phase has `healthAtOrBelow` (fraction), optional `movement`, `attacks`, `invulnerableOnEnter` (seconds) and
+`onEnter` attacks fired once when the phase starts. Phases always play in order, even if one hit skips past two
+thresholds. Major bosses need at least two phases (validator warning).
+
+Sprites: put art at `Resources/Sprites/<spriteKey>`; until then a coloured placeholder shape is drawn.
+Audio: `Resources/Audio/<audioKey>` clips play for events when they exist.

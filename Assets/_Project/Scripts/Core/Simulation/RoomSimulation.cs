@@ -230,7 +230,8 @@ namespace Hollowcrawl.Simulation
             // firing
             if (input.Aim.Length > 0.1f) p.Aim = input.Aim.Normalized;
             Engine.BuildShot(_shotSpec, new ShotContext { ChargeFraction = 1f });
-            bool wantsFire = input.Aim.Length > 0.1f;
+            // The platform layer resolves shoot modes (hold / toggle / aim-to-fire) into FireHeld via ShootingIntent.
+            bool wantsFire = input.FireHeld;
             if (p.Fire.Update(dt, wantsFire, stats[StatId.FireRate], _shotSpec.ChargeTime, out float charge))
                 FireVolley(p.Position, p.Aim, charge, velocity);
 

@@ -16,7 +16,7 @@ Last updated: 2026-11-22.
 | Phase | Status | Notes |
 |---|---|---|
 | 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 118 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
-| 2 Core player gameplay | In progress | Full gameplay loop runs headless (ADR-009): movement, shooting, enemies, bombs, pickups, doors, rooms, floors, boss exit; unit-tested incl. determinism and random-play soak. Unity presentation layer not started. |
+| 2 Core player gameplay | In progress | Full gameplay loop runs headless (ADR-009): movement, shooting, enemies, bombs, pickups, doors, rooms, floors, boss exit; unit-tested incl. determinism and random-play soak. Unity presentation layer written (placeholder art, IMGUI HUD), not yet compiled in Unity. |
 | 3 Combat and interaction foundations | In progress | Pure parts exist and are unit-tested: damage info, status controller, health pool, enemy AI brain, attack patterns, difficulty scaling. Unity enemy components not started. |
 | 4 Item interaction engine | In progress | Engine core done early (spec: "design early"). Remaining: integration with real projectiles/companions/enemies, in-game debug overlay. |
 | 5 Procedural generation | In progress | Generator core done early. Remaining: full template library (250), room instantiation in Unity, editor template editor. |
@@ -71,6 +71,7 @@ Last updated: 2026-11-22.
 | Floor/room state (combat door locks, keys, secret reveal, challenge/curse doors, map reveal) | Implemented (unit-tested) | `Core/Rooms/RoomState.cs` |
 | Room simulation (tile collision, player move/fire/bomb/active, enemy AI execution, shots, explosions, destructible tiles, hazards, pickups, doorways) | Implemented (unit-tested) | `Core/Simulation/RoomSimulation.cs`, ADR-009 |
 | Run simulation (floor sequence, transitions, room population, treasure/shop/secret/healing/reward rooms, clear rewards, boss exit, victory/defeat, teleports, companions) | Implemented (unit-tested) | `Core/Simulation/RunSimulation.cs`; consumable pickups convert to coins until Phase 7 |
+| Unity presentation (room texture, pooled actor sprites, camera follow + shake, placeholder art/audio hooks, IMGUI HUD with health/resources/active/minimap/boss bar/pause/run end, auto-start run) | Implemented (type-checked only) | `Runtime/Presentation`; not compiled or run in Unity |
 | Player controller, projectile objects, camera, room instantiation, door transitions (Unity) | Not started | Phase 2 Unity side |
 | Enemy framework and AI (data-driven movement/attacks, telegraphs, cooldowns, waves, dash, summon caps, retreat, aggro, difficulty gating, deterministic) | Implemented (unit-tested) | `Core/Enemies`; Unity enemy component not started |
 | Bosses / minibosses (ordered phase transitions, transition invulnerability, on-enter actions) | Implemented (unit-tested) | `Core/Enemies/BossController.cs` |
