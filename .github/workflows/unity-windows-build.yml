@@ -43,6 +43,8 @@ jobs:
           targetPlatform: StandaloneWindows64
           buildName: Hollowcrawl
           buildMethod: Hollowcrawl.EditorTools.BuildScript.BuildWindowsCI
+          # Unity generates .meta files during the test step (none are committed yet), which leaves the tree dirty
+          allowDirtyBuild: true
           customParameters: -buildOutput build/StandaloneWindows64 ${{ inputs.development && '-development' || '' }}
       - uses: actions/upload-artifact@v4
         with:
