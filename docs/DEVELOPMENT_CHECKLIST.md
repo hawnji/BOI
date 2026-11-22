@@ -15,7 +15,7 @@ Last updated: 2026-11-22.
 
 | Phase | Status | Notes |
 |---|---|---|
-| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 79 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
+| 1 Project foundation | In progress | Core architecture, item engine, procgen, saves, input abstraction, content pipeline, editor tools written; core passes 86 headless tests. Pending: open in Unity 6000.6.9f1, confirm package versions and URP 2D renderer assets, compile Runtime/Editor in Unity. |
 | 2 Core player gameplay | In progress | Engine-free movement model, fire controller, projectile simulation and room/door state machine implemented and unit-tested. Unity player/projectile/room scene code not started. |
 | 3 Combat and interaction foundations | Not started | Pure parts already exist (damage info, status controller, health pool). |
 | 4 Item interaction engine | In progress | Engine core done early (spec: "design early"). Remaining: integration with real projectiles/companions/enemies, in-game debug overlay. |
@@ -72,7 +72,10 @@ Last updated: 2026-11-22.
 | Player controller, projectile objects, camera, room instantiation, door transitions (Unity) | Not started | Phase 2 Unity side |
 | Enemy framework and AI | Not started | Phase 3 |
 | Bosses / minibosses | Not started | Phase 6 |
-| Pickups, bombs, consumables, economy/shops | Not started | Data hooks exist (drop chance, shop price, bomb spec) |
+| Item pools (seeded, rarity/quality/luck weighted, unlock-aware, no repeats per run) | Implemented (unit-tested) | `Core/Economy/ItemPools.cs` |
+| Shop inventory generation, pricing, discounts, purchases | Implemented (unit-tested) | `Core/Economy/ShopInventory.cs`; shop room/UI not started |
+| Drop tables (room clear, enemy, prop, chest; luck and item modifiers) | Implemented (unit-tested) | `Core/Economy/DropTables.cs` |
+| Pickup objects, bombs, consumables (Unity) | Not started | Bomb spec and modifiers exist in Core |
 | Curses, random events, room modifiers | Not started | Engine supports curse sources and `curse:` conditions |
 | Difficulty system | Not started | |
 | Game modes (standard, challenge, daily, practice, custom) | Not started | Daily seed function exists |
