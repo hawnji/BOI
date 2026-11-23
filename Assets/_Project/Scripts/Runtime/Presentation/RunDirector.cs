@@ -261,6 +261,10 @@ namespace Hollowcrawl.Presentation
         {
             var room = Run.CurrentRoom;
             if (room == null || _camera == null) return;
+            // Pixel-perfect zoom: each art pixel covers a whole number of screen pixels (about 12 units tall).
+            const int ppu = PlaceholderArt.ArtPixelsPerUnit;
+            int zoom = Mathf.Max(1, Mathf.RoundToInt(UnityEngine.Screen.height / (12f * ppu)));
+            _camera.orthographicSize = UnityEngine.Screen.height / (2f * ppu * zoom);
             float halfH = _camera.orthographicSize, halfW = halfH * _camera.aspect;
             var p = room.Player != null ? room.Player.Position : room.Grid.Center;
             float x = ClampAxis(p.X, room.Grid.Width, halfW);
@@ -271,7 +275,8 @@ namespace Hollowcrawl.Presentation
                 x += ((float)_shakeRng.NextDouble() - 0.5f) * _shake;
                 y += ((float)_shakeRng.NextDouble() - 0.5f) * _shake;
             }
-            _camera.transform.position = new Vector3(x, y, -10f);
+            float step = 1f / (ppu * zoom);
+            _camera.transform.position = new Vector3(Mathf.Round(x / step) * step, Mathf.Round(y / step) * step, -10f);
         }
 
         private static float ClampAxis(float v, float size, float half)

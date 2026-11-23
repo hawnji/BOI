@@ -43,31 +43,40 @@ namespace Hollowcrawl.Presentation
             }
         }
 
-        private static readonly Dictionary<string, Sprite> ArtCache = new Dictionary<string, Sprite>();
+        /// <summary>Pixels per world unit of all pixel art (one dungeon tile = 32 pixels).</summary>
+        public const int ArtPixelsPerUnit = 32;
+
+        private static readonly Dictionary<string, Sprite[]> FrameCache = new Dictionary<string, Sprite[]>();
 
         /// <summary>
-        /// Loads pre-rendered art (Tools/ArtGen) as a sprite exactly one world unit wide, whatever the import
-        /// settings: imported sprites are re-wrapped at the right pixels-per-unit, plain textures are wrapped too.
+        /// Loads an animation strip from Resources/Sprites/&lt;key&gt;: a horizontal row of square frames
+        /// (frame size = image height; a square image is a single frame). Pixel art is drawn at native size,
+        /// 32 pixels per world unit, with point filtering. Returns null when no art exists for the key.
         /// </summary>
-        public static Sprite LoadArt(string key)
+        public static Sprite[] LoadFrames(string key)
         {
             if (string.IsNullOrEmpty(key)) return null;
-            if (ArtCache.TryGetValue(key, out var cached)) return cached;
-            Sprite result = null;
-            var sprite = Resources.Load<Sprite>("Sprites/" + key);
-            if (sprite != null)
+            if (FrameCache.TryGetValue(key, out var cached)) return cached;
+            Sprite[] frames = null;
+            var tex = Resources.Load<Texture2D>("Sprites/" + key);
+            if (tex != null)
             {
-                var r = sprite.rect;
-                result = Mathf.Approximately(sprite.pixelsPerUnit, r.width) ? sprite
-                    : Sprite.Create(sprite.texture, r, new Vector2(0.5f, 0.5f), r.width, 0, SpriteMeshType.FullRect);
+                tex.filterMode = FilterMode.Point;
+                tex.wrapMode = TextureWrapMode.Clamp;
+                int size = tex.height, count = Mathf.Max(1, tex.width / size);
+                frames = new Sprite[count];
+                for (int i = 0; i < count; i++)
+                    frames[i] = Sprite.Create(tex, new Rect(i * size, 0, size, size), new Vector2(0.5f, 0.5f), ArtPixelsPerUnit, 0, SpriteMeshType.FullRect);
             }
-            else
-            {
-                var tex = Resources.Load<Texture2D>("Sprites/" + key);
-                if (tex != null) result = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f), tex.width, 0, SpriteMeshType.FullRect);
-            }
-            ArtCache[key] = result;
-            return result;
+            FrameCache[key] = frames;
+            return frames;
+        }
+
+        /// <summary>First frame of the art for a key (or null).</summary>
+        public static Sprite LoadArt(string key)
+        {
+            var f = LoadFrames(key);
+            return f != null && f.Length > 0 ? f[0] : null;
         }
 
         private static Color PickupTint(string key)

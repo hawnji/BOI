@@ -9,7 +9,7 @@ namespace Hollowcrawl.Presentation
     /// </summary>
     public sealed class RoomRenderer : MonoBehaviour
     {
-        public const int PixelsPerTile = 64;
+        public const int PixelsPerTile = 32;
         private const int PlaceholderScale = PixelsPerTile / 16;
         private SpriteRenderer _renderer;
         private Texture2D _texture;
@@ -17,9 +17,9 @@ namespace Hollowcrawl.Presentation
         public string Theme = "crypt";
 
         // Art hook: a readable texture at Resources/Tiles/<theme>/<kind> (or Resources/Tiles/<kind>) replaces the
-        // generated colour for that tile kind; any square size is resampled to PixelsPerTile (the Blender renders from
-        // Tools/ArtGen are 64x64). Kinds are TileKind names in lower case (floor, rock, wall, door_open...).
-        private static readonly System.Collections.Generic.Dictionary<string, Color32[]> TileArt = new System.Collections.Generic.Dictionary<string, Color32[]>();
+        // generated colour for that tile kind; any square size is resampled to PixelsPerTile (the pixel art from
+        // Tools/PixelArt is 32x32). Kinds are TileKind names in lower case (floor, rock, wall, door_open...).
+        private static readonly System.Collections.Generic.Dictionary<string, Color32[][]> TileArt = new System.Collections.Generic.Dictionary<string, Color32[][]>();
 
         public static string TileKey(TileKind k)
         {
@@ -32,28 +32,39 @@ namespace Hollowcrawl.Presentation
             }
         }
 
-        private Color32[] ArtFor(TileKind k)
+        /// <summary>Art for a tile kind at a grid cell. A strip of N square variants picks one per cell (stable hash).</summary>
+        private Color32[] ArtFor(TileKind k, int x, int y)
         {
             string key = Theme + "/" + TileKey(k);
-            if (TileArt.TryGetValue(key, out var px)) return px;
-            px = Load("Tiles/" + key) ?? Load("Tiles/" + TileKey(k));
-            TileArt[key] = px;
-            return px;
+            if (!TileArt.TryGetValue(key, out var variants))
+            {
+                variants = Load("Tiles/" + key) ?? Load("Tiles/" + TileKey(k));
+                TileArt[key] = variants;
+            }
+            if (variants == null) return null;
+            uint h = (uint)(x * 73856093) ^ (uint)(y * 19349663) ^ 0x9E3779B9u;
+            h ^= h >> 13; h *= 0x5bd1e995u; h ^= h >> 15;
+            return variants[(int)(h % (uint)variants.Length)];
         }
 
-        private static Color32[] Load(string path)
+        private static Color32[][] Load(string path)
         {
             var tex = Resources.Load<Texture2D>(path);
             if (tex == null) return null;
             Color32[] src;
             try { src = tex.GetPixels32(); }
             catch (UnityException) { Debug.LogWarning($"[Art] {path} needs Read/Write enabled in its import settings."); return null; }
-            if (tex.width == PixelsPerTile && tex.height == PixelsPerTile) return src;
-            var dst = new Color32[PixelsPerTile * PixelsPerTile];
-            for (int y = 0; y < PixelsPerTile; y++)
-                for (int x = 0; x < PixelsPerTile; x++)
-                    dst[y * PixelsPerTile + x] = src[(y * tex.height / PixelsPerTile) * tex.width + x * tex.width / PixelsPerTile];
-            return dst;
+            int size = tex.height, count = Mathf.Max(1, tex.width / size);
+            var result = new Color32[count][];
+            for (int v = 0; v < count; v++)
+            {
+                var dst = new Color32[PixelsPerTile * PixelsPerTile];
+                for (int y = 0; y < PixelsPerTile; y++)
+                    for (int x = 0; x < PixelsPerTile; x++)
+                        dst[y * PixelsPerTile + x] = src[(y * size / PixelsPerTile) * tex.width + v * size + x * size / PixelsPerTile];
+                result[v] = dst;
+            }
+            return result;
         }
 
         public static RoomRenderer Create(Transform parent)
@@ -73,7 +84,7 @@ namespace Hollowcrawl.Presentation
             if (_texture == null || _texture.width != w || _texture.height != h)
             {
                 if (_texture != null) Destroy(_texture);
-                _texture = new Texture2D(w, h, TextureFormat.RGBA32, false) { filterMode = FilterMode.Bilinear, wrapMode = TextureWrapMode.Clamp };
+                _texture = new Texture2D(w, h, TextureFormat.RGBA32, false) { filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp };
             }
             Redraw();
             _renderer.sprite = Sprite.Create(_texture, new Rect(0, 0, w, h), new Vector2(0f, 0f), PixelsPerTile);
@@ -92,7 +103,7 @@ namespace Hollowcrawl.Presentation
                     var kind = _grid.Get(x, row);
                     int ty = _grid.Height - row; // texture rows grow upward; +1 border offset already in (H - row)
                     int tx = x + 1;
-                    var art = ArtFor(kind);
+                    var art = ArtFor(kind, x, row);
                     // Door art is modelled for the top/bottom walls; turn it a quarter for the side walls.
                     bool sideDoor = (kind == TileKind.DoorOpen || kind == TileKind.DoorClosed) && (x == -1 || x == _grid.Width);
                     for (int py = 0; py < PixelsPerTile; py++)

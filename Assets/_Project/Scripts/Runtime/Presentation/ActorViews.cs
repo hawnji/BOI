@@ -17,6 +17,19 @@ namespace Hollowcrawl.Presentation
         private readonly List<int> _stale = new List<int>();
         private float _blink;
 
+        /// <summary>Per-view animation state: idle and move strips, playback time, facing.</summary>
+        private sealed class Anim
+        {
+            public string Key;
+            public Sprite[] Idle, Move;
+            public float Time;
+            public Vector2 LastPos;
+            public bool FaceLeft, HasArt;
+        }
+
+        private readonly Dictionary<int, Anim> _anims = new Dictionary<int, Anim>();
+        private const float IdleFps = 4f, MoveFps = 9f;
+
         public ActorViews(Transform root) { _root = root; }
 
         public void Sync(RoomSimulation room, IReadOnlyList<CompanionActor> companions, float dt)
@@ -61,13 +74,14 @@ namespace Hollowcrawl.Presentation
 
             _stale.Clear();
             foreach (var kv in _live) if (!_seen.Contains(kv.Key)) _stale.Add(kv.Key);
-            foreach (var id in _stale) { var v = _live[id]; _live.Remove(id); v.gameObject.SetActive(false); _pool.Push(v); }
+            foreach (var id in _stale) { var v = _live[id]; _live.Remove(id); _anims.Remove(id); v.gameObject.SetActive(false); _pool.Push(v); }
         }
 
         public void Clear()
         {
             foreach (var v in _live.Values) { v.gameObject.SetActive(false); _pool.Push(v); }
             _live.Clear();
+            _anims.Clear();
         }
 
         private SpriteRenderer Show(Actor a, int order)
@@ -77,17 +91,53 @@ namespace Hollowcrawl.Presentation
             {
                 v = _pool.Count > 0 ? _pool.Pop() : CreateView();
                 v.gameObject.SetActive(true);
-                v.sprite = PlaceholderArt.Get(a.ViewKey, a.Kind);
                 v.gameObject.name = a.Kind + " " + a.ViewKey;
                 _live[a.Id] = v;
             }
+            var pos = new Vector2(a.Position.X, a.Position.Y);
+            var anim = Animate(a.Id, a.ViewKey, a.Kind, pos);
+            v.sprite = anim.HasArt ? Frame(anim, pos) : PlaceholderArt.Get(a.ViewKey, a.Kind);
+            v.flipX = anim.HasArt && anim.FaceLeft && Faces(a.Kind);
             v.enabled = true;
             v.sortingOrder = order;
-            v.color = PlaceholderArt.Tint(a.ViewKey ?? a.Kind.ToString(), a.Kind);
-            v.transform.localPosition = new Vector3(a.Position.X, a.Position.Y, 0f);
-            float d = a.Radius * 2f;
+            v.color = anim.HasArt ? Color.white : PlaceholderArt.Tint(a.ViewKey ?? a.Kind.ToString(), a.Kind);
+            // Pixel art is drawn at its native size (32 px per unit) and snapped to the pixel grid so it stays crisp;
+            // placeholder shapes are scaled to the actor's collision size instead.
+            v.transform.localPosition = anim.HasArt ? new Vector3(Snap(pos.x), Snap(pos.y), 0f) : new Vector3(pos.x, pos.y, 0f);
+            float d = anim.HasArt ? 1f : a.Radius * 2f;
             v.transform.localScale = new Vector3(d, d, 1f);
             return v;
+        }
+
+        private static bool Faces(ActorKind k) => k == ActorKind.Player || k == ActorKind.Enemy || k == ActorKind.Companion;
+
+        private static float Snap(float v) => Mathf.Round(v * PlaceholderArt.ArtPixelsPerUnit) / PlaceholderArt.ArtPixelsPerUnit;
+
+        private Anim Animate(int id, string key, ActorKind kind, Vector2 pos)
+        {
+            if (!_anims.TryGetValue(id, out var anim) || anim.Key != key)
+            {
+                anim = new Anim { Key = key, LastPos = pos };
+                anim.Idle = PlaceholderArt.LoadFrames(key);
+                anim.Move = PlaceholderArt.LoadFrames(key + "_move");
+                anim.HasArt = anim.Idle != null;
+                anim.Time = (id * 0.37f) % 1f; // desync identical enemies
+                _anims[id] = anim;
+            }
+            return anim;
+        }
+
+        private Sprite Frame(Anim anim, Vector2 pos)
+        {
+            float dt = Time.deltaTime;
+            var delta = pos - anim.LastPos;
+            anim.LastPos = pos;
+            bool moving = dt > 0f && delta.sqrMagnitude > 1e-6f;
+            if (Mathf.Abs(delta.x) > 0.002f) anim.FaceLeft = delta.x < 0f;
+            var frames = moving && anim.Move != null ? anim.Move : anim.Idle;
+            anim.Time += dt;
+            int i = (int)(anim.Time * (moving && anim.Move != null ? MoveFps : IdleFps)) % frames.Length;
+            return frames[i];
         }
 
         /// <summary>Item or trinket icon floating over its pedestal (art hook: Resources/Sprites/item_&lt;id&gt; or the item's iconKey).</summary>
@@ -102,16 +152,19 @@ namespace Hollowcrawl.Presentation
             {
                 v = _pool.Count > 0 ? _pool.Pop() : CreateView();
                 v.gameObject.SetActive(true);
-                v.sprite = PlaceholderArt.Get(iconKey, ActorKind.Pickup);
                 v.gameObject.name = "Icon " + iconKey;
                 _live[key] = v;
             }
+            var art = PlaceholderArt.LoadFrames(iconKey);
+            v.sprite = art != null ? art[(int)(_blink * IdleFps) % art.Length] : PlaceholderArt.Get(iconKey, ActorKind.Pickup);
+            v.flipX = false;
             v.enabled = true;
             v.sortingOrder = 4;
-            v.color = PlaceholderArt.Tint(iconKey, ActorKind.Pickup);
-            float bob = 0.08f * Mathf.Sin(_blink * 3f + p.Id);
-            v.transform.localPosition = new Vector3(p.Position.X, p.Position.Y + 0.55f + bob, 0f);
-            v.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
+            v.color = art != null ? Color.white : PlaceholderArt.Tint(iconKey, ActorKind.Pickup);
+            float bob = Mathf.Round(2f * Mathf.Sin(_blink * 3f + p.Id)) / PlaceholderArt.ArtPixelsPerUnit;
+            v.transform.localPosition = new Vector3(Snap(p.Position.X), Snap(p.Position.Y + 0.55f) + bob, 0f);
+            float sc = art != null ? 1f : 0.7f;
+            v.transform.localScale = new Vector3(sc, sc, 1f);
         }
 
         private SpriteRenderer CreateView()
